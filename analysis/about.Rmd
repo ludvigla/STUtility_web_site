@@ -30,9 +30,9 @@ div.main-container {
 </style>
 <style>
 #TOC {
-  background: url("https://cdn.sstatic.net/Sites/stackoverflow/company/img/logos/so/so-logo.png?v=9c558ec15d8a");
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
-  padding-top: 80px !important;
+  padding-top: 100px !important;
   background-repeat: no-repeat;
   op: 5%;
   opacity: 0.8;
@@ -61,7 +61,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = F
 
 # Background
 
-## The Spatial Transcriptomics method 
+## Spatial Transcriptomics (ST)
 
 ---
 
@@ -73,25 +73,25 @@ In short, there are two main output components from an ST experiment; (i) the ge
 
 All the steps explained in this guide could be performed with only the expression data. However, the image data, apart from being fundamental to the biological interpretation, is used to filter out capture-spots that lies directly under the tissue. This filtering excludes the unwanted data points, lowering the memory burden of the data objects created as well as removing informational noise. 
 
-An introductory animation is available on our website: http://www.spatialtranscriptomicsresearch.org/
+An introductory animation is available on our website: http://www.spatialresearch.org/
 
-### Spot adjustment and selection
+### Selecting spots
 
 The gene expression data consists of a count matrix with genes in rows and capture "spots" in columns. Each spot represents a small area on an ST array from which the captured transcripts have been barcoded with a unique sequence. The unique barcode makes it possible to map the transcripts onto a spatial position on the tissue section and would be equivalent to a cell specific barcode in scRNA-seq data but can tag a mixture of transcripts from multiple cells. The spatial position of a spot is an (x, y) coordinate that defines the centroid of the spot area. These spatial coordinates are stored in the spot ids (column names) and allows us to visualize gene expression (and other spot features) in the array grid system. However, if you want to overlay a visualization on top the HE image you want to make sure that the spot coordinates are exact in relation to morphological features of the image. When the spots are printed onto the ST array surface, they will sometimes deviate from the (x, y) coordinates given by the spot ids and should therefore be adjusted. In addition to the spot adjustment, you will also need to label the spots that are located directly under the tissue. Spot adjustment and selection can be done automatically using our [ST spot detector](https://github.com/SpatialTranscriptomicsResearch/st_spot_detector) web tool which outputs a table of adjusted coordinates and labels for the spots under tissue.
 
-## A note on using STUtility for multiple sample analysis
+## Multiple samples
 
 The STUtility tool was developed with the goal of multiple sample inputs. As with all biological data, using multiple samples add power to the analysis and is a necessity to enable comprehensive insight which otherwise suffers from stochastic uncertainty. Within this vignette, we display how you can input multiple samples, look for aggravating circumstances like batch effects and missing data, apply methods to correct such if present, get a holistic picture of your data as well as conduct more in depth analysis in various ways.
 
-## A note on the fundamental backbone of STUtility - The Seurat workflow
+## Seurat workflow
 
 We have extensively tried different methods and workflows for handling ST data. While all roads lead to Rome, as of the date of this writing we find the Seurat approach [https://satijalab.org/seurat/] to be the most suited for this type of data. Seurat is an R package designed for single-cell RNAseq data. Obviously, this deviates from the data that the ST technology currently produce, as the resolution on the array implies that each capture-spot consists of transcripts originating from multiple cells. Nevertheless, the characteristics of the ST data resembles that of scRNAseq to a large extent. 
 
-## A note about the new 10X Visium array
+## 10X Visium array
 
 In late 2018, the company Spatial Transcriptomics was acquired by 10X Genomics, which since then have been developing the new version of the technological platform that our research group have been using in the past years, called _Visium_. There are some changes in the experimental protocol for the Visium, and the type of output and subsequently input to this R tool. Since our goal is to have this R tool compatible to past and future versions of the technology, both are supported. If you are working with the Visium platform, please see [The 10X Visium platform]. 
 
-## A note about the naming conventions used
+## Naming conventions
 
 For users familiar with the Seurat workflow, there are a number of Seruat plotting functions, e.g. `Seurat::FeaturePlot()`, those plotting functions all have a "ST version", which is called upon by adding "ST." prior to the original function name e.g. `STutility::ST.FeaturePlot()`.
 
