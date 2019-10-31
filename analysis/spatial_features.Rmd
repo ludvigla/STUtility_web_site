@@ -1,0 +1,269 @@
+---
+title: "STUtility - Vignette"
+author:
+- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
+- Ludvig Larsson, Royal Institute of Technology (KTH)
+date: ''
+#output:
+#  html_document:
+#    theme: darkly
+#    css: style.css
+#    number_sections: false
+#    toc: yes
+#    toc_depth: 3
+#    toc_float:
+#      collapsed: false
+#      smooth_scroll: true
+#  pdf_document:
+#    number_sections: false
+#    toc: yes
+#    toc_depth: 3
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+<style>
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #375a7f;
+}
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = FALSE)
+
+```
+
+```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE}
+library(STutility)
+se <- readRDS("~/STUtility/se_object")
+```
+
+## Finding spatial expression patterns and areas of interest
+
+The strength of untargeted whole transcriptome capture is the ability to perform unsupervised analysis and the ability to find spatial gene expression patterns. We've found good use of the dimensionality reduction method "ICA" (Independent Component Analysis) to find spatial expression patterns. An example is demonstrated below:
+<br>
+```{r ICA, fig.width=16, fig.height=10, eval = FALSE}
+
+se <- RunICA(se)
+
+``` 
+<br>
+Different dimensionality reductions methods are supported via Seurat (`RunPCA()`, `RunTSNE`, `RunICA()`, `runUMAP()` ) and the output are stored in the Seurat object. 
+
+We can then plot a variable number of dimensions across the samples.
+<br>
+```{r dimplot, fig.height=28, fig.width=16, out.width = "100%"}
+
+ST.DimPlot(se, 
+           dims = c(-1, 2, -3, -4, 5, -6, 7, -8, 9, 10, 11, 12, -13, 14, 15, -16), # If we flip the sign, the ICA vector will be inverted
+           ncol = 8, # Sets the number of columns at dimensions level
+           grid.ncol = 2, # Sets the number of columns at sample level
+           reduction = "ica", 
+           dark.theme = T, 
+           pt.size = 0.5, 
+           center.zero = T, 
+           palette = "MaYl")
+
+```
+<br>
+To extract the genes that drives the separation according to the dimensionality reduction, we can use the `ProjectDim()` function. Where we specify the dimensions of interest (here IC_1 and IC_3, which are regions that seems to confer a clear spatial expression histology. 
+<br>
+```{r project_dim}
+
+ProjectDim(se, reduction = "ica", dims = c(1, 2, 4, 5))
+
+```
+
+
+## Clustering
+
+Clustering is a standard procedure in genomic analysis, and the methods for doing so are numerous. Here we demonstrate an example where we use the result of ICA to perform clustering. In the previous section, we demonstrated how to plot a subset of dimensions from the ICA output. Going through this list, we can notice the dimensions that are "spatially active", i.e. that seems to confer a spatial pattern along their axis. We can extract these dimensions:
+<br>
+```{r keep_dims, fig.width=16, fig.height=10}
+keep.dims <- c(1:12, 16:18, 21:28, 30:34, 40:41, 47, 49:50)
+```
+<br>
+And then use them to construct a Shared Nearest Neighbor (SSN) Graph. 
+<br>
+```{r findneighbours, eval=FALSE}
+se <- FindNeighbors(object = se, dims = keep.dims, verbose = FALSE, reduction = "ica")
+```
+<br>
+Followed by clustering using a modularity optimizer
+<br>
+```{r findclusters, eval=FALSE}
+se <- FindClusters(object = se, verbose = FALSE)
+```
+<br>
+And plotting of the clusters spatially
+<br>
+```{r plot_clusters, fig.height = 5, fig.width = 10, out.width='100%'}
+
+tol18rainbow <-  c("#771155", "#AA4488", "#CC99BB", "#114477", "#4477AA", "#77AADD", "#117777", "#44AAAA", "#77CCCC", "#777711", "#AAAA44", "#DDDD77", "#774411", "#AA7744", "#DDAA77", "#771122", "#AA4455", "#DD7788")
+
+se[["clusters_ICA"]] <- se[["seurat_clusters"]]
+ST.FeaturePlot(object = se, features = "clusters_ICA", dark.theme = T, cols = tol18rainbow, pt.size = 0.5)
+
+```
+<br>
+```{r clusters_UMAP, fig.height=6, fig.width=8}
+
+se <- SetIdent(se, value = "clusters_ICA")
+DimPlot(se, reduction = "umap", cols = tol18rainbow) + DarkTheme()
+
+```
+
+<br>
+If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored.
+<br>
+```{r plot_clusters_split, fig.height = 12, fig.width = 14, out.width='100%'}
+
+ST.FeaturePlot(object = se, features = "clusters_ICA", dark.theme = T, cols = tol18rainbow, pt.size = 0.1, split.labels = T, indices = 1)
+
+```
+<br>
+We can take a look a specific look at the most variable features.
+<br>
+```{r variable_features, fig.width = 13, fig.height = 6}
+
+head(se@assays$SCT@var.features, 20)
+top <- se@assays$SCT@var.features
+
+fts <- c("Slc18a2", "Prkcd", "Opalin", "Lamp5")
+for (ftr in fts) {
+  print(MultiFeatureOverlay(se, 
+                    features = ftr, 
+                    sampleids = 1:2,
+                    cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
+                    method = "raster", 
+                    pt.size = 0.5, 
+                    pt.alpha = 0.5, 
+                    dark.theme = T))
+}
+
+```
+<br>
+Another useful feature is that you can now compare the spatial distribution of a gene with the typical "graph embeddings" s.a. UMAP and t-SNE. 
+<br>
+```{r run_UMAP, eval=FALSE}
+
+# Run UMAP
+se <- RunUMAP(se, reduction = "ica", dims = keep.dims, n.neighbors = 10)
+
+````
+
+```{r embedding_vs_ST, fig.width = 16, fig.height = 20}
+
+# Define colors for heatmap
+heatmap.colors <- c(rgb(40, 40, 40, maxColorValue = 255), "dark blue", "cyan", "white")
+fts <- c("Slc18a2", "Prkcd", "Opalin", "Lamp5")
+
+# plot transformed features expression on UMAP embedding
+p.fts <- lapply(fts, function(ftr) {
+  FeaturePlot(se, features = ftr, reduction = "umap", order = TRUE, cols = heatmap.colors) + DarkTheme()
+})
+
+# plot transformed features expression on Visium coordinates
+p3 <- ST.FeaturePlot(se, features = fts, ncol = 2, grid.ncol = 1, cols = heatmap.colors, pt.size = 0.5, dark.theme = T)
+
+# Construct final plot
+cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2, rel_widths = c(1, 2))
+
+```
+
+## RGB dimensionality reduction plots
+
+One approach to visualize the result of dimensionality reduction is to use the first three dimensions and transform the values into RGB color space. This 3 dimensional space can then be utilized for spatial visualization.
+We demonstrate the technique with UMAP, using our ICA dimensions as input:
+<br>
+```{r UMAP, val=FALSE}
+
+se <- RunUMAP(object = se, dims = keep.dims, verbose = FALSE, n.components = 3, reduction = "ica", reduction.name = "umap.3d")
+
+```
+<br>
+We use the first three dimensions for plotting:
+<br>
+```{r UMAP_blend, fig.height = 6, fig.width = 12}
+
+ST.DimPlot(object = se, dims = 1:3, reduction = "umap.3d", blend = T, dark.theme = T, pt.size = 0.5)
+
+```
+
+<br>
+Once again the `ProjectDim()` function can be used to display the genes that are most strongly correlated with the coordinate system. Note in the function call above that we defined `reduction.name`, which are subsequently stored in the Seurat object in the reduction slot: 
+<br>
+```{r projectdim_UMAP}
+
+ProjectDim(se, reduction = "umap.3d")
+
+```
+<br>
+As seen in the plot above, there are clear spatial patterns that are confirmed by the histology of the tissue. 
+Lets take an example, looking at the first UMAP coordinate (red color) - we note a clear pattern [bra beskrivning av vad vi ser]
+
+We can utilize an external data source, the Allen brain atlas, to see how well our data match. 
+Lets take the gene with highest correlation to the red color, i.e. "Cck". 
+
+https://mouse.brain-map.org/gene/show/12209
+![Expression data - Allen brain atlas](assets/Allen_expression_data.PNG)
+
+![ISH data - Allen brain atlas](assets/Allen_ISH_data.PNG)
+<br>
+```{r allen_example, fig.width = 13, fig.height = 6}
+
+MultiFeatureOverlay(se, features = "Cck", 
+                    sampleids = 1:2,
+                    cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
+                    pt.size = 0.5, 
+                    pt.alpha = 0.5,
+                    method = "raster", 
+                    dark.theme = T)
+
+```
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;

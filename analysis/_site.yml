@@ -13,6 +13,10 @@ navbar:
     href: getting_started.html
   - text: Image processing
     href: image_processing.html
+  - text: Normalization
+    href: normalization.html
+  - text: Spatial features
+    href: spatial_features.html
   - text: License
     href: license.html
   right:

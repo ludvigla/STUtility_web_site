@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Joseph Bergenstråhle, Royal Institute of Technology (KTH)" />
+<meta name="author" content="Ludvig Larsson, Royal Institute of Technology (KTH)" />
+
+
+<title>STUtility - Vignette</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STUtility</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="installation.html">Installation</a>
+</li>
+<li>
+  <a href="getting_started.html">Getting Started</a>
+</li>
+<li>
+  <a href="image_processing.html">Image processing</a>
+</li>
+<li>
+  <a href="normalization.html">Normalization</a>
+</li>
+<li>
+  <a href="spatial_features.html">Spatial features</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ludvigla/STUtility_web_site">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">STUtility - Vignette</h1>
+<h4 class="author">Joseph Bergenstråhle, Royal Institute of Technology (KTH)</h4>
+<h4 class="author">Ludvig Larsson, Royal Institute of Technology (KTH)</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2019-10-31
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191031code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191031)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree908fe2cc69d6d4d358c8a50ddd86e283ccd72e5atargetblank908fe2ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/908fe2cc69d6d4d358c8a50ddd86e283ccd72e5a" target="_blank">908fe2c</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree908fe2cc69d6d4d358c8a50ddd86e283ccd72e5atargetblank908fe2ca" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/about_cache/
+    Ignored:    analysis/figure/
+    Ignored:    analysis/getting_started_cache/
+    Ignored:    analysis/image_processing_cache/
+    Ignored:    analysis/normalization_cache/
+    Ignored:    docs/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/normalization.Rmd
+    Untracked:  analysis/spatial_features.Rmd
+    Untracked:  docs/figure/normalization.Rmd/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+    Modified:   analysis/image_processing.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+<style>
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #375a7f;
+}
+</style>
+<pre class="r"><code>library(STutility)
+se &lt;- readRDS(&quot;~/STUtility/se_object&quot;)</code></pre>
+<div id="finding-spatial-expression-patterns-and-areas-of-interest" class="section level2">
+<h2>Finding spatial expression patterns and areas of interest</h2>
+<p>The strength of untargeted whole transcriptome capture is the ability to perform unsupervised analysis and the ability to find spatial gene expression patterns. We’ve found good use of the dimensionality reduction method “ICA” (Independent Component Analysis) to find spatial expression patterns. An example is demonstrated below: <br></p>
+<pre class="r"><code>se &lt;- RunICA(se)</code></pre>
+<p><br> Different dimensionality reductions methods are supported via Seurat (<code>RunPCA()</code>, <code>RunTSNE</code>, <code>RunICA()</code>, <code>runUMAP()</code> ) and the output are stored in the Seurat object.</p>
+<p>We can then plot a variable number of dimensions across the samples. <br></p>
+<pre class="r"><code>ST.DimPlot(se, 
+           dims = c(-1, 2, -3, -4, 5, -6, 7, -8, 9, 10, 11, 12, -13, 14, 15, -16), # If we flip the sign, the ICA vector will be inverted
+           ncol = 8, # Sets the number of columns at dimensions level
+           grid.ncol = 2, # Sets the number of columns at sample level
+           reduction = &quot;ica&quot;, 
+           dark.theme = T, 
+           pt.size = 0.5, 
+           center.zero = T, 
+           palette = &quot;MaYl&quot;)</code></pre>
+<p><img src="figure/spatial_features.Rmd/dimplot-1.png" width="100%" style="display: block; margin: auto;" /> <br> To extract the genes that drives the separation according to the dimensionality reduction, we can use the <code>ProjectDim()</code> function. Where we specify the dimensions of interest (here IC_1 and IC_3, which are regions that seems to confer a clear spatial expression histology. <br></p>
+<pre class="r"><code>ProjectDim(se, reduction = &quot;ica&quot;, dims = c(1, 2, 4, 5))</code></pre>
+<pre><code>IC_ 1 
+Positive:  Nrgn, Snap25, Cck, mt-Nd3, Calm2, Olfm1, Rtn1, Atp1b1, Pcp4, Uchl1 
+       Stmn3, Pvalb, Calm1, Cplx1, Ywhah, Ndufa4, Ndrg4, Nefl, Nap1l5, Gm42418 
+Negative:  Mal, Mog, Cryab, Cnp, Mag, Opalin, Cldn11, Qdpr, Sept4, Trf 
+       Mobp, Tspan2, Pllp, Apod, Ppp1r14a, Gsn, Grb14, Car2, Ugt8a, Plekhb1 
+IC_ 2 
+Positive:  Prkcd, Tnnt1, Pcp4, Zic1, Ptpn4, Plekhg1, Adarb1, Ramp3, Rora, Tcf7l2 
+       Pdp1, Ptpn3, Rgs16, Ntng1, Amotl1, Plcb4, Synpo2, Shox2, Patj, Rasgrp1 
+Negative:  Nrgn, Tmsb4x, Ctxn1, Rtn1, Sst, Snca, Nnat, Rplp1, 6330403K07Rik, Ly6h 
+       Cst3, Crym, Rpl37, 1110008P14Rik, Rps29, Rpl13, Hpca, Rps21, Olfm1, Calb2 
+IC_ 4 
+Positive:  Mbp, Plp1, Pcp4, Mobp, Ptgds, Cryab, Qdpr, Mal, Crym, Apod 
+       Nnat, Plekhb1, Calb2, Tmsb10, Cnp, Trf, Mag, Bcas1, Mog, Sparc 
+Negative:  Nrgn, Lamp5, Camk2n1, Cck, Egr1, Arc, Igfbp6, Olfm1, Egr3, Atp1a1 
+       1110008P14Rik, Nr4a1, Dusp14, Rgs4, Cabp1, Ier5, Pdp1, Lingo1, Calb1, Cx3cl1 
+IC_ 5 
+Positive:  Slc6a3, Th, Ddc, Slc18a2, Sncg, Slc10a4, Ret, Dlk1, Chrna6, En1 
+       Drd2, Cplx1, Aldh1a1, Sv2c, Gch1, Chrnb3, Foxa1, Gucy2c, C130021I20Rik, Klhl1 
+Negative:  Nrgn, Olfm1, Cck, Slc17a7, Calm2, Sst, Ctxn1, Egr1, Ppp3ca, Chn1 
+       Calm1, Nptxr, Crym, Camk2n1, Arc, Tmsb4x, Hpca, Itpka, Ptk2b, Camk2a </code></pre>
+<pre><code>An object of class Seurat 
+26874 features across 5053 samples within 2 assays 
+Active assay: SCT (13437 features)
+ 1 other assay present: RNA
+ 5 dimensional reductions calculated: ica, umap, umap.3d, NMF, umap.NMF</code></pre>
+</div>
+<div id="clustering" class="section level2">
+<h2>Clustering</h2>
+<p>Clustering is a standard procedure in genomic analysis, and the methods for doing so are numerous. Here we demonstrate an example where we use the result of ICA to perform clustering. In the previous section, we demonstrated how to plot a subset of dimensions from the ICA output. Going through this list, we can notice the dimensions that are “spatially active”, i.e. that seems to confer a spatial pattern along their axis. We can extract these dimensions: <br></p>
+<pre class="r"><code>keep.dims &lt;- c(1:12, 16:18, 21:28, 30:34, 40:41, 47, 49:50)</code></pre>
+<p><br> And then use them to construct a Shared Nearest Neighbor (SSN) Graph. <br></p>
+<pre class="r"><code>se &lt;- FindNeighbors(object = se, dims = keep.dims, verbose = FALSE, reduction = &quot;ica&quot;)</code></pre>
+<p><br> Followed by clustering using a modularity optimizer <br></p>
+<pre class="r"><code>se &lt;- FindClusters(object = se, verbose = FALSE)</code></pre>
+<p><br> And plotting of the clusters spatially <br></p>
+<pre class="r"><code>tol18rainbow &lt;-  c(&quot;#771155&quot;, &quot;#AA4488&quot;, &quot;#CC99BB&quot;, &quot;#114477&quot;, &quot;#4477AA&quot;, &quot;#77AADD&quot;, &quot;#117777&quot;, &quot;#44AAAA&quot;, &quot;#77CCCC&quot;, &quot;#777711&quot;, &quot;#AAAA44&quot;, &quot;#DDDD77&quot;, &quot;#774411&quot;, &quot;#AA7744&quot;, &quot;#DDAA77&quot;, &quot;#771122&quot;, &quot;#AA4455&quot;, &quot;#DD7788&quot;)
+
+se[[&quot;clusters_ICA&quot;]] &lt;- se[[&quot;seurat_clusters&quot;]]
+ST.FeaturePlot(object = se, features = &quot;clusters_ICA&quot;, dark.theme = T, cols = tol18rainbow, pt.size = 0.5)</code></pre>
+<p><img src="figure/spatial_features.Rmd/plot_clusters-1.png" width="100%" style="display: block; margin: auto;" /> <br></p>
+<pre class="r"><code>se &lt;- SetIdent(se, value = &quot;clusters_ICA&quot;)
+DimPlot(se, reduction = &quot;umap&quot;, cols = tol18rainbow) + DarkTheme()</code></pre>
+<p><img src="figure/spatial_features.Rmd/clusters_UMAP-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><br> If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored. <br></p>
+<pre class="r"><code>ST.FeaturePlot(object = se, features = &quot;clusters_ICA&quot;, dark.theme = T, cols = tol18rainbow, pt.size = 0.1, split.labels = T, indices = 1)</code></pre>
+<p><img src="figure/spatial_features.Rmd/plot_clusters_split-1.png" width="100%" style="display: block; margin: auto;" /> <br> We can take a look a specific look at the most variable features. <br></p>
+<pre class="r"><code>head(se@assays$SCT@var.features, 20)</code></pre>
+<pre><code> [1] &quot;Hbb-bs&quot;  &quot;Hba-a1&quot;  &quot;Hba-a2&quot;  &quot;Plp1&quot;    &quot;Mbp&quot;     &quot;Ptgds&quot;   &quot;Hbb-bt&quot; 
+ [8] &quot;Slc6a3&quot;  &quot;Sst&quot;     &quot;Th&quot;      &quot;Ddc&quot;     &quot;Npy&quot;     &quot;Slc18a2&quot; &quot;Mobp&quot;   
+[15] &quot;Nrgn&quot;    &quot;Mal&quot;     &quot;Pcp4&quot;    &quot;Prkcd&quot;   &quot;Apod&quot;    &quot;Myoc&quot;   </code></pre>
+<pre class="r"><code>top &lt;- se@assays$SCT@var.features
+
+fts &lt;- c(&quot;Slc18a2&quot;, &quot;Prkcd&quot;, &quot;Opalin&quot;, &quot;Lamp5&quot;)
+for (ftr in fts) {
+  print(MultiFeatureOverlay(se, 
+                    features = ftr, 
+                    sampleids = 1:2,
+                    cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;),
+                    method = &quot;raster&quot;, 
+                    pt.size = 0.5, 
+                    pt.alpha = 0.5, 
+                    dark.theme = T))
+}</code></pre>
+<pre><code>[1] 0</code></pre>
+<p><img src="figure/spatial_features.Rmd/variable_features-1.png" width="1248" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 0</code></pre>
+<p><img src="figure/spatial_features.Rmd/variable_features-2.png" width="1248" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 0</code></pre>
+<p><img src="figure/spatial_features.Rmd/variable_features-3.png" width="1248" style="display: block; margin: auto;" /><img src="figure/spatial_features.Rmd/variable_features-4.png" width="1248" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 0</code></pre>
+<p><br> Another useful feature is that you can now compare the spatial distribution of a gene with the typical “graph embeddings” s.a. UMAP and t-SNE. <br></p>
+<pre class="r"><code># Run UMAP
+se &lt;- RunUMAP(se, reduction = &quot;ica&quot;, dims = keep.dims, n.neighbors = 10)</code></pre>
+<pre class="r"><code># Define colors for heatmap
+heatmap.colors &lt;- c(rgb(40, 40, 40, maxColorValue = 255), &quot;dark blue&quot;, &quot;cyan&quot;, &quot;white&quot;)
+fts &lt;- c(&quot;Slc18a2&quot;, &quot;Prkcd&quot;, &quot;Opalin&quot;, &quot;Lamp5&quot;)
+
+# plot transformed features expression on UMAP embedding
+p.fts &lt;- lapply(fts, function(ftr) {
+  FeaturePlot(se, features = ftr, reduction = &quot;umap&quot;, order = TRUE, cols = heatmap.colors) + DarkTheme()
+})
+
+# plot transformed features expression on Visium coordinates
+p3 &lt;- ST.FeaturePlot(se, features = fts, ncol = 2, grid.ncol = 1, cols = heatmap.colors, pt.size = 0.5, dark.theme = T)
+
+# Construct final plot
+cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2, rel_widths = c(1, 2))</code></pre>
+<p><img src="figure/spatial_features.Rmd/embedding_vs_ST-1.png" width="1536" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rgb-dimensionality-reduction-plots" class="section level2">
+<h2>RGB dimensionality reduction plots</h2>
+<p>One approach to visualize the result of dimensionality reduction is to use the first three dimensions and transform the values into RGB color space. This 3 dimensional space can then be utilized for spatial visualization. We demonstrate the technique with UMAP, using our ICA dimensions as input: <br></p>
+<pre class="r"><code>se &lt;- RunUMAP(object = se, dims = keep.dims, verbose = FALSE, n.components = 3, reduction = &quot;ica&quot;, reduction.name = &quot;umap.3d&quot;)</code></pre>
+<p><br> We use the first three dimensions for plotting: <br></p>
+<pre class="r"><code>ST.DimPlot(object = se, dims = 1:3, reduction = &quot;umap.3d&quot;, blend = T, dark.theme = T, pt.size = 0.5)</code></pre>
+<p><img src="figure/spatial_features.Rmd/UMAP_blend-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><br> Once again the <code>ProjectDim()</code> function can be used to display the genes that are most strongly correlated with the coordinate system. Note in the function call above that we defined <code>reduction.name</code>, which are subsequently stored in the Seurat object in the reduction slot: <br></p>
+<pre class="r"><code>ProjectDim(se, reduction = &quot;umap.3d&quot;)</code></pre>
+<pre><code>UMAP_ 1 
+Positive:  Nrgn, Camk2n1, Lamp5, Egr1, Arc, Hpca, Olfm1, Itpka, Nr4a1, Cck 
+       1110008P14Rik, Ppp3ca, Rgs4, Atp1a1, Egr3, Chn1, Igfbp6, Ier5, Calm2, Pantr1 
+Negative:  Mbp, Plp1, Mobp, Pcp4, Mal, Cryab, Cnp, Apod, Trf, Mag 
+       Ptgds, Qdpr, Mog, Cldn11, Plekhb1, Tcf7l2, Sept4, Prkcd, Tspan2, Tnnt1 
+UMAP_ 2 
+Positive:  Mbp, Plp1, Mobp, Ptgds, Apod, Qdpr, Mal, Trf, Cryab, Sparc 
+       Plekhb1, Cnp, Mag, Mog, Aldh1a1, Tcf7l2, Bcas1, Cldn11, Sept4, Vamp1 
+Negative:  Nrgn, Olfm1, Cck, Camk2n1, Egr1, Arc, Lamp5, Slc17a7, 1110008P14Rik, Ctxn1 
+       Mef2c, Nptxr, Calm2, Atp1a1, Chn1, Sst, Ttc9b, Lingo1, Stx1a, Egr3 
+UMAP_ 3 
+Positive:  Olfm1, Nnat, Ncdn, Calb1, Apoe, Cpne6, C1ql2, Nptxr, Kcnip2, Bhlhe22 
+       Prdm8, Limd2, Dsp, Hbb-bs, Myoc, Necab2, Fabp7, Dcn, Kctd4, Npy2r 
+Negative:  Mbp, Plp1, Mobp, Cryab, 3110035E14Rik, Mal, Pcp4, Cnp, Mag, Myl4 
+       Sst, Trbc2, Arc, Stmn1, Qdpr, Mog, Egr1, 1110008P14Rik, Trf, Cldn11 </code></pre>
+<pre><code>An object of class Seurat 
+26874 features across 5053 samples within 2 assays 
+Active assay: SCT (13437 features)
+ 1 other assay present: RNA
+ 5 dimensional reductions calculated: ica, umap, umap.3d, NMF, umap.NMF</code></pre>
+<p><br> As seen in the plot above, there are clear spatial patterns that are confirmed by the histology of the tissue. Lets take an example, looking at the first UMAP coordinate (red color) - we note a clear pattern [bra beskrivning av vad vi ser]</p>
+<p>We can utilize an external data source, the Allen brain atlas, to see how well our data match. Lets take the gene with highest correlation to the red color, i.e. “Cck”.</p>
+<p><a href="https://mouse.brain-map.org/gene/show/12209" class="uri">https://mouse.brain-map.org/gene/show/12209</a> <img src="assets/Allen_expression_data.PNG" alt="Expression data - Allen brain atlas" /></p>
+<p><img src="assets/Allen_ISH_data.PNG" alt="ISH data - Allen brain atlas" /> <br></p>
+<pre class="r"><code>MultiFeatureOverlay(se, features = &quot;Cck&quot;, 
+                    sampleids = 1:2,
+                    cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;),
+                    pt.size = 0.5, 
+                    pt.alpha = 0.5,
+                    method = &quot;raster&quot;, 
+                    dark.theme = T)</code></pre>
+<p><img src="figure/spatial_features.Rmd/allen_example-1.png" width="1248" style="display: block; margin: auto;" /></p>
+ 
+<hr />
+<p style="text-align: center;">
+A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a>
+</p>
+<!-- Add icon library -->
+<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></p>
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+<a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+<p> </p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] STutility_0.1.0             ggplot2_3.2.1              
+ [3] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.1
+ [5] DelayedArray_0.10.0         BiocParallel_1.18.1        
+ [7] matrixStats_0.55.0          Biobase_2.44.0             
+ [9] GenomicRanges_1.36.1        GenomeInfoDb_1.20.0        
+[11] IRanges_2.18.3              S4Vectors_0.22.1           
+[13] BiocGenerics_0.30.0         Seurat_3.1.1               
+
+loaded via a namespace (and not attached):
+  [1] backports_1.1.5         workflowr_1.3.0        
+  [3] systemfonts_0.1.1       plyr_1.8.4             
+  [5] igraph_1.2.4.1          lazyeval_0.2.2         
+  [7] splines_3.6.1           crosstalk_1.0.0        
+  [9] listenv_0.7.0           digest_0.6.22          
+ [11] foreach_1.4.7           htmltools_0.4.0        
+ [13] viridis_0.5.1           magick_2.2             
+ [15] tiff_0.1-5              gdata_2.18.0           
+ [17] magrittr_1.5            cluster_2.1.0          
+ [19] doParallel_1.0.15       ROCR_1.0-7             
+ [21] globals_0.12.4          RcppParallel_4.4.4     
+ [23] R.utils_2.9.0           jpeg_0.1-8             
+ [25] colorspace_1.4-1        ggrepel_0.8.1          
+ [27] xfun_0.10               dplyr_0.8.3            
+ [29] crayon_1.3.4            RCurl_1.95-4.12        
+ [31] jsonlite_1.6            zeallot_0.1.0          
+ [33] survival_2.44-1.1       zoo_1.8-6              
+ [35] iterators_1.0.12        ape_5.3                
+ [37] glue_1.3.1              gtable_0.3.0           
+ [39] zlibbioc_1.30.0         XVector_0.24.0         
+ [41] webshot_0.5.1           leiden_0.3.1           
+ [43] future.apply_1.3.0      scales_1.0.0           
+ [45] bibtex_0.4.2            miniUI_0.1.1.1         
+ [47] Rcpp_1.0.2              metap_1.1              
+ [49] viridisLite_0.3.0       xtable_1.8-4           
+ [51] reticulate_1.13         rsvd_1.0.2             
+ [53] SDMTools_1.1-221.1      tsne_0.1-3             
+ [55] htmlwidgets_1.5.1       httr_1.4.1             
+ [57] gplots_3.0.1.1          RColorBrewer_1.1-2     
+ [59] ica_1.0-2               pkgconfig_2.0.3        
+ [61] R.methodsS3_1.7.1       uwot_0.1.4             
+ [63] labeling_0.3            tidyselect_0.2.5       
+ [65] rlang_0.4.1             manipulateWidget_0.10.0
+ [67] reshape2_1.4.3          later_1.0.0            
+ [69] munsell_0.5.0           tools_3.6.1            
+ [71] ggridges_0.5.1          evaluate_0.14          
+ [73] stringr_1.4.0           fastmap_1.0.1          
+ [75] yaml_2.2.0              npsurv_0.4-0           
+ [77] knitr_1.25              fs_1.3.1               
+ [79] fitdistrplus_1.0-14     rgl_0.100.30           
+ [81] caTools_1.17.1.2        purrr_0.3.2            
+ [83] RANN_2.6.1              readbitmap_0.1.5       
+ [85] pbapply_1.4-2           future_1.14.0          
+ [87] nlme_3.1-141            mime_0.7               
+ [89] R.oo_1.22.0             ggiraph_0.6.1          
+ [91] xml2_1.2.2              compiler_3.6.1         
+ [93] plotly_4.9.0            png_0.1-7              
+ [95] lsei_1.2-0              Morpho_2.7             
+ [97] tibble_2.1.3            stringi_1.4.3          
+ [99] RSpectra_0.15-0         gdtools_0.2.0          
+[101] lattice_0.20-38         Matrix_1.2-17          
+[103] shinyjs_1.0             vctrs_0.2.0            
+[105] pillar_1.4.2            lifecycle_0.1.0        
+[107] Rdpack_0.11-0           lmtest_0.9-37          
+[109] RcppAnnoy_0.0.13        data.table_1.12.2      
+[111] cowplot_1.0.0           bitops_1.0-6           
+[113] irlba_2.3.3             Rvcg_0.18              
+[115] gbRd_0.4-11             httpuv_1.5.2           
+[117] colorRamps_2.3          imager_0.41.2          
+[119] R6_2.4.0                promises_1.1.0         
+[121] bmp_0.3                 KernSmooth_2.23-15     
+[123] gridExtra_2.3           codetools_0.2-16       
+[125] MASS_7.3-51.4           gtools_3.8.1           
+[127] assertthat_0.2.1        rprojroot_1.3-2        
+[129] withr_2.1.2             sctransform_0.2.0      
+[131] GenomeInfoDbData_1.2.1  grid_3.6.1             
+[133] tidyr_1.0.0             rmarkdown_1.16         
+[135] Rtsne_0.15              git2r_0.26.1           
+[137] shiny_1.4.0            </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

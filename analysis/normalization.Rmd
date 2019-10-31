@@ -1,0 +1,136 @@
+---
+title: "STUtility - Vignette"
+author:
+- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
+- Ludvig Larsson, Royal Institute of Technology (KTH)
+date: ''
+#output:
+#  html_document:
+#    theme: darkly
+#    css: style.css
+#    number_sections: false
+#    toc: yes
+#    toc_depth: 3
+#    toc_float:
+#      collapsed: false
+#      smooth_scroll: true
+#  pdf_document:
+#    number_sections: false
+#    toc: yes
+#    toc_depth: 3
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+<style>
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #375a7f;
+}
+</style>
+
+```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE}
+library(STutility)
+se <- readRDS("~/STUtility/se_object")
+```
+
+## Normalization and scaling
+
+---
+
+Each spot in a Spatial Transcriptomics dataset typically contains RNA from a mixture of cells so why would we apply a workflow that was developed for single-cell RNAseq data? We can calculate some properties to visually inspect the data to see that ST data have similar properties to that of scRNAseq data.
+<br>
+```{r poisson_comparison, fig.width = 4, fig.height = 8, cache=TRUE}
+
+library(Matrix)
+library(magrittr)
+library(dplyr)
+library(ggplot2)
+
+# Get raw count data 
+umi_data <- GetAssayData(object = se, slot = "counts", assay = "RNA")
+dim(umi_data)
+
+# Calculate gene attributes
+gene_attr <- data.frame(mean = rowMeans(umi_data),
+                        detection_rate = rowMeans(umi_data > 0),
+                        var = apply(umi_data, 1, var), 
+                        row.names = rownames(umi_data)) %>%
+  mutate(log_mean = log10(mean), log_var = log10(var))
+
+# Obtain spot attributes from Seurat meta.data slot
+spot_attr <- se[[c("nFeature_RNA", "nCount_RNA")]]
+
+p1 <- ggplot(gene_attr, aes(log_mean, log_var)) + 
+  geom_point(alpha = 0.3, shape = 16, color = "white") + 
+  geom_density_2d(size = 0.3) +
+  geom_abline(intercept = 0, slope = 1, color = 'red') +
+  ggtitle("Mean-variance relationship") + DarkTheme()
+
+# add the expected detection rate under Poisson model
+x = seq(from = -2, to = 2, length.out = 1000)
+poisson_model <- data.frame(log_mean = x, detection_rate = 1 - dpois(0, lambda = 10^x))
+p2 <- ggplot(gene_attr, aes(log_mean, detection_rate)) + 
+  geom_point(alpha = 0.3, shape = 16, color = "white") + 
+  geom_line(data = poisson_model, color='red') +
+  ggtitle("Mean-detection-rate relationship") + DarkTheme()
+
+cowplot::plot_grid(p1, p2, nrow = 2)
+
+```
+
+We can see from the mean-variance and Mean-detection-rate scatter plots that genes show overdispersion compared to what would be expected under a Poisson model. Because these properties are shared between ST and scRNAseq data we have reasoned that the workflow presented in the Seurat package should be applicable for ST data as well. It is important however to keep in mind that each spots contains a mixture of cell types and should be interpreted as a morphological unit in the context of a tissue section. 
+
+In order to normalize the data we recommend using [variance stabilized transformation](https://www.biorxiv.org/content/10.1101/576827v1) available in the SCTransform function in Seurat as of v3.0. 
+
+Following the rationale expressed above, we transform the data according to the Seurat workflow. Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website https://satijalab.org/seurat/  
+<br>
+```{r SCTransform, warning=FALSE, message=FALSE, results="hide", eval = FALSE} 
+
+se <- SCTransform(se, vars.to.regress = c("sample_id", "nFeature_RNA"))
+
+```
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;
+

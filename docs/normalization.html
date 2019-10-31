@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Joseph Bergenstråhle, Royal Institute of Technology (KTH)" />
+<meta name="author" content="Ludvig Larsson, Royal Institute of Technology (KTH)" />
+
+
+<title>STUtility - Vignette</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STUtility</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="installation.html">Installation</a>
+</li>
+<li>
+  <a href="getting_started.html">Getting Started</a>
+</li>
+<li>
+  <a href="image_processing.html">Image processing</a>
+</li>
+<li>
+  <a href="normalization.html">Normalization</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ludvigla/STUtility_web_site">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">STUtility - Vignette</h1>
+<h4 class="author">Joseph Bergenstråhle, Royal Institute of Technology (KTH)</h4>
+<h4 class="author">Ludvig Larsson, Royal Institute of Technology (KTH)</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2019-10-31
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191031code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191031)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree908fe2cc69d6d4d358c8a50ddd86e283ccd72e5atargetblank908fe2ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/908fe2cc69d6d4d358c8a50ddd86e283ccd72e5a" target="_blank">908fe2c</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree908fe2cc69d6d4d358c8a50ddd86e283ccd72e5atargetblank908fe2ca" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/about_cache/
+    Ignored:    analysis/getting_started_cache/
+    Ignored:    analysis/image_processing_cache/
+    Ignored:    docs/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/normalization.Rmd
+
+Unstaged changes:
+    Modified:   analysis/image_processing.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+<style>
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #375a7f;
+}
+</style>
+<pre class="r"><code>library(STutility)
+se &lt;- readRDS(&quot;~/STUtility/se_object&quot;)</code></pre>
+<div id="normalization-and-scaling" class="section level2">
+<h2>Normalization and scaling</h2>
+<hr />
+<p>Each spot in a Spatial Transcriptomics dataset typically contains RNA from a mixture of cells so why would we apply a workflow that was developed for single-cell RNAseq data? We can calculate some properties to visually inspect the data to see that ST data have similar properties to that of scRNAseq data. <br></p>
+<pre class="r"><code>library(Matrix)</code></pre>
+<pre><code>
+Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:S4Vectors&#39;:
+
+    expand</code></pre>
+<pre class="r"><code>library(magrittr)
+library(dplyr)</code></pre>
+<pre><code>
+Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:matrixStats&#39;:
+
+    count</code></pre>
+<pre><code>The following object is masked from &#39;package:Biobase&#39;:
+
+    combine</code></pre>
+<pre><code>The following objects are masked from &#39;package:GenomicRanges&#39;:
+
+    intersect, setdiff, union</code></pre>
+<pre><code>The following object is masked from &#39;package:GenomeInfoDb&#39;:
+
+    intersect</code></pre>
+<pre><code>The following objects are masked from &#39;package:IRanges&#39;:
+
+    collapse, desc, intersect, setdiff, slice, union</code></pre>
+<pre><code>The following objects are masked from &#39;package:S4Vectors&#39;:
+
+    first, intersect, rename, setdiff, setequal, union</code></pre>
+<pre><code>The following objects are masked from &#39;package:BiocGenerics&#39;:
+
+    combine, intersect, setdiff, union</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    filter, lag</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(ggplot2)
+
+# Get raw count data 
+umi_data &lt;- GetAssayData(object = se, slot = &quot;counts&quot;, assay = &quot;RNA&quot;)
+dim(umi_data)</code></pre>
+<pre><code>[1] 13437  5053</code></pre>
+<pre class="r"><code># Calculate gene attributes
+gene_attr &lt;- data.frame(mean = rowMeans(umi_data),
+                        detection_rate = rowMeans(umi_data &gt; 0),
+                        var = apply(umi_data, 1, var), 
+                        row.names = rownames(umi_data)) %&gt;%
+  mutate(log_mean = log10(mean), log_var = log10(var))
+
+# Obtain spot attributes from Seurat meta.data slot
+spot_attr &lt;- se[[c(&quot;nFeature_RNA&quot;, &quot;nCount_RNA&quot;)]]
+
+p1 &lt;- ggplot(gene_attr, aes(log_mean, log_var)) + 
+  geom_point(alpha = 0.3, shape = 16, color = &quot;white&quot;) + 
+  geom_density_2d(size = 0.3) +
+  geom_abline(intercept = 0, slope = 1, color = &#39;red&#39;) +
+  ggtitle(&quot;Mean-variance relationship&quot;) + DarkTheme()
+
+# add the expected detection rate under Poisson model
+x = seq(from = -2, to = 2, length.out = 1000)
+poisson_model &lt;- data.frame(log_mean = x, detection_rate = 1 - dpois(0, lambda = 10^x))
+p2 &lt;- ggplot(gene_attr, aes(log_mean, detection_rate)) + 
+  geom_point(alpha = 0.3, shape = 16, color = &quot;white&quot;) + 
+  geom_line(data = poisson_model, color=&#39;red&#39;) +
+  ggtitle(&quot;Mean-detection-rate relationship&quot;) + DarkTheme()
+
+cowplot::plot_grid(p1, p2, nrow = 2)</code></pre>
+<img src="figure/normalization.Rmd/poisson_comparison-1.png" width="384" style="display: block; margin: auto;" />
+<div class="alert alert-warning">
+<p>
+<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
+>knitr cache options</a> for more details.
+</p>
+</div>
+<p>We can see from the mean-variance and Mean-detection-rate scatter plots that genes show overdispersion compared to what would be expected under a Poisson model. Because these properties are shared between ST and scRNAseq data we have reasoned that the workflow presented in the Seurat package should be applicable for ST data as well. It is important however to keep in mind that each spots contains a mixture of cell types and should be interpreted as a morphological unit in the context of a tissue section.</p>
+<p>In order to normalize the data we recommend using <a href="https://www.biorxiv.org/content/10.1101/576827v1">variance stabilized transformation</a> available in the SCTransform function in Seurat as of v3.0.</p>
+<p>Following the rationale expressed above, we transform the data according to the Seurat workflow. Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website <a href="https://satijalab.org/seurat/" class="uri">https://satijalab.org/seurat/</a><br />
+<br></p>
+<pre class="r"><code>se &lt;- SCTransform(se, vars.to.regress = c(&quot;sample_id&quot;, &quot;nFeature_RNA&quot;))</code></pre>
+ 
+<hr />
+<p style="text-align: center;">
+A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a>
+</p>
+<!-- Add icon library -->
+<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></p>
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+<a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+<p> </p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] dplyr_0.8.3                 magrittr_1.5               
+ [3] Matrix_1.2-17               STutility_0.1.0            
+ [5] ggplot2_3.2.1               SingleCellExperiment_1.6.0 
+ [7] SummarizedExperiment_1.14.1 DelayedArray_0.10.0        
+ [9] BiocParallel_1.18.1         matrixStats_0.55.0         
+[11] Biobase_2.44.0              GenomicRanges_1.36.1       
+[13] GenomeInfoDb_1.20.0         IRanges_2.18.3             
+[15] S4Vectors_0.22.1            BiocGenerics_0.30.0        
+[17] Seurat_3.1.1               
+
+loaded via a namespace (and not attached):
+  [1] backports_1.1.5         workflowr_1.3.0        
+  [3] systemfonts_0.1.1       plyr_1.8.4             
+  [5] igraph_1.2.4.1          lazyeval_0.2.2         
+  [7] splines_3.6.1           crosstalk_1.0.0        
+  [9] listenv_0.7.0           digest_0.6.22          
+ [11] foreach_1.4.7           htmltools_0.4.0        
+ [13] viridis_0.5.1           magick_2.2             
+ [15] tiff_0.1-5              gdata_2.18.0           
+ [17] cluster_2.1.0           doParallel_1.0.15      
+ [19] ROCR_1.0-7              globals_0.12.4         
+ [21] RcppParallel_4.4.4      R.utils_2.9.0          
+ [23] jpeg_0.1-8              colorspace_1.4-1       
+ [25] ggrepel_0.8.1           xfun_0.10              
+ [27] crayon_1.3.4            RCurl_1.95-4.12        
+ [29] jsonlite_1.6            zeallot_0.1.0          
+ [31] survival_2.44-1.1       zoo_1.8-6              
+ [33] iterators_1.0.12        ape_5.3                
+ [35] glue_1.3.1              gtable_0.3.0           
+ [37] zlibbioc_1.30.0         XVector_0.24.0         
+ [39] webshot_0.5.1           leiden_0.3.1           
+ [41] future.apply_1.3.0      scales_1.0.0           
+ [43] bibtex_0.4.2            miniUI_0.1.1.1         
+ [45] Rcpp_1.0.2              metap_1.1              
+ [47] viridisLite_0.3.0       xtable_1.8-4           
+ [49] reticulate_1.13         rsvd_1.0.2             
+ [51] SDMTools_1.1-221.1      tsne_0.1-3             
+ [53] htmlwidgets_1.5.1       httr_1.4.1             
+ [55] gplots_3.0.1.1          RColorBrewer_1.1-2     
+ [57] ica_1.0-2               pkgconfig_2.0.3        
+ [59] R.methodsS3_1.7.1       uwot_0.1.4             
+ [61] labeling_0.3            tidyselect_0.2.5       
+ [63] rlang_0.4.1             manipulateWidget_0.10.0
+ [65] reshape2_1.4.3          later_1.0.0            
+ [67] munsell_0.5.0           tools_3.6.1            
+ [69] ggridges_0.5.1          evaluate_0.14          
+ [71] stringr_1.4.0           fastmap_1.0.1          
+ [73] yaml_2.2.0              npsurv_0.4-0           
+ [75] knitr_1.25              fs_1.3.1               
+ [77] fitdistrplus_1.0-14     rgl_0.100.30           
+ [79] caTools_1.17.1.2        purrr_0.3.2            
+ [81] RANN_2.6.1              readbitmap_0.1.5       
+ [83] pbapply_1.4-2           future_1.14.0          
+ [85] nlme_3.1-141            mime_0.7               
+ [87] R.oo_1.22.0             ggiraph_0.6.1          
+ [89] xml2_1.2.2              compiler_3.6.1         
+ [91] plotly_4.9.0            png_0.1-7              
+ [93] lsei_1.2-0              Morpho_2.7             
+ [95] tibble_2.1.3            stringi_1.4.3          
+ [97] gdtools_0.2.0           lattice_0.20-38        
+ [99] shinyjs_1.0             vctrs_0.2.0            
+[101] pillar_1.4.2            lifecycle_0.1.0        
+[103] Rdpack_0.11-0           lmtest_0.9-37          
+[105] RcppAnnoy_0.0.13        data.table_1.12.2      
+[107] cowplot_1.0.0           bitops_1.0-6           
+[109] irlba_2.3.3             Rvcg_0.18              
+[111] gbRd_0.4-11             httpuv_1.5.2           
+[113] colorRamps_2.3          imager_0.41.2          
+[115] R6_2.4.0                promises_1.1.0         
+[117] bmp_0.3                 KernSmooth_2.23-15     
+[119] gridExtra_2.3           codetools_0.2-16       
+[121] MASS_7.3-51.4           gtools_3.8.1           
+[123] assertthat_0.2.1        rprojroot_1.3-2        
+[125] withr_2.1.2             sctransform_0.2.0      
+[127] GenomeInfoDbData_1.2.1  grid_3.6.1             
+[129] tidyr_1.0.0             rmarkdown_1.16         
+[131] Rtsne_0.15              git2r_0.26.1           
+[133] shiny_1.4.0            </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
