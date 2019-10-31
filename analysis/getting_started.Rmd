@@ -30,9 +30,9 @@ div.main-container {
 </style>
 <style>
 #TOC {
-  background: url("https://cdn.sstatic.net/Sites/stackoverflow/company/img/logos/so/so-logo.png?v=9c558ec15d8a");
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
-  padding-top: 80px !important;
+  padding-top: 100px !important;
   background-repeat: no-repeat;
   op: 5%;
   opacity: 0.8;
