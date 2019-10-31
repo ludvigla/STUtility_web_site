@@ -1,0 +1,54 @@
+---
+title: "STUtility - Vignette"
+author:
+- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
+- Ludvig Larsson, Royal Institute of Technology (KTH)
+date: ''
+output:
+  html_document:
+    theme: darkly
+    css: style.css
+    number_sections: false
+  pdf_document:
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Installation
+
+Using devtools, execute the following from the R console:
+<br>
+```{r, eval=FALSE}
+
+devtools::install_github(
+    "jbergenstrahle/STUtility"
+   , build_opts = c("--no-resave-data", "--no-manual")
+)
+
+```

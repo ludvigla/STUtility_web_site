@@ -1,10 +1,170 @@
 ---
-title: "About"
+title: "STUtility - Vignette"
+author:
+- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
+- Ludvig Larsson, Royal Institute of Technology (KTH)
+date: ''
 output:
-  workflowr::wflow_html:
-    toc: false
-editor_options:
-  chunk_output_type: console
+  html_document:
+    theme: darkly
+    css: style.css
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+  pdf_document:
+    number_sections: false
+    toc: yes
+    toc_depth: 3
 ---
 
-Describe your project.
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  top: 5%;
+  opacity: 0.8;
+  width: 400px;
+  color: black;
+}
+#TOC:hover {
+  opacity: 1;
+}
+</style>
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = FALSE)
+```
+
+# Background
+
+## The Spatial Transcriptomics method 
+
+---
+
+The tutorial aims to lay the foundation of best practice for ST data analysis. At such, the user is probably already familiar with the underlying method and a detailed description is therefore found elsewhere. Interested readers are pointed to the original publication from 2016 (https://science.sciencemag.org/content/353/6294/78). 
+
+![Schematic Spatial Transcriptomics](st_method_1.png)
+
+In short, there are two main output components from an ST experiment; (i) the gene expression data and (ii) the image data. 
+
+All the steps explained in this guide could be performed with only the expression data. However, the image data, apart from being fundamental to the biological interpretation, is used to filter out capture-spots that lies directly under the tissue. This filtering excludes the unwanted data points, lowering the memory burden of the data objects created as well as removing informational noise. 
+
+An introductory animation is available on our website: http://www.spatialtranscriptomicsresearch.org/
+
+### Spot adjustment and selection
+
+The gene expression data consists of a count matrix with genes in rows and capture "spots" in columns. Each spot represents a small area on an ST array from which the captured transcripts have been barcoded with a unique sequence. The unique barcode makes it possible to map the transcripts onto a spatial position on the tissue section and would be equivalent to a cell specific barcode in scRNA-seq data but can tag a mixture of transcripts from multiple cells. The spatial position of a spot is an (x, y) coordinate that defines the centroid of the spot area. These spatial coordinates are stored in the spot ids (column names) and allows us to visualize gene expression (and other spot features) in the array grid system. However, if you want to overlay a visualization on top the HE image you want to make sure that the spot coordinates are exact in relation to morphological features of the image. When the spots are printed onto the ST array surface, they will sometimes deviate from the (x, y) coordinates given by the spot ids and should therefore be adjusted. In addition to the spot adjustment, you will also need to label the spots that are located directly under the tissue. Spot adjustment and selection can be done automatically using our [ST spot detector](https://github.com/SpatialTranscriptomicsResearch/st_spot_detector) web tool which outputs a table of adjusted coordinates and labels for the spots under tissue.
+
+## A note on using STUtility for multiple sample analysis
+
+The STUtility tool was developed with the goal of multiple sample inputs. As with all biological data, using multiple samples add power to the analysis and is a necessity to enable comprehensive insight which otherwise suffers from stochastic uncertainty. Within this vignette, we display how you can input multiple samples, look for aggravating circumstances like batch effects and missing data, apply methods to correct such if present, get a holistic picture of your data as well as conduct more in depth analysis in various ways.
+
+## A note on the fundamental backbone of STUtility - The Seurat workflow
+
+We have extensively tried different methods and workflows for handling ST data. While all roads lead to Rome, as of the date of this writing we find the Seurat approach [https://satijalab.org/seurat/] to be the most suited for this type of data. Seurat is an R package designed for single-cell RNAseq data. Obviously, this deviates from the data that the ST technology currently produce, as the resolution on the array implies that each capture-spot consists of transcripts originating from multiple cells. Nevertheless, the characteristics of the ST data resembles that of scRNAseq to a large extent. 
+
+## A note about the new 10X Visium array
+
+In late 2018, the company Spatial Transcriptomics was acquired by 10X Genomics, which since then have been developing the new version of the technological platform that our research group have been using in the past years, called _Visium_. There are some changes in the experimental protocol for the Visium, and the type of output and subsequently input to this R tool. Since our goal is to have this R tool compatible to past and future versions of the technology, both are supported. If you are working with the Visium platform, please see [The 10X Visium platform]. 
+
+## A note about the naming conventions used
+
+For users familiar with the Seurat workflow, there are a number of Seruat plotting functions, e.g. `Seurat::FeaturePlot()`, those plotting functions all have a "ST version", which is called upon by adding "ST." prior to the original function name e.g. `STutility::ST.FeaturePlot()`.
+
+The external STUtility functions are following a PascalCase convention. 
+
+# Getting started
+
+## Original ST platform
+
+### Input files
+
+After a typical ST experiment, we have the following three output files:
+
+1. Count file
+2. Spot detector output 
+3. H&E image
+
+To use the full range of functions within STUtility, all three files are needed for each sample. However, all data analysis steps that do not involve the H&E image can be performed with only the count file as input. 
+
+---
+
+To follow along this tutorial, download the test data set at TODO:[insert test data set link]. The downloadable content consists of count files, output from our spot detector tool, H&E stained images as well as an "infoTable" to read in the files into R.
+
+### Prepare data
+
+The recommended method to read the files into R is via the creation of a "infoTable", which is a table with three columns "samples", "spotfiles" and "imgs". 
+<br>
+```{r example_infotable, echo=FALSE, eval=FALSE}
+
+samples <- c("Path to samples 1 ", "Path to samples 2")
+spotfiles <- c("Path to spotfile 1", "Path to spotfile 2")
+imgs <- c("Path to H&E image 1", "Path to H&E image 2")
+data.frame(samples, spotfiles, imgs)
+```
+
+These columns are *mandatory* to include in the infoTable. However, spotfiles and imgs can be left empty if the user do not wish to include the image in the analysis workflow.
+
+any number of _extra_ columns can be added with metadata. This information can then be used to e.g. coloring of plots and subsetting. These columns can be named as you like. 
+
+Lets load the provided infoTable
+<br>
+```{r package_infotable, cache = TRUE}
+
+infoTable <- read.table("~/STUtility/inst/extdata/metaData_mmBrain.csv", sep=";", header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]
+
+```
+
+### Loading data
+
+The provided count matrix consists of EnsambleIDs (with version id) as gene names. Gene symbols are often a preference for easier reading, and we provide a transformation table accordingly. 
+<br>
+```{r annotation, cache = TRUE}
+#Transformation table for geneIDs
+ensids <- read.table(file = list.files(system.file("extdata", package = "STutility"), full.names = T, pattern = "mouse_genes"), header = T, sep = "\t", stringsAsFactors = F)
+
+```
+
+We are now ready to load our samples and create a "seurat" object. 
+
+Here, we demonstrate the creation of the seurat object, while also including some filtering by only keeping the genes that are found in at least 5 capture spots and a total count value >= 100. We also only keep the spots that contains >= 500 total transcripts. As already mentioned, we recommend users to include a column named "imgs" with paths to the HE stained histological images. The images are not loaded into the Seurat object to begin with but are neccessary if you want to overlay any gene expression values. The "spotfiles" column should include paths to "selection tables" which are files containing tabular information about spots located under the tissue as well as "pixel coordinates" coordinates specifying where the spots are centered on the corresponding HE images. Without this information, you will not be able to overlay gene expression on top of the image properly so we highly recommend you to include this information into the infoTable. Finally, the "samples" column should provide paths to the gene count matrices (either .tsv or .h5 format).
+
+If you wish to include other meta data you can just add any number of columns into your infoTable which will be stored in the meta.data slot of the Seurat object.
+
+Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from another platform there is support for "1k" and "2k" arrays. You can also mix datasets from different platforms by specifying one of; "Visium", "1k" or "2k" in a separate column of the infoTable named "platform". You just have to make sure that the datasets have gene symbols which follows the same nomenclature.
+<br>
+```{r read_input_1, eval=TRUE, cache=TRUE}
+#DOUBLE CHECK SO THAT THIS IS CORRECT NOW
+
+#TODO: add warnings if ids missmatch. Check that ids are in the data.frame ...
+se <- InputFromTable(infotable = infoTable, 
+                      transpose = T, 
+                      min.gene.count = 100, 
+                      min.gene.spots = 5,
+                      min.spot.count = 500, 
+                      annotation = ensids, 
+                      platform = "2k", 
+                      pattern.remove = "^mt-")
+
+```

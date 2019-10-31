@@ -2,10 +2,21 @@
 title: "Home"
 site: workflowr::wflow_site
 output:
-  workflowr::wflow_html:
-    toc: false
+  html_document:
+    theme: darkly
+    css: style.css
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+  pdf_document:
+    number_sections: false
+    toc: yes
+    toc_depth: 3
 editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+Welcome to the STUtility web site
