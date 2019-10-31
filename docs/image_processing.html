@@ -368,6 +368,12 @@ div.tocify {
   <a href="image_processing.html">Image processing</a>
 </li>
 <li>
+  <a href="normalization.html">Normalization</a>
+</li>
+<li>
+  <a href="spatial_features.html">Spatial features</a>
+</li>
+<li>
   <a href="license.html">License</a>
 </li>
       </ul>
@@ -510,10 +516,10 @@ read_input_2
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreec5a370c14a2cf8c3dd8e9a703353b7e4835cf594targetblankc5a370ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/c5a370c14a2cf8c3dd8e9a703353b7e4835cf594" target="_blank">c5a370c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree9bd839633018245b39b1ad85e7e16fbf3eecfa09targetblank9bd8396a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/9bd839633018245b39b1ad85e7e16fbf3eecfa09" target="_blank">9bd8396</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreec5a370c14a2cf8c3dd8e9a703353b7e4835cf594targetblankc5a370ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree9bd839633018245b39b1ad85e7e16fbf3eecfa09targetblank9bd8396a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -525,7 +531,17 @@ Ignored files:
     Ignored:    analysis/about_cache/
     Ignored:    analysis/getting_started_cache/
     Ignored:    analysis/image_processing_cache/
+    Ignored:    analysis/normalization_cache/
     Ignored:    docs/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/normalization.Rmd
+    Untracked:  analysis/spatial_features.Rmd
+    Untracked:  docs/figure/normalization.Rmd/
+    Untracked:  docs/figure/spatial_features.Rmd/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -564,6 +580,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/9bd839633018245b39b1ad85e7e16fbf3eecfa09/analysis/image_processing.Rmd" target="_blank">9bd8396</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added theme
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/908fe2cc69d6d4d358c8a50ddd86e283ccd72e5a/docs/image_processing.html" target="_blank">908fe2c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -659,71 +709,6 @@ body {
 }
 </style>
 <pre class="r"><code>library(STutility)</code></pre>
-<pre><code>Loading required package: Seurat</code></pre>
-<pre><code>Registered S3 method overwritten by &#39;R.oo&#39;:
-  method        from       
-  throw.default R.methodsS3</code></pre>
-<pre><code>Loading required package: SingleCellExperiment</code></pre>
-<pre><code>Loading required package: SummarizedExperiment</code></pre>
-<pre><code>Loading required package: GenomicRanges</code></pre>
-<pre><code>Loading required package: stats4</code></pre>
-<pre><code>Loading required package: BiocGenerics</code></pre>
-<pre><code>Loading required package: parallel</code></pre>
-<pre><code>
-Attaching package: &#39;BiocGenerics&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:parallel&#39;:
-
-    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    clusterExport, clusterMap, parApply, parCapply, parLapply,
-    parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    IQR, mad, sd, var, xtabs</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    anyDuplicated, append, as.data.frame, basename, cbind,
-    colnames, dirname, do.call, duplicated, eval, evalq, Filter,
-    Find, get, grep, grepl, intersect, is.unsorted, lapply, Map,
-    mapply, match, mget, order, paste, pmax, pmax.int, pmin,
-    pmin.int, Position, rank, rbind, Reduce, rownames, sapply,
-    setdiff, sort, table, tapply, union, unique, unsplit, which,
-    which.max, which.min</code></pre>
-<pre><code>Loading required package: S4Vectors</code></pre>
-<pre><code>
-Attaching package: &#39;S4Vectors&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:base&#39;:
-
-    expand.grid</code></pre>
-<pre><code>Loading required package: IRanges</code></pre>
-<pre><code>Loading required package: GenomeInfoDb</code></pre>
-<pre><code>Loading required package: Biobase</code></pre>
-<pre><code>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    &#39;browseVignettes()&#39;. To cite Bioconductor, see
-    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
-<pre><code>Loading required package: DelayedArray</code></pre>
-<pre><code>Loading required package: matrixStats</code></pre>
-<pre><code>
-Attaching package: &#39;matrixStats&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:Biobase&#39;:
-
-    anyMissing, rowMedians</code></pre>
-<pre><code>Loading required package: BiocParallel</code></pre>
-<pre><code>
-Attaching package: &#39;DelayedArray&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
-
-    colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    aperm, apply, rowsum</code></pre>
-<pre><code>
-Attaching package: &#39;SummarizedExperiment&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:Seurat&#39;:
-
-    Assays</code></pre>
-<pre><code>Loading required package: ggplot2</code></pre>
 <div id="x-visium-platform" class="section level2">
 <h2>10X Visium platform</h2>
 <div id="input-files" class="section level3">
@@ -1479,6 +1464,18 @@ Ludvig Larsson
 </table>
 </div>
 </div>
+ 
+<hr />
+<p style="text-align: center;">
+A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a>
+</p>
+<!-- Add icon library -->
+<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></p>
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+<a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+<p> </p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
