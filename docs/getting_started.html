@@ -111,33 +111,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .dropdown-submenu {
   position: relative;
@@ -356,13 +356,16 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="about.html">About</a>
+</li>
+<li>
   <a href="installation.html">Installation</a>
 </li>
 <li>
   <a href="getting_started.html">Getting Started</a>
 </li>
 <li>
-  <a href="about.html">About</a>
+  <a href="image_processing.html">Image processing</a>
 </li>
 <li>
   <a href="license.html">License</a>
@@ -381,6 +384,13 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
 <div class="fluid-row" id="header">
 
 
@@ -392,6 +402,322 @@ div.tocify {
 </div>
 
 
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2019-10-31
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191031code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191031)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+</p>
+</div>
+<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div class="panel-body">
+The following chunks had caches available:
+<ul>
+<li>
+annotation
+</li>
+<li>
+package_infotable
+</li>
+<li>
+read_input_1
+</li>
+</ul>
+<p>To ensure reproducibility of the results, delete the cache directory <code>getting_started_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreee4e84dc0a66461a8915b3c9eac5274bed8ca3b16targetblanke4e84dca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/e4e84dc0a66461a8915b3c9eac5274bed8ca3b16" target="_blank">e4e84dc</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreee4e84dc0a66461a8915b3c9eac5274bed8ca3b16targetblanke4e84dca" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/about_cache/
+    Ignored:    analysis/getting_started_cache/
+    Ignored:    analysis/image_processing_cache/
+    Ignored:    docs/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/style.css
+    Untracked:  docs/assets/
+    Untracked:  docs/figure/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/e4e84dc0a66461a8915b3c9eac5274bed8ca3b16/analysis/getting_started.Rmd" target="_blank">e4e84dc</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added theme
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/0c7935326179d261a14f1f8bd908f6c94dab92dc/docs/getting_started.html" target="_blank">0c79353</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/6257541b6adf98ffffb4bad1744288cf22cdbfeb/analysis/getting_started.Rmd" target="_blank">6257541</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/22413634e278bb83e5eedce8552a3dca8d917385/docs/getting_started.html" target="_blank">2241363</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/8bae4fa8aacfa4c6061e5b94de222d85f8430960/analysis/getting_started.Rmd" target="_blank">8bae4fa</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/a53305cfbcc4ee1876e86d2de96f63e09cce9d0c/docs/getting_started.html" target="_blank">a53305c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/6f61b955fa6ca26eaab92a1b4858df80c2ac44b7/docs/getting_started.html" target="_blank">6f61b95</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/429c12c00a29edf3cac450c8c51e0a291261c328/analysis/getting_started.Rmd" target="_blank">429c12c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
 <style type="text/css">
 div.main-container {
   background-color: #000000 !important;
@@ -449,8 +775,8 @@ body {
 <p>Lets load the provided infoTable <br></p>
 <pre class="r"><code>infoTable &lt;- read.table(&quot;~/STUtility/inst/extdata/metaData_mmBrain.csv&quot;, sep=&quot;;&quot;, header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]</code></pre>
 </div>
-<div id="loading-data" class="section level3">
-<h3>Loading data</h3>
+<div id="load-data" class="section level3">
+<h3>Load data</h3>
 <p>The provided count matrix consists of EnsambleIDs (with version id) as gene names. Gene symbols are often a preference for easier reading, and we provide a transformation table accordingly. <br></p>
 <pre class="r"><code>#Transformation table for geneIDs
 ensids &lt;- read.table(file = list.files(system.file(&quot;extdata&quot;, package = &quot;STutility&quot;), full.names = T, pattern = &quot;mouse_genes&quot;), header = T, sep = &quot;\t&quot;, stringsAsFactors = F)</code></pre>
@@ -462,25 +788,30 @@ ensids &lt;- read.table(file = list.files(system.file(&quot;extdata&quot;, packa
 
 #TODO: add warnings if ids missmatch. Check that ids are in the data.frame ...
 se &lt;- InputFromTable(infotable = infoTable, 
-                      transpose = T, 
                       min.gene.count = 100, 
                       min.gene.spots = 5,
                       min.spot.count = 500, 
                       annotation = ensids, 
                       platform = &quot;2k&quot;, 
                       pattern.remove = &quot;^mt-&quot;)</code></pre>
-<pre><code>## [1] &quot;Removing all spots outside of tissue&quot;
-## Loading ~/STUtility/inst/extdata/counts/Hippo1.tsv.gz count matrix from a &#39;2k&#39; experiment
-## Loading ~/STUtility/inst/extdata/counts/Hippo5.tsv.gz count matrix from a &#39;2k&#39; experiment
-## Loading ~/STUtility/inst/extdata/counts/Hippo6.tsv.gz count matrix from a &#39;2k&#39; experiment
-## Loading ~/STUtility/inst/extdata/counts/Hippo7.tsv.gz count matrix from a &#39;2k&#39; experiment
-## Using provided annotation table with id.column &#39;gene_id&#39; and replace column &#39;gene_id&#39; to convert gene names 
-## 
-## ------------- Filtering (not including images based filtering) -------------- 
-##   Spots removed:  182  
-##   Genes removed:  5  
-## Removing 27 genes matching &#39;^mt-&#39; regular expression 
-## After filtering the dimensions of the experiment is: [9995 genes, 4375 spots]</code></pre>
+<pre><code>[1] &quot;Removing all spots outside of tissue&quot;
+Loading ~/STUtility/inst/extdata/counts/Hippo1.tsv.gz count matrix from a &#39;2k&#39; experiment
+Loading ~/STUtility/inst/extdata/counts/Hippo5.tsv.gz count matrix from a &#39;2k&#39; experiment
+Loading ~/STUtility/inst/extdata/counts/Hippo6.tsv.gz count matrix from a &#39;2k&#39; experiment
+Loading ~/STUtility/inst/extdata/counts/Hippo7.tsv.gz count matrix from a &#39;2k&#39; experiment
+Using provided annotation table with id.column &#39;gene_id&#39; and replace column &#39;gene_id&#39; to convert gene names 
+
+------------- Filtering (not including images based filtering) -------------- 
+  Spots removed:  182  
+  Genes removed:  5  
+Removing 27 genes matching &#39;^mt-&#39; regular expression 
+After filtering the dimensions of the experiment is: [9995 genes, 4375 spots] </code></pre>
+<p><br> Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the Seurat package. There are many vignettes to get started available at the <a href="https://satijalab.org/seurat/vignettes.html">Seurat web site</a>.</p>
+<p>Some of the functionalities provided in the Seurat package are not yet supported by STUtility, such as dataset integration and multimodal analysis. These methods should in principle work if you treat the data like a scRNA-seq experiment, but you will not be able to make use of the image related data or the spatial visualization functions.</p>
+<p>For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the <code>ST.FeaturePlot()</code> function. <br></p>
+<pre class="r"><code>ST.FeaturePlot(se, features = c(&quot;nFeature_RNA&quot;), dark.theme = T, cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;))</code></pre>
+<p><img src="figure/getting_started.Rmd/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br> In the next section we will show how you can load images inbto the Seurat object and how they can be manipulated to improve interpretability of you results.</p>
  
 <hr />
 <p style="text-align: center;">
@@ -493,10 +824,125 @@ A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and 
 <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
 </p>
 <p> </p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] STutility_0.1.0             ggplot2_3.2.1              
+ [3] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.1
+ [5] DelayedArray_0.10.0         BiocParallel_1.18.1        
+ [7] matrixStats_0.55.0          Biobase_2.44.0             
+ [9] GenomicRanges_1.36.1        GenomeInfoDb_1.20.0        
+[11] IRanges_2.18.3              S4Vectors_0.22.1           
+[13] BiocGenerics_0.30.0         Seurat_3.1.1               
+
+loaded via a namespace (and not attached):
+  [1] backports_1.1.5         workflowr_1.3.0        
+  [3] systemfonts_0.1.1       plyr_1.8.4             
+  [5] igraph_1.2.4.1          lazyeval_0.2.2         
+  [7] splines_3.6.1           crosstalk_1.0.0        
+  [9] listenv_0.7.0           digest_0.6.22          
+ [11] foreach_1.4.7           htmltools_0.4.0        
+ [13] viridis_0.5.1           magick_2.2             
+ [15] tiff_0.1-5              gdata_2.18.0           
+ [17] magrittr_1.5            cluster_2.1.0          
+ [19] doParallel_1.0.15       ROCR_1.0-7             
+ [21] globals_0.12.4          RcppParallel_4.4.4     
+ [23] R.utils_2.9.0           jpeg_0.1-8             
+ [25] colorspace_1.4-1        ggrepel_0.8.1          
+ [27] xfun_0.10               dplyr_0.8.3            
+ [29] crayon_1.3.4            RCurl_1.95-4.12        
+ [31] jsonlite_1.6            zeallot_0.1.0          
+ [33] survival_2.44-1.1       zoo_1.8-6              
+ [35] iterators_1.0.12        ape_5.3                
+ [37] glue_1.3.1              gtable_0.3.0           
+ [39] zlibbioc_1.30.0         XVector_0.24.0         
+ [41] webshot_0.5.1           leiden_0.3.1           
+ [43] future.apply_1.3.0      scales_1.0.0           
+ [45] bibtex_0.4.2            miniUI_0.1.1.1         
+ [47] Rcpp_1.0.2              metap_1.1              
+ [49] viridisLite_0.3.0       xtable_1.8-4           
+ [51] reticulate_1.13         rsvd_1.0.2             
+ [53] SDMTools_1.1-221.1      tsne_0.1-3             
+ [55] htmlwidgets_1.5.1       httr_1.4.1             
+ [57] gplots_3.0.1.1          RColorBrewer_1.1-2     
+ [59] ica_1.0-2               pkgconfig_2.0.3        
+ [61] R.methodsS3_1.7.1       uwot_0.1.4             
+ [63] labeling_0.3            tidyselect_0.2.5       
+ [65] rlang_0.4.1             manipulateWidget_0.10.0
+ [67] reshape2_1.4.3          later_1.0.0            
+ [69] munsell_0.5.0           tools_3.6.1            
+ [71] ggridges_0.5.1          evaluate_0.14          
+ [73] stringr_1.4.0           fastmap_1.0.1          
+ [75] yaml_2.2.0              npsurv_0.4-0           
+ [77] knitr_1.25              fs_1.3.1               
+ [79] fitdistrplus_1.0-14     rgl_0.100.30           
+ [81] caTools_1.17.1.2        purrr_0.3.2            
+ [83] RANN_2.6.1              readbitmap_0.1.5       
+ [85] pbapply_1.4-2           future_1.14.0          
+ [87] nlme_3.1-141            whisker_0.4            
+ [89] mime_0.7                R.oo_1.22.0            
+ [91] ggiraph_0.6.1           xml2_1.2.2             
+ [93] compiler_3.6.1          plotly_4.9.0           
+ [95] png_0.1-7               lsei_1.2-0             
+ [97] Morpho_2.7              tibble_2.1.3           
+ [99] stringi_1.4.3           gdtools_0.2.0          
+[101] lattice_0.20-38         Matrix_1.2-17          
+[103] shinyjs_1.0             vctrs_0.2.0            
+[105] pillar_1.4.2            lifecycle_0.1.0        
+[107] Rdpack_0.11-0           lmtest_0.9-37          
+[109] RcppAnnoy_0.0.13        data.table_1.12.2      
+[111] cowplot_1.0.0           bitops_1.0-6           
+[113] irlba_2.3.3             Rvcg_0.18              
+[115] gbRd_0.4-11             httpuv_1.5.2           
+[117] colorRamps_2.3          imager_0.41.2          
+[119] R6_2.4.0                promises_1.1.0         
+[121] bmp_0.3                 KernSmooth_2.23-15     
+[123] gridExtra_2.3           codetools_0.2-16       
+[125] MASS_7.3-51.4           gtools_3.8.1           
+[127] assertthat_0.2.1        rprojroot_1.3-2        
+[129] withr_2.1.2             sctransform_0.2.0      
+[131] GenomeInfoDbData_1.2.1  grid_3.6.1             
+[133] tidyr_1.0.0             rmarkdown_1.16         
+[135] Rtsne_0.15              git2r_0.26.1           
+[137] shiny_1.4.0            </code></pre>
+</div>
 </div>
 </div>
 </div>
 
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
 
 
 </div>

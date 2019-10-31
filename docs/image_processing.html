@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Joseph Bergenstråhle, Royal Institute of Technology (KTH)" />
+<meta name="author" content="Ludvig Larsson, Royal Institute of Technology (KTH)" />
+
+
+<title>STUtility - Vignette</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STUtility</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="installation.html">Installation</a>
+</li>
+<li>
+  <a href="getting_started.html">Getting Started</a>
+</li>
+<li>
+  <a href="image_processing.html">Image processing</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ludvigla/STUtility_web_site">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">STUtility - Vignette</h1>
+<h4 class="author">Joseph Bergenstråhle, Royal Institute of Technology (KTH)</h4>
+<h4 class="author">Ludvig Larsson, Royal Institute of Technology (KTH)</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2019-10-31
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191031code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191031)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+</p>
+</div>
+<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div class="panel-body">
+The following chunks had caches available:
+<ul>
+<li>
+infotable2
+</li>
+<li>
+read_input_2
+</li>
+</ul>
+<p>To ensure reproducibility of the results, delete the cache directory <code>image_processing_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreee4e84dc0a66461a8915b3c9eac5274bed8ca3b16targetblanke4e84dca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/e4e84dc0a66461a8915b3c9eac5274bed8ca3b16" target="_blank">e4e84dc</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreee4e84dc0a66461a8915b3c9eac5274bed8ca3b16targetblanke4e84dca" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/about_cache/
+    Ignored:    analysis/getting_started_cache/
+    Ignored:    analysis/image_processing_cache/
+    Ignored:    docs/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/style.css
+    Untracked:  docs/assets/
+    Untracked:  docs/figure/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/e4e84dc0a66461a8915b3c9eac5274bed8ca3b16/analysis/image_processing.Rmd" target="_blank">e4e84dc</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added theme
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+<style>
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #375a7f;
+}
+</style>
+<pre class="r"><code>library(STutility)</code></pre>
+<pre><code>Loading required package: Seurat</code></pre>
+<pre><code>Registered S3 method overwritten by &#39;R.oo&#39;:
+  method        from       
+  throw.default R.methodsS3</code></pre>
+<pre><code>Loading required package: SingleCellExperiment</code></pre>
+<pre><code>Loading required package: SummarizedExperiment</code></pre>
+<pre><code>Loading required package: GenomicRanges</code></pre>
+<pre><code>Loading required package: stats4</code></pre>
+<pre><code>Loading required package: BiocGenerics</code></pre>
+<pre><code>Loading required package: parallel</code></pre>
+<pre><code>
+Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:parallel&#39;:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter,
+    Find, get, grep, grepl, intersect, is.unsorted, lapply, Map,
+    mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, Position, rank, rbind, Reduce, rownames, sapply,
+    setdiff, sort, table, tapply, union, unique, unsplit, which,
+    which.max, which.min</code></pre>
+<pre><code>Loading required package: S4Vectors</code></pre>
+<pre><code>
+Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    expand.grid</code></pre>
+<pre><code>Loading required package: IRanges</code></pre>
+<pre><code>Loading required package: GenomeInfoDb</code></pre>
+<pre><code>Loading required package: Biobase</code></pre>
+<pre><code>Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<pre><code>Loading required package: DelayedArray</code></pre>
+<pre><code>Loading required package: matrixStats</code></pre>
+<pre><code>
+Attaching package: &#39;matrixStats&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:Biobase&#39;:
+
+    anyMissing, rowMedians</code></pre>
+<pre><code>Loading required package: BiocParallel</code></pre>
+<pre><code>
+Attaching package: &#39;DelayedArray&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
+
+    colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    aperm, apply, rowsum</code></pre>
+<pre><code>
+Attaching package: &#39;SummarizedExperiment&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:Seurat&#39;:
+
+    Assays</code></pre>
+<pre><code>Loading required package: ggplot2</code></pre>
+<div id="x-visium-platform" class="section level2">
+<h2>10X Visium platform</h2>
+<div id="input-files" class="section level3">
+<h3>Input files</h3>
+<p>After running the 10X SpaceRanger pipeline, the output includes:</p>
+<ol style="list-style-type: decimal">
+<li>Count file in H5 format</li>
+<li>Barcode position file</li>
+<li>H&amp;E image</li>
+</ol>
+<p>To use the full range of functions within STutility, all three files are needed for each sample. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input.</p>
+<hr />
+<p>To follow along this tutorial, download the test data set at TODO:[insert test data set link]. The downloadable content consists of count files, output from our spot detector tool, H&amp;E stained images as well as an “infoTable” to read in the files into R.</p>
+</div>
+<div id="x-infotable" class="section level3">
+<h3>10x infoTable</h3>
+<p>The same format is used as the original ST platform, see @ref(The-infoTable) <br></p>
+<pre class="r"><code>samples &lt;- list.files(path = &quot;~/Hippocampus_Visium/&quot;, recursive = T, pattern = &quot;filtered_feature_bc_matrix.h5&quot;, full.names = T)
+imgs &lt;- list.files(path = &quot;~/Hippocampus_Visium/&quot;, recursive = T, pattern = &quot;hires_image.png&quot;, full.names = T)
+spotfiles &lt;- list.files(path = &quot;~/Hippocampus_Visium/&quot;, recursive = T, pattern = &quot;list.txt&quot;, full.names = T)
+
+infoTable &lt;- data.frame(imgs, samples, spotfiles, sample_id = c(&quot;Hippo_A&quot;, &quot;Hippo_B&quot;), stringsAsFactors = F)</code></pre>
+<div class="alert alert-warning">
+<p>
+<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
+>knitr cache options</a> for more details.
+</p>
+</div>
+</div>
+</div>
+<div id="loading-10x-data" class="section level2">
+<h2>Loading 10X data</h2>
+<p>To read in the 10x Visium .h5 files, the package <code>hdf5r</code> needs to be installed (<code>BiocManager::install("hdf5r")</code>). By default 10X Visium output format implies setting <code>transpose=F</code>. [There is a specified scaling factor for the H&amp;E image. The picture with suffix “high_res” uses the default scaling factor of 0.1039393. However, is other pictures are used, specify the scaling factor when calling the <em>InputFromTable()</em> function. All scaling factors are found in the scalefactors_json.json which you have in your 10X output folder] (OBS CHECK HOW THE WORKFLOW 10X IS SUPPOSED TO BE) <br></p>
+<pre class="r"><code>se &lt;- InputFromTable(infotable = infoTable, 
+                      min.gene.count = 100, 
+                      min.gene.spots = 5,
+                      min.spot.count = 500)</code></pre>
+<pre><code>[1] &quot;Removing all spots outside of tissue&quot;
+Loading /Users/ludviglarsson/Hippocampus_Visium//142078/SIGAA7_142078_filtered_feature_bc_matrix.h5 count matrix from a &#39;Visium&#39; experiment
+Loading /Users/ludviglarsson/Hippocampus_Visium//142079/SIGAA1_142079_filtered_feature_bc_matrix.h5 count matrix from a &#39;Visium&#39; experiment
+
+------------- Filtering (not including images based filtering) -------------- 
+  Spots removed:  7  
+  Genes removed:  17616  
+After filtering the dimensions of the experiment is: [13437 genes, 5053 spots] </code></pre>
+<div class="alert alert-warning">
+<p>
+<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
+>knitr cache options</a> for more details.
+</p>
+</div>
+</div>
+<div id="loading-and-handling-images" class="section level1">
+<h1>Loading and handling images</h1>
+<p>With the Seurat object created, we are ready to load the H&amp;E images from the file paths provided in the infoTable. The LoadImages() function allow you to load the images into the Seurat object and will automatically save a scaled down version of each image that you can use for plotting.</p>
+<p>You should be aware that the resolution is by default very low (400 pixels wide). The reason for this is that STUtility makes it possible to apply various image transformations to the images, but since these processing steps are slow and requires significant amounts of memory, it is much faster to learn the transformations on a small image and later apply the transformations to a higher resolution image. See the image processing section of this vignette for more details.</p>
+<p><br></p>
+<pre class="r"><code>se &lt;- LoadImages(se, time.resolve = F, verbose = T)</code></pre>
+<p><br> OBS: We have noted that some systems experience memory problems due to large size image information not being cleared when removing old objects. If this is the case, the user can set <code>time.resolve=TRUE</code>, which will add a small garbage collection step to avoid this issue.</p>
+<p>NOTE: time.resolve is set to TRUE as default in the current version. This will imply that the process takes approx. 5sec longer per sample. Turn this off if annoyed.</p>
+<hr />
+<p>The core of an ST experiment is the interplay between quantitative RNAseq data and qualitative image data. Working in R, the handling of image information and plotting of multiple samples can get a bit cumbersome, especially if the images are of higher resolution. Typically, we rarely find much use of plotting multiple samples together with the tissue images within this framework. Instead, the general tip is to perform the various plots using only the expression data, and after finding anything of interest that warrants further analysis - take out that sample and plot it individually together with the stained tissue image.</p>
+<p>For example, we can visualize the number of RNA features and RNA counts on the ST array coordinates and quickly verify where we capture more material from the tissue.</p>
+<p>NOTE: see the end of the vignette how to handle plotting if you are missing image/spot-files. <br></p>
+<pre class="r"><code># TODO: make sure that levels are set in facets
+
+ST.FeaturePlot(object = se, 
+               features = c(&quot;nFeature_RNA&quot;, &quot;nCount_RNA&quot;), 
+               cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;),
+               ncol = 2, 
+               grid.ncol = 1, 
+               pt.size = 0.5, 
+               dark.theme = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/plot_features1-1.png" width="100%" style="display: block; margin: auto;" /> <br> To overlay a spatial feature heatmaps on top of the HE image we use the FeatureOverlay() function. Handling large images gets clumsy so we recommend to work with down-scaled versions of the images that takes up less memory. <br></p>
+<pre class="r"><code>FeatureOverlay(se, 
+               features = &quot;Cck&quot;, 
+               pt.size = 0.5, 
+               pt.alpha = 0.5, 
+               cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;), 
+               dark.theme = T, 
+               type = &quot;raw&quot;)</code></pre>
+<p><img src="figure/image_processing.Rmd/overlay_features1-1.png" width="100%" style="display: block; margin: auto;" /> <br> You can see that by default, the first sample was selected for the feature overlay. If you wish to visualize another sample you can specify the <code>sample.index</code> parameter. If you wish to plot several features side by side, you can just specify as many as you want. <br></p>
+<pre class="r"><code>FeatureOverlay(se, 
+               features = c(&quot;Cck&quot;, &quot;Calb2&quot;, &quot;Dcn&quot;, &quot;Nrgn&quot;), 
+               pt.size = 0.5,
+               pt.alpha = 0.5, 
+               cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;), 
+               dark.theme = T, 
+               type = &quot;raw&quot;)</code></pre>
+<p><img src="figure/image_processing.Rmd/overlay_features_2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br> Another neat feature that can be useful for visualization purposes is to mask the background of the HE images. The function <code>MaskImages()</code> can be used to remove the background currently works well for tissues with a clearly defined border. Since masking is a non trivial problem, it is possible that the masking will fail for certain tissue types. If this happens you can try to modify the parameters in <code>MaskImages()</code> to see if you can obtain better results.</p>
+<p>NOTE that the image procesing methods have been optimized for small images and if you have loaded images in higher resolution there is a greater risk that some steps will fail. If you still wish to use images with higher resolution there are instructions on how to do this in the Resolution section below. <br></p>
+<pre class="r"><code>se &lt;- MaskImages(object = se)</code></pre>
+<p><br> There are 5 types of images which can be stored into the Seurat object; “raw”, “masked”, “masked.masks”, “processed” and “processed.masks”. “raw” represents the original HE images without any modifications. In the “masked” images, the background have been removed using a mask which is stored in “masked.masks”. Similarly, the “processed” images are also masked using “processed.masks” but have been further modified by applying rigid transformations such as rotations and shifts.</p>
+<p>You can look at the HE images using the ImagePlot() function.The ImagePlot function will automatically label the samples from 1 to N where N is the total number of samples. If you are running the function within RStudio you can take advantage of the Viewer panel to explore the images. Setting method=“raster” and the plot function will use the default plotting device in R. You can also change the layout of the images by forcing a different number of columns by setting ncols. <br></p>
+<pre class="r"><code># Plot HE images
+ImagePlot(se, ncols = 2, method = &quot;raster&quot;, type = &quot;raw&quot;, darken = T) # Raw image</code></pre>
+<p><img src="figure/image_processing.Rmd/image_types-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ImagePlot(se, ncols = 2, method = &quot;raster&quot;, type = &quot;masked&quot;, darken = T) # Masked image</code></pre>
+<p><img src="figure/image_processing.Rmd/image_types-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ImagePlot(se, ncols = 2, method = &quot;raster&quot;, type = &quot;masked.masks&quot;) # Mask</code></pre>
+<p><img src="figure/image_processing.Rmd/image_types-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="individual-transformations-to-images" class="section level3">
+<h3>Individual transformations to images</h3>
+<p>If you follow along the test set in this vignette, you will notice that the samples are not quite aligned with respect to each other on the array. We have implemented three different method to align images; <code>AlignImages()</code>, <code>WarpImages()</code> and <code>ManualAlignImages()</code>.</p>
+<div id="automatic-alignment" class="section level4">
+<h4>Automatic alignment</h4>
+<p>The automatic alignment method (<code>AlignImages()</code>) first tries to detect the tissue edges from each image. By default, the first image (<code>reference.index = 1</code>) is used as a reference but you can specify any sample with the <code>reference.index</code>option. Then, for each image, a transformation matrix is learned that can be used to map coordinates to the reference image. This alignment method will sometimes fail and in that case you can align the images manually instead using the <code>ManualAlignImages()</code> function. This is typically required when; (1) the tissue is bigger than the image and therefore outside the frame, (2) the tissue has a symmetrical shape (for example if the tissue has a round shape, it will be difficult to find an optimal alignment using the tissue edges), (3) the masking has failed.</p>
+<p>The actual transformation is done using the <code>imwarp()</code> function from the imager R package using a “backward” transformation strategy. This method makes sure that every pixel is painted using linear interpolation so the aligned images will experience some quality loss. <br></p>
+<pre class="r"><code>se &lt;- AlignImages(se)</code></pre>
+<p><br> And the result: <br></p>
+<pre class="r"><code>ImagePlot(se, method = &quot;raster&quot;, darken = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/imageplot_1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="manual-rigid-transformations" class="section level4">
+<h4>Manual rigid transformations</h4>
+<p>An alternative method is to apply rigid transformations to the images using the <code>WarpImages()</code> function. This function takes a list of transformations for the samples of your choice and converts the transformations into mapping functions which can be used to warp the images.</p>
+<p>The available transformations are; “center.x”, “center.y”, “mirror.x”, “mirror.y” and “angle” <br></p>
+<pre class="r"><code>transforms &lt;- list(&quot;2&quot; = list(&quot;angle&quot; = 90))
+se.rotate90 &lt;- WarpImages(se, transforms)
+ImagePlot(se.rotate90, method = &quot;raster&quot;, darken = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/warpimages-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>transforms &lt;- list(&quot;2&quot; = list(&quot;mirror.x&quot; = T))
+se.mirrorx &lt;- WarpImages(se, transforms)
+ImagePlot(se.mirrorx, method = &quot;raster&quot;, darken = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/warpimages-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>transforms &lt;- list(&quot;2&quot; = list(&quot;mirror.y&quot; = T))
+se.mirrory &lt;- WarpImages(se, transforms)
+ImagePlot(se.mirrory, method = &quot;raster&quot;, darken = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/warpimages-3.png" width="100%" style="display: block; margin: auto;" /> <br> Any transformations applied to the images will also be applied to the coordinates used to map gene expression values onto the images. <br></p>
+<pre class="r"><code>heatmap.colors &lt;- c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;)
+ST.FeaturePlot(se, features = &quot;Cck&quot;, pt.size = 0.5, cols = heatmap.colors, dark.theme = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/show_warp-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ST.FeaturePlot(se.rotate90, features = &quot;Cck&quot;, pt.size = 0.5, cols = heatmap.colors, dark.theme = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/show_warp-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ST.FeaturePlot(se.mirrorx, features = &quot;Cck&quot;, pt.size = 0.5, cols = heatmap.colors, dark.theme = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/show_warp-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ST.FeaturePlot(se.mirrory, features = &quot;Cck&quot;, pt.size = 0.5, cols = heatmap.colors, dark.theme = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/show_warp-4.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="visualize-multiple-samples" class="section level3">
+<h3>Visualize multiple samples</h3>
+<p>If you still want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the <code>MultiFeatureOverlay()</code> function. <br></p>
+<pre class="r"><code>MultiFeatureOverlay(se, features = &quot;Nrgn&quot;, 
+                    sampleids = 1:2,
+                    pt.size = 0.5, pt.alpha = 0.5,
+                    cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;),
+                    method = &quot;raster&quot;,
+                    dark.theme = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/overlay_multi-1.png" width="100%" style="display: block; margin: auto;" /> <br> The <code>type</code> parameter can also be set in the <code>FeatureOverlay()</code> function to override the default use of processed images. <br></p>
+<pre class="r"><code>FeatureOverlay(object = se, features = c(&quot;Nrgn&quot;, &quot;Cck&quot;), 
+               cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;), 
+               pt.size = 0.5, 
+               pt.alpha = 0.5,
+               sample.index = 2,
+               type = &quot;raw&quot;, 
+               dark.theme = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/overlay_multi_raw-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] STutility_0.1.0             ggplot2_3.2.1              
+ [3] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.1
+ [5] DelayedArray_0.10.0         BiocParallel_1.18.1        
+ [7] matrixStats_0.55.0          Biobase_2.44.0             
+ [9] GenomicRanges_1.36.1        GenomeInfoDb_1.20.0        
+[11] IRanges_2.18.3              S4Vectors_0.22.1           
+[13] BiocGenerics_0.30.0         Seurat_3.1.1               
+
+loaded via a namespace (and not attached):
+  [1] backports_1.1.5         workflowr_1.3.0        
+  [3] systemfonts_0.1.1       plyr_1.8.4             
+  [5] igraph_1.2.4.1          lazyeval_0.2.2         
+  [7] splines_3.6.1           crosstalk_1.0.0        
+  [9] listenv_0.7.0           digest_0.6.22          
+ [11] foreach_1.4.7           htmltools_0.4.0        
+ [13] viridis_0.5.1           magick_2.2             
+ [15] tiff_0.1-5              gdata_2.18.0           
+ [17] magrittr_1.5            cluster_2.1.0          
+ [19] doParallel_1.0.15       ROCR_1.0-7             
+ [21] globals_0.12.4          RcppParallel_4.4.4     
+ [23] R.utils_2.9.0           jpeg_0.1-8             
+ [25] colorspace_1.4-1        ggrepel_0.8.1          
+ [27] xfun_0.10               dplyr_0.8.3            
+ [29] crayon_1.3.4            RCurl_1.95-4.12        
+ [31] jsonlite_1.6            zeallot_0.1.0          
+ [33] survival_2.44-1.1       zoo_1.8-6              
+ [35] iterators_1.0.12        ape_5.3                
+ [37] glue_1.3.1              gtable_0.3.0           
+ [39] zlibbioc_1.30.0         XVector_0.24.0         
+ [41] webshot_0.5.1           leiden_0.3.1           
+ [43] future.apply_1.3.0      scales_1.0.0           
+ [45] bibtex_0.4.2            miniUI_0.1.1.1         
+ [47] Rcpp_1.0.2              metap_1.1              
+ [49] viridisLite_0.3.0       xtable_1.8-4           
+ [51] reticulate_1.13         rsvd_1.0.2             
+ [53] SDMTools_1.1-221.1      tsne_0.1-3             
+ [55] htmlwidgets_1.5.1       httr_1.4.1             
+ [57] gplots_3.0.1.1          RColorBrewer_1.1-2     
+ [59] ica_1.0-2               pkgconfig_2.0.3        
+ [61] R.methodsS3_1.7.1       uwot_0.1.4             
+ [63] labeling_0.3            tidyselect_0.2.5       
+ [65] rlang_0.4.1             manipulateWidget_0.10.0
+ [67] reshape2_1.4.3          later_1.0.0            
+ [69] munsell_0.5.0           tools_3.6.1            
+ [71] ggridges_0.5.1          evaluate_0.14          
+ [73] stringr_1.4.0           fastmap_1.0.1          
+ [75] yaml_2.2.0              npsurv_0.4-0           
+ [77] knitr_1.25              fs_1.3.1               
+ [79] fitdistrplus_1.0-14     rgl_0.100.30           
+ [81] caTools_1.17.1.2        purrr_0.3.2            
+ [83] RANN_2.6.1              readbitmap_0.1.5       
+ [85] pbapply_1.4-2           future_1.14.0          
+ [87] nlme_3.1-141            whisker_0.4            
+ [89] mime_0.7                R.oo_1.22.0            
+ [91] ggiraph_0.6.1           xml2_1.2.2             
+ [93] compiler_3.6.1          plotly_4.9.0           
+ [95] png_0.1-7               lsei_1.2-0             
+ [97] Morpho_2.7              tibble_2.1.3           
+ [99] stringi_1.4.3           gdtools_0.2.0          
+[101] lattice_0.20-38         Matrix_1.2-17          
+[103] shinyjs_1.0             vctrs_0.2.0            
+[105] pillar_1.4.2            lifecycle_0.1.0        
+[107] Rdpack_0.11-0           lmtest_0.9-37          
+[109] RcppAnnoy_0.0.13        data.table_1.12.2      
+[111] cowplot_1.0.0           bitops_1.0-6           
+[113] irlba_2.3.3             Rvcg_0.18              
+[115] gbRd_0.4-11             httpuv_1.5.2           
+[117] colorRamps_2.3          imager_0.41.2          
+[119] R6_2.4.0                promises_1.1.0         
+[121] bmp_0.3                 KernSmooth_2.23-15     
+[123] gridExtra_2.3           codetools_0.2-16       
+[125] MASS_7.3-51.4           gtools_3.8.1           
+[127] assertthat_0.2.1        rprojroot_1.3-2        
+[129] withr_2.1.2             sctransform_0.2.0      
+[131] GenomeInfoDbData_1.2.1  grid_3.6.1             
+[133] tidyr_1.0.0             rmarkdown_1.16         
+[135] Rtsne_0.15              git2r_0.26.1           
+[137] shiny_1.4.0            </code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
