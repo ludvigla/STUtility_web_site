@@ -516,10 +516,10 @@ read_input_2
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree9bd839633018245b39b1ad85e7e16fbf3eecfa09targetblank9bd8396a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/9bd839633018245b39b1ad85e7e16fbf3eecfa09" target="_blank">9bd8396</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree50c8053e8ab147389ea6fb97f69889c1cca5c41dtargetblank50c8053a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/50c8053e8ab147389ea6fb97f69889c1cca5c41d" target="_blank">50c8053</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree9bd839633018245b39b1ad85e7e16fbf3eecfa09targetblank9bd8396a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree50c8053e8ab147389ea6fb97f69889c1cca5c41dtargetblank50c8053a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -534,14 +534,9 @@ Ignored files:
     Ignored:    analysis/normalization_cache/
     Ignored:    docs/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/normalization.Rmd
-    Untracked:  analysis/spatial_features.Rmd
-    Untracked:  docs/figure/normalization.Rmd/
-    Untracked:  docs/figure/spatial_features.Rmd/
-
 Unstaged changes:
-    Modified:   analysis/_site.yml
+    Modified:   analysis/normalization.Rmd
+    Modified:   analysis/spatial_features.Rmd
 
 </code></pre>
 <p>
@@ -580,6 +575,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/50c8053e8ab147389ea6fb97f69889c1cca5c41d/analysis/image_processing.Rmd" target="_blank">50c8053</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added theme
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/0754921643b10ad3761ccee0fcb5f45bcd22e443/docs/image_processing.html" target="_blank">0754921</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -731,12 +760,6 @@ imgs &lt;- list.files(path = &quot;~/Hippocampus_Visium/&quot;, recursive = T, p
 spotfiles &lt;- list.files(path = &quot;~/Hippocampus_Visium/&quot;, recursive = T, pattern = &quot;list.txt&quot;, full.names = T)
 
 infoTable &lt;- data.frame(imgs, samples, spotfiles, sample_id = c(&quot;Hippo_A&quot;, &quot;Hippo_B&quot;), stringsAsFactors = F)</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 </div>
 <div id="loading-10x-data" class="section level2">
@@ -754,12 +777,6 @@ Loading /Users/ludviglarsson/Hippocampus_Visium//142079/SIGAA1_142079_filtered_f
   Spots removed:  7  
   Genes removed:  17616  
 After filtering the dimensions of the experiment is: [13437 genes, 5053 spots] </code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 <div id="loading-and-handling-images" class="section level1">
 <h1>Loading and handling images</h1>
