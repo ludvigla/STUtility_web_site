@@ -65,7 +65,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 
 ```
 
-```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE}
+```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
 library(STutility)
 se <- readRDS("~/STUtility/se_object")
 ```

@@ -58,7 +58,7 @@ body {
 }
 </style>
 
-```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE}
+```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
 library(STutility)
 se <- readRDS("~/STUtility/se_object")
 ```
