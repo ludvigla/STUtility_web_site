@@ -1,12 +1,18 @@
-name: myproject
+name: STUtility_web_site
 output_dir: ../docs
 navbar:
-  title: myproject
+  title: STUtility
   left:
   - text: Home
     href: index.html
   - text: About
     href: about.html
+  - text: Installation
+    href: installation.html
+  - text: Getting Started
+    href: getting_started.html
+  - text: Image processing
+    href: image_processing.html
   - text: License
     href: license.html
   right:
@@ -15,7 +21,21 @@ navbar:
     href: https://github.com/ludvigla/STUtility_web_site
 output:
   workflowr::wflow_html:
+    theme: darkly
+    css: style.css
+    number_sections: false
     toc: yes
-    toc_float: yes
-    theme: cosmo
-    highlight: textmate
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+  pdf_document:
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+#output:
+#  workflowr::wflow_html:
+#    toc: yes
+#    toc_float: yes
+#    theme: cosmo
+#    highlight: textmate
