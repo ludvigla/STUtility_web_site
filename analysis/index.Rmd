@@ -1,13 +1,6 @@
 ---
 title: "Home"
 site: workflowr::wflow_site
-output:
-  html_document:
-    theme: darkly
-    css: style.css
-    number_sections: false
-  pdf_document:
-    number_sections: false
 editor_options:
   chunk_output_type: console
 ---
