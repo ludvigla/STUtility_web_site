@@ -371,6 +371,9 @@ div.tocify {
   <a href="normalization.html">Normalization</a>
 </li>
 <li>
+  <a href="spatial_features.html">Spatial features</a>
+</li>
+<li>
   <a href="license.html">License</a>
 </li>
       </ul>
@@ -428,7 +431,7 @@ div.section {
 <strong>Last updated:</strong> 2019-10-31
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
 </p>
 <p>
 <strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -449,7 +452,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -492,22 +495,28 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
 </p>
 </div>
-<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div id="strongCachestrongdetected" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+The following chunks had caches available:
+<ul>
+<li>
+poisson_comparison
+</li>
+</ul>
+<p>To ensure reproducibility of the results, delete the cache directory <code>normalization_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree908fe2cc69d6d4d358c8a50ddd86e283ccd72e5atargetblank908fe2ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/908fe2cc69d6d4d358c8a50ddd86e283ccd72e5a" target="_blank">908fe2c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreef10ef37c91fac6802927c25f259822368759b560targetblankf10ef37a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/f10ef37c91fac6802927c25f259822368759b560" target="_blank">f10ef37</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree908fe2cc69d6d4d358c8a50ddd86e283ccd72e5atargetblank908fe2ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreef10ef37c91fac6802927c25f259822368759b560targetblankf10ef37a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -519,15 +528,13 @@ Ignored files:
     Ignored:    analysis/about_cache/
     Ignored:    analysis/getting_started_cache/
     Ignored:    analysis/image_processing_cache/
+    Ignored:    analysis/normalization_cache/
     Ignored:    docs/.DS_Store
-
-Untracked files:
-    Untracked:  analysis/normalization.Rmd
 
 Unstaged changes:
     Modified:   analysis/image_processing.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/license.Rmd
+    Modified:   analysis/normalization.Rmd
+    Modified:   analysis/spatial_features.Rmd
 
 </code></pre>
 <p>
@@ -540,9 +547,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/analysis/normalization.Rmd" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added section noramlization and spatial faetures
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/f10ef37c91fac6802927c25f259822368759b560/docs/normalization.html" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added section noramlization and spatial faetures
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -589,50 +656,16 @@ se &lt;- readRDS(&quot;~/STUtility/se_object&quot;)</code></pre>
 <h2>Normalization and scaling</h2>
 <hr />
 <p>Each spot in a Spatial Transcriptomics dataset typically contains RNA from a mixture of cells so why would we apply a workflow that was developed for single-cell RNAseq data? We can calculate some properties to visually inspect the data to see that ST data have similar properties to that of scRNAseq data. <br></p>
-<pre class="r"><code>library(Matrix)</code></pre>
-<pre><code>
-Attaching package: &#39;Matrix&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:S4Vectors&#39;:
-
-    expand</code></pre>
-<pre class="r"><code>library(magrittr)
-library(dplyr)</code></pre>
-<pre><code>
-Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:matrixStats&#39;:
-
-    count</code></pre>
-<pre><code>The following object is masked from &#39;package:Biobase&#39;:
-
-    combine</code></pre>
-<pre><code>The following objects are masked from &#39;package:GenomicRanges&#39;:
-
-    intersect, setdiff, union</code></pre>
-<pre><code>The following object is masked from &#39;package:GenomeInfoDb&#39;:
-
-    intersect</code></pre>
-<pre><code>The following objects are masked from &#39;package:IRanges&#39;:
-
-    collapse, desc, intersect, setdiff, slice, union</code></pre>
-<pre><code>The following objects are masked from &#39;package:S4Vectors&#39;:
-
-    first, intersect, rename, setdiff, setequal, union</code></pre>
-<pre><code>The following objects are masked from &#39;package:BiocGenerics&#39;:
-
-    combine, intersect, setdiff, union</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    filter, lag</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(ggplot2)
+<pre class="r"><code>library(Matrix)
+library(magrittr)
+library(dplyr)
+library(ggplot2)
 
 # Get raw count data 
 umi_data &lt;- GetAssayData(object = se, slot = &quot;counts&quot;, assay = &quot;RNA&quot;)
-dim(umi_data)</code></pre>
-<pre><code>[1] 13437  5053</code></pre>
-<pre class="r"><code># Calculate gene attributes
+dim(umi_data)
+
+# Calculate gene attributes
 gene_attr &lt;- data.frame(mean = rowMeans(umi_data),
                         detection_rate = rowMeans(umi_data &gt; 0),
                         var = apply(umi_data, 1, var), 
@@ -657,7 +690,44 @@ p2 &lt;- ggplot(gene_attr, aes(log_mean, detection_rate)) +
   ggtitle(&quot;Mean-detection-rate relationship&quot;) + DarkTheme()
 
 cowplot::plot_grid(p1, p2, nrow = 2)</code></pre>
-<img src="figure/normalization.Rmd/poisson_comparison-1.png" width="384" style="display: block; margin: auto;" />
+<p><img src="figure/normalization.Rmd/poisson_comparison-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-poisson_comparison-1">
+Past versions of poisson_comparison-1.png
+</button>
+</p>
+<div id="fig-poisson_comparison-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/normalization.Rmd/poisson_comparison-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="alert alert-warning">
 <p>
 <strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
@@ -758,31 +828,31 @@ loaded via a namespace (and not attached):
  [79] caTools_1.17.1.2        purrr_0.3.2            
  [81] RANN_2.6.1              readbitmap_0.1.5       
  [83] pbapply_1.4-2           future_1.14.0          
- [85] nlme_3.1-141            mime_0.7               
- [87] R.oo_1.22.0             ggiraph_0.6.1          
- [89] xml2_1.2.2              compiler_3.6.1         
- [91] plotly_4.9.0            png_0.1-7              
- [93] lsei_1.2-0              Morpho_2.7             
- [95] tibble_2.1.3            stringi_1.4.3          
- [97] gdtools_0.2.0           lattice_0.20-38        
- [99] shinyjs_1.0             vctrs_0.2.0            
-[101] pillar_1.4.2            lifecycle_0.1.0        
-[103] Rdpack_0.11-0           lmtest_0.9-37          
-[105] RcppAnnoy_0.0.13        data.table_1.12.2      
-[107] cowplot_1.0.0           bitops_1.0-6           
-[109] irlba_2.3.3             Rvcg_0.18              
-[111] gbRd_0.4-11             httpuv_1.5.2           
-[113] colorRamps_2.3          imager_0.41.2          
-[115] R6_2.4.0                promises_1.1.0         
-[117] bmp_0.3                 KernSmooth_2.23-15     
-[119] gridExtra_2.3           codetools_0.2-16       
-[121] MASS_7.3-51.4           gtools_3.8.1           
-[123] assertthat_0.2.1        rprojroot_1.3-2        
-[125] withr_2.1.2             sctransform_0.2.0      
-[127] GenomeInfoDbData_1.2.1  grid_3.6.1             
-[129] tidyr_1.0.0             rmarkdown_1.16         
-[131] Rtsne_0.15              git2r_0.26.1           
-[133] shiny_1.4.0            </code></pre>
+ [85] nlme_3.1-141            whisker_0.4            
+ [87] mime_0.7                R.oo_1.22.0            
+ [89] ggiraph_0.6.1           xml2_1.2.2             
+ [91] compiler_3.6.1          plotly_4.9.0           
+ [93] png_0.1-7               lsei_1.2-0             
+ [95] Morpho_2.7              tibble_2.1.3           
+ [97] stringi_1.4.3           gdtools_0.2.0          
+ [99] lattice_0.20-38         shinyjs_1.0            
+[101] vctrs_0.2.0             pillar_1.4.2           
+[103] lifecycle_0.1.0         Rdpack_0.11-0          
+[105] lmtest_0.9-37           RcppAnnoy_0.0.13       
+[107] data.table_1.12.2       cowplot_1.0.0          
+[109] bitops_1.0-6            irlba_2.3.3            
+[111] Rvcg_0.18               gbRd_0.4-11            
+[113] httpuv_1.5.2            colorRamps_2.3         
+[115] imager_0.41.2           R6_2.4.0               
+[117] promises_1.1.0          bmp_0.3                
+[119] KernSmooth_2.23-15      gridExtra_2.3          
+[121] codetools_0.2-16        MASS_7.3-51.4          
+[123] gtools_3.8.1            assertthat_0.2.1       
+[125] rprojroot_1.3-2         withr_2.1.2            
+[127] sctransform_0.2.0       GenomeInfoDbData_1.2.1 
+[129] grid_3.6.1              tidyr_1.0.0            
+[131] rmarkdown_1.16          Rtsne_0.15             
+[133] git2r_0.26.1            shiny_1.4.0            </code></pre>
 </div>
 </div>
 

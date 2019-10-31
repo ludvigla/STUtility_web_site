@@ -452,7 +452,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -507,10 +507,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree908fe2cc69d6d4d358c8a50ddd86e283ccd72e5atargetblank908fe2ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/908fe2cc69d6d4d358c8a50ddd86e283ccd72e5a" target="_blank">908fe2c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreef10ef37c91fac6802927c25f259822368759b560targetblankf10ef37a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/f10ef37c91fac6802927c25f259822368759b560" target="_blank">f10ef37</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree908fe2cc69d6d4d358c8a50ddd86e283ccd72e5atargetblank908fe2ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreef10ef37c91fac6802927c25f259822368759b560targetblankf10ef37a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -520,22 +520,15 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/about_cache/
-    Ignored:    analysis/figure/
     Ignored:    analysis/getting_started_cache/
     Ignored:    analysis/image_processing_cache/
     Ignored:    analysis/normalization_cache/
     Ignored:    docs/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/normalization.Rmd
-    Untracked:  analysis/spatial_features.Rmd
-    Untracked:  docs/figure/normalization.Rmd/
-
 Unstaged changes:
-    Modified:   analysis/_site.yml
     Modified:   analysis/image_processing.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/license.Rmd
+    Modified:   analysis/normalization.Rmd
+    Modified:   analysis/spatial_features.Rmd
 
 </code></pre>
 <p>
@@ -548,9 +541,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/analysis/spatial_features.Rmd" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added section noramlization and spatial faetures
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/f10ef37c91fac6802927c25f259822368759b560/docs/spatial_features.html" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added section noramlization and spatial faetures
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -608,7 +661,45 @@ se &lt;- readRDS(&quot;~/STUtility/se_object&quot;)</code></pre>
            pt.size = 0.5, 
            center.zero = T, 
            palette = &quot;MaYl&quot;)</code></pre>
-<p><img src="figure/spatial_features.Rmd/dimplot-1.png" width="100%" style="display: block; margin: auto;" /> <br> To extract the genes that drives the separation according to the dimensionality reduction, we can use the <code>ProjectDim()</code> function. Where we specify the dimensions of interest (here IC_1 and IC_3, which are regions that seems to confer a clear spatial expression histology. <br></p>
+<p><img src="figure/spatial_features.Rmd/dimplot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dimplot-1">
+Past versions of dimplot-1.png
+</button>
+</p>
+<div id="fig-dimplot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br> To extract the genes that drives the separation according to the dimensionality reduction, we can use the <code>ProjectDim()</code> function. Where we specify the dimensions of interest (here IC_1 and IC_3, which are regions that seems to confer a clear spatial expression histology. <br></p>
 <pre class="r"><code>ProjectDim(se, reduction = &quot;ica&quot;, dims = c(1, 2, 4, 5))</code></pre>
 <pre><code>IC_ 1 
 Positive:  Nrgn, Snap25, Cck, mt-Nd3, Calm2, Olfm1, Rtn1, Atp1b1, Pcp4, Uchl1 
@@ -649,13 +740,126 @@ Active assay: SCT (13437 features)
 
 se[[&quot;clusters_ICA&quot;]] &lt;- se[[&quot;seurat_clusters&quot;]]
 ST.FeaturePlot(object = se, features = &quot;clusters_ICA&quot;, dark.theme = T, cols = tol18rainbow, pt.size = 0.5)</code></pre>
-<p><img src="figure/spatial_features.Rmd/plot_clusters-1.png" width="100%" style="display: block; margin: auto;" /> <br></p>
+<p><img src="figure/spatial_features.Rmd/plot_clusters-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_clusters-1">
+Past versions of plot_clusters-1.png
+</button>
+</p>
+<div id="fig-plot_clusters-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
 <pre class="r"><code>se &lt;- SetIdent(se, value = &quot;clusters_ICA&quot;)
 DimPlot(se, reduction = &quot;umap&quot;, cols = tol18rainbow) + DarkTheme()</code></pre>
 <p><img src="figure/spatial_features.Rmd/clusters_UMAP-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-clusters_UMAP-1">
+Past versions of clusters_UMAP-1.png
+</button>
+</p>
+<div id="fig-clusters_UMAP-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/clusters_UMAP-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><br> If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored. <br></p>
 <pre class="r"><code>ST.FeaturePlot(object = se, features = &quot;clusters_ICA&quot;, dark.theme = T, cols = tol18rainbow, pt.size = 0.1, split.labels = T, indices = 1)</code></pre>
-<p><img src="figure/spatial_features.Rmd/plot_clusters_split-1.png" width="100%" style="display: block; margin: auto;" /> <br> We can take a look a specific look at the most variable features. <br></p>
+<p><img src="figure/spatial_features.Rmd/plot_clusters_split-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_clusters_split-1">
+Past versions of plot_clusters_split-1.png
+</button>
+</p>
+<div id="fig-plot_clusters_split-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br> We can take a look a specific look at the most variable features. <br></p>
 <pre class="r"><code>head(se@assays$SCT@var.features, 20)</code></pre>
 <pre><code> [1] &quot;Hbb-bs&quot;  &quot;Hba-a1&quot;  &quot;Hba-a2&quot;  &quot;Plp1&quot;    &quot;Mbp&quot;     &quot;Ptgds&quot;   &quot;Hbb-bt&quot; 
  [8] &quot;Slc6a3&quot;  &quot;Sst&quot;     &quot;Th&quot;      &quot;Ddc&quot;     &quot;Npy&quot;     &quot;Slc18a2&quot; &quot;Mobp&quot;   
@@ -675,10 +879,159 @@ for (ftr in fts) {
 }</code></pre>
 <pre><code>[1] 0</code></pre>
 <p><img src="figure/spatial_features.Rmd/variable_features-1.png" width="1248" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-1">
+Past versions of variable_features-1.png
+</button>
+</p>
+<div id="fig-variable_features-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[1] 0</code></pre>
 <p><img src="figure/spatial_features.Rmd/variable_features-2.png" width="1248" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-2">
+Past versions of variable_features-2.png
+</button>
+</p>
+<div id="fig-variable_features-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-2.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[1] 0</code></pre>
-<p><img src="figure/spatial_features.Rmd/variable_features-3.png" width="1248" style="display: block; margin: auto;" /><img src="figure/spatial_features.Rmd/variable_features-4.png" width="1248" style="display: block; margin: auto;" /></p>
+<p><img src="figure/spatial_features.Rmd/variable_features-3.png" width="1248" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-3">
+Past versions of variable_features-3.png
+</button>
+</p>
+<div id="fig-variable_features-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-3.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/spatial_features.Rmd/variable_features-4.png" width="1248" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-4">
+Past versions of variable_features-4.png
+</button>
+</p>
+<div id="fig-variable_features-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-4.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[1] 0</code></pre>
 <p><br> Another useful feature is that you can now compare the spatial distribution of a gene with the typical “graph embeddings” s.a. UMAP and t-SNE. <br></p>
 <pre class="r"><code># Run UMAP
@@ -698,6 +1051,43 @@ p3 &lt;- ST.FeaturePlot(se, features = fts, ncol = 2, grid.ncol = 1, cols = heat
 # Construct final plot
 cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2, rel_widths = c(1, 2))</code></pre>
 <p><img src="figure/spatial_features.Rmd/embedding_vs_ST-1.png" width="1536" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-embedding_vs_ST-1">
+Past versions of embedding_vs_ST-1.png
+</button>
+</p>
+<div id="fig-embedding_vs_ST-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="rgb-dimensionality-reduction-plots" class="section level2">
 <h2>RGB dimensionality reduction plots</h2>
@@ -706,6 +1096,43 @@ cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2,
 <p><br> We use the first three dimensions for plotting: <br></p>
 <pre class="r"><code>ST.DimPlot(object = se, dims = 1:3, reduction = &quot;umap.3d&quot;, blend = T, dark.theme = T, pt.size = 0.5)</code></pre>
 <p><img src="figure/spatial_features.Rmd/UMAP_blend-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-UMAP_blend-1">
+Past versions of UMAP_blend-1.png
+</button>
+</p>
+<div id="fig-UMAP_blend-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><br> Once again the <code>ProjectDim()</code> function can be used to display the genes that are most strongly correlated with the coordinate system. Note in the function call above that we defined <code>reduction.name</code>, which are subsequently stored in the Seurat object in the reduction slot: <br></p>
 <pre class="r"><code>ProjectDim(se, reduction = &quot;umap.3d&quot;)</code></pre>
 <pre><code>UMAP_ 1 
@@ -740,6 +1167,43 @@ Active assay: SCT (13437 features)
                     method = &quot;raster&quot;, 
                     dark.theme = T)</code></pre>
 <p><img src="figure/spatial_features.Rmd/allen_example-1.png" width="1248" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-allen_example-1">
+Past versions of allen_example-1.png
+</button>
+</p>
+<div id="fig-allen_example-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/allen_example-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
  
 <hr />
 <p style="text-align: center;">
@@ -828,32 +1292,32 @@ loaded via a namespace (and not attached):
  [81] caTools_1.17.1.2        purrr_0.3.2            
  [83] RANN_2.6.1              readbitmap_0.1.5       
  [85] pbapply_1.4-2           future_1.14.0          
- [87] nlme_3.1-141            mime_0.7               
- [89] R.oo_1.22.0             ggiraph_0.6.1          
- [91] xml2_1.2.2              compiler_3.6.1         
- [93] plotly_4.9.0            png_0.1-7              
- [95] lsei_1.2-0              Morpho_2.7             
- [97] tibble_2.1.3            stringi_1.4.3          
- [99] RSpectra_0.15-0         gdtools_0.2.0          
-[101] lattice_0.20-38         Matrix_1.2-17          
-[103] shinyjs_1.0             vctrs_0.2.0            
-[105] pillar_1.4.2            lifecycle_0.1.0        
-[107] Rdpack_0.11-0           lmtest_0.9-37          
-[109] RcppAnnoy_0.0.13        data.table_1.12.2      
-[111] cowplot_1.0.0           bitops_1.0-6           
-[113] irlba_2.3.3             Rvcg_0.18              
-[115] gbRd_0.4-11             httpuv_1.5.2           
-[117] colorRamps_2.3          imager_0.41.2          
-[119] R6_2.4.0                promises_1.1.0         
-[121] bmp_0.3                 KernSmooth_2.23-15     
-[123] gridExtra_2.3           codetools_0.2-16       
-[125] MASS_7.3-51.4           gtools_3.8.1           
-[127] assertthat_0.2.1        rprojroot_1.3-2        
-[129] withr_2.1.2             sctransform_0.2.0      
-[131] GenomeInfoDbData_1.2.1  grid_3.6.1             
-[133] tidyr_1.0.0             rmarkdown_1.16         
-[135] Rtsne_0.15              git2r_0.26.1           
-[137] shiny_1.4.0            </code></pre>
+ [87] nlme_3.1-141            whisker_0.4            
+ [89] mime_0.7                R.oo_1.22.0            
+ [91] ggiraph_0.6.1           xml2_1.2.2             
+ [93] compiler_3.6.1          plotly_4.9.0           
+ [95] png_0.1-7               lsei_1.2-0             
+ [97] Morpho_2.7              tibble_2.1.3           
+ [99] stringi_1.4.3           RSpectra_0.15-0        
+[101] gdtools_0.2.0           lattice_0.20-38        
+[103] Matrix_1.2-17           shinyjs_1.0            
+[105] vctrs_0.2.0             pillar_1.4.2           
+[107] lifecycle_0.1.0         Rdpack_0.11-0          
+[109] lmtest_0.9-37           RcppAnnoy_0.0.13       
+[111] data.table_1.12.2       cowplot_1.0.0          
+[113] bitops_1.0-6            irlba_2.3.3            
+[115] Rvcg_0.18               gbRd_0.4-11            
+[117] httpuv_1.5.2            colorRamps_2.3         
+[119] imager_0.41.2           R6_2.4.0               
+[121] promises_1.1.0          bmp_0.3                
+[123] KernSmooth_2.23-15      gridExtra_2.3          
+[125] codetools_0.2-16        MASS_7.3-51.4          
+[127] gtools_3.8.1            assertthat_0.2.1       
+[129] rprojroot_1.3-2         withr_2.1.2            
+[131] sctransform_0.2.0       GenomeInfoDbData_1.2.1 
+[133] grid_3.6.1              tidyr_1.0.0            
+[135] rmarkdown_1.16          Rtsne_0.15             
+[137] git2r_0.26.1            shiny_1.4.0            </code></pre>
 </div>
 </div>
 

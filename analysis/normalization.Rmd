@@ -69,7 +69,7 @@ se <- readRDS("~/STUtility/se_object")
 
 Each spot in a Spatial Transcriptomics dataset typically contains RNA from a mixture of cells so why would we apply a workflow that was developed for single-cell RNAseq data? We can calculate some properties to visually inspect the data to see that ST data have similar properties to that of scRNAseq data.
 <br>
-```{r poisson_comparison, fig.width = 4, fig.height = 8, cache=TRUE}
+```{r poisson_comparison, fig.width = 4, fig.height = 8, cache=TRUE, warning=FALSE, message=FALSE, results='hide'}
 
 library(Matrix)
 library(magrittr)
