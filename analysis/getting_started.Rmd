@@ -4,20 +4,6 @@ author:
 - Joseph Bergenstråhle, Royal Institute of Technology (KTH)
 - Ludvig Larsson, Royal Institute of Technology (KTH)
 date: ''
-output:
-  html_document:
-    theme: darkly
-    css: style.css
-    number_sections: false
-    toc: yes
-    toc_depth: 3
-    toc_float:
-      collapsed: false
-      smooth_scroll: true
-  pdf_document:
-    number_sections: false
-    toc: yes
-    toc_depth: 3
 ---
 
 <style type="text/css">
@@ -56,7 +42,7 @@ body {
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
 ```
 
 # Getting started
@@ -109,7 +95,7 @@ infoTable <- read.table("~/STUtility/inst/extdata/metaData_mmBrain.csv", sep=";"
 
 ```
 
-### Loading data
+### Load data
 
 The provided count matrix consists of EnsambleIDs (with version id) as gene names. Gene symbols are often a preference for easier reading, and we provide a transformation table accordingly. 
 <br>
@@ -127,12 +113,11 @@ If you wish to include other meta data you can just add any number of columns in
 
 Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from another platform there is support for "1k" and "2k" arrays. You can also mix datasets from different platforms by specifying one of; "Visium", "1k" or "2k" in a separate column of the infoTable named "platform". You just have to make sure that the datasets have gene symbols which follows the same nomenclature.
 <br>
-```{r read_input_1, eval=TRUE, cache=TRUE}
+```{r read_input_1, cache=TRUE}
 #DOUBLE CHECK SO THAT THIS IS CORRECT NOW
 
 #TODO: add warnings if ids missmatch. Check that ids are in the data.frame ...
 se <- InputFromTable(infotable = infoTable, 
-                      transpose = T, 
                       min.gene.count = 100, 
                       min.gene.spots = 5,
                       min.spot.count = 500, 
@@ -141,6 +126,25 @@ se <- InputFromTable(infotable = infoTable,
                       pattern.remove = "^mt-")
 
 ```
+<br>
+Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the Seurat package. There are many vignettes to get started available at the [Seurat web site](https://satijalab.org/seurat/vignettes.html).
+
+Some of the functionalities provided in the Seurat package are not yet supported by STUtility, such as dataset integration and multimodal analysis. These methods should in principle work if you treat the data like a scRNA-seq experiment, but you will not be able to make use of the image related data or the spatial visualization functions.
+
+For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the `ST.FeaturePlot()` function.
+<br>
+```{r load_image, include=FALSE}
+se <- LoadImages(se, time.resolve=F)
+```
+
+```{r, eval=TRUE, fig.width=12, fig.height=10, out.width='100%'}
+
+ST.FeaturePlot(se, features = c("nFeature_RNA"), dark.theme = T, cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"))
+
+```
+
+<br>
+In the next section we will show how you can load images inbto the Seurat object and how they can be manipulated to improve interpretability of you results.
 
 &nbsp;
 <hr />
