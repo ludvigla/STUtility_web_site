@@ -30,15 +30,18 @@ div.main-container {
 </style>
 <style>
 #TOC {
-  top: 5%;
+  background: url("https://cdn.sstatic.net/Sites/stackoverflow/company/img/logos/so/so-logo.png?v=9c558ec15d8a");
+  background-size: contain;
+  padding-top: 80px !important;
+  background-repeat: no-repeat;
+  op: 5%;
   opacity: 0.8;
-  width: 400px;
-  color: black;
-}
-#TOC:hover {
-  opacity: 1;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
 }
 </style>
+
 <style> code, pre{
   background-color: #000000 !important;
   color: white !important;

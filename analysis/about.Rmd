@@ -30,15 +30,18 @@ div.main-container {
 </style>
 <style>
 #TOC {
-  top: 5%;
+  background: url("https://cdn.sstatic.net/Sites/stackoverflow/company/img/logos/so/so-logo.png?v=9c558ec15d8a");
+  background-size: contain;
+  padding-top: 80px !important;
+  background-repeat: no-repeat;
+  op: 5%;
   opacity: 0.8;
-  width: 400px;
-  color: black;
-}
-#TOC:hover {
-  opacity: 1;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
 }
 </style>
+
 <style> code, pre{
   background-color: #000000 !important;
   color: white !important;
@@ -64,7 +67,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = F
 
 The tutorial aims to lay the foundation of best practice for ST data analysis. At such, the user is probably already familiar with the underlying method and a detailed description is therefore found elsewhere. Interested readers are pointed to the original publication from 2016 (https://science.sciencemag.org/content/353/6294/78). 
 
-![Schematic Spatial Transcriptomics](st_method_1.png)
+![Schematic Spatial Transcriptomics](assets/st_method_1.png)
 
 In short, there are two main output components from an ST experiment; (i) the gene expression data and (ii) the image data. 
 
