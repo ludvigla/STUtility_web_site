@@ -1,0 +1,154 @@
+---
+title: "Getting started"
+author:
+- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
+- Ludvig Larsson, Royal Institute of Technology (KTH)
+date: ''
+output:
+  html_document:
+    theme: darkly
+    css: style.css
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+  pdf_document:
+    number_sections: false
+    toc: yes
+    toc_depth: 3
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  top: 5%;
+  opacity: 0.8;
+  width: 400px;
+  color: black;
+}
+#TOC:hover {
+  opacity: 1;
+}
+</style>
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = FALSE)
+```
+
+# Getting started
+
+Firt you need to load the library into your R session.
+
+```{r load_lib}
+
+library(STutility)
+
+```
+
+## Original ST platform
+
+### Input files
+
+After a typical ST experiment, we have the following three output files:
+
+1. Count file
+2. Spot detector output 
+3. H&E image
+
+To use the full range of functions within STUtility, all three files are needed for each sample. However, all data analysis steps that do not involve the H&E image can be performed with only the count file as input. 
+
+---
+
+To follow along this tutorial, download the test data set at TODO:[insert test data set link]. The downloadable content consists of count files, output from our spot detector tool, H&E stained images as well as an "infoTable" to read in the files into R.
+
+### Prepare data
+
+The recommended method to read the files into R is via the creation of a "infoTable", which is a table with three columns "samples", "spotfiles" and "imgs". 
+<br>
+```{r example_infotable, echo=FALSE, eval=FALSE}
+
+samples <- c("Path to samples 1 ", "Path to samples 2")
+spotfiles <- c("Path to spotfile 1", "Path to spotfile 2")
+imgs <- c("Path to H&E image 1", "Path to H&E image 2")
+data.frame(samples, spotfiles, imgs)
+```
+
+These columns are *mandatory* to include in the infoTable. However, spotfiles and imgs can be left empty if the user do not wish to include the image in the analysis workflow.
+
+any number of _extra_ columns can be added with metadata. This information can then be used to e.g. coloring of plots and subsetting. These columns can be named as you like. 
+
+Lets load the provided infoTable
+<br>
+```{r package_infotable, cache = TRUE}
+
+infoTable <- read.table("~/STUtility/inst/extdata/metaData_mmBrain.csv", sep=";", header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]
+
+```
+
+### Loading data
+
+The provided count matrix consists of EnsambleIDs (with version id) as gene names. Gene symbols are often a preference for easier reading, and we provide a transformation table accordingly. 
+<br>
+```{r annotation, cache = TRUE}
+#Transformation table for geneIDs
+ensids <- read.table(file = list.files(system.file("extdata", package = "STutility"), full.names = T, pattern = "mouse_genes"), header = T, sep = "\t", stringsAsFactors = F)
+
+```
+
+We are now ready to load our samples and create a "seurat" object. 
+
+Here, we demonstrate the creation of the seurat object, while also including some filtering by only keeping the genes that are found in at least 5 capture spots and a total count value >= 100. We also only keep the spots that contains >= 500 total transcripts. As already mentioned, we recommend users to include a column named "imgs" with paths to the HE stained histological images. The images are not loaded into the Seurat object to begin with but are neccessary if you want to overlay any gene expression values. The "spotfiles" column should include paths to "selection tables" which are files containing tabular information about spots located under the tissue as well as "pixel coordinates" coordinates specifying where the spots are centered on the corresponding HE images. Without this information, you will not be able to overlay gene expression on top of the image properly so we highly recommend you to include this information into the infoTable. Finally, the "samples" column should provide paths to the gene count matrices (either .tsv or .h5 format).
+
+If you wish to include other meta data you can just add any number of columns into your infoTable which will be stored in the meta.data slot of the Seurat object.
+
+Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from another platform there is support for "1k" and "2k" arrays. You can also mix datasets from different platforms by specifying one of; "Visium", "1k" or "2k" in a separate column of the infoTable named "platform". You just have to make sure that the datasets have gene symbols which follows the same nomenclature.
+<br>
+```{r read_input_1, eval=TRUE, cache=TRUE}
+#DOUBLE CHECK SO THAT THIS IS CORRECT NOW
+
+#TODO: add warnings if ids missmatch. Check that ids are in the data.frame ...
+se <- InputFromTable(infotable = infoTable, 
+                      transpose = T, 
+                      min.gene.count = 100, 
+                      min.gene.spots = 5,
+                      min.spot.count = 500, 
+                      annotation = ensids, 
+                      platform = "2k", 
+                      pattern.remove = "^mt-")
+
+```
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;
