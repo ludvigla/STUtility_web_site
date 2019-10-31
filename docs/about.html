@@ -452,65 +452,18 @@ body {
 <h2>A note about the naming conventions used</h2>
 <p>For users familiar with the Seurat workflow, there are a number of Seruat plotting functions, e.g. <code>Seurat::FeaturePlot()</code>, those plotting functions all have a “ST version”, which is called upon by adding “ST.” prior to the original function name e.g. <code>STutility::ST.FeaturePlot()</code>.</p>
 <p>The external STUtility functions are following a PascalCase convention.</p>
-</div>
-</div>
-<div id="getting-started" class="section level1">
-<h1>Getting started</h1>
-<div id="original-st-platform" class="section level2">
-<h2>Original ST platform</h2>
-<div id="input-files" class="section level3">
-<h3>Input files</h3>
-<p>After a typical ST experiment, we have the following three output files:</p>
-<ol style="list-style-type: decimal">
-<li>Count file</li>
-<li>Spot detector output</li>
-<li>H&amp;E image</li>
-</ol>
-<p>To use the full range of functions within STUtility, all three files are needed for each sample. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input.</p>
+ 
 <hr />
-<p>To follow along this tutorial, download the test data set at TODO:[insert test data set link]. The downloadable content consists of count files, output from our spot detector tool, H&amp;E stained images as well as an “infoTable” to read in the files into R.</p>
-</div>
-<div id="prepare-data" class="section level3">
-<h3>Prepare data</h3>
-<p>The recommended method to read the files into R is via the creation of a “infoTable”, which is a table with three columns “samples”, “spotfiles” and “imgs”. <br></p>
-<p>These columns are <em>mandatory</em> to include in the infoTable. However, spotfiles and imgs can be left empty if the user do not wish to include the image in the analysis workflow.</p>
-<p>any number of <em>extra</em> columns can be added with metadata. This information can then be used to e.g. coloring of plots and subsetting. These columns can be named as you like.</p>
-<p>Lets load the provided infoTable <br></p>
-<pre class="r"><code>infoTable &lt;- read.table(&quot;~/STUtility/inst/extdata/metaData_mmBrain.csv&quot;, sep=&quot;;&quot;, header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]</code></pre>
-</div>
-<div id="loading-data" class="section level3">
-<h3>Loading data</h3>
-<p>The provided count matrix consists of EnsambleIDs (with version id) as gene names. Gene symbols are often a preference for easier reading, and we provide a transformation table accordingly. <br></p>
-<pre class="r"><code>#Transformation table for geneIDs
-ensids &lt;- read.table(file = list.files(system.file(&quot;extdata&quot;, package = &quot;STutility&quot;), full.names = T, pattern = &quot;mouse_genes&quot;), header = T, sep = &quot;\t&quot;, stringsAsFactors = F)</code></pre>
-<p>We are now ready to load our samples and create a “seurat” object.</p>
-<p>Here, we demonstrate the creation of the seurat object, while also including some filtering by only keeping the genes that are found in at least 5 capture spots and a total count value &gt;= 100. We also only keep the spots that contains &gt;= 500 total transcripts. As already mentioned, we recommend users to include a column named “imgs” with paths to the HE stained histological images. The images are not loaded into the Seurat object to begin with but are neccessary if you want to overlay any gene expression values. The “spotfiles” column should include paths to “selection tables” which are files containing tabular information about spots located under the tissue as well as “pixel coordinates” coordinates specifying where the spots are centered on the corresponding HE images. Without this information, you will not be able to overlay gene expression on top of the image properly so we highly recommend you to include this information into the infoTable. Finally, the “samples” column should provide paths to the gene count matrices (either .tsv or .h5 format).</p>
-<p>If you wish to include other meta data you can just add any number of columns into your infoTable which will be stored in the meta.data slot of the Seurat object.</p>
-<p>Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from another platform there is support for “1k” and “2k” arrays. You can also mix datasets from different platforms by specifying one of; “Visium”, “1k” or “2k” in a separate column of the infoTable named “platform”. You just have to make sure that the datasets have gene symbols which follows the same nomenclature. <br></p>
-<pre class="r"><code>#DOUBLE CHECK SO THAT THIS IS CORRECT NOW
-
-#TODO: add warnings if ids missmatch. Check that ids are in the data.frame ...
-se &lt;- InputFromTable(infotable = infoTable, 
-                      transpose = T, 
-                      min.gene.count = 100, 
-                      min.gene.spots = 5,
-                      min.spot.count = 500, 
-                      annotation = ensids, 
-                      platform = &quot;2k&quot;, 
-                      pattern.remove = &quot;^mt-&quot;)</code></pre>
-<pre><code>## [1] &quot;Removing all spots outside of tissue&quot;
-## Loading ~/STUtility/inst/extdata/counts/Hippo1.tsv.gz count matrix from a &#39;2k&#39; experiment
-## Loading ~/STUtility/inst/extdata/counts/Hippo5.tsv.gz count matrix from a &#39;2k&#39; experiment
-## Loading ~/STUtility/inst/extdata/counts/Hippo6.tsv.gz count matrix from a &#39;2k&#39; experiment
-## Loading ~/STUtility/inst/extdata/counts/Hippo7.tsv.gz count matrix from a &#39;2k&#39; experiment
-## Using provided annotation table with id.column &#39;gene_id&#39; and replace column &#39;gene_id&#39; to convert gene names 
-## 
-## ------------- Filtering (not including images based filtering) -------------- 
-##   Spots removed:  182  
-##   Genes removed:  5  
-## Removing 27 genes matching &#39;^mt-&#39; regular expression 
-## After filtering the dimensions of the experiment is: [9995 genes, 4375 spots]</code></pre>
-</div>
+<p style="text-align: center;">
+A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a>
+</p>
+<!-- Add icon library -->
+<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></p>
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+<a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+<p> </p>
 </div>
 </div>
 

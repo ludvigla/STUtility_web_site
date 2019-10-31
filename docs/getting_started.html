@@ -14,7 +14,7 @@
 <meta name="author" content="Ludvig Larsson, Royal Institute of Technology (KTH)" />
 
 
-<title>STUtility - Vignette</title>
+<title>Getting started</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,6 +22,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -253,6 +256,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -260,6 +326,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -306,13 +382,31 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">STUtility - Vignette</h1>
+<h1 class="title toc-ignore">Getting started</h1>
 <h4 class="author">Joseph Bergenstråhle, Royal Institute of Technology (KTH)</h4>
 <h4 class="author">Ludvig Larsson, Royal Institute of Technology (KTH)</h4>
 
 </div>
 
 
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  top: 5%;
+  opacity: 0.8;
+  width: 400px;
+  color: black;
+}
+#TOC:hover {
+  opacity: 1;
+}
 </style>
 <style> code, pre{
   background-color: #000000 !important;
@@ -324,13 +418,64 @@ body {
   color: white
 }
 </style>
-<div id="installation" class="section level1">
-<h1>Installation</h1>
-<p>Using devtools, execute the following from the R console: <br></p>
-<pre class="r"><code>devtools::install_github(
-    &quot;jbergenstrahle/STUtility&quot;
-   , build_opts = c(&quot;--no-resave-data&quot;, &quot;--no-manual&quot;)
-)</code></pre>
+<div id="getting-started" class="section level1">
+<h1>Getting started</h1>
+<p>Firt you need to load the library into your R session.</p>
+<pre class="r"><code>library(STutility)</code></pre>
+<div id="original-st-platform" class="section level2">
+<h2>Original ST platform</h2>
+<div id="input-files" class="section level3">
+<h3>Input files</h3>
+<p>After a typical ST experiment, we have the following three output files:</p>
+<ol style="list-style-type: decimal">
+<li>Count file</li>
+<li>Spot detector output</li>
+<li>H&amp;E image</li>
+</ol>
+<p>To use the full range of functions within STUtility, all three files are needed for each sample. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input.</p>
+<hr />
+<p>To follow along this tutorial, download the test data set at TODO:[insert test data set link]. The downloadable content consists of count files, output from our spot detector tool, H&amp;E stained images as well as an “infoTable” to read in the files into R.</p>
+</div>
+<div id="prepare-data" class="section level3">
+<h3>Prepare data</h3>
+<p>The recommended method to read the files into R is via the creation of a “infoTable”, which is a table with three columns “samples”, “spotfiles” and “imgs”. <br></p>
+<p>These columns are <em>mandatory</em> to include in the infoTable. However, spotfiles and imgs can be left empty if the user do not wish to include the image in the analysis workflow.</p>
+<p>any number of <em>extra</em> columns can be added with metadata. This information can then be used to e.g. coloring of plots and subsetting. These columns can be named as you like.</p>
+<p>Lets load the provided infoTable <br></p>
+<pre class="r"><code>infoTable &lt;- read.table(&quot;~/STUtility/inst/extdata/metaData_mmBrain.csv&quot;, sep=&quot;;&quot;, header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]</code></pre>
+</div>
+<div id="loading-data" class="section level3">
+<h3>Loading data</h3>
+<p>The provided count matrix consists of EnsambleIDs (with version id) as gene names. Gene symbols are often a preference for easier reading, and we provide a transformation table accordingly. <br></p>
+<pre class="r"><code>#Transformation table for geneIDs
+ensids &lt;- read.table(file = list.files(system.file(&quot;extdata&quot;, package = &quot;STutility&quot;), full.names = T, pattern = &quot;mouse_genes&quot;), header = T, sep = &quot;\t&quot;, stringsAsFactors = F)</code></pre>
+<p>We are now ready to load our samples and create a “seurat” object.</p>
+<p>Here, we demonstrate the creation of the seurat object, while also including some filtering by only keeping the genes that are found in at least 5 capture spots and a total count value &gt;= 100. We also only keep the spots that contains &gt;= 500 total transcripts. As already mentioned, we recommend users to include a column named “imgs” with paths to the HE stained histological images. The images are not loaded into the Seurat object to begin with but are neccessary if you want to overlay any gene expression values. The “spotfiles” column should include paths to “selection tables” which are files containing tabular information about spots located under the tissue as well as “pixel coordinates” coordinates specifying where the spots are centered on the corresponding HE images. Without this information, you will not be able to overlay gene expression on top of the image properly so we highly recommend you to include this information into the infoTable. Finally, the “samples” column should provide paths to the gene count matrices (either .tsv or .h5 format).</p>
+<p>If you wish to include other meta data you can just add any number of columns into your infoTable which will be stored in the meta.data slot of the Seurat object.</p>
+<p>Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from another platform there is support for “1k” and “2k” arrays. You can also mix datasets from different platforms by specifying one of; “Visium”, “1k” or “2k” in a separate column of the infoTable named “platform”. You just have to make sure that the datasets have gene symbols which follows the same nomenclature. <br></p>
+<pre class="r"><code>#DOUBLE CHECK SO THAT THIS IS CORRECT NOW
+
+#TODO: add warnings if ids missmatch. Check that ids are in the data.frame ...
+se &lt;- InputFromTable(infotable = infoTable, 
+                      transpose = T, 
+                      min.gene.count = 100, 
+                      min.gene.spots = 5,
+                      min.spot.count = 500, 
+                      annotation = ensids, 
+                      platform = &quot;2k&quot;, 
+                      pattern.remove = &quot;^mt-&quot;)</code></pre>
+<pre><code>## [1] &quot;Removing all spots outside of tissue&quot;
+## Loading ~/STUtility/inst/extdata/counts/Hippo1.tsv.gz count matrix from a &#39;2k&#39; experiment
+## Loading ~/STUtility/inst/extdata/counts/Hippo5.tsv.gz count matrix from a &#39;2k&#39; experiment
+## Loading ~/STUtility/inst/extdata/counts/Hippo6.tsv.gz count matrix from a &#39;2k&#39; experiment
+## Loading ~/STUtility/inst/extdata/counts/Hippo7.tsv.gz count matrix from a &#39;2k&#39; experiment
+## Using provided annotation table with id.column &#39;gene_id&#39; and replace column &#39;gene_id&#39; to convert gene names 
+## 
+## ------------- Filtering (not including images based filtering) -------------- 
+##   Spots removed:  182  
+##   Genes removed:  5  
+## Removing 27 genes matching &#39;^mt-&#39; regular expression 
+## After filtering the dimensions of the experiment is: [9995 genes, 4375 spots]</code></pre>
  
 <hr />
 <p style="text-align: center;">
@@ -344,9 +489,13 @@ A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and 
 </p>
 <p> </p>
 </div>
+</div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -379,6 +528,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
