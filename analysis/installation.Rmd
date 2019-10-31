@@ -7,7 +7,28 @@ date: ''
 
 ---
 
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+
 <style> code, pre{
   background-color: #000000 !important;
   color: white !important;
@@ -18,6 +39,7 @@ body {
   color: white
 }
 </style>
+
 
 
 
