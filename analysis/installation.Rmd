@@ -4,15 +4,7 @@ author:
 - Joseph Bergenstråhle, Royal Institute of Technology (KTH)
 - Ludvig Larsson, Royal Institute of Technology (KTH)
 date: ''
-output:
-  html_document:
-    theme: darkly
-    css: style.css
-    number_sections: false
-  pdf_document:
-    number_sections: false
-    toc: yes
-    toc_depth: 3
+
 ---
 
 </style>
