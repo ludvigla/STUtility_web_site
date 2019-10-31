@@ -59,7 +59,7 @@ body {
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
 ```
 
 ```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE}
