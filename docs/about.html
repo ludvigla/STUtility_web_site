@@ -402,9 +402,9 @@ div.main-container {
 </style>
 <style>
 #TOC {
-  background: url("https://cdn.sstatic.net/Sites/stackoverflow/company/img/logos/so/so-logo.png?v=9c558ec15d8a");
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
-  padding-top: 80px !important;
+  padding-top: 100px !important;
   background-repeat: no-repeat;
   op: 5%;
   opacity: 0.8;
@@ -425,8 +425,8 @@ body {
 </style>
 <div id="background" class="section level1">
 <h1>Background</h1>
-<div id="the-spatial-transcriptomics-method" class="section level2">
-<h2>The Spatial Transcriptomics method</h2>
+<div id="spatial-transcriptomics-st" class="section level2">
+<h2>Spatial Transcriptomics (ST)</h2>
 <hr />
 <p>The tutorial aims to lay the foundation of best practice for ST data analysis. At such, the user is probably already familiar with the underlying method and a detailed description is therefore found elsewhere. Interested readers are pointed to the original publication from 2016 (<a href="https://science.sciencemag.org/content/353/6294/78" class="uri">https://science.sciencemag.org/content/353/6294/78</a>).</p>
 <div class="figure">
@@ -435,26 +435,26 @@ body {
 </div>
 <p>In short, there are two main output components from an ST experiment; (i) the gene expression data and (ii) the image data.</p>
 <p>All the steps explained in this guide could be performed with only the expression data. However, the image data, apart from being fundamental to the biological interpretation, is used to filter out capture-spots that lies directly under the tissue. This filtering excludes the unwanted data points, lowering the memory burden of the data objects created as well as removing informational noise.</p>
-<p>An introductory animation is available on our website: <a href="http://www.spatialtranscriptomicsresearch.org/" class="uri">http://www.spatialtranscriptomicsresearch.org/</a></p>
-<div id="spot-adjustment-and-selection" class="section level3">
-<h3>Spot adjustment and selection</h3>
+<p>An introductory animation is available on our website: <a href="http://www.spatialresearch.org/" class="uri">http://www.spatialresearch.org/</a></p>
+<div id="selecting-spots" class="section level3">
+<h3>Selecting spots</h3>
 <p>The gene expression data consists of a count matrix with genes in rows and capture “spots” in columns. Each spot represents a small area on an ST array from which the captured transcripts have been barcoded with a unique sequence. The unique barcode makes it possible to map the transcripts onto a spatial position on the tissue section and would be equivalent to a cell specific barcode in scRNA-seq data but can tag a mixture of transcripts from multiple cells. The spatial position of a spot is an (x, y) coordinate that defines the centroid of the spot area. These spatial coordinates are stored in the spot ids (column names) and allows us to visualize gene expression (and other spot features) in the array grid system. However, if you want to overlay a visualization on top the HE image you want to make sure that the spot coordinates are exact in relation to morphological features of the image. When the spots are printed onto the ST array surface, they will sometimes deviate from the (x, y) coordinates given by the spot ids and should therefore be adjusted. In addition to the spot adjustment, you will also need to label the spots that are located directly under the tissue. Spot adjustment and selection can be done automatically using our <a href="https://github.com/SpatialTranscriptomicsResearch/st_spot_detector">ST spot detector</a> web tool which outputs a table of adjusted coordinates and labels for the spots under tissue.</p>
 </div>
 </div>
-<div id="a-note-on-using-stutility-for-multiple-sample-analysis" class="section level2">
-<h2>A note on using STUtility for multiple sample analysis</h2>
+<div id="multiple-samples" class="section level2">
+<h2>Multiple samples</h2>
 <p>The STUtility tool was developed with the goal of multiple sample inputs. As with all biological data, using multiple samples add power to the analysis and is a necessity to enable comprehensive insight which otherwise suffers from stochastic uncertainty. Within this vignette, we display how you can input multiple samples, look for aggravating circumstances like batch effects and missing data, apply methods to correct such if present, get a holistic picture of your data as well as conduct more in depth analysis in various ways.</p>
 </div>
-<div id="a-note-on-the-fundamental-backbone-of-stutility---the-seurat-workflow" class="section level2">
-<h2>A note on the fundamental backbone of STUtility - The Seurat workflow</h2>
+<div id="seurat-workflow" class="section level2">
+<h2>Seurat workflow</h2>
 <p>We have extensively tried different methods and workflows for handling ST data. While all roads lead to Rome, as of the date of this writing we find the Seurat approach [<a href="https://satijalab.org/seurat/" class="uri">https://satijalab.org/seurat/</a>] to be the most suited for this type of data. Seurat is an R package designed for single-cell RNAseq data. Obviously, this deviates from the data that the ST technology currently produce, as the resolution on the array implies that each capture-spot consists of transcripts originating from multiple cells. Nevertheless, the characteristics of the ST data resembles that of scRNAseq to a large extent.</p>
 </div>
-<div id="a-note-about-the-new-10x-visium-array" class="section level2">
-<h2>A note about the new 10X Visium array</h2>
+<div id="x-visium-array" class="section level2">
+<h2>10X Visium array</h2>
 <p>In late 2018, the company Spatial Transcriptomics was acquired by 10X Genomics, which since then have been developing the new version of the technological platform that our research group have been using in the past years, called <em>Visium</em>. There are some changes in the experimental protocol for the Visium, and the type of output and subsequently input to this R tool. Since our goal is to have this R tool compatible to past and future versions of the technology, both are supported. If you are working with the Visium platform, please see [The 10X Visium platform].</p>
 </div>
-<div id="a-note-about-the-naming-conventions-used" class="section level2">
-<h2>A note about the naming conventions used</h2>
+<div id="naming-conventions" class="section level2">
+<h2>Naming conventions</h2>
 <p>For users familiar with the Seurat workflow, there are a number of Seruat plotting functions, e.g. <code>Seurat::FeaturePlot()</code>, those plotting functions all have a “ST version”, which is called upon by adding “ST.” prior to the original function name e.g. <code>STutility::ST.FeaturePlot()</code>.</p>
 <p>The external STUtility functions are following a PascalCase convention.</p>
  
