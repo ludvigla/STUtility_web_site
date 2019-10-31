@@ -10,9 +10,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Joseph Bergenstråhle, Royal Institute of Technology (KTH)" />
+<meta name="author" content="Ludvig Larsson, Royal Institute of Technology (KTH)" />
 
 
-<title>About</title>
+<title>STUtility - Vignette</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,9 +22,14 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -248,6 +255,63 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -255,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -267,12 +341,15 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">myproject</a>
+      <a class="navbar-brand" href="index.html">STUtility</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="installation.html">Installation</a>
 </li>
 <li>
   <a href="about.html">About</a>
@@ -282,7 +359,13 @@ $(document).ready(function () {
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/ludvigla/STUtility_web_site">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -299,14 +382,16 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">About</h1>
+<h1 class="title toc-ignore">STUtility - Vignette</h1>
+<h4 class="author">Joseph Bergenstråhle, Royal Institute of Technology (KTH)</h4>
+<h4 class="author">Ludvig Larsson, Royal Institute of Technology (KTH)</h4>
 
 </div>
 
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -315,7 +400,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -327,10 +412,10 @@ div.section {
 <strong>Last updated:</strong> 2019-10-31
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
-<strong>Knit directory:</strong> <code>myproject/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
@@ -355,16 +440,81 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreeee690f33d5f4ee40f69df6f91c04aaa3ed62ad3dtargetblankee690f3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/ee690f33d5f4ee40f69df6f91c04aaa3ed62ad3d" target="_blank">ee690f3</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreeee690f33d5f4ee40f69df6f91c04aaa3ed62ad3dtargetblankee690f3a" class="panel-collapse collapse">
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191031code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191031)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+</p>
+</div>
+<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div class="panel-body">
+The following chunks had caches available:
+<ul>
+<li>
+annotation
+</li>
+<li>
+package_infotable
+</li>
+<li>
+read_input_1
+</li>
+</ul>
+<p>To ensure reproducibility of the results, delete the cache directory <code>about_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree77ea12264e6a2b5eedbcce0f1aa9bcdc9527683atargetblank77ea122a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/77ea12264e6a2b5eedbcce0f1aa9bcdc9527683a" target="_blank">77ea122</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree77ea12264e6a2b5eedbcce0f1aa9bcdc9527683atargetblank77ea122a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
-working directory clean
+Ignored files:
+    Ignored:    analysis/about_cache/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -402,6 +552,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/77ea12264e6a2b5eedbcce0f1aa9bcdc9527683a/analysis/about.Rmd" target="_blank">77ea122</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/bc408e0d9a20095b663dc54a9caae8f044be16d2/docs/about.html" target="_blank">bc408e0</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -443,7 +627,178 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>Describe your project.</p>
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  top: 5%;
+  opacity: 0.8;
+  width: 400px;
+  color: black;
+}
+#TOC:hover {
+  opacity: 1;
+}
+</style>
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<div id="the-spatial-transcriptomics-method" class="section level2">
+<h2>The Spatial Transcriptomics method</h2>
+<hr />
+<p>The tutorial aims to lay the foundation of best practice for ST data analysis. At such, the user is probably already familiar with the underlying method and a detailed description is therefore found elsewhere. Interested readers are pointed to the original publication from 2016 (<a href="https://science.sciencemag.org/content/353/6294/78" class="uri">https://science.sciencemag.org/content/353/6294/78</a>).</p>
+<div class="figure">
+<img src="st_method_1.png" alt="Schematic Spatial Transcriptomics" />
+<p class="caption">Schematic Spatial Transcriptomics</p>
+</div>
+<p>In short, there are two main output components from an ST experiment; (i) the gene expression data and (ii) the image data.</p>
+<p>All the steps explained in this guide could be performed with only the expression data. However, the image data, apart from being fundamental to the biological interpretation, is used to filter out capture-spots that lies directly under the tissue. This filtering excludes the unwanted data points, lowering the memory burden of the data objects created as well as removing informational noise.</p>
+<p>An introductory animation is available on our website: <a href="http://www.spatialtranscriptomicsresearch.org/" class="uri">http://www.spatialtranscriptomicsresearch.org/</a></p>
+<div id="spot-adjustment-and-selection" class="section level3">
+<h3>Spot adjustment and selection</h3>
+<p>The gene expression data consists of a count matrix with genes in rows and capture “spots” in columns. Each spot represents a small area on an ST array from which the captured transcripts have been barcoded with a unique sequence. The unique barcode makes it possible to map the transcripts onto a spatial position on the tissue section and would be equivalent to a cell specific barcode in scRNA-seq data but can tag a mixture of transcripts from multiple cells. The spatial position of a spot is an (x, y) coordinate that defines the centroid of the spot area. These spatial coordinates are stored in the spot ids (column names) and allows us to visualize gene expression (and other spot features) in the array grid system. However, if you want to overlay a visualization on top the HE image you want to make sure that the spot coordinates are exact in relation to morphological features of the image. When the spots are printed onto the ST array surface, they will sometimes deviate from the (x, y) coordinates given by the spot ids and should therefore be adjusted. In addition to the spot adjustment, you will also need to label the spots that are located directly under the tissue. Spot adjustment and selection can be done automatically using our <a href="https://github.com/SpatialTranscriptomicsResearch/st_spot_detector">ST spot detector</a> web tool which outputs a table of adjusted coordinates and labels for the spots under tissue.</p>
+</div>
+</div>
+<div id="a-note-on-using-stutility-for-multiple-sample-analysis" class="section level2">
+<h2>A note on using STUtility for multiple sample analysis</h2>
+<p>The STUtility tool was developed with the goal of multiple sample inputs. As with all biological data, using multiple samples add power to the analysis and is a necessity to enable comprehensive insight which otherwise suffers from stochastic uncertainty. Within this vignette, we display how you can input multiple samples, look for aggravating circumstances like batch effects and missing data, apply methods to correct such if present, get a holistic picture of your data as well as conduct more in depth analysis in various ways.</p>
+</div>
+<div id="a-note-on-the-fundamental-backbone-of-stutility---the-seurat-workflow" class="section level2">
+<h2>A note on the fundamental backbone of STUtility - The Seurat workflow</h2>
+<p>We have extensively tried different methods and workflows for handling ST data. While all roads lead to Rome, as of the date of this writing we find the Seurat approach [<a href="https://satijalab.org/seurat/" class="uri">https://satijalab.org/seurat/</a>] to be the most suited for this type of data. Seurat is an R package designed for single-cell RNAseq data. Obviously, this deviates from the data that the ST technology currently produce, as the resolution on the array implies that each capture-spot consists of transcripts originating from multiple cells. Nevertheless, the characteristics of the ST data resembles that of scRNAseq to a large extent.</p>
+</div>
+<div id="a-note-about-the-new-10x-visium-array" class="section level2">
+<h2>A note about the new 10X Visium array</h2>
+<p>In late 2018, the company Spatial Transcriptomics was acquired by 10X Genomics, which since then have been developing the new version of the technological platform that our research group have been using in the past years, called <em>Visium</em>. There are some changes in the experimental protocol for the Visium, and the type of output and subsequently input to this R tool. Since our goal is to have this R tool compatible to past and future versions of the technology, both are supported. If you are working with the Visium platform, please see [The 10X Visium platform].</p>
+</div>
+<div id="a-note-about-the-naming-conventions-used" class="section level2">
+<h2>A note about the naming conventions used</h2>
+<p>For users familiar with the Seurat workflow, there are a number of Seruat plotting functions, e.g. <code>Seurat::FeaturePlot()</code>, those plotting functions all have a “ST version”, which is called upon by adding “ST.” prior to the original function name e.g. <code>STutility::ST.FeaturePlot()</code>.</p>
+<p>The external STUtility functions are following a PascalCase convention.</p>
+</div>
+</div>
+<div id="getting-started" class="section level1">
+<h1>Getting started</h1>
+<div id="original-st-platform" class="section level2">
+<h2>Original ST platform</h2>
+<div id="input-files" class="section level3">
+<h3>Input files</h3>
+<p>After a typical ST experiment, we have the following three output files:</p>
+<ol style="list-style-type: decimal">
+<li>Count file</li>
+<li>Spot detector output</li>
+<li>H&amp;E image</li>
+</ol>
+<p>To use the full range of functions within STUtility, all three files are needed for each sample. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input.</p>
+<hr />
+<p>To follow along this tutorial, download the test data set at TODO:[insert test data set link]. The downloadable content consists of count files, output from our spot detector tool, H&amp;E stained images as well as an “infoTable” to read in the files into R.</p>
+</div>
+<div id="prepare-data" class="section level3">
+<h3>Prepare data</h3>
+<p>The recommended method to read the files into R is via the creation of a “infoTable”, which is a table with three columns “samples”, “spotfiles” and “imgs”. <br></p>
+<p>These columns are <em>mandatory</em> to include in the infoTable. However, spotfiles and imgs can be left empty if the user do not wish to include the image in the analysis workflow.</p>
+<p>any number of <em>extra</em> columns can be added with metadata. This information can then be used to e.g. coloring of plots and subsetting. These columns can be named as you like.</p>
+<p>Lets load the provided infoTable <br></p>
+<pre class="r"><code>infoTable &lt;- read.table(&quot;~/STUtility/inst/extdata/metaData_mmBrain.csv&quot;, sep=&quot;;&quot;, header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]</code></pre>
+<div class="alert alert-warning">
+<p>
+<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
+>knitr cache options</a> for more details.
+</p>
+</div>
+</div>
+<div id="loading-data" class="section level3">
+<h3>Loading data</h3>
+<p>The provided count matrix consists of EnsambleIDs (with version id) as gene names. Gene symbols are often a preference for easier reading, and we provide a transformation table accordingly. <br></p>
+<pre class="r"><code>#Transformation table for geneIDs
+ensids &lt;- read.table(file = list.files(system.file(&quot;extdata&quot;, package = &quot;STutility&quot;), full.names = T, pattern = &quot;mouse_genes&quot;), header = T, sep = &quot;\t&quot;, stringsAsFactors = F)</code></pre>
+<div class="alert alert-warning">
+<p>
+<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
+>knitr cache options</a> for more details.
+</p>
+</div>
+<p>We are now ready to load our samples and create a “seurat” object.</p>
+<p>Here, we demonstrate the creation of the seurat object, while also including some filtering by only keeping the genes that are found in at least 5 capture spots and a total count value &gt;= 100. We also only keep the spots that contains &gt;= 500 total transcripts. As already mentioned, we recommend users to include a column named “imgs” with paths to the HE stained histological images. The images are not loaded into the Seurat object to begin with but are neccessary if you want to overlay any gene expression values. The “spotfiles” column should include paths to “selection tables” which are files containing tabular information about spots located under the tissue as well as “pixel coordinates” coordinates specifying where the spots are centered on the corresponding HE images. Without this information, you will not be able to overlay gene expression on top of the image properly so we highly recommend you to include this information into the infoTable. Finally, the “samples” column should provide paths to the gene count matrices (either .tsv or .h5 format).</p>
+<p>If you wish to include other meta data you can just add any number of columns into your infoTable which will be stored in the meta.data slot of the Seurat object.</p>
+<p>Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from another platform there is support for “1k” and “2k” arrays. You can also mix datasets from different platforms by specifying one of; “Visium”, “1k” or “2k” in a separate column of the infoTable named “platform”. You just have to make sure that the datasets have gene symbols which follows the same nomenclature. <br></p>
+<pre class="r"><code>#DOUBLE CHECK SO THAT THIS IS CORRECT NOW
+
+#TODO: add warnings if ids missmatch. Check that ids are in the data.frame ...
+se &lt;- InputFromTable(infotable = infoTable, 
+                      transpose = T, 
+                      min.gene.count = 100, 
+                      min.gene.spots = 5,
+                      min.spot.count = 500, 
+                      annotation = ensids, 
+                      platform = &quot;2k&quot;, 
+                      pattern.remove = &quot;^mt-&quot;)</code></pre>
+<pre><code>[1] &quot;Removing all spots outside of tissue&quot;
+Loading ~/STUtility/inst/extdata/counts/Hippo1.tsv.gz count matrix from a &#39;2k&#39; experiment
+Loading ~/STUtility/inst/extdata/counts/Hippo5.tsv.gz count matrix from a &#39;2k&#39; experiment
+Loading ~/STUtility/inst/extdata/counts/Hippo6.tsv.gz count matrix from a &#39;2k&#39; experiment
+Loading ~/STUtility/inst/extdata/counts/Hippo7.tsv.gz count matrix from a &#39;2k&#39; experiment
+Using provided annotation table with id.column &#39;gene_id&#39; and replace column &#39;gene_id&#39; to convert gene names 
+
+------------- Filtering (not including images based filtering) -------------- 
+  Spots removed:  182  
+  Genes removed:  5  
+Removing 27 genes matching &#39;^mt-&#39; regular expression 
+After filtering the dimensions of the experiment is: [9995 genes, 4375 spots] </code></pre>
+<div class="alert alert-warning">
+<p>
+<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
+>knitr cache options</a> for more details.
+</p>
+</div>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] workflowr_1.3.0 Rcpp_1.0.2      digest_0.6.22   rprojroot_1.3-2
+ [5] backports_1.1.5 git2r_0.26.1    magrittr_1.5    evaluate_0.14  
+ [9] rlang_0.4.1     stringi_1.4.3   fs_1.3.1        whisker_0.4    
+[13] rmarkdown_1.16  tools_3.6.1     stringr_1.4.0   glue_1.3.1     
+[17] xfun_0.10       yaml_2.2.0      compiler_3.6.1  htmltools_0.4.0
+[21] knitr_1.25     </code></pre>
+</div>
+</div>
+</div>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -459,6 +814,8 @@ footer is added to webpages before the MathJax javascript. -->
 </script>
 
 
+</div>
+</div>
 
 </div>
 
@@ -491,6 +848,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
