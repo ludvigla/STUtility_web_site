@@ -58,12 +58,12 @@ body {
 }
 </style>
 
-```{r load_lib}
-library(STutility)
-```
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = FALSE)
+```
+
+```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE}
+library(STutility)
 ```
 
 ## 10X Visium platform
@@ -295,3 +295,17 @@ FeatureOverlay(object = se, features = c("Nrgn", "Cck"),
                dark.theme = T)
 
 ```
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;
