@@ -60,6 +60,11 @@ devtools::install_github(
 
 ```
 
+
+### Note on MacOS
+
+If you run into `Error in dyn.load(file, DLLpath = DLLpath, ...):`, make sure you have XQuartz installed, which can be downloaded from [xquartz.org](https://www.xquartz.org/)
+
 &nbsp;
 <hr />
 <p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
