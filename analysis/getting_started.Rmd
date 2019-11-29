@@ -1,8 +1,8 @@
 ---
 title: "Getting started"
 author:
-- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
-- Ludvig Larsson, Royal Institute of Technology (KTH)
+- Joseph Bergenstråhle, SciLifeLab, Royal Institute of Technology (KTH)
+- Ludvig Larsson, SciLifeLab, Royal Institute of Technology (KTH)
 date: ''
 ---
 
@@ -61,7 +61,7 @@ library(STutility)
 
 10X Visium data output is produced with the [SpaceRanger](url). The output includes a number of files, but the ones that needs to be imported into R for STUtility is the following:
 
-1. Count file (Count file with raw counts (UMI filtered) for each gene and capture spot, for Visium this comes in .h5 format and typically called "xxxxx_filtered_feature_bc_matrix.h5")
+1. Count file (Count file with raw counts (UMI filtered) for each gene and capture spot. SpaceRanger outputs this in .h5 format, and the file is typically called "xxxxx_filtered_feature_bc_matrix.h5")
 2. Position list (tissue_positions_list.txt for each sample, contains capture-spot barcode spatial information and pixel coordinates)
 3. H&E image (tissue_hires_image.png or tissue_lowres_image.png for each sample)
 
@@ -73,7 +73,7 @@ This file contains scaling factors subject to the H&E images of different resolu
 
 _In the current version of STUtility, this scaling factors needs to be noted manually and stated during the input when using the InputFromTable() function_ We have chosen this to minimize the number of dependencies. 
 
-To use the full range of functions within STUtility, all three files are needed for each sample along with the information in the forth file. However, all data analysis steps that do not involve the H&E image can be performed with only the count file as input. 
+To use the full range of functions within STUtility, all three files are needed for each sample along with the information in the forth file. However, all data analysis steps that do not involve the H&E image can be performed with only the count file as input. To read in the 10x Visium .h5 files, the package `hdf5r` needs to be installed (`BiocManager::install("hdf5r")`).
 
 ---
 
@@ -81,9 +81,9 @@ To follow along this tutorial, download the test data set at TODO:[insert test d
 
 ### Prepare data
 
-The recommended method to read the files into R is via the creation of a "infoTable", which is a table with at least three columns "samples", "spotfiles" and "imgs". 
+The recommended method to read the files into R is via the creation of a "infoTable", there are three columns that the package will note whether they are included or not: "samples", "spotfiles" and "imgs". 
 <br>
-```{r example_infotable_Visium, echo=FALSE, eval=TRUE}
+```{r example_infotable_Visium, echo=FALSE, eval=F}
 
 samples <- c("Path to count file 1 ", "Path to count file 2")
 spotfiles <- c("Path to position list  1", "Path to position list  2")
@@ -91,22 +91,15 @@ imgs <- c("Path to H&E image 1", "Path to H&E image 2")
 data.frame(samples, spotfiles, imgs)
 ```
 
-These columns are _mandatory_ to include in the infoTable. However, position lists and imgs can be left empty if the user do not wish to include the image in the analysis workflow.
-
-Any number of _extra_ columns can be added with metadata. This information can then be used to e.g. coloring of plots and subsetting. These columns can be named as you like. 
-
-The images are not loaded into the Seurat object to begin with but are neccessary if you want to overlay any gene expression values. 
+These contains the paths to the files. Any number of _extra_ columns can be added with metadata. This information can then be used to e.g. coloring of plots and subsetting. These columns can be named as you like, but _not_ "sample", "spotfiles" or "imgs". Analysis of the data can be performed without the images, and then those columns are simply left out. 
 
 Lets load the provided infoTable
 <br>
-```{r package_infotable_Visium, cache = TRUE}
+```{r package_infotable_Visium, eval=F}
 
-infoTable <- read.table("~/STUtility/inst/extdata/metaData_mmBrain.csv", sep=";", header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]
-#Change to 10X Visium
+infoTable <- read.table("infoTable.csv", sep=",", header=T, stringsAsFactors = F)
 
 ```
-
-### Load data with gene 
 
 We are now ready to load our samples and create a "seurat" object. 
 
@@ -115,17 +108,24 @@ Here, we demonstrate the creation of the seurat object, while also including som
 * Keeping the genes that are found in at least 5 capture spots and has a total count value >= 100. 
 * Keeping the capture-spots that contains >= 500 total transcripts. 
 
-Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from another platform there is support for "1k" and "2k" arrays (Old Spatial Transcriptomics platforms used prior to the 10X Genomics aquisition). You can also mix datasets from different platforms by specifying one of; "Visium", "1k" or "2k" in a separate column of the infoTable named "platform". You just have to make sure that the datasets have gene symbols which follows the same nomenclature.
+Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from the older ST platforms, there is support for "1k" and "2k" arrays. You can also mix datasets from different platforms by specifying one of; "Visium", "1k" or "2k" in a separate column of the infoTable named "platform". You just have to make sure that the datasets have gene symbols which follows the same nomenclature.
 <br>
-```{r read_input_Visium, cache=TRUE}
+```{r input_from_table_visium, eval=F}
 
-#TODO: add warnings if ids missmatch. Check that ids are in the data.frame ...
 se <- InputFromTable(infotable = infoTable, 
                       min.gene.count = 100, 
                       min.gene.spots = 5,
                       min.spot.count = 500,
-                      platform = "2k", #Default 
-                      pattern.remove = "^mt-")
+                      platform="Visium")
+```
+
+```{r load_image_Visium, include=FALSE, eval=F}
+se <- LoadImages(se, time.resolve=F)
+```
+
+```{r, pre-load, echo=F, eval=T}
+
+load("~/STUtility/saved/preSaved_10xHippo.RData")
 
 ```
 <br>
@@ -135,11 +135,9 @@ Some of the functionalities provided in the Seurat package are not yet supported
 
 For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the `ST.FeaturePlot()` function.
 <br>
-```{r load_image_Visium, include=FALSE}
-se <- LoadImages(se, time.resolve=F)
-```
 
-```{r, eval=TRUE, fig.width=12, fig.height=10, out.width='100%'}
+
+```{r, eval=TRUE, fig.width=14, fig.height=8, out.width='100%'}
 
 ST.FeaturePlot(se, features = c("nFeature_RNA"), dark.theme = T, cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"))
 
@@ -163,7 +161,7 @@ The original ST workflow produces the following three output files:
 
 The recommended method to read the files into R is via the creation of a "infoTable", which is a table with at least three columns "samples", "spotfiles" and "imgs". 
 <br>
-```{r example_infotable, echo=FALSE, eval=TRUE}
+```{r example_infotable, echo=FALSE, eval=F}
 
 samples <- c("Path to count file 1 ", "Path to count file 2")
 spotfiles <- c("Path to spotfile 1", "Path to spotfile 2")
@@ -173,9 +171,9 @@ data.frame(samples, spotfiles, imgs)
 
 Test data is provided:
 
-```{r package_infotable, cache = TRUE}
+```{r package_infotable, eval=F}
 
-infoTable <- read.table("~/STUtility/inst/extdata/metaData_mmBrain.csv", sep=";", header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]
+infoTable <- read.table("metaData_mmBrain.csv", sep=";", header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]
 
 ```
 
@@ -183,7 +181,7 @@ infoTable <- read.table("~/STUtility/inst/extdata/metaData_mmBrain.csv", sep=";"
 
 The provided count matrices uses EnsambleIDs (with version id) for the gene names. Gene symbols are often a preference for easier reading, and we provide a transformation table accordingly. 
 <br>
-```{r annotation, cache = TRUE}
+```{r annotation, cache = TRUE, eval=FALSE}
 #Transformation table for geneIDs
 ensids <- read.table(file = list.files(system.file("extdata", package = "STutility"), full.names = T, pattern = "mouse_genes"), header = T, sep = "\t", stringsAsFactors = F)
 
@@ -196,18 +194,17 @@ Here, we demonstrate the creation of the seurat object, while also including som
 * Keeping the genes that are found in at least 5 capture spots and has a total count value >= 100. 
 * Keeping the capture-spots that contains >= 500 total transcripts. 
 
-Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from another platform there is support for "1k" and "2k" arrays (Old Spatial Transcriptomics platforms used prior to the 10X Genomics aquisition). You can also mix datasets from different platforms by specifying one of; "Visium", "1k" or "2k" in a separate column of the infoTable named "platform". You just have to make sure that the datasets have gene symbols which follows the same nomenclature.
+Note that we specify that we're using the "2k" array platform and also, since we in this case have genes in the columns, we set transpose=TRUE. 
 <br>
-```{r read_input_1, cache=TRUE}
-#DOUBLE CHECK SO THAT THIS IS CORRECT NOW
-
+```{r read_input_1, cache=F, eval=F}
 #TODO: add warnings if ids missmatch. Check that ids are in the data.frame ...
 se <- InputFromTable(infotable = infoTable, 
                       min.gene.count = 100, 
                       min.gene.spots = 5,
                       min.spot.count = 500, 
                       annotation = ensids, 
-                      platform = "2k", 
+                      platform = "2k",
+                      transpose = T,
                       pattern.remove = "^mt-")
 
 ```
@@ -218,8 +215,14 @@ Some of the functionalities provided in the Seurat package are not yet supported
 
 For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the `ST.FeaturePlot()` function.
 <br>
-```{r load_image, include=FALSE}
+```{r load_image, include=FALSE, eval=F}
 se <- LoadImages(se, time.resolve=F)
+```
+
+```{r, pre-load_2k, echo=F, eval=T}
+
+load("~/STUtility/saved/preSaved_2kHippo.RData")
+
 ```
 
 ```{r, eval=TRUE, fig.width=12, fig.height=10, out.width='100%'}
@@ -228,7 +231,7 @@ ST.FeaturePlot(se, features = c("nFeature_RNA"), dark.theme = T, cols = c("black
 
 ```
 <br>
-In the next section we will show how you can load images inbto the Seurat object and how they can be manipulated to improve interpretability of you results.
+In the next section we will show how you can load images into the Seurat object and how they can be manipulated to improve interpretability of you results.
 
 &nbsp;
 <hr />

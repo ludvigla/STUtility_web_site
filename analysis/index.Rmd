@@ -7,7 +7,9 @@ editor_options:
 
 # Home
 
-Welcome to the STUtility web site
+Welcome to the STUtility web site. STUtility is an R-package with the goal of providing an easy-to-use visualization and analysis tool kit for spatial transcriptomics data. The developers of the tool, Ludvig Larsson and Joseph Bergenstråhle, are PhD students at prof. Joakim Lundebergs group, the original inventors of the Spatial Transcriptomics (ST) technology, later acquired by 10X Genomics. We are located at [Science for Life Laboratory](https://www.scilifelab.se/) (SciLifeLab), in Stockholm, Sweden. 
+
+Our goal is to make the tool broadly available for users of ST and 10X Visium platforms. Please don't hesitate to contact us if you encounter any issue with the package, have suggestions, or any other inquiry!
 
 &nbsp;
 <hr />

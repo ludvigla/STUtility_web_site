@@ -1,8 +1,6 @@
 ---
-title: "STUtility - Vignette"
+title: "STUtility - Image processing"
 author:
-- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
-- Ludvig Larsson, Royal Institute of Technology (KTH)
 date: ''
 #output:
 #  html_document:
@@ -66,41 +64,15 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 library(STutility)
 ```
 
-## 10X Visium platform
-
-### Input files
-
-After running the 10X SpaceRanger pipeline, the output includes:
-
-1. Count file in H5 format
-2. Barcode position file 
-3. H&E image
-
-To use the full range of functions within STutility, all three files are needed for each sample. However, all data analysis steps that do not involve the H&E image can be performed with only the count file as input. 
-
----
 
 To follow along this tutorial, download the test data set at TODO:[insert test data set link]. The downloadable content consists of count files, output from our spot detector tool, H&E stained images as well as an "infoTable" to read in the files into R.
 
-### 10x infoTable
-
-The same format is used as the original ST platform, see \@ref(The-infoTable)
-<br>
-```{r infotable2, cache=TRUE}
-
-samples <- list.files(path = "~/Hippocampus_Visium/", recursive = T, pattern = "filtered_feature_bc_matrix.h5", full.names = T)
-imgs <- list.files(path = "~/Hippocampus_Visium/", recursive = T, pattern = "hires_image.png", full.names = T)
-spotfiles <- list.files(path = "~/Hippocampus_Visium/", recursive = T, pattern = "list.txt", full.names = T)
-
-infoTable <- data.frame(imgs, samples, spotfiles, sample_id = c("Hippo_A", "Hippo_B"), stringsAsFactors = F)
-
-```
-
 ## Loading 10X data
 
-To read in the 10x Visium .h5 files, the package `hdf5r` needs to be installed (`BiocManager::install("hdf5r")`). By default 10X Visium output format implies setting `transpose=F`. [There is a specified scaling factor for the H&E image. The picture with suffix "high_res" uses the default scaling factor of 0.1039393. However, is other pictures are used, specify the scaling factor when calling the _InputFromTable()_ function. All scaling factors are found in the scalefactors_json.json which you have in your 10X output folder] (OBS CHECK HOW THE WORKFLOW 10X IS SUPPOSED TO BE)
+Skip this step is already performed when reading "getting_started" [fixa link]
+
 <br>
-```{r read_input_2, cache=TRUE}
+```{r input_from_table_visium, eval=F}
 
 se <- InputFromTable(infotable = infoTable, 
                       min.gene.count = 100, 
@@ -122,6 +94,11 @@ You should be aware that the resolution is by default very low (400 pixels wide)
 se <- LoadImages(se, time.resolve = F, verbose = T)
 
 ```
+```{r, pre-load, echo=F, eval=T}
+
+load("~/STUtility/saved/preSaved_10xHippo.RData")
+
+```
 <br>
 OBS: We have noted that some systems experience memory problems due to large size image information not being cleared when removing old objects. If this is the case, the user can set `time.resolve=TRUE`, which will add a small garbage collection step to avoid this issue.
 
@@ -135,13 +112,6 @@ For example, we can visualize the number of RNA features and RNA counts on the S
 
 NOTE: see the end of the vignette how to handle plotting if you are missing image/spot-files. 
 <br>
-```{r load_se, include=FALSE}
-
-# Read in the processed Seurat object so that all computationally demanding downstream steps can be skipped
-se <- readRDS(file = "~/STUtility/se_object")
-
-```
-
 ```{r plot_features1, fig.height=12, fig.width=12, out.width = '100%'}
 # TODO: make sure that levels are set in facets
 
@@ -189,7 +159,7 @@ Another neat feature that can be useful for visualization purposes is to mask th
 
 NOTE that the image procesing methods have been optimized for small images and if you have loaded images in higher resolution there is a greater risk that some steps will fail. If you still wish to use images with higher resolution there are instructions on how to do this in the Resolution section below.
 <br>
-```{r mask_images, eval=FALSE}
+```{r mask_images, eval=T}
 
 se <- MaskImages(object = se)
 

@@ -1,8 +1,6 @@
 ---
-title: "STUtility - Vignette"
+title: "STUtility - Installation"
 author:
-- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
-- Ludvig Larsson, Royal Institute of Technology (KTH)
 date: ''
 
 ---
