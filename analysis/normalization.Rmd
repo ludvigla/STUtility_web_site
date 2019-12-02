@@ -1,8 +1,5 @@
 ---
-title: "STUtility - Vignette"
-author:
-- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
-- Ludvig Larsson, Royal Institute of Technology (KTH)
+title: "Normalization"
 date: ''
 #output:
 #  html_document:
@@ -60,16 +57,20 @@ body {
 
 ```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
 library(STutility)
-se <- readRDS("~/STUtility/se_object")
 ```
+```{r, pre-load, echo=F, eval=T}
 
-## Normalization and scaling
+load("~/STUtility/saved/preSaved_10xHippo.RData")
+
+```
 
 ---
 
+## Rationale of approach
+
 Each spot in a Spatial Transcriptomics dataset typically contains RNA from a mixture of cells so why would we apply a workflow that was developed for single-cell RNAseq data? We can calculate some properties to visually inspect the data to see that ST data have similar properties to that of scRNAseq data.
 <br>
-```{r poisson_comparison, fig.width = 4, fig.height = 8, cache=TRUE, warning=FALSE, message=FALSE, results='hide'}
+```{r poisson_comparison, fig.width = 4, fig.height = 8, cache=F, warning=FALSE, message=FALSE, results='hide'}
 
 library(Matrix)
 library(magrittr)
@@ -112,13 +113,15 @@ We can see from the mean-variance and Mean-detection-rate scatter plots that gen
 
 In order to normalize the data we recommend using [variance stabilized transformation](https://www.biorxiv.org/content/10.1101/576827v1) available in the SCTransform function in Seurat as of v3.0. 
 
-Following the rationale expressed above, we transform the data according to the Seurat workflow. Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website https://satijalab.org/seurat/  
+Following the rationale expressed above, we transform the data according to the Seurat workflow. 
 <br>
 ```{r SCTransform, warning=FALSE, message=FALSE, results="hide", eval = FALSE} 
 
-se <- SCTransform(se, vars.to.regress = c("sample_id", "nFeature_RNA"))
+se <- SCTransform(se, vars.to.regress = "nFeature_RNA")
 
 ```
+
+Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website https://satijalab.org/seurat/. Special consideration should be put into if and how the user apply the `vars.to.regress` parameter, which specifies which variables to regress out. This can be used to correct for heterogeneity in the data that is of no interest.     
 
 &nbsp;
 <hr />

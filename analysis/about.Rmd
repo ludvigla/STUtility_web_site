@@ -1,5 +1,5 @@
 ---
-title: "STUtility - About"
+title: "About"
 author:
 - Joseph Bergenstråhle, SciLifeLab, Royal Institute of Technology (KTH)
 - Ludvig Larsson, SciLifeLab, Royal Institute of Technology (KTH)
@@ -66,7 +66,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = F
 
 # Background
 
-STUtility R-package is an effort to create a user-friendly visualization and analysis tool for analysis of spatial transcriptomcis data. 
+STUtility R-package is an effort to create a user-friendly visualization and analysis tool for analysis of spatial transcriptomcis data. It's built around [Seurat](https://github.com/satijalab/seurat), which is a single-cell genomics toolkit. 
 
 ### Spatial Transcriptomics (ST)
 
@@ -104,7 +104,7 @@ The STUtility tool was developed with the goal of multiple sample inputs. As wit
 
 ### Seurat workflow
 
-We have extensively tried different methods and workflows for handling ST data. While all roads lead to Rome, as of the date of this writing we find the Seurat approach [https://satijalab.org/seurat/] to be the most well suited for this type of data. Seurat is an R package designed for single-cell RNAseq data. Obviously, this deviates from the data that the ST technology currently produce, as the resolution on the array implies that each capture-spot consists of transcripts originating from multiple cells. Nevertheless, the characteristics of the ST data resembles that of scRNAseq to a large extent. Note that the STUtility package requires Seurat v3.0 or higher.
+We have extensively tried different methods and workflows for handling ST data. While all roads lead to Rome, as of the date of this writing we find the [Seurat approach](https://satijalab.org/seurat/) to be the most well suited for this type of data. Seurat is an R package designed for single-cell RNAseq data. Obviously, this deviates from the data that the ST technology currently produce, as the resolution on the array implies that each capture-spot consists of transcripts originating from multiple cells. Nevertheless, the characteristics of the ST data resembles that of scRNAseq to a large extent. Note that the STUtility package requires Seurat v3.0 or higher.
 
 The data obtained from an ST experiment can treated like a sc-RNA-seq experiment and be processed and analyzed using the Seurat package. However, what STUtility provides is a way of utilizing the spatial component of the dataset, mostly for visualization purposes. All the image related information is stored in the Seurat object but _only_ using the workflow described in the Getting Started section. 
 

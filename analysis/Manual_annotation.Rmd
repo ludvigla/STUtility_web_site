@@ -1,0 +1,100 @@
+---
+title: "Manual Annotation"
+author:
+date: ''
+#output:
+#  html_document:
+#    theme: darkly
+#    css: style.css
+#    number_sections: false
+#    toc: yes
+#    toc_depth: 3
+#    toc_float:
+#      collapsed: false
+#      smooth_scroll: true
+#  pdf_document:
+#    number_sections: false
+#    toc: yes
+#    toc_depth: 3
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+<style>
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #375a7f;
+}
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
+
+```
+
+```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
+library(STutility)
+load("~/STUtility/saved/preSaved_10xHippo_norm_reductions.RData")
+```
+
+Included in STUtility is a Shiny application for manual annotation. It lets the user select and give a/several specific capture-spot(s) a label. This could be used for e.g. visualization or DEA purposes. Instructions for how to use the tool is included in the actual app. 
+By default, the app will open in browser mode. When the annotation is completed, simply close the browser window and return to R.
+
+```{r manual_anno}
+
+#NOTE: Following the usual workflow of Seurat, we save the output from the function to our object
+
+se <- ManualAnnotation(se)
+
+```
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;
+
+
+
+
+
+

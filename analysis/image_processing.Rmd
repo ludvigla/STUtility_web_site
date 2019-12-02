@@ -1,5 +1,5 @@
 ---
-title: "STUtility - Image processing"
+title: "Image processing"
 author:
 date: ''
 #output:
@@ -64,29 +64,11 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 library(STutility)
 ```
 
-
-To follow along this tutorial, download the test data set at TODO:[insert test data set link]. The downloadable content consists of count files, output from our spot detector tool, H&E stained images as well as an "infoTable" to read in the files into R.
-
-## Loading 10X data
-
-Skip this step is already performed when reading "getting_started" [fixa link]
-
-<br>
-```{r input_from_table_visium, eval=F}
-
-se <- InputFromTable(infotable = infoTable, 
-                      min.gene.count = 100, 
-                      min.gene.spots = 5,
-                      min.spot.count = 500)
-
-```
-
-
 # Loading and handling images
 
 With the Seurat object created, we are ready to load the H&E images from the file paths provided in the infoTable. The LoadImages() function allow you to load the images into the Seurat object and will automatically save a scaled down version of each image that you can use for plotting.
 
-You should be aware that the resolution is by default very low (400 pixels wide). The reason for this is that STUtility makes it possible to apply various image transformations to the images, but since these processing steps are slow and requires significant amounts of memory, it is much faster to learn the transformations on a small image and later apply the transformations to a higher resolution image. See the image processing section of this vignette for more details.
+You should be aware that the resolution is by default very low (400 pixels wide). The reason for this is that STUtility makes it possible to apply various image transformations to the images, but since these processing steps are slow and requires significant amounts of memory, it is much faster to learn the transformations on a small image and later apply the transformations to a higher resolution image.
 
 <br>
 ```{r load_images, echo=TRUE, eval=FALSE}
@@ -102,7 +84,7 @@ load("~/STUtility/saved/preSaved_10xHippo.RData")
 <br>
 OBS: We have noted that some systems experience memory problems due to large size image information not being cleared when removing old objects. If this is the case, the user can set `time.resolve=TRUE`, which will add a small garbage collection step to avoid this issue.
 
-NOTE: time.resolve is set to TRUE as default in the current version. This will imply that the process takes approx. 5sec longer per sample. Turn this off if annoyed. 
+NOTE: time.resolve is set to TRUE as default in the current version. This will imply that the process takes approx. 5sec longer per sample.
 
 ---
 
@@ -110,7 +92,6 @@ The core of an ST experiment is the interplay between quantitative RNAseq data a
 
 For example, we can visualize the number of RNA features and RNA counts on the ST array coordinates and quickly verify where we capture more material from the tissue.
 
-NOTE: see the end of the vignette how to handle plotting if you are missing image/spot-files. 
 <br>
 ```{r plot_features1, fig.height=12, fig.width=12, out.width = '100%'}
 # TODO: make sure that levels are set in facets
@@ -155,7 +136,7 @@ FeatureOverlay(se,
 ```
 
 <br>
-Another neat feature that can be useful for visualization purposes is to mask the background of the HE images. The function `MaskImages()` can be used to remove the background currently works well for tissues with a clearly defined border. Since masking is a non trivial problem, it is possible that the masking will fail for certain tissue types. If this happens you can try to modify the parameters in `MaskImages()` to see if you can obtain better results. 
+Another feature that can be useful for visualization purposes is to mask the background of the HE images. The function `MaskImages()` can be used to remove the background currently works well for tissues with a clearly defined border. Since masking is a non trivial problem, it is possible that the masking will fail for certain tissue types. If this happens you can try to modify the parameters in `MaskImages()` to see if you can obtain better results. 
 
 NOTE that the image procesing methods have been optimized for small images and if you have loaded images in higher resolution there is a greater risk that some steps will fail. If you still wish to use images with higher resolution there are instructions on how to do this in the Resolution section below.
 <br>
@@ -239,9 +220,9 @@ ST.FeaturePlot(se.mirrory, features = "Cck", pt.size = 0.5, cols = heatmap.color
 
 ### Visualize multiple samples
 
-If you still want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the `MultiFeatureOverlay()` function. 
+If you want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the `MultiFeatureOverlay()` function. 
 <br>
-```{r overlay_multi, fig.width=12, fig.height = 6, out.width = '100%'}
+```{r overlay_multi,  fig.height = 12, out.width = '100%'}
 
 MultiFeatureOverlay(se, features = "Nrgn", 
                     sampleids = 1:2,

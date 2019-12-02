@@ -1,8 +1,5 @@
 ---
 title: "Getting started"
-author:
-- Joseph Bergenstråhle, SciLifeLab, Royal Institute of Technology (KTH)
-- Ludvig Larsson, SciLifeLab, Royal Institute of Technology (KTH)
 date: ''
 ---
 
@@ -45,9 +42,7 @@ body {
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
 ```
 
-# Getting started
-
-Firt you need to load the library into your R session.
+First you need to load the library into your R session.
 
 ```{r load_lib}
 

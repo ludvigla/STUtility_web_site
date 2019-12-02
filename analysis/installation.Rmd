@@ -1,5 +1,5 @@
 ---
-title: "STUtility - Installation"
+title: "Installation"
 author:
 date: ''
 
@@ -44,8 +44,6 @@ body {
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
-
-# Installation
 
 Using devtools, execute the following from the R console:
 <br>

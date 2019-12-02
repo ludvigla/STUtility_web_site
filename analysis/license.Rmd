@@ -4,8 +4,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# License
-
 STUtility is licensed under the MIT License
 
 The written content on this site is licensed under the Creative Commons license 

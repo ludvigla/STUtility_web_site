@@ -1,8 +1,6 @@
 ---
-title: "STUtility - Vignette"
+title: "Spatial Features"
 author:
-- Joseph Bergenstråhle, Royal Institute of Technology (KTH)
-- Ludvig Larsson, Royal Institute of Technology (KTH)
 date: ''
 #output:
 #  html_document:
@@ -67,10 +65,10 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 
 ```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
 library(STutility)
-se <- readRDS("~/STUtility/se_object")
+load("~/STUtility/saved/preSaved_10xHippo_norm_reductions.RData")
 ```
 
-## Finding spatial expression patterns and areas of interest
+## Finding spatial expression patterns
 
 The strength of untargeted whole transcriptome capture is the ability to perform unsupervised analysis and the ability to find spatial gene expression patterns. We've found good use of the dimensionality reduction method "ICA" (Independent Component Analysis) to find spatial expression patterns. An example is demonstrated below:
 <br>
@@ -131,53 +129,55 @@ And plotting of the clusters spatially
 <br>
 ```{r plot_clusters, fig.height = 5, fig.width = 10, out.width='100%'}
 
-tol18rainbow <-  c("#771155", "#AA4488", "#CC99BB", "#114477", "#4477AA", "#77AADD", "#117777", "#44AAAA", "#77CCCC", "#777711", "#AAAA44", "#DDDD77", "#774411", "#AA7744", "#DDAA77", "#771122", "#AA4455", "#DD7788")
+library(RColorBrewer)
+n <- 21
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
 
 se[["clusters_ICA"]] <- se[["seurat_clusters"]]
-ST.FeaturePlot(object = se, features = "clusters_ICA", dark.theme = T, cols = tol18rainbow, pt.size = 0.5)
+ST.FeaturePlot(object = se, features = "clusters_ICA", dark.theme = T, cols = col_vector, pt.size = 0.5)
 
 ```
 <br>
 ```{r clusters_UMAP, fig.height=6, fig.width=8}
 
 se <- SetIdent(se, value = "clusters_ICA")
-DimPlot(se, reduction = "umap", cols = tol18rainbow) + DarkTheme()
+DimPlot(se, reduction = "umap", cols = col_vector) + DarkTheme()
 
 ```
 
 <br>
 If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored.
 <br>
-```{r plot_clusters_split, fig.height = 12, fig.width = 14, out.width='100%'}
+```{r plot_clusters_split, fig.width=8, out.width='100%'}
 
-ST.FeaturePlot(object = se, features = "clusters_ICA", dark.theme = T, cols = tol18rainbow, pt.size = 0.1, split.labels = T, indices = 1)
+ST.FeaturePlot(object = se, features = "clusters_ICA", dark.theme = T, cols = col_vector, pt.size = 0.1, split.labels = T, indices = 1)
 
 ```
 <br>
-We can take a look a specific look at the most variable features.
+We can take a look a specific look at some of the most variable features.
 <br>
-```{r variable_features, fig.width = 13, fig.height = 6}
+```{r variable_features, fig.height=12, fig.width=6, out.width='100%'}
 
 head(se@assays$SCT@var.features, 20)
 top <- se@assays$SCT@var.features
 
-fts <- c("Slc18a2", "Prkcd", "Opalin", "Lamp5")
+fts <- c("Slc6a3", "Mbp", "Nrgn")
 for (ftr in fts) {
-  print(MultiFeatureOverlay(se, 
+  MultiFeatureOverlay(se, 
                     features = ftr, 
                     sampleids = 1:2,
                     cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
-                    method = "raster", 
                     pt.size = 0.5, 
                     pt.alpha = 0.5, 
-                    dark.theme = T))
+                    dark.theme = T)
 }
 
 ```
 <br>
 Another useful feature is that you can now compare the spatial distribution of a gene with the typical "graph embeddings" s.a. UMAP and t-SNE. 
 <br>
-```{r run_UMAP, eval=FALSE}
+```{r run_UMAP, eval=F}
 
 # Run UMAP
 se <- RunUMAP(se, reduction = "ica", dims = keep.dims, n.neighbors = 10)
@@ -208,7 +208,7 @@ cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2,
 One approach to visualize the result of dimensionality reduction is to use the first three dimensions and transform the values into RGB color space. This 3 dimensional space can then be utilized for spatial visualization.
 We demonstrate the technique with UMAP, using our ICA dimensions as input:
 <br>
-```{r UMAP, val=FALSE}
+```{r UMAP, val=FALSE, eval=FALSE}
 
 se <- RunUMAP(object = se, dims = keep.dims, verbose = FALSE, n.components = 3, reduction = "ica", reduction.name = "umap.3d")
 
@@ -231,26 +231,73 @@ ProjectDim(se, reduction = "umap.3d")
 
 ```
 <br>
-As seen in the plot above, there are clear spatial patterns that are confirmed by the histology of the tissue. 
-Lets take an example, looking at the first UMAP coordinate (red color) - we note a clear pattern [bra beskrivning av vad vi ser]
 
-We can utilize an external data source, the Allen brain atlas, to see how well our data match. 
-Lets take the gene with highest correlation to the red color, i.e. "Cck". 
+## DEA and validation of results
 
-https://mouse.brain-map.org/gene/show/12209
-![Expression data - Allen brain atlas](assets/Allen_expression_data.PNG)
+As the white knights of science, we promote the use of orthonogal data to validate results :-)
+Since we're using mouse brain here, we can utilize the [Allen brain atlas](https://portal.brain-map.org/) as external data source.  
 
-![ISH data - Allen brain atlas](assets/Allen_ISH_data.PNG)
+Lets try this out by an example. Looking at \ref{plot_clusters_split}, lets say we are interested in cluster 19, and want to answer - "Which genes are significantly upregulated in this region compared to the overall expression across the tisse?"
+
+```{r}
+
+markers <- FindMarkers(se, ident.1 = "19")
+head(markers)
+```
+
+Note that the clusters were already set as the Seurat objects levels. Type `levels(se)` to see the current levels of your object. If other clusters, annotations etc are of interest, set this before by specifing `Idents(se) <- `
+
+Note also, if we are interested in comparing two levels against each other, and not just "one against the rest", we simply add a `ident.2 = ` parameter to the above. 
+
+
+```{r, out.width='100%'}
+
+FeatureOverlay(se, features = "Dsp", 
+                    sampleids = 1:2,
+                    cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
+                    pt.size = 0.5, 
+                    pt.alpha = 0.5,
+                    dark.theme = T)
+
+```
 <br>
-```{r allen_example, fig.width = 13, fig.height = 6}
 
+How does it look in the Allen Brain Atlas? 
+
+<br>
+
+<center>
+
+![ISH data - Allen brain atlas](assets/Allen_ISH_data_dsp.PNG)
+
+<br>
+
+![Expression data - Allen brain atlas](assets/Allen_expression_data_dsp.PNG)
+
+</center>
+
+
+<br>
+```{r allen_example, fig.height=12, fig.width=6, out.width='100%'}
+# CHANGE
 MultiFeatureOverlay(se, features = "Cck", 
                     sampleids = 1:2,
                     cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
                     pt.size = 0.5, 
                     pt.alpha = 0.5,
-                    method = "raster", 
                     dark.theme = T)
+
+```
+
+
+```{r, FIt-SNE, eval=F, echo=F}
+
+se <- RunPCA(se)
+se <- RunTSNE(se, reduction="pca", 
+              dims=1:50,
+              tsne.method = "FIt-SNE",
+              reduction.name = "fitSNE",
+              perplexity_list = list(30,250))
 
 ```
 
