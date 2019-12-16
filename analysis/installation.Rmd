@@ -51,7 +51,6 @@ Using devtools, execute the following from the R console:
 
 devtools::install_github(
     "jbergenstrahle/STUtility"
-   , build_opts = c("--no-resave-data", "--no-manual")
 )
 
 ```
