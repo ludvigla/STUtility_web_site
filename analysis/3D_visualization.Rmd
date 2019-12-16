@@ -1,0 +1,165 @@
+---
+title: "3D visualization"
+author:
+date: ''
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+<style>
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #375a7f;
+}
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
+```
+
+```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
+library(STutility)
+library(ggplot2)
+load("~/STUtility/saved/preSaved_10xHippo.RData")
+```
+
+
+## Creating 3D stack of points
+
+STutility currently allows for visualization of features in 3D using a point cloud created from the nuclei detected in aligned HE images using the `Create3DStack()` function. The cell nuclei coordinates are extracted based on color intensity as nuclei are typically darker in color than the surrounding tissue. This is not an exact cell segmentation but it will typically capture the density of nuclei well enough to define various morphological structures. 
+
+Once the nuclei coordinates have been extracted from each aligned section, a z value will be assigned to each section to create a 3D stack. Feature values can be interpolated across the points in the stack and then visualized in 3D by mapping the values to a colorscale. Below are a couple of criteria that has to be fulfilled for the method to work:
+
+  1. The sections have to come from the same tissue type with similar morphology for each section
+  2. HE image has to be aligned, i.e. you have to run `LoadImages()`, `MaskImages()` and `AlginImages()` (or `ManualAlginImages()`) first
+  3. The images have to be loaded in higher resolution than the default 400 pixels. The `Create3DStack()` will automatically reload the images in higher resolution if the image widths are lower than 400 pixels or you can run `SwitchResolution()` to reload the images in higher resolution before running `Create3DStack()`
+  4. The cell segmentation is based on color intensity and might therefore fail if artefacts are present in the HE images. This could for example be calsifications, hair, folds, bubbles or dust. Uneven section thickness and staining can also affect the segmentation performance.
+  5. It is assumed that the tissue sections have been stained with Hematoxylin and Eosin
+
+Once the stack has been created, a 2D grid will be created that covers the aligned tissue sections with its width determined by the `nx` parameter. This grid will later be used to interpolate feature values over, so that we can assign a value to each point in the point cloud.
+
+<br>
+```{r create_3d, eval = FALSE}
+
+se <- Create3DStack(se)
+
+``` 
+<br>
+
+## Point patterns
+
+We can plot the stacked coordinates in 2D to see what the point patterns look like. From the plot below you can see that a higher density of points is picked up in areas width darker color, which is typically the case for the tissue edges. However we can see that some structures such as the dentate gyrus have a higher density of nuclei as expected.
+<br>
+```{r dimplot, fig.width = 18, fig.height = 36, out.width = "100%"}
+
+stack_3d <- setNames(GetStaffli(se)@scatter.data, c("x", "y", "z", "grid.cell"))
+
+ggplot(stack_3d, aes(x, 2e3 - y)) +
+  geom_point(size = 0.1, color = "lightgray") +
+  facet_wrap(~z, ncol = 1) +
+  theme_void() +
+  theme(plot.background = element_rect(fill = "black"), 
+        plot.title = element_text(colour = "white"), 
+        legend.text = element_text(colour = "white"))
+
+```
+<br>
+
+## Data interpolation
+
+The next step to visualize features is to interpolate values across the point patterns. Since each point is assigned to a grid cell, we can interpolate values across the grid and assign an interpolated values back to the points. Remember that the width of the grid is determined by the `nx` parameter and you can increase the resolution of the interpolation by setting `nx` to a higher value when running the `Create3DStack()` function. Increasing the value of this parameter will improve the "smoothness" of the colormap but will slow down the computation significantly.
+<br>
+```{r interpolate data, fig.width = 18, fig.height = 36, out.width = "100%"}
+
+interpolated.data <- FeaturePlot3D(se, features = "Mbp", return.data = TRUE)
+
+ggplot(interpolated.data, aes(x, 2e3 - y, color = val)) +
+  geom_point(size = 0.1) +
+  facet_wrap(~z, ncol = 1) +
+  theme_void() +
+  ggtitle("Mbp") +
+  scale_color_gradientn(colours = c("black", "dark blue", "cyan", "yellow", "red", "dark red")) +
+  theme(plot.background = element_rect(fill = "black"), 
+        plot.title = element_text(colour = "white"), 
+        legend.text = element_text(colour = "white"))
+
+```
+<br> 
+
+## 3D plot
+
+To generate 3D plots you can use the visualization functions `FeaturePlot3D()`, `DimPlot3D()`, and `HSVPlot3D()`. Each section will by default be assigned a z coordinate ranging from 1 to N where N is the number of samples. If you wish to change these z coordinates you can use the parameter `zcoords` to map each section to a new value (note that you need to provide as many z coordinates as the number of samples in your Seurat object). 
+
+If you wish to force the sections closer to each other you can add margins to the z axis using the `add.margins` parameter. This will essentially add empty space below and above the 3D stack and therefore push the sections closer.
+
+Now we are ready to plot features in 3D. We'll run the `FeaturePlot3D()` function as above but with return.data = FALSE.
+
+<br>
+
+```{r plt_3d}
+
+FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6)
+
+```
+
+<br>
+
+## Multiple 3D plots
+
+The 3D plots are drawn using the `plotly` R package and you can specify a layout attribute called scene to the `FeaturePlot3D()` to enable the visualization of multiple 3D plots at the same time. Below we plot the features "Mbp" and "Calb2" in two different scenes and we can then use `subplot()` to visualize them side by side.
+
+<br>
+
+```{r subplot, out.width = "100%"}
+
+p1 <- FeaturePlot3D(se, features = "Mbp", scene = "scene", cols = c("black", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
+p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("black", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
+
+plotly::subplot(p1, p2, margin = 0)
+
+```
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;
+
