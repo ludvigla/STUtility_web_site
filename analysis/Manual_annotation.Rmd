@@ -64,14 +64,13 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 ```
 
 ```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
-library(STutility)
-load("~/STUtility/saved/preSaved_10xHippo_norm_reductions.RData")
+#
 ```
 
 Included in STUtility is a Shiny application for manual annotation. It lets the user select and give a/several specific capture-spot(s) a label. This could be used for e.g. visualization or DEA purposes. Instructions for how to use the tool is included in the actual app. 
 By default, the app will open in browser mode. When the annotation is completed, simply close the browser window and return to R.
 
-```{r manual_anno}
+```{r manual_anno, eval=FALSE}
 
 #NOTE: Following the usual workflow of Seurat, we save the output from the function to our object
 

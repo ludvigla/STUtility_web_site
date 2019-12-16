@@ -72,13 +72,23 @@ To use the full range of functions within STUtility, all three files are needed 
 
 ---
 
-To follow along this tutorial, download the test data set at TODO:[insert test data set link]. The downloadable content consists of count files, output from our spot detector tool, H&E stained images as well as an "infoTable" to read in the files into R.
+To follow along this tutorial with a test data set, go to the [10x Dataset repo](https://support.10xgenomics.com/spatial-gene-expression/datasets) and download the following two files:
+
+* Feature / cell matrix HDF5 (filtered)
+* Spatial imaging data (.zip)
+    * tissue_hires_image
+    * tissue_positions_list
+    * scalefactors_json
+
+The .zip file contains the H&E image (in two resolution formats; "tissue_lowres_image" and "tissue_hires_image"), the "tissue_positions_list" with pixel coordinates for the orginial .tif image and the scalefactors_json.json that contains the scalefactors used to dervive the pixel cooridinates for the lowres and hires images. Open the .json file and note the scalefactor used for the image you want to use (lowres or hires). 
+
+In this vignette we show e.g. the data sets from Mouse Brain Serial Section 1 and 2 (Sagittal-Posterior)
 
 ### Prepare data
 
 The recommended method to read the files into R is via the creation of a "infoTable", there are three columns that the package will note whether they are included or not: "samples", "spotfiles" and "imgs". 
 <br>
-```{r example_infotable_Visium, echo=FALSE, eval=F}
+```{r example_infotable_Visium, echo=FALSE, eval=T}
 
 samples <- c("Path to count file 1 ", "Path to count file 2")
 spotfiles <- c("Path to position list  1", "Path to position list  2")
@@ -111,7 +121,8 @@ se <- InputFromTable(infotable = infoTable,
                       min.gene.count = 100, 
                       min.gene.spots = 5,
                       min.spot.count = 500,
-                      platform="Visium")
+                      platform="Visium",
+                      scaleVisium = 0.17211704) #Note that this scalefactor is found within the .json file from the Space Range output
 ```
 
 ```{r load_image_Visium, include=FALSE, eval=F}
@@ -120,19 +131,17 @@ se <- LoadImages(se, time.resolve=F)
 
 ```{r, pre-load, echo=F, eval=T}
 
-load("~/STUtility/saved/preSaved_10xHippo.RData")
+load("~/STUtility/saved/preSaved_10x_serial.RData")
 
 ```
 <br>
 Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the Seurat package. There are many vignettes to get started available at the [Seurat web site](https://satijalab.org/seurat/vignettes.html).
 
-Some of the functionalities provided in the Seurat package are not yet supported by STUtility, such as dataset integration and multimodal analysis. These methods should in principle work if you treat the data like a scRNA-seq experiment, but you will not be able to make use of the image related data or the spatial visualization functions.
-
 For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the `ST.FeaturePlot()` function.
 <br>
 
 
-```{r, eval=TRUE, fig.width=14, fig.height=8, out.width='100%'}
+```{r, eval=TRUE, fig.width=14, fig.height=12, out.width='100%'}
 
 ST.FeaturePlot(se, features = c("nFeature_RNA"), dark.theme = T, cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"))
 
@@ -226,6 +235,22 @@ ST.FeaturePlot(se, features = c("nFeature_RNA"), dark.theme = T, cols = c("black
 
 ```
 <br>
+
+## Navigating and accessing data
+
+Please look at the Seurat website for basic navigation of the Seurat object and how to access the different data transformations, dim.reductions etc. 
+However, specific for STUtility, there is another S4 object stored within the Seurat objects "tool" slot, called "Staffli". This object contains all the STUtility specific meta data, like pixel cooridinates, sample IDs, platform types etc.
+
+You can reach this via:
+
+```{r}
+
+head(se@tools$Staffli[[]])
+
+```
+
+This can be used to set Idents, subset the seurat object etc. 
+
 In the next section we will show how you can load images into the Seurat object and how they can be manipulated to improve interpretability of you results.
 
 &nbsp;

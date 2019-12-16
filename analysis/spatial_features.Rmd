@@ -162,7 +162,7 @@ We can take a look a specific look at some of the most variable features.
 head(se@assays$SCT@var.features, 20)
 top <- se@assays$SCT@var.features
 
-fts <- c("Slc6a3", "Mbp", "Nrgn")
+fts <- c("Nrgn"   , "Ptgds"  , "Slc6a3"  , "Apod" )
 for (ftr in fts) {
   MultiFeatureOverlay(se, 
                     features = ftr, 
