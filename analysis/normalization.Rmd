@@ -64,6 +64,20 @@ load("~/STUtility/saved/preSaved_10xHippo.RData")
 
 ```
 
+## SCTransform (Seurat)
+
+In order to normalize the data we recommend using [variance stabilized transformation](https://www.biorxiv.org/content/10.1101/576827v1) available in the SCTransform function in Seurat as of v3.0. 
+
+Following the rationale expressed below, we transform the data according to the Seurat workflow. 
+<br>
+```{r SCTransform, warning=FALSE, message=FALSE, results="hide", eval = FALSE} 
+
+se <- SCTransform(se, vars.to.regress = "nFeature_RNA")
+
+```
+
+Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website https://satijalab.org/seurat/. Special consideration should be put into if and how the user apply the `vars.to.regress` parameter, which specifies which variables to regress out. This can be used to correct for heterogeneity in the data that is of no interest.     
+
 ---
 
 ## Rationale of approach
@@ -110,18 +124,6 @@ cowplot::plot_grid(p1, p2, nrow = 2)
 ```
 
 We can see from the mean-variance and Mean-detection-rate scatter plots that genes show overdispersion compared to what would be expected under a Poisson model. Because these properties are shared between ST and scRNAseq data we have reasoned that the workflow presented in the Seurat package should be applicable for ST data as well. It is important however to keep in mind that each spots contains a mixture of cell types and should be interpreted as a morphological unit in the context of a tissue section. 
-
-In order to normalize the data we recommend using [variance stabilized transformation](https://www.biorxiv.org/content/10.1101/576827v1) available in the SCTransform function in Seurat as of v3.0. 
-
-Following the rationale expressed above, we transform the data according to the Seurat workflow. 
-<br>
-```{r SCTransform, warning=FALSE, message=FALSE, results="hide", eval = FALSE} 
-
-se <- SCTransform(se, vars.to.regress = "nFeature_RNA")
-
-```
-
-Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website https://satijalab.org/seurat/. Special consideration should be put into if and how the user apply the `vars.to.regress` parameter, which specifies which variables to regress out. This can be used to correct for heterogeneity in the data that is of no interest.     
 
 &nbsp;
 <hr />

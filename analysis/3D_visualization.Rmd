@@ -50,10 +50,21 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 
 ```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
 library(STutility)
-library(ggplot2)
-load("~/STUtility/saved/preSaved_10xHippo.RData")
+load("~/STUtility/saved/preSaved_10xHippo_norm_reductions.RData")
+#setwd("/run/media/joey/KING-JOSEPH/JoeDocs/PhD/STUtility/STutility/inst/extdata/10xVisium/serial")
 ```
-
+```{r, eval=FALSE, echo=FALSE}
+infoTable <- read.table("infoTable_serial.csv", sep=",", header=T, stringsAsFactors = F)
+se <- InputFromTable(infotable = infoTable, 
+                      min.gene.count = 100, 
+                      min.gene.spots = 5,
+                      min.spot.count = 500,
+                      platform="Visium",
+                      scaleVisium = 0.17211704)
+se <- LoadImages(se)
+se <- MaskImages(se)
+se <- AlignImages(se)
+```
 
 ## Creating 3D stack of points
 
@@ -62,9 +73,9 @@ STutility currently allows for visualization of features in 3D using a point clo
 Once the nuclei coordinates have been extracted from each aligned section, a z value will be assigned to each section to create a 3D stack. Feature values can be interpolated across the points in the stack and then visualized in 3D by mapping the values to a colorscale. Below are a couple of criteria that has to be fulfilled for the method to work:
 
   1. The sections have to come from the same tissue type with similar morphology for each section
-  2. HE image has to be aligned, i.e. you have to run `LoadImages()`, `MaskImages()` and `AlginImages()` (or `ManualAlginImages()`) first
+  2. HE image has to be aligned, i.e. you have to run `LoadImages()`, `MaskImages()` and `AlignImages()` (or `ManualAlignImages()`) first
   3. The images have to be loaded in higher resolution than the default 400 pixels. The `Create3DStack()` will automatically reload the images in higher resolution if the image widths are lower than 400 pixels or you can run `SwitchResolution()` to reload the images in higher resolution before running `Create3DStack()`
-  4. The cell segmentation is based on color intensity and might therefore fail if artefacts are present in the HE images. This could for example be calsifications, hair, folds, bubbles or dust. Uneven section thickness and staining can also affect the segmentation performance.
+  4. The cell segmentation is based on color intensity and might therefore fail if artifacts are present in the HE images. This could for example be classifications, hair, folds, bubbles or dust. Uneven section thickness and staining can also affect the segmentation performance.
   5. It is assumed that the tissue sections have been stained with Hematoxylin and Eosin
 
 Once the stack has been created, a 2D grid will be created that covers the aligned tissue sections with its width determined by the `nx` parameter. This grid will later be used to interpolate feature values over, so that we can assign a value to each point in the point cloud.
@@ -79,7 +90,7 @@ se <- Create3DStack(se)
 
 ## Point patterns
 
-We can plot the stacked coordinates in 2D to see what the point patterns look like. From the plot below you can see that a higher density of points is picked up in areas width darker color, which is typically the case for the tissue edges. However we can see that some structures such as the dentate gyrus have a higher density of nuclei as expected.
+We can plot the stacked coordinates in 2D to see what the point patterns look like. From the plot below you can see that a higher density of points is picked up in areas width darker color, which is typically the case for the tissue edges. 
 <br>
 ```{r dimplot, fig.width = 18, fig.height = 36, out.width = "100%"}
 
@@ -133,6 +144,23 @@ FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6)
 
 ```
 
+see `?FeaturePlot3D` for more plotting alternatives, e.g. the z-distance can be changed to more truthfully represent the actual distance between the sections:
+
+```{r plt_3d2}
+
+FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6, add.margins = 2)
+
+```
+
+Various other features and analysis results can be visualized, e.g. if we previously had performed a factor analysis on the samples, we can e.g. show theses factors simultaneously on the HSV color scale:
+
+```{r plt_3d_HSV}
+
+HSVPlot3D(se, features = paste("factor_", c(2,4,6,7,9,13, 17, 18, 21, 22, 23), sep=""), pt.size = 1, dark.theme = T, add.margins = 1)
+
+
+```
+
 <br>
 
 ## Multiple 3D plots
@@ -149,6 +177,8 @@ p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("black", 
 plotly::subplot(p1, p2, margin = 0)
 
 ```
+
+
 &nbsp;
 <hr />
 <p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>

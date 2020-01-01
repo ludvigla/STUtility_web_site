@@ -65,58 +65,81 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 
 ```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
 library(STutility)
-load("~/STUtility/saved/preSaved_10xHippo.RData")
+load("~/STUtility/saved/preSaved_10xHippo_norm_reductions.RData")
 ```
 
 ## Finding spatial expression patterns
 
-The strength of untargeted whole transcriptome capture is the ability to perform unsupervised analysis and the ability to find spatial gene expression patterns. We've found good use of the dimensionality reduction method "ICA" (Independent Component Analysis) to find spatial expression patterns. An example is demonstrated below:
+The strength of untargeted whole transcriptome capture is the ability to perform unsupervised analysis and the ability to find spatial gene expression patterns. We've found good use of using non-negative matrix factorization (NMF) to find underlying patterns of transcriptomic profiles. This factor analysis, along with various dimensionality reduction techniques, can all be ran via "RunXXX()", where X = the method of choice, e.g.:
 <br>
-```{r ICA, fig.width=16, fig.height=10, eval = FALSE}
+```{r NMF, fig.width=16, fig.height=10, eval = FALSE}
 
-se <- RunICA(se)
+se <- RunNMF(se, nfactors = 30) #Specificy nfactors to choose the number of factors, default=20.
 
 ``` 
 <br>
-Different dimensionality reductions methods are supported via Seurat (`RunPCA()`, `RunTSNE`, `RunICA()`, `runUMAP()` ) and the output are stored in the Seurat object. 
+While `RunNMF()` is an STUtility add-on, others are supported via Seurat (`RunPCA()`, `RunTSNE`, `RunICA()`, `runUMAP()` ) and for all of them, the output are stored in the Seurat object. 
 
 We can then plot a variable number of dimensions across the samples.
 <br>
 ```{r dimplot, fig.height=28, fig.width=16, out.width = "100%"}
 
+cscale <- c("black", "dark blue", "cyan", "yellow", "red", "dark red")
+
 ST.DimPlot(se, 
-           dims = c(-1, 2, -3, -4, 5, -6, 7, -8, 9, 10, 11, 12, -13, 14, 15, -16), # If we flip the sign, the ICA vector will be inverted
+           dims = 1:10,
            ncol = 8, # Sets the number of columns at dimensions level
            grid.ncol = 2, # Sets the number of columns at sample level
-           reduction = "ica", 
+           reduction = "NMF", 
            dark.theme = T, 
            pt.size = 0.5, 
-           center.zero = T, 
-           palette = "MaYl")
+           center.zero = F, 
+           cols = cscale)
+
+ST.DimPlot(se, 
+           dims = 11:20,
+           ncol = 8, 
+           grid.ncol = 2, 
+           reduction = "NMF", 
+           dark.theme = T, 
+           pt.size = 0.5, 
+           center.zero = F, 
+           cols = cscale)
+
+
+ST.DimPlot(se, 
+           dims = 21:30,
+           ncol = 8, 
+           grid.ncol = 2, 
+           reduction = "NMF", 
+           dark.theme = T, 
+           pt.size = 0.5, 
+               center.zero = F, 
+           cols = cscale)
 
 ```
 <br>
-To extract the genes that drives the separation according to the dimensionality reduction, we can use the `ProjectDim()` function. Where we specify the dimensions of interest (here IC_1 and IC_3, which are regions that seems to confer a clear spatial expression histology. 
+To extract the genes that drives the separation according to the dimensionality reduction, we can use the `ProjectDim()` function.
 <br>
 ```{r project_dim}
 
-ProjectDim(se, reduction = "ica", dims = c(1, 2, 4, 5))
+ProjectDim(se, reduction = "NMF", dims = c(2,4))
 
 ```
 
 
 ## Clustering
 
-Clustering is a standard procedure in genomic analysis, and the methods for doing so are numerous. Here we demonstrate an example where we use the result of ICA to perform clustering. In the previous section, we demonstrated how to plot a subset of dimensions from the ICA output. Going through this list, we can notice the dimensions that are "spatially active", i.e. that seems to confer a spatial pattern along their axis. We can extract these dimensions:
+Clustering is a standard procedure in genomic analysis, and the methods for doing so are numerous. Here we demonstrate an example where we use the result of the factor analysis the previous section. Going through the list of factors (e.g. via `ST:DimPlot(se, dims = [dims you want to look at])`), we can notice the dimensions that are "spatially active", i.e. that seems to confer a spatial pattern along their axis. We can extract these dimensions:
 <br>
 ```{r keep_dims, fig.width=16, fig.height=10}
-keep.dims <- c(1:12, 16:18, 21:28, 30:34, 40:41, 47, 49:50)
+keep.dims <- c(2,3,4,5,6,7,8,9, 11,12,13,16,17,18,19,20,21,22,23,26,28,29,30 )
 ```
 <br>
 And then use them to construct a Shared Nearest Neighbor (SSN) Graph. 
 <br>
 ```{r findneighbours, eval=FALSE}
-se <- FindNeighbors(object = se, dims = keep.dims, verbose = FALSE, reduction = "ica")
+se <- FindNeighbors(object = se, dims = keep.dims, verbose = FALSE, reduction = "NMF")
 ```
 <br>
 Followed by clustering using a modularity optimizer
@@ -130,32 +153,26 @@ And plotting of the clusters spatially
 ```{r plot_clusters, fig.height = 5, fig.width = 10, out.width='100%'}
 
 library(RColorBrewer)
-n <- 21
+n <- 19
 qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
 col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
 
-se[["clusters_ICA"]] <- se[["seurat_clusters"]]
-ST.FeaturePlot(object = se, features = "clusters_ICA", dark.theme = T, cols = col_vector, pt.size = 0.5)
+ST.FeaturePlot(object = se, features = "seurat_clusters", dark.theme = T, cols = col_vector, pt.size = 0.5)
 
 ```
-<br>
-```{r clusters_UMAP, fig.height=6, fig.width=8}
-
-se <- SetIdent(se, value = "clusters_ICA")
-DimPlot(se, reduction = "umap", cols = col_vector) + DarkTheme()
-
-```
-
 <br>
 If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored.
 <br>
-```{r plot_clusters_split, fig.width=8, out.width='100%'}
+```{r plot_clusters_split, fig.height=8, out.width='100%'}
 
-ST.FeaturePlot(object = se, features = "clusters_ICA", dark.theme = T, cols = col_vector, pt.size = 0.1, split.labels = T, indices = 1)
+ST.FeaturePlot(object = se, features = "seurat_clusters", dark.theme = T, cols = col_vector, pt.size = 0.1, split.labels = T, indices = 1)
 
 ```
 <br>
-We can take a look a specific look at some of the most variable features.
+
+## Most variable features
+
+We can take a specific look at some of the most variable features.
 <br>
 ```{r variable_features, fig.height=12, fig.width=6, out.width='100%'}
 
@@ -175,12 +192,15 @@ for (ftr in fts) {
 
 ```
 <br>
+
+## Compare graph embeddings
+
 Another useful feature is that you can now compare the spatial distribution of a gene with the typical "graph embeddings" s.a. UMAP and t-SNE. 
 <br>
 ```{r run_UMAP, eval=F}
 
 # Run UMAP
-se <- RunUMAP(se, reduction = "ica", dims = keep.dims, n.neighbors = 10)
+se <- RunUMAP(se, reduction = "NMF", dims = keep.dims, n.neighbors = 10)
 
 ````
 
@@ -206,11 +226,11 @@ cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2,
 ## RGB dimensionality reduction plots
 
 One approach to visualize the result of dimensionality reduction is to use the first three dimensions and transform the values into RGB color space. This 3 dimensional space can then be utilized for spatial visualization.
-We demonstrate the technique with UMAP, using our ICA dimensions as input:
+We demonstrate the technique with UMAP, using our factors as input:
 <br>
 ```{r UMAP, val=FALSE, eval=FALSE}
 
-se <- RunUMAP(object = se, dims = keep.dims, verbose = FALSE, n.components = 3, reduction = "ica", reduction.name = "umap.3d")
+se <- RunUMAP(object = se, dims = keep.dims, verbose = FALSE, n.components = 3, reduction = "NMF", reduction.name = "umap.3d")
 
 ```
 <br>
@@ -234,10 +254,9 @@ ProjectDim(se, reduction = "umap.3d")
 
 ## DEA and validation of results
 
-As the white knights of science, we promote the use of orthonogal data to validate results :-)
 Since we're using mouse brain here, we can utilize the [Allen brain atlas](https://portal.brain-map.org/) as external data source.  
 
-Lets try this out by an example. Looking at \ref{plot_clusters_split}, lets say we are interested in cluster 19, and want to answer - "Which genes are significantly upregulated in this region compared to the overall expression across the tisse?"
+Lets try this out by an example. Looking at \ref{plot_clusters_split}, lets say we are interested in cluster 19, and want to answer - "Which genes are significantly up-regulated in this region compared to the overall expression across the tissue?"
 
 ```{r}
 
@@ -245,17 +264,17 @@ markers <- FindMarkers(se, ident.1 = "19")
 head(markers)
 ```
 
-Note that the clusters were already set as the Seurat objects levels. Type `levels(se)` to see the current levels of your object. If other clusters, annotations etc are of interest, set this before by specifing `Idents(se) <- `
+Note that the clusters were already set as the Seurat objects levels. Type `levels(se)` to see the current levels of your object. If other clusters, annotations etc are of interest, set this before by specifying `Idents(se) <- `
 
 Note also, if we are interested in comparing two levels against each other, and not just "one against the rest", we simply add a `ident.2 = ` parameter to the above. 
 
 
-```{r, out.width='100%'}
+```{r, fig.height=8, fig.width=8}
 
 FeatureOverlay(se, features = "Dsp", 
                     sampleids = 1:2,
                     cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
-                    pt.size = 0.5, 
+                    pt.size = 1, 
                     pt.alpha = 0.5,
                     dark.theme = T)
 
@@ -277,29 +296,20 @@ How does it look in the Allen Brain Atlas?
 </center>
 
 
+## Spatial Autocorrelation
+
+STUtility also includes an additional method for finding genes with spatial patterns across the tissue. The ranking method makes use neighbourhood networks to compute the spatial lag for each gene, here defined as the summed expression of that gene in neighbouring spots. Each gene is then ranked by the correlation between the lag vector and the original expression vector. The output is a ranked list of the genes with highest correlation between the two vectors. 
+
+```{r autocorrelation, eval=FALSE}
+
+SpatialGenes(se)
+
+```
+
+
+
+
 <br>
-```{r allen_example, fig.height=12, fig.width=6, out.width='100%'}
-# CHANGE
-MultiFeatureOverlay(se, features = "Cck", 
-                    sampleids = 1:2,
-                    cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
-                    pt.size = 0.5, 
-                    pt.alpha = 0.5,
-                    dark.theme = T)
-
-```
-
-
-```{r, FIt-SNE, eval=F, echo=F}
-
-se <- RunPCA(se)
-se <- RunTSNE(se, reduction="pca", 
-              dims=1:50,
-              tsne.method = "FIt-SNE",
-              reduction.name = "fitSNE",
-              perplexity_list = list(30,250))
-
-```
 
 &nbsp;
 <hr />

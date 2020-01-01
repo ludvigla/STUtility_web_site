@@ -83,7 +83,11 @@ The array featured 1000 capture-spots, 100 µm in diameter and accordingly we re
 
 ### 10X Visium
 
-In Dec 2018, 10X Genomics [aquired](https://www.10xgenomics.com/news/10x-genomics-acquires-spatial-transcriptomics/) Spatial Transcriptomics, and in Nov 2019 they [started shipping](https://investors.10xgenomics.com/news-releases/news-release-details/10x-genomics-begins-shipments-visium-spatial-gene-expression) the Visium array, which is a further development of the original ST array. This array features 5000 capture-spots 55µm in diameter. 
+---
+
+In Dec 2018, 10X Genomics [aquired](https://www.10xgenomics.com/news/10x-genomics-acquires-spatial-transcriptomics/) Spatial Transcriptomics, and in Nov 2019 they [started shipping](https://investors.10xgenomics.com/news-releases/news-release-details/10x-genomics-begins-shipments-visium-spatial-gene-expression) the Visium array, which is a further development of the original ST array. This array features 5000 capture-spots, 55µm in diameter. 
+
+The array is [broadly available](https://www.10xgenomics.com/spatial-transcriptomics/) for commercial use 
 
 
 # Notes about the tool
