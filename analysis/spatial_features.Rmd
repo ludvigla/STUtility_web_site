@@ -181,7 +181,7 @@ top <- se@assays$SCT@var.features
 
 fts <- c("Slc6a3", "Mbp", "Nrgn")
 for (ftr in fts) {
-  MultiFeatureOverlay(se, 
+  FeatureOverlay(se, 
                     features = ftr, 
                     sampleids = 1:2,
                     cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
@@ -345,7 +345,7 @@ The default behavior is to find all spots which are neighbors with the selected 
 
 ```{r, echo=T,  fig.width = 14, fig.height=6, out.width = "100%"}
 
-MultiFeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, cols = c("red", "black", "lightgray"), pt.size = 1, dark.theme = T)
+FeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, cols = c("red", "black", "lightgray"), pt.size = 1, dark.theme = T)
 
 ```
 
@@ -360,7 +360,7 @@ se <- RegionNeighbours(se, id = 2, keep.within.id = T, verbose = TRUE)
 
 ```{r, echo=T, fig.width = 14, fig.height=6, out.width = "100%"}
 
-MultiFeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, cols = c("red", "black", "lightgray"), pt.size = 1, dark.theme = T)
+FeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, cols = c("red", "black", "lightgray"), pt.size = 1, dark.theme = T)
 
 ```
 
@@ -382,7 +382,7 @@ And lastly, if you want to keep the labels for the neighbors you can set keep.id
 
 se <- SetIdent(se, value = "seurat_clusters")
 se <- RegionNeighbours(se, id = 2, keep.idents = TRUE, verbose = TRUE)
-MultiFeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, pt.size = 1, dark.theme = T)
+FeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, pt.size = 1, dark.theme = T)
 
 ```
 

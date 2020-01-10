@@ -220,11 +220,11 @@ ST.FeaturePlot(se.mirrory, features = "Cck", pt.size = 0.5, cols = heatmap.color
 
 ### Visualize multiple samples
 
-If you want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the `MultiFeatureOverlay()` function. 
+If you want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the `FeatureOverlay()` function by specifing several _sampleids_ :
 <br>
 ```{r overlay_multi,  fig.height = 12, out.width = '100%'}
 
-MultiFeatureOverlay(se, features = "Nrgn", 
+FeatureOverlay(se, features = "Nrgn", 
                     sampleids = 1:2,
                     pt.size = 0.5, pt.alpha = 0.5,
                     cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
