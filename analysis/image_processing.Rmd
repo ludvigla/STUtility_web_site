@@ -78,7 +78,10 @@ se <- LoadImages(se, time.resolve = F, verbose = T)
 ```
 ```{r, pre-load, echo=F, eval=T}
 
-load("~/STUtility/saved/preSaved_10xHippo.RData")
+#load("~/STUtility/saved/preSaved_10xHippo.RData")
+
+se.all <- readRDS("~/10x/Public_data/se")
+se <- se.all[[1]]
 
 ```
 <br>
@@ -93,11 +96,19 @@ The core of an ST experiment is the interplay between quantitative RNAseq data a
 For example, we can visualize the number of RNA features and RNA counts on the ST array coordinates and quickly verify where we capture more material from the tissue.
 
 <br>
-```{r plot_features1, fig.height=12, fig.width=12, out.width = '100%'}
+```{r  fig.height=10, fig.width=12, out.width = '100%'}
 # TODO: make sure that levels are set in facets
 
 ST.FeaturePlot(object = se, 
-               features = c("nFeature_RNA", "nCount_RNA"), 
+               features = c("nFeature_RNA"), 
+               cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
+               ncol = 2, 
+               grid.ncol = 1, 
+               pt.size = 0.5, 
+               dark.theme = T)
+
+ST.FeaturePlot(object = se, 
+               features = c("nCount_RNA"), 
                cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
                ncol = 2, 
                grid.ncol = 1, 
@@ -131,7 +142,8 @@ FeatureOverlay(se,
                pt.alpha = 0.5, 
                cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"), 
                dark.theme = T, 
-               type = "raw")
+               type = "raw",
+               ncols.features = 2)
 
 ```
 
@@ -140,7 +152,7 @@ Another feature that can be useful for visualization purposes is to mask the bac
 
 NOTE that the image procesing methods have been optimized for small images and if you have loaded images in higher resolution there is a greater risk that some steps will fail. If you still wish to use images with higher resolution there are instructions on how to do this in the Resolution section below.
 <br>
-```{r mask_images, eval=T}
+```{r mask_images, eval=F}
 
 se <- MaskImages(object = se)
 
@@ -208,7 +220,7 @@ ImagePlot(se.mirrory, method = "raster", darken = T)
 <br>
 Any transformations applied to the images will also be applied to the coordinates used to map gene expression values onto the images. 
 <br>
-```{r show_warp, fig.height=6, fig.width=12, out.width = '100%'}
+```{r show_warp, fig.height=10, fig.width=12, out.width = '100%'}
 
 heatmap.colors <- c("black", "dark blue", "cyan", "yellow", "red", "dark red")
 ST.FeaturePlot(se, features = "Cck", pt.size = 0.5, cols = heatmap.colors, dark.theme = T)
@@ -220,16 +232,16 @@ ST.FeaturePlot(se.mirrory, features = "Cck", pt.size = 0.5, cols = heatmap.color
 
 ### Visualize multiple samples
 
-If you want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the `FeatureOverlay()` function by specifing several _sampleids_ :
+If you want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the `FeatureOverlay()` function by specifing several _sampleids_ 
 <br>
-```{r overlay_multi,  fig.height = 12, out.width = '100%'}
+```{r , fig.height = 6, fig.width = 12, out.width = '100%'}
 
 FeatureOverlay(se, features = "Nrgn", 
                     sampleids = 1:2,
                     pt.size = 0.5, pt.alpha = 0.5,
                     cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
                     method = "raster",
-                    dark.theme = T)
+                    dark.theme = T, ncols.samples = 2)
 
 ```
 <br>
@@ -241,7 +253,7 @@ FeatureOverlay(object = se, features = c("Nrgn", "Cck"),
                cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"), 
                pt.size = 0.5, 
                pt.alpha = 0.5,
-               sample.index = 2,
+               sampleids = 2,
                type = "raw", 
                dark.theme = T)
 
