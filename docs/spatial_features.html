@@ -516,16 +516,17 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree23df05c872825b9f4eac57d97ef975915602b0e1targetblank23df05ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/23df05c872825b9f4eac57d97ef975915602b0e1" target="_blank">23df05c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree859a8e77f88219af986f85419fbb21866fdb57f4targetblank859a8e7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/859a8e77f88219af986f85419fbb21866fdb57f4" target="_blank">859a8e7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree23df05c872825b9f4eac57d97ef975915602b0e1targetblank23df05ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree859a8e77f88219af986f85419fbb21866fdb57f4targetblank859a8e7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/getting_started_cache/
 
@@ -778,6 +779,7 @@ C1ql2 1.183283e-134 1.7382051 1.000 0.169 1.589977e-130</code></pre>
 <h3>Connected Spatial Network</h3>
 <p>If you have defined a region of interest and you want to find all spots neighboring to this region you can use the RegionNeighbours() function to automatically detect such spots. For example, let’s say that we want to select all neighbors to cluster 12 in the plot below and find the differential expressed markers between the neighbors.</p>
 <pre class="r"><code>cols &lt;- c(&quot;#771155&quot;, &quot;#AA4488&quot;, &quot;#CC99BB&quot;, &quot;#114477&quot;, &quot;#4477AA&quot;, &quot;#77AADD&quot;, &quot;#117777&quot;, &quot;#44AAAA&quot;, &quot;#77CCCC&quot;, &quot;#117744&quot;, &quot;#44AA77&quot;, &quot;#88CCAA&quot;, &quot;#777711&quot;, &quot;#AAAA44&quot;, &quot;#DDDD77&quot;, &quot;#774411&quot;, &quot;#AA7744&quot;, &quot;#DDAA77&quot;)
+
 ST.FeaturePlot(se, features = &quot;seurat_clusters&quot;, pt.size = 1, cols=cols, dark.theme = T)</code></pre>
 <p><img src="figure/spatial_features.Rmd/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>First, RegionNeighbours() function to find the neighboring spots but we have to make sure that the active identity is appropriately set, here we use ‘seurat_clusters’.</p>
@@ -809,7 +811,7 @@ nbs_2.markers$gene &lt;- rownames(nbs_2.markers)
 se.subset &lt;- SubsetSTData(se, spots = rownames(subset(se[[]], nbs_2 %in% c(&quot;2&quot;, &quot;nbs_2&quot;))))
 sorted.marks &lt;- nbs_2.markers %&gt;% top_n(n = 40, wt = abs(avg_logFC))
 sorted.marks &lt;- sorted.marks[order(sorted.marks$avg_logFC, decreasing = T), ]
-DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c(&quot;black&quot;, &quot;lightgray&quot;), disp.min = -2, disp.max = 2)</code></pre>
+DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c(&quot;black&quot;, &quot;lightgray&quot;), disp.min = -2, disp.max = 2)+ DarkTheme() </code></pre>
 <p><img src="figure/spatial_features.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>And lastly, if you want to keep the labels for the neighbors you can set keep.idents = TRUE and the neighbors will be called label_nb_to_12.</p>
 <pre class="r"><code>se &lt;- SetIdent(se, value = &quot;seurat_clusters&quot;)
