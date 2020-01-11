@@ -13,7 +13,7 @@
 <meta name="author" content="" />
 
 
-<title>Image processing</title>
+<title>Manual Annotation</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -400,7 +400,7 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">Image processing</h1>
+<h1 class="title toc-ignore">Manual Annotation</h1>
 
 </div>
 
@@ -527,7 +527,6 @@ Great! You are using Git for version control. Tracking code development and conn
 <pre><code>
 Ignored files:
     Ignored:    .Rproj.user/
-    Ignored:    analysis/getting_started_cache/
 
 </code></pre>
 <p>
@@ -583,113 +582,10 @@ body {
     background-color: #375a7f;
 }
 </style>
-<div id="loading-and-handling-images" class="section level1">
-<h1>Loading and handling images</h1>
-<p>With the Seurat object created, we are ready to load the H&amp;E images from the file paths provided in the infoTable. The LoadImages() function allow you to load the images into the Seurat object and will automatically save a scaled down version of each image that you can use for plotting.</p>
-<p>You should be aware that the resolution is by default very low (400 pixels wide). The reason for this is that STUtility makes it possible to apply various image transformations to the images, but since these processing steps are slow and requires significant amounts of memory, it is much faster to learn the transformations on a small image and later apply the transformations to a higher resolution image.</p>
-<p><br></p>
-<pre class="r"><code>se &lt;- LoadImages(se, time.resolve = F, verbose = T)</code></pre>
-<p><br> OBS: We have noted that some systems experience memory problems due to large size image information not being cleared when removing old objects. If this is the case, the user can set <code>time.resolve=TRUE</code>, which will add a small garbage collection step to avoid this issue.</p>
-<p>NOTE: time.resolve is set to TRUE as default in the current version. This will imply that the process takes approx. 5sec longer per sample.</p>
-<hr />
-<p>The core of an ST experiment is the interplay between quantitative RNAseq data and qualitative image data. Working in R, the handling of image information and plotting of multiple samples can get a bit cumbersome, especially if the images are of higher resolution. Typically, we rarely find much use of plotting multiple samples together with the tissue images within this framework. Instead, the general tip is to perform the various plots using only the expression data, and after finding anything of interest that warrants further analysis - take out that sample and plot it individually together with the stained tissue image.</p>
-<p>For example, we can visualize the number of RNA features and RNA counts on the ST array coordinates and quickly verify where we capture more material from the tissue.</p>
-<p><br></p>
-<pre class="r"><code># TODO: make sure that levels are set in facets
+<p>Included in STUtility is a Shiny application for manual annotation. It lets the user select and give a/several specific capture-spot(s) a label. This could be used for e.g. visualization or DEA purposes. Instructions for how to use the tool is included in the actual app. By default, the app will open in browser mode. When the annotation is completed, simply close the browser window and return to R.</p>
+<pre class="r"><code>#NOTE: Following the usual workflow of Seurat, we save the output from the function to our object
 
-ST.FeaturePlot(object = se, 
-               features = c(&quot;nFeature_RNA&quot;, &quot;nCount_RNA&quot;), 
-               cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;),
-               ncol = 2, 
-               grid.ncol = 1, 
-               pt.size = 0.5, 
-               dark.theme = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/plot_features1-1.png" width="100%" style="display: block; margin: auto;" /> <br> To overlay a spatial feature heatmaps on top of the HE image we use the FeatureOverlay() function. Handling large images gets clumsy so we recommend to work with down-scaled versions of the images that takes up less memory. <br></p>
-<pre class="r"><code>FeatureOverlay(se, 
-               features = &quot;Cck&quot;, 
-               pt.size = 0.5, 
-               pt.alpha = 0.5, 
-               cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;), 
-               dark.theme = T, 
-               type = &quot;raw&quot;)</code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_features1-1.png" width="100%" style="display: block; margin: auto;" /> <br> You can see that by default, the first sample was selected for the feature overlay. If you wish to visualize another sample you can specify the <code>sample.index</code> parameter. If you wish to plot several features side by side, you can just specify as many as you want. <br></p>
-<pre class="r"><code>FeatureOverlay(se, 
-               features = c(&quot;Cck&quot;, &quot;Calb2&quot;, &quot;Dcn&quot;, &quot;Nrgn&quot;), 
-               pt.size = 0.5,
-               pt.alpha = 0.5, 
-               cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;), 
-               dark.theme = T, 
-               type = &quot;raw&quot;)</code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_features_2-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p><br> Another feature that can be useful for visualization purposes is to mask the background of the HE images. The function <code>MaskImages()</code> can be used to remove the background currently works well for tissues with a clearly defined border. Since masking is a non trivial problem, it is possible that the masking will fail for certain tissue types. If this happens you can try to modify the parameters in <code>MaskImages()</code> to see if you can obtain better results.</p>
-<p>NOTE that the image procesing methods have been optimized for small images and if you have loaded images in higher resolution there is a greater risk that some steps will fail. If you still wish to use images with higher resolution there are instructions on how to do this in the Resolution section below. <br></p>
-<pre class="r"><code>se &lt;- MaskImages(object = se)</code></pre>
-<p><br> There are 5 types of images which can be stored into the Seurat object; “raw”, “masked”, “masked.masks”, “processed” and “processed.masks”. “raw” represents the original HE images without any modifications. In the “masked” images, the background have been removed using a mask which is stored in “masked.masks”. Similarly, the “processed” images are also masked using “processed.masks” but have been further modified by applying rigid transformations such as rotations and shifts.</p>
-<p>You can look at the HE images using the ImagePlot() function.The ImagePlot function will automatically label the samples from 1 to N where N is the total number of samples. If you are running the function within RStudio you can take advantage of the Viewer panel to explore the images. Setting method=“raster” and the plot function will use the default plotting device in R. You can also change the layout of the images by forcing a different number of columns by setting ncols. <br></p>
-<pre class="r"><code># Plot HE images
-ImagePlot(se, ncols = 2, method = &quot;raster&quot;, type = &quot;raw&quot;, darken = T) # Raw image</code></pre>
-<p><img src="figure/image_processing.Rmd/image_types-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ImagePlot(se, ncols = 2, method = &quot;raster&quot;, type = &quot;masked&quot;, darken = T) # Masked image</code></pre>
-<p><img src="figure/image_processing.Rmd/image_types-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ImagePlot(se, ncols = 2, method = &quot;raster&quot;, type = &quot;masked.masks&quot;) # Mask</code></pre>
-<p><img src="figure/image_processing.Rmd/image_types-3.png" width="100%" style="display: block; margin: auto;" /></p>
-<div id="individual-transformations-to-images" class="section level3">
-<h3>Individual transformations to images</h3>
-<p>If you follow along the test set in this vignette, you will notice that the samples are not quite aligned with respect to each other on the array. We have implemented three different method to align images; <code>AlignImages()</code>, <code>WarpImages()</code> and <code>ManualAlignImages()</code>.</p>
-<div id="automatic-alignment" class="section level4">
-<h4>Automatic alignment</h4>
-<p>The automatic alignment method (<code>AlignImages()</code>) first tries to detect the tissue edges from each image. By default, the first image (<code>reference.index = 1</code>) is used as a reference but you can specify any sample with the <code>reference.index</code>option. Then, for each image, a transformation matrix is learned that can be used to map coordinates to the reference image. This alignment method will sometimes fail and in that case you can align the images manually instead using the <code>ManualAlignImages()</code> function. This is typically required when; (1) the tissue is bigger than the image and therefore outside the frame, (2) the tissue has a symmetrical shape (for example if the tissue has a round shape, it will be difficult to find an optimal alignment using the tissue edges), (3) the masking has failed.</p>
-<p>The actual transformation is done using the <code>imwarp()</code> function from the imager R package using a “backward” transformation strategy. This method makes sure that every pixel is painted using linear interpolation so the aligned images will experience some quality loss. <br></p>
-<pre class="r"><code>se &lt;- AlignImages(se)</code></pre>
-<p><br> And the result: <br></p>
-<pre class="r"><code>ImagePlot(se, method = &quot;raster&quot;, darken = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/imageplot_1-1.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="manual-rigid-transformations" class="section level4">
-<h4>Manual rigid transformations</h4>
-<p>An alternative method is to apply rigid transformations to the images using the <code>WarpImages()</code> function. This function takes a list of transformations for the samples of your choice and converts the transformations into mapping functions which can be used to warp the images.</p>
-<p>The available transformations are; “center.x”, “center.y”, “mirror.x”, “mirror.y” and “angle” <br></p>
-<pre class="r"><code>transforms &lt;- list(&quot;2&quot; = list(&quot;angle&quot; = 90))
-se.rotate90 &lt;- WarpImages(se, transforms)
-ImagePlot(se.rotate90, method = &quot;raster&quot;, darken = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/warpimages-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>transforms &lt;- list(&quot;2&quot; = list(&quot;mirror.x&quot; = T))
-se.mirrorx &lt;- WarpImages(se, transforms)
-ImagePlot(se.mirrorx, method = &quot;raster&quot;, darken = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/warpimages-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>transforms &lt;- list(&quot;2&quot; = list(&quot;mirror.y&quot; = T))
-se.mirrory &lt;- WarpImages(se, transforms)
-ImagePlot(se.mirrory, method = &quot;raster&quot;, darken = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/warpimages-3.png" width="100%" style="display: block; margin: auto;" /> <br> Any transformations applied to the images will also be applied to the coordinates used to map gene expression values onto the images. <br></p>
-<pre class="r"><code>heatmap.colors &lt;- c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;)
-ST.FeaturePlot(se, features = &quot;Cck&quot;, pt.size = 0.5, cols = heatmap.colors, dark.theme = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/show_warp-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ST.FeaturePlot(se.rotate90, features = &quot;Cck&quot;, pt.size = 0.5, cols = heatmap.colors, dark.theme = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/show_warp-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ST.FeaturePlot(se.mirrorx, features = &quot;Cck&quot;, pt.size = 0.5, cols = heatmap.colors, dark.theme = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/show_warp-3.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ST.FeaturePlot(se.mirrory, features = &quot;Cck&quot;, pt.size = 0.5, cols = heatmap.colors, dark.theme = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/show_warp-4.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="visualize-multiple-samples" class="section level3">
-<h3>Visualize multiple samples</h3>
-<p>If you want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the <code>FeatureOverlay()</code> function by specifing several <em>sampleids</em> : <br></p>
-<pre class="r"><code>FeatureOverlay(se, features = &quot;Nrgn&quot;, 
-                    sampleids = 1:2,
-                    pt.size = 0.5, pt.alpha = 0.5,
-                    cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;),
-                    method = &quot;raster&quot;,
-                    dark.theme = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_multi-1.png" width="100%" style="display: block; margin: auto;" /> <br> The <code>type</code> parameter can also be set in the <code>FeatureOverlay()</code> function to override the default use of processed images. <br></p>
-<pre class="r"><code>FeatureOverlay(object = se, features = c(&quot;Nrgn&quot;, &quot;Cck&quot;), 
-               cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;), 
-               pt.size = 0.5, 
-               pt.alpha = 0.5,
-               sample.index = 2,
-               type = &quot;raw&quot;, 
-               dark.theme = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_multi_raw-1.png" width="100%" style="display: block; margin: auto;" /></p>
+se &lt;- ManualAnnotation(se)</code></pre>
  
 <hr />
 <p style="text-align: center;">
@@ -722,95 +618,15 @@ locale:
 [5] LC_TIME=English_Sweden.1252    
 
 attached base packages:
-[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
-[8] methods   base     
-
-other attached packages:
- [1] STutility_0.1.0             ggplot2_3.2.1              
- [3] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.1
- [5] DelayedArray_0.10.0         BiocParallel_1.18.1        
- [7] matrixStats_0.55.0          Biobase_2.44.0             
- [9] GenomicRanges_1.36.1        GenomeInfoDb_1.20.0        
-[11] IRanges_2.18.2              S4Vectors_0.22.1           
-[13] BiocGenerics_0.30.0         Seurat_3.1.1.9023          
+[1] stats     graphics  grDevices utils     datasets  methods   base     
 
 loaded via a namespace (and not attached):
-  [1] reticulate_1.13         R.utils_2.9.0          
-  [3] tidyselect_0.2.5        htmlwidgets_1.3        
-  [5] grid_3.6.1              Rtsne_0.15             
-  [7] munsell_0.5.0           codetools_0.2-16       
-  [9] ica_1.0-2               future_1.15.0          
- [11] miniUI_0.1.1.1          withr_2.1.2            
- [13] colorspace_1.4-1        knitr_1.24             
- [15] ROCR_1.0-7              tensor_1.5             
- [17] gbRd_0.4-11             listenv_0.7.0          
- [19] labeling_0.3            Rdpack_0.11-0          
- [21] git2r_0.26.1            GenomeInfoDbData_1.2.1 
- [23] polyclip_1.10-0         rprojroot_1.3-2        
- [25] vctrs_0.2.0             xfun_0.9               
- [27] R6_2.4.0                doParallel_1.0.15      
- [29] rsvd_1.0.2              Morpho_2.7             
- [31] ggiraph_0.6.1           manipulateWidget_0.10.0
- [33] bitops_1.0-6            spatstat.utils_1.13-0  
- [35] assertthat_0.2.1        promises_1.0.1         
- [37] SDMTools_1.1-221.1      scales_1.0.0           
- [39] imager_0.41.2           gtable_0.3.0           
- [41] npsurv_0.4-0            globals_0.12.4         
- [43] bmp_0.3                 goftest_1.1-1          
- [45] workflowr_1.5.0         rlang_0.4.1            
- [47] zeallot_0.1.0           akima_0.6-2            
- [49] systemfonts_0.1.1       splines_3.6.1          
- [51] lazyeval_0.2.2          rgl_0.100.30           
- [53] yaml_2.2.0              reshape2_1.4.3         
- [55] abind_1.4-5             crosstalk_1.0.0        
- [57] backports_1.1.4         httpuv_1.5.2           
- [59] tools_3.6.1             gplots_3.0.1.1         
- [61] raster_3.0-7            RColorBrewer_1.1-2     
- [63] Rvcg_0.18               ggridges_0.5.1         
- [65] Rcpp_1.0.3              plyr_1.8.4             
- [67] zlibbioc_1.30.0         purrr_0.3.3            
- [69] RCurl_1.95-4.12         rpart_4.1-15           
- [71] deldir_0.1-23           viridis_0.5.1          
- [73] pbapply_1.4-2           cowplot_1.0.0          
- [75] zoo_1.8-6               ggrepel_0.8.1          
- [77] cluster_2.1.0           colorRamps_2.3         
- [79] fs_1.3.1                magrittr_1.5           
- [81] data.table_1.12.2       magick_2.2             
- [83] readbitmap_0.1.5        lmtest_0.9-37          
- [85] RANN_2.6.1              fitdistrplus_1.0-14    
- [87] shinyjs_1.0             lsei_1.2-0             
- [89] mime_0.7                evaluate_0.14          
- [91] xtable_1.8-4            jpeg_0.1-8.1           
- [93] gridExtra_2.3           compiler_3.6.1         
- [95] tibble_2.1.3            KernSmooth_2.23-15     
- [97] crayon_1.3.4            R.oo_1.22.0            
- [99] htmltools_0.3.6         mgcv_1.8-28            
-[101] later_0.8.0             tiff_0.1-5             
-[103] tidyr_1.0.0             RcppParallel_4.4.3     
-[105] MASS_7.3-51.4           Matrix_1.2-17          
-[107] R.methodsS3_1.7.1       gdata_2.18.0           
-[109] metap_1.1               igraph_1.2.4.1         
-[111] pkgconfig_2.0.2         sp_1.3-2               
-[113] plotly_4.9.1            xml2_1.2.2             
-[115] foreach_1.4.7           webshot_0.5.1          
-[117] XVector_0.24.0          bibtex_0.4.2           
-[119] stringr_1.4.0           digest_0.6.22          
-[121] sctransform_0.2.0       RcppAnnoy_0.0.12       
-[123] tsne_0.1-3              spatstat.data_1.4-0    
-[125] rmarkdown_1.15          leiden_0.3.1           
-[127] uwot_0.1.4              gdtools_0.2.0          
-[129] shiny_1.3.2             gtools_3.8.1           
-[131] lifecycle_0.1.0         nlme_3.1-141           
-[133] jsonlite_1.6            viridisLite_0.3.0      
-[135] pillar_1.4.2            lattice_0.20-38        
-[137] httr_1.4.1              survival_2.44-1.1      
-[139] glue_1.3.1              spatstat_1.61-0        
-[141] png_0.1-7               iterators_1.0.12       
-[143] stringi_1.4.3           caTools_1.17.1.2       
-[145] dplyr_0.8.3             irlba_2.3.3            
-[147] future.apply_1.3.0      ape_5.3                </code></pre>
-</div>
-</div>
+ [1] workflowr_1.5.0 Rcpp_1.0.3      rprojroot_1.3-2 digest_0.6.22  
+ [5] later_0.8.0     R6_2.4.0        backports_1.1.4 git2r_0.26.1   
+ [9] magrittr_1.5    evaluate_0.14   stringi_1.4.3   fs_1.3.1       
+[13] promises_1.0.1  rmarkdown_1.15  tools_3.6.1     stringr_1.4.0  
+[17] glue_1.3.1      httpuv_1.5.2    xfun_0.9        yaml_2.2.0     
+[21] compiler_3.6.1  htmltools_0.3.6 knitr_1.24     </code></pre>
 </div>
 
 

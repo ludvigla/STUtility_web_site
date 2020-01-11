@@ -10,11 +10,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Joseph Bergenstråhle, Royal Institute of Technology (KTH)" />
-<meta name="author" content="Ludvig Larsson, Royal Institute of Technology (KTH)" />
 
 
-<title>STUtility - Vignette</title>
+<title>Normalization</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -401,16 +399,14 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">STUtility - Vignette</h1>
-<h4 class="author">Joseph Bergenstråhle, Royal Institute of Technology (KTH)</h4>
-<h4 class="author">Ludvig Larsson, Royal Institute of Technology (KTH)</h4>
+<h1 class="title toc-ignore">Normalization</h1>
 
 </div>
 
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -419,7 +415,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -428,17 +424,17 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-10-31
+<strong>Last updated:</strong> 2020-01-11
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.5.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -495,41 +491,42 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
-<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-The following chunks had caches available:
-<ul>
-<li>
-poisson_comparison
-</li>
-</ul>
-<p>To ensure reproducibility of the results, delete the cache directory <code>normalization_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree7cdf8e1eeac24a7e6a2fe74899ba52e9e42fcdf8targetblank7cdf8e1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/7cdf8e1eeac24a7e6a2fe74899ba52e9e42fcdf8" target="_blank">7cdf8e1</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree7cdf8e1eeac24a7e6a2fe74899ba52e9e42fcdf8targetblank7cdf8e1a" class="panel-collapse collapse">
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree23df05c872825b9f4eac57d97ef975915602b0e1targetblank23df05ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/23df05c872825b9f4eac57d97ef975915602b0e1" target="_blank">23df05c</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree23df05c872825b9f4eac57d97ef975915602b0e1targetblank23df05ca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
-    Ignored:    analysis/.DS_Store
-    Ignored:    analysis/about_cache/
+    Ignored:    .Rproj.user/
     Ignored:    analysis/getting_started_cache/
-    Ignored:    analysis/image_processing_cache/
-    Ignored:    analysis/normalization_cache/
-    Ignored:    docs/.DS_Store
 
 </code></pre>
 <p>
@@ -542,120 +539,9 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
-
 <p>
-These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
 </p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/7cdf8e1eeac24a7e6a2fe74899ba52e9e42fcdf8/analysis/normalization.Rmd" target="_blank">7cdf8e1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Changed font size
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/786357d1f7a30673432e5e023be09971cc9c0ff0/analysis/normalization.Rmd" target="_blank">786357d</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Fixed warnings
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/786357d1f7a30673432e5e023be09971cc9c0ff0/docs/normalization.html" target="_blank">786357d</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Fixed warnings
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/analysis/normalization.Rmd" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Added section noramlization and spatial faetures
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/f10ef37c91fac6802927c25f259822368759b560/docs/normalization.html" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Added section noramlization and spatial faetures
-</td>
-</tr>
-</tbody>
-</table>
-</div>
 <hr>
 </div>
 </div>
@@ -696,9 +582,16 @@ body {
     background-color: #375a7f;
 }
 </style>
-<div id="normalization-and-scaling" class="section level2">
-<h2>Normalization and scaling</h2>
+<div id="sctransform-seurat" class="section level2">
+<h2>SCTransform (Seurat)</h2>
+<p>In order to normalize the data we recommend using <a href="https://www.biorxiv.org/content/10.1101/576827v1">variance stabilized transformation</a> available in the SCTransform function in Seurat as of v3.0.</p>
+<p>Following the rationale expressed below, we transform the data according to the Seurat workflow. <br></p>
+<pre class="r"><code>se &lt;- SCTransform(se, vars.to.regress = &quot;nFeature_RNA&quot;)</code></pre>
+<p>Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website <a href="https://satijalab.org/seurat/" class="uri">https://satijalab.org/seurat/</a>. Special consideration should be put into if and how the user apply the <code>vars.to.regress</code> parameter, which specifies which variables to regress out. This can be used to correct for heterogeneity in the data that is of no interest.</p>
 <hr />
+</div>
+<div id="rationale-of-approach" class="section level2">
+<h2>Rationale of approach</h2>
 <p>Each spot in a Spatial Transcriptomics dataset typically contains RNA from a mixture of cells so why would we apply a workflow that was developed for single-cell RNAseq data? We can calculate some properties to visually inspect the data to see that ST data have similar properties to that of scRNAseq data. <br></p>
 <pre class="r"><code>library(Matrix)
 library(magrittr)
@@ -735,54 +628,7 @@ p2 &lt;- ggplot(gene_attr, aes(log_mean, detection_rate)) +
 
 cowplot::plot_grid(p1, p2, nrow = 2)</code></pre>
 <p><img src="figure/normalization.Rmd/poisson_comparison-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-poisson_comparison-1">
-Past versions of poisson_comparison-1.png
-</button>
-</p>
-<div id="fig-poisson_comparison-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/normalization.Rmd/poisson_comparison-1.png" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 <p>We can see from the mean-variance and Mean-detection-rate scatter plots that genes show overdispersion compared to what would be expected under a Poisson model. Because these properties are shared between ST and scRNAseq data we have reasoned that the workflow presented in the Seurat package should be applicable for ST data as well. It is important however to keep in mind that each spots contains a mixture of cell types and should be interpreted as a morphological unit in the context of a tissue section.</p>
-<p>In order to normalize the data we recommend using <a href="https://www.biorxiv.org/content/10.1101/576827v1">variance stabilized transformation</a> available in the SCTransform function in Seurat as of v3.0.</p>
-<p>Following the rationale expressed above, we transform the data according to the Seurat workflow. Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website <a href="https://satijalab.org/seurat/" class="uri">https://satijalab.org/seurat/</a><br />
-<br></p>
-<pre class="r"><code>se &lt;- SCTransform(se, vars.to.regress = c(&quot;sample_id&quot;, &quot;nFeature_RNA&quot;))</code></pre>
  
 <hr />
 <p style="text-align: center;">
@@ -804,98 +650,105 @@ A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and 
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.6.1 (2019-07-05)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS Mojave 10.14.6
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 18363)
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
 
 locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+[1] LC_COLLATE=English_Sweden.1252  LC_CTYPE=English_Sweden.1252   
+[3] LC_MONETARY=English_Sweden.1252 LC_NUMERIC=C                   
+[5] LC_TIME=English_Sweden.1252    
 
 attached base packages:
 [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
 [8] methods   base     
 
 other attached packages:
- [1] STutility_0.1.0             ggplot2_3.2.1              
- [3] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.1
- [5] DelayedArray_0.10.0         BiocParallel_1.18.1        
- [7] matrixStats_0.55.0          Biobase_2.44.0             
- [9] GenomicRanges_1.36.1        GenomeInfoDb_1.20.0        
-[11] IRanges_2.18.3              S4Vectors_0.22.1           
-[13] BiocGenerics_0.30.0         Seurat_3.1.1               
+ [1] dplyr_0.8.3                 magrittr_1.5               
+ [3] Matrix_1.2-17               STutility_0.1.0            
+ [5] ggplot2_3.2.1               SingleCellExperiment_1.6.0 
+ [7] SummarizedExperiment_1.14.1 DelayedArray_0.10.0        
+ [9] BiocParallel_1.18.1         matrixStats_0.55.0         
+[11] Biobase_2.44.0              GenomicRanges_1.36.1       
+[13] GenomeInfoDb_1.20.0         IRanges_2.18.2             
+[15] S4Vectors_0.22.1            BiocGenerics_0.30.0        
+[17] Seurat_3.1.1.9023          
 
 loaded via a namespace (and not attached):
-  [1] backports_1.1.5         workflowr_1.3.0        
-  [3] systemfonts_0.1.1       plyr_1.8.4             
-  [5] igraph_1.2.4.1          lazyeval_0.2.2         
-  [7] splines_3.6.1           crosstalk_1.0.0        
-  [9] listenv_0.7.0           digest_0.6.22          
- [11] foreach_1.4.7           htmltools_0.4.0        
- [13] viridis_0.5.1           magick_2.2             
- [15] tiff_0.1-5              gdata_2.18.0           
- [17] magrittr_1.5            cluster_2.1.0          
- [19] doParallel_1.0.15       ROCR_1.0-7             
- [21] globals_0.12.4          RcppParallel_4.4.4     
- [23] R.utils_2.9.0           jpeg_0.1-8             
- [25] colorspace_1.4-1        ggrepel_0.8.1          
- [27] xfun_0.10               dplyr_0.8.3            
- [29] crayon_1.3.4            RCurl_1.95-4.12        
- [31] jsonlite_1.6            zeallot_0.1.0          
- [33] survival_2.44-1.1       zoo_1.8-6              
- [35] iterators_1.0.12        ape_5.3                
- [37] glue_1.3.1              gtable_0.3.0           
- [39] zlibbioc_1.30.0         XVector_0.24.0         
- [41] webshot_0.5.1           leiden_0.3.1           
- [43] future.apply_1.3.0      scales_1.0.0           
- [45] bibtex_0.4.2            miniUI_0.1.1.1         
- [47] Rcpp_1.0.2              metap_1.1              
- [49] viridisLite_0.3.0       xtable_1.8-4           
- [51] reticulate_1.13         rsvd_1.0.2             
- [53] SDMTools_1.1-221.1      tsne_0.1-3             
- [55] htmlwidgets_1.5.1       httr_1.4.1             
- [57] gplots_3.0.1.1          RColorBrewer_1.1-2     
- [59] ica_1.0-2               pkgconfig_2.0.3        
- [61] R.methodsS3_1.7.1       uwot_0.1.4             
- [63] tidyselect_0.2.5        rlang_0.4.1            
- [65] manipulateWidget_0.10.0 reshape2_1.4.3         
- [67] later_1.0.0             munsell_0.5.0          
- [69] tools_3.6.1             ggridges_0.5.1         
- [71] evaluate_0.14           stringr_1.4.0          
- [73] fastmap_1.0.1           yaml_2.2.0             
- [75] npsurv_0.4-0            knitr_1.25             
- [77] fs_1.3.1                fitdistrplus_1.0-14    
- [79] rgl_0.100.30            caTools_1.17.1.2       
- [81] purrr_0.3.2             RANN_2.6.1             
- [83] readbitmap_0.1.5        pbapply_1.4-2          
- [85] future_1.14.0           nlme_3.1-141           
- [87] whisker_0.4             mime_0.7               
- [89] R.oo_1.22.0             ggiraph_0.6.1          
- [91] xml2_1.2.2              compiler_3.6.1         
- [93] plotly_4.9.0            png_0.1-7              
- [95] lsei_1.2-0              Morpho_2.7             
- [97] tibble_2.1.3            stringi_1.4.3          
- [99] gdtools_0.2.0           lattice_0.20-38        
-[101] Matrix_1.2-17           shinyjs_1.0            
-[103] vctrs_0.2.0             pillar_1.4.2           
-[105] lifecycle_0.1.0         Rdpack_0.11-0          
-[107] lmtest_0.9-37           RcppAnnoy_0.0.13       
-[109] data.table_1.12.2       cowplot_1.0.0          
-[111] bitops_1.0-6            irlba_2.3.3            
-[113] Rvcg_0.18               gbRd_0.4-11            
-[115] httpuv_1.5.2            colorRamps_2.3         
-[117] imager_0.41.2           R6_2.4.0               
-[119] promises_1.1.0          bmp_0.3                
-[121] KernSmooth_2.23-15      gridExtra_2.3          
-[123] codetools_0.2-16        MASS_7.3-51.4          
-[125] gtools_3.8.1            assertthat_0.2.1       
-[127] rprojroot_1.3-2         withr_2.1.2            
-[129] sctransform_0.2.0       GenomeInfoDbData_1.2.1 
-[131] grid_3.6.1              tidyr_1.0.0            
-[133] rmarkdown_1.16          Rtsne_0.15             
-[135] git2r_0.26.1            shiny_1.4.0            </code></pre>
+  [1] reticulate_1.13         R.utils_2.9.0          
+  [3] tidyselect_0.2.5        htmlwidgets_1.3        
+  [5] grid_3.6.1              Rtsne_0.15             
+  [7] munsell_0.5.0           codetools_0.2-16       
+  [9] ica_1.0-2               future_1.15.0          
+ [11] miniUI_0.1.1.1          withr_2.1.2            
+ [13] colorspace_1.4-1        knitr_1.24             
+ [15] ROCR_1.0-7              tensor_1.5             
+ [17] gbRd_0.4-11             listenv_0.7.0          
+ [19] labeling_0.3            Rdpack_0.11-0          
+ [21] git2r_0.26.1            GenomeInfoDbData_1.2.1 
+ [23] polyclip_1.10-0         rprojroot_1.3-2        
+ [25] vctrs_0.2.0             xfun_0.9               
+ [27] R6_2.4.0                doParallel_1.0.15      
+ [29] rsvd_1.0.2              Morpho_2.7             
+ [31] ggiraph_0.6.1           manipulateWidget_0.10.0
+ [33] bitops_1.0-6            spatstat.utils_1.13-0  
+ [35] assertthat_0.2.1        promises_1.0.1         
+ [37] SDMTools_1.1-221.1      scales_1.0.0           
+ [39] imager_0.41.2           gtable_0.3.0           
+ [41] npsurv_0.4-0            globals_0.12.4         
+ [43] bmp_0.3                 goftest_1.1-1          
+ [45] workflowr_1.5.0         rlang_0.4.1            
+ [47] zeallot_0.1.0           akima_0.6-2            
+ [49] systemfonts_0.1.1       splines_3.6.1          
+ [51] lazyeval_0.2.2          rgl_0.100.30           
+ [53] yaml_2.2.0              reshape2_1.4.3         
+ [55] abind_1.4-5             crosstalk_1.0.0        
+ [57] backports_1.1.4         httpuv_1.5.2           
+ [59] tools_3.6.1             gplots_3.0.1.1         
+ [61] raster_3.0-7            RColorBrewer_1.1-2     
+ [63] Rvcg_0.18               ggridges_0.5.1         
+ [65] Rcpp_1.0.3              plyr_1.8.4             
+ [67] zlibbioc_1.30.0         purrr_0.3.3            
+ [69] RCurl_1.95-4.12         rpart_4.1-15           
+ [71] deldir_0.1-23           viridis_0.5.1          
+ [73] pbapply_1.4-2           cowplot_1.0.0          
+ [75] zoo_1.8-6               ggrepel_0.8.1          
+ [77] cluster_2.1.0           colorRamps_2.3         
+ [79] fs_1.3.1                data.table_1.12.2      
+ [81] magick_2.2              readbitmap_0.1.5       
+ [83] lmtest_0.9-37           RANN_2.6.1             
+ [85] fitdistrplus_1.0-14     shinyjs_1.0            
+ [87] lsei_1.2-0              mime_0.7               
+ [89] evaluate_0.14           xtable_1.8-4           
+ [91] jpeg_0.1-8.1            gridExtra_2.3          
+ [93] compiler_3.6.1          tibble_2.1.3           
+ [95] KernSmooth_2.23-15      crayon_1.3.4           
+ [97] R.oo_1.22.0             htmltools_0.3.6        
+ [99] mgcv_1.8-28             later_0.8.0            
+[101] tiff_0.1-5              tidyr_1.0.0            
+[103] RcppParallel_4.4.3      MASS_7.3-51.4          
+[105] R.methodsS3_1.7.1       gdata_2.18.0           
+[107] metap_1.1               igraph_1.2.4.1         
+[109] pkgconfig_2.0.2         sp_1.3-2               
+[111] plotly_4.9.1            xml2_1.2.2             
+[113] foreach_1.4.7           webshot_0.5.1          
+[115] XVector_0.24.0          bibtex_0.4.2           
+[117] stringr_1.4.0           digest_0.6.22          
+[119] sctransform_0.2.0       RcppAnnoy_0.0.12       
+[121] tsne_0.1-3              spatstat.data_1.4-0    
+[123] rmarkdown_1.15          leiden_0.3.1           
+[125] uwot_0.1.4              gdtools_0.2.0          
+[127] shiny_1.3.2             gtools_3.8.1           
+[129] lifecycle_0.1.0         nlme_3.1-141           
+[131] jsonlite_1.6            viridisLite_0.3.0      
+[133] pillar_1.4.2            lattice_0.20-38        
+[135] httr_1.4.1              survival_2.44-1.1      
+[137] glue_1.3.1              spatstat_1.61-0        
+[139] png_0.1-7               iterators_1.0.12       
+[141] stringi_1.4.3           caTools_1.17.1.2       
+[143] irlba_2.3.3             future.apply_1.3.0     
+[145] ape_5.3                </code></pre>
 </div>
 </div>
 
