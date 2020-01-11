@@ -516,16 +516,17 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree23df05c872825b9f4eac57d97ef975915602b0e1targetblank23df05ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/23df05c872825b9f4eac57d97ef975915602b0e1" target="_blank">23df05c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree36df0f25147f4df152be36067836c5b1b3255a93targetblank36df0f2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/36df0f25147f4df152be36067836c5b1b3255a93" target="_blank">36df0f2</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree23df05c872825b9f4eac57d97ef975915602b0e1targetblank23df05ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree36df0f25147f4df152be36067836c5b1b3255a93targetblank36df0f2a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/getting_started_cache/
 
@@ -598,13 +599,21 @@ body {
 <pre class="r"><code># TODO: make sure that levels are set in facets
 
 ST.FeaturePlot(object = se, 
-               features = c(&quot;nFeature_RNA&quot;, &quot;nCount_RNA&quot;), 
+               features = c(&quot;nFeature_RNA&quot;), 
                cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;),
                ncol = 2, 
                grid.ncol = 1, 
                pt.size = 0.5, 
                dark.theme = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/plot_features1-1.png" width="100%" style="display: block; margin: auto;" /> <br> To overlay a spatial feature heatmaps on top of the HE image we use the FeatureOverlay() function. Handling large images gets clumsy so we recommend to work with down-scaled versions of the images that takes up less memory. <br></p>
+<p><img src="figure/image_processing.Rmd/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ST.FeaturePlot(object = se, 
+               features = c(&quot;nCount_RNA&quot;), 
+               cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;),
+               ncol = 2, 
+               grid.ncol = 1, 
+               pt.size = 0.5, 
+               dark.theme = T)</code></pre>
+<p><img src="figure/image_processing.Rmd/unnamed-chunk-1-2.png" width="100%" style="display: block; margin: auto;" /> <br> To overlay a spatial feature heatmaps on top of the HE image we use the FeatureOverlay() function. Handling large images gets clumsy so we recommend to work with down-scaled versions of the images that takes up less memory. <br></p>
 <pre class="r"><code>FeatureOverlay(se, 
                features = &quot;Cck&quot;, 
                pt.size = 0.5, 
@@ -619,7 +628,8 @@ ST.FeaturePlot(object = se,
                pt.alpha = 0.5, 
                cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;), 
                dark.theme = T, 
-               type = &quot;raw&quot;)</code></pre>
+               type = &quot;raw&quot;,
+               ncols.features = 2)</code></pre>
 <p><img src="figure/image_processing.Rmd/overlay_features_2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><br> Another feature that can be useful for visualization purposes is to mask the background of the HE images. The function <code>MaskImages()</code> can be used to remove the background currently works well for tissues with a clearly defined border. Since masking is a non trivial problem, it is possible that the masking will fail for certain tissue types. If this happens you can try to modify the parameters in <code>MaskImages()</code> to see if you can obtain better results.</p>
 <p>NOTE that the image procesing methods have been optimized for small images and if you have loaded images in higher resolution there is a greater risk that some steps will fail. If you still wish to use images with higher resolution there are instructions on how to do this in the Resolution section below. <br></p>
@@ -674,19 +684,19 @@ ST.FeaturePlot(se, features = &quot;Cck&quot;, pt.size = 0.5, cols = heatmap.col
 </div>
 <div id="visualize-multiple-samples" class="section level3">
 <h3>Visualize multiple samples</h3>
-<p>If you want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the <code>FeatureOverlay()</code> function by specifing several <em>sampleids</em> : <br></p>
+<p>If you want to plot overlaid spatial heatmaps for multiple samples at the same time you can do this with the <code>FeatureOverlay()</code> function by specifing several <em>sampleids</em> <br></p>
 <pre class="r"><code>FeatureOverlay(se, features = &quot;Nrgn&quot;, 
                     sampleids = 1:2,
                     pt.size = 0.5, pt.alpha = 0.5,
                     cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;),
                     method = &quot;raster&quot;,
-                    dark.theme = T)</code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_multi-1.png" width="100%" style="display: block; margin: auto;" /> <br> The <code>type</code> parameter can also be set in the <code>FeatureOverlay()</code> function to override the default use of processed images. <br></p>
+                    dark.theme = T, ncols.samples = 2)</code></pre>
+<p><img src="figure/image_processing.Rmd/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /> <br> The <code>type</code> parameter can also be set in the <code>FeatureOverlay()</code> function to override the default use of processed images. <br></p>
 <pre class="r"><code>FeatureOverlay(object = se, features = c(&quot;Nrgn&quot;, &quot;Cck&quot;), 
                cols = c(&quot;black&quot;, &quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;dark red&quot;), 
                pt.size = 0.5, 
                pt.alpha = 0.5,
-               sample.index = 2,
+               sampleids = 2,
                type = &quot;raw&quot;, 
                dark.theme = T)</code></pre>
 <p><img src="figure/image_processing.Rmd/overlay_multi_raw-1.png" width="100%" style="display: block; margin: auto;" /></p>
