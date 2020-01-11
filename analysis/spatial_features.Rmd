@@ -82,7 +82,7 @@ While `RunNMF()` is an STUtility add-on, others are supported via Seurat (`RunPC
 
 We can then plot a variable number of dimensions across the samples.
 <br>
-```{r dimplot, fig.height=28, fig.width=16, out.width = "100%"}
+```{r dimplot, fig.height=28, fig.width=18, out.width = "100%"}
 
 cscale <- c("black", "dark blue", "cyan", "yellow", "red", "dark red")
 
@@ -150,7 +150,7 @@ se <- FindClusters(object = se, verbose = FALSE)
 <br>
 And plotting of the clusters spatially
 <br>
-```{r plot_clusters, fig.height = 5, fig.width = 10, out.width='100%'}
+```{r plot_clusters, fig.height = 7, fig.width = 12, out.width='100%'}
 
 library(RColorBrewer)
 n <- 19
@@ -204,7 +204,7 @@ se <- RunUMAP(se, reduction = "NMF", dims = keep.dims, n.neighbors = 10)
 
 ````
 
-```{r embedding_vs_ST, fig.width = 16, fig.height = 20}
+```{r embedding_vs_ST, fig.width = 16, fig.height = 22}
 
 # Define colors for heatmap
 heatmap.colors <- c(rgb(40, 40, 40, maxColorValue = 255), "dark blue", "cyan", "white")
@@ -236,7 +236,7 @@ se <- RunUMAP(object = se, dims = keep.dims, verbose = FALSE, n.components = 3, 
 <br>
 We use the first three dimensions for plotting:
 <br>
-```{r UMAP_blend, fig.height = 6, fig.width = 12}
+```{r UMAP_blend, fig.height = 7, fig.width = 12}
 
 ST.DimPlot(object = se, dims = 1:3, reduction = "umap.3d", blend = T, dark.theme = T, pt.size = 0.5)
 
@@ -269,7 +269,7 @@ Note that the clusters were already set as the Seurat objects levels. Type `leve
 Note also, if we are interested in comparing two levels against each other, and not just "one against the rest", we simply add a `ident.2 = ` parameter to the above. 
 
 
-```{r, fig.height=8, fig.width=8}
+```{r, fig.height=16, fig.width=8}
 
 FeatureOverlay(se, features = "Dsp", 
                     sampleids = 1:2,
@@ -325,8 +325,9 @@ To demonstrate the regional neighbors feature, we will use the Breast Cancer dat
 
 If you have defined a region of interest and you want to find all spots neighboring to this region you can use the RegionNeighbours() function to automatically detect such spots. For example, let’s say that we want to select all neighbors to cluster 12 in the plot below and find the differential expressed markers between the neighbors.
 
-```{r, echo=T,  fig.width = 14, fig.height=6, out.width = "100%"}
+```{r, echo=T,  fig.width = 14, fig.height=7, out.width = "100%"}
 cols <- c("#771155", "#AA4488", "#CC99BB", "#114477", "#4477AA", "#77AADD", "#117777", "#44AAAA", "#77CCCC", "#117744", "#44AA77", "#88CCAA", "#777711", "#AAAA44", "#DDDD77", "#774411", "#AA7744", "#DDAA77")
+
 ST.FeaturePlot(se, features = "seurat_clusters", pt.size = 1, cols=cols, dark.theme = T)
 
 
@@ -343,7 +344,7 @@ se <- RegionNeighbours(se, id = 2, verbose = TRUE)
 
 The default behavior is to find all spots which are neighbors with the selected id but ignoring its label, therefore it will simply be called nbs_12 as in “neighbors to 12”.
 
-```{r, echo=T,  fig.width = 14, fig.height=6, out.width = "100%"}
+```{r, echo=T, fig.width = 14, fig.height=6, out.width = "100%"}
 
 FeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, cols = c("red", "black", "lightgray"), pt.size = 1, dark.theme = T)
 
@@ -372,7 +373,7 @@ nbs_2.markers$gene <- rownames(nbs_2.markers)
 se.subset <- SubsetSTData(se, spots = rownames(subset(se[[]], nbs_2 %in% c("2", "nbs_2"))))
 sorted.marks <- nbs_2.markers %>% top_n(n = 40, wt = abs(avg_logFC))
 sorted.marks <- sorted.marks[order(sorted.marks$avg_logFC, decreasing = T), ]
-DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c("black", "lightgray"), disp.min = -2, disp.max = 2)
+DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c("black", "lightgray"), disp.min = -2, disp.max = 2)+ DarkTheme() 
 
 ```
 
