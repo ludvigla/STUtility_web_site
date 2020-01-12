@@ -80,7 +80,7 @@ To follow along this tutorial with a test data set, go to the [10x Dataset repo]
     * tissue_positions_list
     * scalefactors_json
 
-The .zip file contains the H&E image (in two resolution formats; "tissue_lowres_image" and "tissue_hires_image"), the "tissue_positions_list" with pixel coordinates for the orginial .tif image and the scalefactors_json.json that contains the scalefactors used to dervive the pixel cooridinates for the lowres and hires images. Open the .json file and note the scalefactor used for the image you want to use (lowres or hires). 
+The .zip file contains the H&E image (in two resolution formats; "tissue_lowres_image" and "tissue_hires_image"), the "tissue_positions_list" with pixel coordinates for the orginial .tif image and the scalefactors_json.json that contains the scalefactors used to dervive the pixel cooridinates for the lowres and hires images. There are some alternatives to handle the scalefactors. Either, you manualy open the .json file and note the scalefactor used for the images you want to use (lowres or hires), and state these numbers in a column in the infoTable named "scaleVisium" (see below). Or, you add a column named "json" with paths to the "scalefactors_json.json" files. A third option is to manually input the values to the function InputFromTable (see `?InputFromTable`).
 
 In this vignette we show e.g. the data sets from Mouse Brain Serial Section 1 and 2 (Sagittal-Posterior)
 
@@ -93,7 +93,8 @@ The recommended method to read the files into R is via the creation of a "infoTa
 samples <- c("Path to count file 1 ", "Path to count file 2")
 spotfiles <- c("Path to position list  1", "Path to position list  2")
 imgs <- c("Path to H&E image 1", "Path to H&E image 2")
-data.frame(samples, spotfiles, imgs)
+scaleVisium <- c("scale to image 1", "scale to image 2")
+data.frame(samples, spotfiles, imgs, scaleVisium)
 ```
 
 These contains the paths to the files. Any number of _extra_ columns can be added with metadata. This information can then be used to e.g. coloring of plots and subsetting. These columns can be named as you like, but _not_ "sample", "spotfiles" or "imgs". Analysis of the data can be performed without the images, and then those columns are simply left out. 
@@ -121,8 +122,7 @@ se <- InputFromTable(infotable = infoTable,
                       min.gene.count = 100, 
                       min.gene.spots = 5,
                       min.spot.count = 500,
-                      platform="Visium",
-                      scaleVisium = 0.17211704) #Note that this scalefactor is found within the .json file from the Space Range output
+                      platform="Visium")
 ```
 
 ```{r load_image_Visium, include=FALSE, eval=F}
