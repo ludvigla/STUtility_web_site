@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -239,6 +238,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -267,6 +267,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -425,7 +431,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-01-11
+<strong>Last updated:</strong> 2020-01-16
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -435,7 +441,7 @@ div.section {
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.5.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -473,7 +479,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -516,18 +522,22 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree23df05c872825b9f4eac57d97ef975915602b0e1targetblank23df05ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/23df05c872825b9f4eac57d97ef975915602b0e1" target="_blank">23df05c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree78077ac74e865277207f88f8a04b6ac8b80c2469targetblank78077aca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/78077ac74e865277207f88f8a04b6ac8b80c2469" target="_blank">78077ac</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree23df05c872825b9f4eac57d97ef975915602b0e1targetblank23df05ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree78077ac74e865277207f88f8a04b6ac8b80c2469targetblank78077aca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/getting_started_cache/
+
+Unstaged changes:
+    Modified:   myproject.Rproj
 
 </code></pre>
 <p>
@@ -540,9 +550,477 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/78077ac74e865277207f88f8a04b6ac8b80c2469/analysis/installation.Rmd" target="_blank">78077ac</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-16
+</td>
+<td>
+Added installation info regarding bioconductor packages
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/fb06450963f0f83237398d130bc27741c74088fe/docs/installation.html" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/baff98e3760bbbf3174503840e5df18f2fc71a4e/analysis/installation.Rmd" target="_blank">baff98e</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-12-16
+</td>
+<td>
+adding
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/5cb8ab1a6077d5b0bdd819027308d896dbb714eb/analysis/installation.Rmd" target="_blank">5cb8ab1</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-12-02
+</td>
+<td>
+update2
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/8f9876e8b15d5194fc6919cecc8a85f092089a5b/analysis/installation.Rmd" target="_blank">8f9876e</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-11-29
+</td>
+<td>
+Update
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/03c9b7c5d986c9f9b3fc1fb350cf679d8bb0ca05/analysis/installation.Rmd" target="_blank">03c9b7c</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-11-19
+</td>
+<td>
+Added JB
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/03c9b7c5d986c9f9b3fc1fb350cf679d8bb0ca05/docs/installation.html" target="_blank">03c9b7c</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-11-19
+</td>
+<td>
+Added JB
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/be8be1dd978189fd6e4582c2db31effd9a0039b6/docs/installation.html" target="_blank">be8be1d</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/f42af97b5ee66eb67aa263efcd091733bd30333b/docs/installation.html" target="_blank">f42af97</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/0754921643b10ad3761ccee0fcb5f45bcd22e443/docs/installation.html" target="_blank">0754921</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/908fe2cc69d6d4d358c8a50ddd86e283ccd72e5a/docs/installation.html" target="_blank">908fe2c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/54787b574cc423311c7397610728bc0885eb2bad/docs/installation.html" target="_blank">54787b5</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/d96da86a15037552b02d65078a836b22078bbcff/docs/installation.html" target="_blank">d96da86</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/7a20e6c4fc73e11a1931bb2569ad58e3466e8764/docs/installation.html" target="_blank">7a20e6c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/19ba86c25d5aa2205f8ca1a0b56214fb90144701/analysis/installation.Rmd" target="_blank">19ba86c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added theme
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/a3cff7abd4b5a16d52c22cb6e264f452100e6212/docs/installation.html" target="_blank">a3cff7a</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/ec49ddf7da95f5ab78ee8be0392f5ca107cc9fa5/analysis/installation.Rmd" target="_blank">ec49ddf</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added theme
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/1a8c0566410fd84ed73716875d3e7dc927a92e96/docs/installation.html" target="_blank">1a8c056</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/a53305cfbcc4ee1876e86d2de96f63e09cce9d0c/docs/installation.html" target="_blank">a53305c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/6f61b955fa6ca26eaab92a1b4858df80c2ac44b7/docs/installation.html" target="_blank">6f61b95</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/429c12c00a29edf3cac450c8c51e0a291261c328/analysis/installation.Rmd" target="_blank">429c12c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/f0363a2969a9f0ddcef1b96a286bd0894f81203f/docs/installation.html" target="_blank">f0363a2</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fab503b57753a6211654ddb7e93b22fa0bec03c0/analysis/installation.Rmd" target="_blank">fab503b</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/41209f81f66de232fd97fc99123a7e7f96d8c8b8/docs/installation.html" target="_blank">41209f8</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/d778f6104240fa0536e3c9a0a26e6a103071e350/docs/installation.html" target="_blank">d778f61</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/77ea12264e6a2b5eedbcce0f1aa9bcdc9527683a/analysis/installation.Rmd" target="_blank">77ea122</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -578,7 +1056,19 @@ body {
   color: white
 }
 </style>
-<p>Using devtools, execute the following from the R console: <br></p>
+<div id="prerequisite" class="section level1">
+<h1>Prerequisite</h1>
+<p>STUtility requires R version &gt;=3.6 and two packages (<code>SingleCellExperiment</code> and <code>multtest</code>) within the Bioconductor suit needs to be installed prior to installing STUtility from github:</p>
+<p>If you don’t have bioconductor installed:</p>
+<pre class="r"><code>if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install(version = &quot;3.10&quot;)</code></pre>
+<pre class="r"><code>BiocManager::install(&quot;SingleCellExperiment&quot;)
+
+BiocManager::install(&quot;multtest&quot;)</code></pre>
+<p>To install STUtility from github (currently only option), you need to have <code>devtools</code> installed:</p>
+<pre class="r"><code>install.packages(&quot;devtools&quot;)</code></pre>
+<p>Using devtools, execute the following from the R console to install STUtility: <br></p>
 <pre class="r"><code>devtools::install_github(
     &quot;jbergenstrahle/STUtility&quot;
 )</code></pre>
@@ -605,27 +1095,36 @@ A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and 
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.6.1 (2019-07-05)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18363)
+<pre><code>R version 3.6.2 (2019-12-12)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Linux Mint 19.3
 
 Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
 
 locale:
-[1] LC_COLLATE=English_Sweden.1252  LC_CTYPE=English_Sweden.1252   
-[3] LC_MONETARY=English_Sweden.1252 LC_NUMERIC=C                   
-[5] LC_TIME=English_Sweden.1252    
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=sv_SE.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=sv_SE.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=sv_SE.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
+other attached packages:
+[1] workflowr_1.6.0
+
 loaded via a namespace (and not attached):
- [1] workflowr_1.5.0 Rcpp_1.0.3      rprojroot_1.3-2 digest_0.6.22  
- [5] later_0.8.0     R6_2.4.0        backports_1.1.4 git2r_0.26.1   
- [9] magrittr_1.5    evaluate_0.14   stringi_1.4.3   fs_1.3.1       
-[13] promises_1.0.1  rmarkdown_1.15  tools_3.6.1     stringr_1.4.0  
-[17] glue_1.3.1      httpuv_1.5.2    xfun_0.9        yaml_2.2.0     
-[21] compiler_3.6.1  htmltools_0.3.6 knitr_1.24     </code></pre>
+ [1] Rcpp_1.0.3      rprojroot_1.3-2 digest_0.6.23   later_1.0.0    
+ [5] R6_2.4.1        backports_1.1.5 git2r_0.26.1    magrittr_1.5   
+ [9] evaluate_0.14   stringi_1.4.5   rlang_0.4.2     fs_1.3.1       
+[13] promises_1.1.0  whisker_0.4     rmarkdown_2.0   tools_3.6.2    
+[17] stringr_1.4.0   glue_1.3.1      httpuv_1.5.2    xfun_0.12      
+[21] yaml_2.2.0      compiler_3.6.2  htmltools_0.4.0 knitr_1.26     </code></pre>
+</div>
 </div>
 </div>
 
