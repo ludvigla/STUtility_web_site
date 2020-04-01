@@ -425,7 +425,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-01-11
+<strong>Last updated:</strong> 2020-04-01
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -516,10 +516,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree36df0f25147f4df152be36067836c5b1b3255a93targetblank36df0f2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/36df0f25147f4df152be36067836c5b1b3255a93" target="_blank">36df0f2</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreed1999a18633e7e2c6892526cd8e1bdb41904826dtargetblankd1999a1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/d1999a18633e7e2c6892526cd8e1bdb41904826d" target="_blank">d1999a1</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree36df0f25147f4df152be36067836c5b1b3255a93targetblank36df0f2a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreed1999a18633e7e2c6892526cd8e1bdb41904826dtargetblankd1999a1a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -529,6 +529,9 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/getting_started_cache/
+
+Unstaged changes:
+    Modified:   analysis/normalization.Rmd
 
 </code></pre>
 <p>
@@ -584,6 +587,7 @@ body {
     background-color: #375a7f;
 }
 </style>
+<pre class="r"><code>library(STutility)</code></pre>
 <div id="loading-and-handling-images" class="section level1">
 <h1>Loading and handling images</h1>
 <p>With the Seurat object created, we are ready to load the H&amp;E images from the file paths provided in the infoTable. The LoadImages() function allow you to load the images into the Seurat object and will automatically save a scaled down version of each image that you can use for plotting.</p>
@@ -752,73 +756,74 @@ loaded via a namespace (and not attached):
   [9] ica_1.0-2               future_1.15.0          
  [11] miniUI_0.1.1.1          withr_2.1.2            
  [13] colorspace_1.4-1        knitr_1.24             
- [15] ROCR_1.0-7              tensor_1.5             
- [17] gbRd_0.4-11             listenv_0.7.0          
- [19] labeling_0.3            Rdpack_0.11-0          
- [21] git2r_0.26.1            GenomeInfoDbData_1.2.1 
- [23] polyclip_1.10-0         rprojroot_1.3-2        
- [25] vctrs_0.2.0             xfun_0.9               
- [27] R6_2.4.0                doParallel_1.0.15      
- [29] rsvd_1.0.2              Morpho_2.7             
- [31] ggiraph_0.6.1           manipulateWidget_0.10.0
- [33] bitops_1.0-6            spatstat.utils_1.13-0  
- [35] assertthat_0.2.1        promises_1.0.1         
- [37] SDMTools_1.1-221.1      scales_1.0.0           
- [39] imager_0.41.2           gtable_0.3.0           
- [41] npsurv_0.4-0            globals_0.12.4         
- [43] bmp_0.3                 goftest_1.1-1          
- [45] workflowr_1.5.0         rlang_0.4.1            
- [47] zeallot_0.1.0           akima_0.6-2            
- [49] systemfonts_0.1.1       splines_3.6.1          
- [51] lazyeval_0.2.2          rgl_0.100.30           
- [53] yaml_2.2.0              reshape2_1.4.3         
- [55] abind_1.4-5             crosstalk_1.0.0        
- [57] backports_1.1.4         httpuv_1.5.2           
- [59] tools_3.6.1             gplots_3.0.1.1         
- [61] raster_3.0-7            RColorBrewer_1.1-2     
- [63] Rvcg_0.18               ggridges_0.5.1         
- [65] Rcpp_1.0.3              plyr_1.8.4             
- [67] zlibbioc_1.30.0         purrr_0.3.3            
- [69] RCurl_1.95-4.12         rpart_4.1-15           
- [71] deldir_0.1-23           viridis_0.5.1          
- [73] pbapply_1.4-2           cowplot_1.0.0          
- [75] zoo_1.8-6               ggrepel_0.8.1          
- [77] cluster_2.1.0           colorRamps_2.3         
- [79] fs_1.3.1                magrittr_1.5           
- [81] data.table_1.12.2       magick_2.2             
- [83] readbitmap_0.1.5        lmtest_0.9-37          
- [85] RANN_2.6.1              fitdistrplus_1.0-14    
- [87] shinyjs_1.0             lsei_1.2-0             
- [89] mime_0.7                evaluate_0.14          
- [91] xtable_1.8-4            jpeg_0.1-8.1           
- [93] gridExtra_2.3           compiler_3.6.1         
- [95] tibble_2.1.3            KernSmooth_2.23-15     
- [97] crayon_1.3.4            R.oo_1.22.0            
- [99] htmltools_0.3.6         mgcv_1.8-28            
-[101] later_0.8.0             tiff_0.1-5             
-[103] tidyr_1.0.0             RcppParallel_4.4.3     
-[105] MASS_7.3-51.4           Matrix_1.2-17          
-[107] R.methodsS3_1.7.1       gdata_2.18.0           
-[109] metap_1.1               igraph_1.2.4.1         
-[111] pkgconfig_2.0.2         sp_1.3-2               
-[113] plotly_4.9.1            xml2_1.2.2             
-[115] foreach_1.4.7           webshot_0.5.1          
-[117] XVector_0.24.0          bibtex_0.4.2           
-[119] stringr_1.4.0           digest_0.6.22          
-[121] sctransform_0.2.0       RcppAnnoy_0.0.12       
-[123] tsne_0.1-3              spatstat.data_1.4-0    
-[125] rmarkdown_1.15          leiden_0.3.1           
-[127] uwot_0.1.4              gdtools_0.2.0          
-[129] shiny_1.3.2             gtools_3.8.1           
-[131] lifecycle_0.1.0         nlme_3.1-141           
-[133] jsonlite_1.6            viridisLite_0.3.0      
-[135] pillar_1.4.2            lattice_0.20-38        
-[137] httr_1.4.1              survival_2.44-1.1      
-[139] glue_1.3.1              spatstat_1.61-0        
-[141] png_0.1-7               iterators_1.0.12       
-[143] stringi_1.4.3           caTools_1.17.1.2       
-[145] dplyr_0.8.3             irlba_2.3.3            
-[147] future.apply_1.3.0      ape_5.3                </code></pre>
+ [15] uuid_0.1-2              ROCR_1.0-7             
+ [17] tensor_1.5              gbRd_0.4-11            
+ [19] listenv_0.7.0           labeling_0.3           
+ [21] Rdpack_0.11-0           git2r_0.26.1           
+ [23] GenomeInfoDbData_1.2.1  polyclip_1.10-0        
+ [25] rprojroot_1.3-2         vctrs_0.2.0            
+ [27] xfun_0.9                R6_2.4.0               
+ [29] doParallel_1.0.15       rsvd_1.0.2             
+ [31] Morpho_2.7              ggiraph_0.7.0          
+ [33] manipulateWidget_0.10.0 bitops_1.0-6           
+ [35] spatstat.utils_1.13-0   assertthat_0.2.1       
+ [37] promises_1.0.1          SDMTools_1.1-221.1     
+ [39] scales_1.0.0            imager_0.41.2          
+ [41] gtable_0.3.0            npsurv_0.4-0           
+ [43] globals_0.12.4          bmp_0.3                
+ [45] goftest_1.1-1           workflowr_1.5.0        
+ [47] rlang_0.4.1             zeallot_0.1.0          
+ [49] akima_0.6-2             systemfonts_0.1.1      
+ [51] splines_3.6.1           lazyeval_0.2.2         
+ [53] rgl_0.100.30            yaml_2.2.0             
+ [55] reshape2_1.4.3          abind_1.4-5            
+ [57] crosstalk_1.0.0         backports_1.1.4        
+ [59] httpuv_1.5.2            tools_3.6.1            
+ [61] gplots_3.0.1.1          raster_3.0-7           
+ [63] RColorBrewer_1.1-2      Rvcg_0.18              
+ [65] ggridges_0.5.1          Rcpp_1.0.3             
+ [67] plyr_1.8.4              zlibbioc_1.30.0        
+ [69] purrr_0.3.3             RCurl_1.95-4.12        
+ [71] rpart_4.1-15            dbscan_1.1-5           
+ [73] deldir_0.1-23           viridis_0.5.1          
+ [75] pbapply_1.4-2           cowplot_1.0.0          
+ [77] zoo_1.8-6               ggrepel_0.8.1          
+ [79] cluster_2.1.0           colorRamps_2.3         
+ [81] fs_1.3.1                magrittr_1.5           
+ [83] data.table_1.12.2       magick_2.2             
+ [85] readbitmap_0.1.5        lmtest_0.9-37          
+ [87] RANN_2.6.1              fitdistrplus_1.0-14    
+ [89] shinyjs_1.1             lsei_1.2-0             
+ [91] mime_0.7                evaluate_0.14          
+ [93] xtable_1.8-4            jpeg_0.1-8.1           
+ [95] gridExtra_2.3           compiler_3.6.1         
+ [97] tibble_2.1.3            KernSmooth_2.23-15     
+ [99] crayon_1.3.4            R.oo_1.22.0            
+[101] htmltools_0.3.6         mgcv_1.8-28            
+[103] later_0.8.0             tiff_0.1-5             
+[105] tidyr_1.0.0             RcppParallel_4.4.3     
+[107] MASS_7.3-51.4           Matrix_1.2-17          
+[109] R.methodsS3_1.7.1       gdata_2.18.0           
+[111] metap_1.1               igraph_1.2.4.1         
+[113] pkgconfig_2.0.2         sp_1.3-2               
+[115] plotly_4.9.1            xml2_1.2.2             
+[117] foreach_1.4.7           webshot_0.5.1          
+[119] XVector_0.24.0          bibtex_0.4.2           
+[121] stringr_1.4.0           digest_0.6.22          
+[123] sctransform_0.2.0       RcppAnnoy_0.0.12       
+[125] tsne_0.1-3              spatstat.data_1.4-0    
+[127] rmarkdown_1.15          leiden_0.3.1           
+[129] uwot_0.1.4              gdtools_0.2.1          
+[131] shiny_1.3.2             gtools_3.8.1           
+[133] lifecycle_0.1.0         nlme_3.1-141           
+[135] jsonlite_1.6            viridisLite_0.3.0      
+[137] pillar_1.4.2            lattice_0.20-38        
+[139] httr_1.4.1              survival_2.44-1.1      
+[141] glue_1.3.1              spatstat_1.61-0        
+[143] png_0.1-7               iterators_1.0.12       
+[145] stringi_1.4.3           caTools_1.17.1.2       
+[147] dplyr_0.8.3             irlba_2.3.3            
+[149] future.apply_1.3.0      ape_5.3                </code></pre>
 </div>
 </div>
 </div>
