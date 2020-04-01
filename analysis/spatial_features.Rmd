@@ -67,7 +67,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 library(STutility)
 #load("~/STUtility/saved/preSaved_10xHippo_norm_reductions.RData")
 
-se.all <- readRDS("~/10x/Public_data/se")
+se.all <- readRDS("F:/JoeDocs/PhD/STUtility_website/se.list")
 se <- se.all[[1]]
 ```
 
@@ -87,7 +87,7 @@ We can then plot a variable number of dimensions across the samples.
 <br>
 ```{r dimplot, fig.height=28, fig.width=12, out.width = "100%"}
 
-cscale <- c("black", "dark blue", "cyan", "yellow", "red", "dark red")
+cscale <- c("black", "darkblue", "cyan", "yellow", "red", "darkred")
 
 ST.DimPlot(se, 
            dims = 1:10,
@@ -193,7 +193,7 @@ for (ftr in fts) {
   FeatureOverlay(se, 
                     features = ftr, 
                     sampleids = 1:2,
-                    cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
+                    cols = c("black", "darkblue", "cyan", "yellow", "red", "darkred"),
                     pt.size = 0.5, 
                     pt.alpha = 0.5, 
                     dark.theme = T)
@@ -216,7 +216,7 @@ se <- RunUMAP(se, reduction = "NMF", n.neighbors = 10)
 ```{r embedding_vs_ST, fig.width = 9, fig.height = 14}
 
 # Define colors for heatmap
-heatmap.colors <- c(rgb(40, 40, 40, maxColorValue = 255), "dark blue", "cyan", "white")
+heatmap.colors <- c(rgb(40, 40, 40, maxColorValue = 255), "darkblue", "cyan", "white")
 fts <- c("Prkcd", "Opalin", "Lamp5")
 
 # plot transformed features expression on UMAP embedding
@@ -280,7 +280,7 @@ Note also, if we are interested in comparing two levels against each other, and 
 
 FeatureOverlay(se, features = "Dlx1", 
                     sampleids = 1:2,
-                    cols = c("black", "dark blue", "cyan", "yellow", "red", "dark red"),
+                    cols = c("black", "darkblue", "cyan", "yellow", "red", "darkred"),
                     pt.size = 1, 
                     pt.alpha = 0.5,
                     dark.theme = T)
@@ -290,11 +290,15 @@ FeatureOverlay(se, features = "Dlx1",
 
 ## Spatial Auto-correlation
 
+## Spatial Auto-correlation
+
 STUtility also includes an additional method for finding genes with spatial patterns across the tissue. The ranking method makes use neighborhood networks to compute the spatial lag for each gene, here defined as the summed expression of that gene in neighboring spots. Each gene is then ranked by the correlation between the lag vector and the original expression vector. The output is a ranked list of the genes with highest correlation between the two vectors. 
+
+This method is inspired by work from the [Giotto team](http://spatial.rc.fas.harvard.edu/spatialgiotto/giotto.html) and we reccomend you to check out their R package Giotto and their preprint; ["Giotto, a pipeline for integrative analysis and visualization of single-cell spatial transcriptomic data"](https://www.biorxiv.org/content/10.1101/701680v1) that is available on bioRxiv.
 
 ```{r autocorrelation, eval=FALSE}
 
-SpatialGenes(se)
+CorSpatialGenes(se)
 
 ```
 

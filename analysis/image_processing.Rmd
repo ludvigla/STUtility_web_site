@@ -60,7 +60,7 @@ body {
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
 ```
 
-```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
+```{r load_lib, warning=FALSE, message=FALSE}
 library(STutility)
 ```
 
@@ -80,7 +80,7 @@ se <- LoadImages(se, time.resolve = F, verbose = T)
 
 #load("~/STUtility/saved/preSaved_10xHippo.RData")
 
-se.all <- readRDS("~/10x/Public_data/se")
+se.all <- readRDS("F:/JoeDocs/PhD/STUtility_website/se.list")
 se <- se.all[[1]]
 
 ```
