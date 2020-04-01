@@ -72,7 +72,7 @@ Following the rationale expressed below, we transform the data according to the 
 <br>
 ```{r SCTransform, warning=FALSE, message=FALSE, results="hide", eval = FALSE} 
 
-se <- SCTransform(se, vars.to.regress = "nFeature_RNA")
+se <- SCTransform(se)
 
 ```
 
