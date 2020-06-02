@@ -9,3 +9,7 @@ analysis/*png
 analysis/*html
 analysis/*_cache
 analysis/site_libs
+analysis/visualization_3D.Rmd
+docs/figure/visualization_3D.Rmd/
+docs/site_libs/plotly-binding-4.9.0/
+docs/visualization_3D.html
