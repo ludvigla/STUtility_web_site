@@ -523,16 +523,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree3660612d2d42cb8373d862dd22152e65ca236547targetblank3660612a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/3660612d2d42cb8373d862dd22152e65ca236547" target="_blank">3660612</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree09fb8810ce4d4674a973482c2d63bf4514b61be5targetblank09fb881a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/09fb8810ce4d4674a973482c2d63bf4514b61be5" target="_blank">09fb881</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree3660612d2d42cb8373d862dd22152e65ca236547targetblank3660612a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree09fb8810ce4d4674a973482c2d63bf4514b61be5targetblank09fb881a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/3660612d2d42cb8373d862dd22152e65ca236547" target="_blank">3660612</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/09fb8810ce4d4674a973482c2d63bf4514b61be5" target="_blank">09fb881</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -543,12 +543,7 @@ Ignored files:
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/manual_annotation.png
     Ignored:    analysis/visualization_3D.Rmd
-
-Untracked files:
-    Untracked:  pre_data/
-
-Unstaged changes:
-    Modified:   analysis/Manual_annotation.Rmd
+    Ignored:    pre_data/
 
 </code></pre>
 <p>
@@ -587,6 +582,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/Neighborhood.html" target="_blank">4f42429</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -655,7 +667,45 @@ body {
 <p>The Seurat object below contain 2 breast cancer tissue sections which have already been normalized and clustered.</p>
 <p><br></p>
 <pre class="r"><code>FeatureOverlay(se, features = &quot;seurat_clusters&quot;, sampleids = 1:2, ncols.samples = 2, dark.theme = T)</code></pre>
-<p><img src="figure/Neighborhood.Rmd/plot_BC_data-1.png" width="1344" style="display: block; margin: auto;" /> <br></p>
+<p><img src="figure/Neighborhood.Rmd/plot_BC_data-1.png" width="1344" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_BC_data-1">
+Past versions of plot_BC_data-1.png
+</button>
+</p>
+<div id="fig-plot_BC_data-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/Neighborhood.Rmd/plot_BC_data-1.png" target="_blank">4f42429</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
 <div id="connected-spatial-network" class="section level3">
 <h3>Connected Spatial Network</h3>
 <p>Once you have defined a region of interest and you want to find all spots neighboring to this region you can use the <code>RegionNeighbours</code> function to automatically detect such spots.</p>
@@ -671,7 +721,45 @@ Saving neighbour ids to column &#39;nbs_2&#39; ...
 Finished. </code></pre>
 <p><br> The default behavior is to find all spots which are neighbors with the selected id but ignoring its label, therefore it will simply be called nbs_2 as in “neighbors to 2”. The output will be stored as a new column in the meta.data slot, and in this example will be called “nbs_2”. The neighborhood detection algorithm is applied to each section separately and can therefore be run on multiple sections at the same time. <br></p>
 <pre class="r"><code>FeatureOverlay(se, features = &quot;nbs_2&quot;, ncols.samples = 2, sampleids = 1:2, cols = c(&quot;red&quot;, &quot;lightgray&quot;), pt.size = 2, dark.theme = T)</code></pre>
-<p><img src="figure/Neighborhood.Rmd/find_neighbors-1.png" width="100%" style="display: block; margin: auto;" /> <br> You can also keep all spots from the id group by setting keep.within.id = TRUE. <br></p>
+<p><img src="figure/Neighborhood.Rmd/find_neighbors-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-find_neighbors-1">
+Past versions of find_neighbors-1.png
+</button>
+</p>
+<div id="fig-find_neighbors-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/Neighborhood.Rmd/find_neighbors-1.png" target="_blank">4f42429</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br> You can also keep all spots from the id group by setting keep.within.id = TRUE. <br></p>
 <pre class="r"><code>se &lt;- SetIdent(se, value = &quot;seurat_clusters&quot;)
 se &lt;- RegionNeighbours(se, id = 2, keep.within.id = T, verbose = TRUE)</code></pre>
 <pre><code>Creating Connected Netork using KNN ... 
@@ -680,7 +768,45 @@ Naming all neighbours nbs_2 ...
 Saving neighbour ids to column &#39;nbs_2&#39; ... 
 Finished. </code></pre>
 <pre class="r"><code>FeatureOverlay(se, features = &quot;nbs_2&quot;, ncols.samples = 2, sampleids = 1:2, cols = c(&quot;red&quot;, &quot;lightgray&quot;), pt.size = 2, dark.theme = T)</code></pre>
-<p><img src="figure/Neighborhood.Rmd/find_neighbors_2-1.png" width="100%" style="display: block; margin: auto;" /> <br></p>
+<p><img src="figure/Neighborhood.Rmd/find_neighbors_2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-find_neighbors_2-1">
+Past versions of find_neighbors_2-1.png
+</button>
+</p>
+<div id="fig-find_neighbors_2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/Neighborhood.Rmd/find_neighbors_2-1.png" target="_blank">4f42429</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
 <p>Using these two sets of spots, we can run a DE analysis to check what egnes are up-regulated outside the cluster border.</p>
 <p><br></p>
 <pre class="r"><code>library(magrittr)
@@ -693,12 +819,88 @@ se.subset &lt;- SubsetSTData(se, expression = nbs_2 %in% c(&quot;2&quot;, &quot;
 sorted.marks &lt;- nbs_2.markers %&gt;% top_n(n = 40, wt = abs(avg_logFC))
 sorted.marks &lt;- sorted.marks[order(sorted.marks$avg_logFC, decreasing = T), ]
 DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c(&quot;red&quot;, &quot;lightgray&quot;), disp.min = -2, disp.max = 2) + DarkTheme() </code></pre>
-<p><img src="figure/Neighborhood.Rmd/de_neighbors-1.png" width="960" style="display: block; margin: auto;" /> <br></p>
+<p><img src="figure/Neighborhood.Rmd/de_neighbors-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-de_neighbors-1">
+Past versions of de_neighbors-1.png
+</button>
+</p>
+<div id="fig-de_neighbors-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/Neighborhood.Rmd/de_neighbors-1.png" target="_blank">4f42429</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
 <p>From this DE-test we can for example see that the genes COX6C and FCGR3B genes are up-regulated inside the cluser whereas LGALS1 and CYBA genes are more highly expressed outisde the cluster border.</p>
 <p><br></p>
 <pre class="r"><code>FeatureOverlay(se.subset, features = c(&quot;COX6C&quot;, &quot;FCGR3B&quot;, &quot;LGALS1&quot;, &quot;CYBA&quot;), pt.size = 2, dark.theme = T, 
                ncols.features = 2, cols = c(&quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;))</code></pre>
-<p><img src="figure/Neighborhood.Rmd/plot_markers-1.png" width="100%" style="display: block; margin: auto;" /> <br></p>
+<p><img src="figure/Neighborhood.Rmd/plot_markers-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_markers-1">
+Past versions of plot_markers-1.png
+</button>
+</p>
+<div id="fig-plot_markers-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/Neighborhood.Rmd/plot_markers-1.png" target="_blank">4f42429</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
 <p>And lastly, if you want to keep the labels for the neighbors you can set keep.idents = TRUE and you can keep one label per identity for the neighboring spots, e.g. “label”_nb_to_2</p>
 <p><br></p>
 <pre class="r"><code>se &lt;- SetIdent(se, value = &quot;seurat_clusters&quot;)
@@ -712,6 +914,43 @@ Saving neighbour ids to column &#39;nbs_2&#39; ...
 Finished. </code></pre>
 <pre class="r"><code>FeatureOverlay(se, features = &quot;nbs_2&quot;, ncols.samples = 2, sampleids = 1:2, pt.size = 2, dark.theme = T)</code></pre>
 <p><img src="figure/Neighborhood.Rmd/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
+Past versions of unnamed-chunk-1-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/Neighborhood.Rmd/unnamed-chunk-1-1.png" target="_blank">4f42429</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
  
 <hr />
 <p style="text-align: center;">
