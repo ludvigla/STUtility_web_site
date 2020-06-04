@@ -1,0 +1,252 @@
+---
+title: "Getting started"
+date: ''
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
+```
+
+```{r load_lib}
+
+library(STutility)
+library(ggplot2)
+
+```
+
+## Quality Control
+***
+
+Here we'll go through some basic steps to assess the quality of your data and how to apply filters to remove low abundant genes and poor quality spots. 
+
+```{r pre-load, include=FALSE, eval=TRUE}
+
+load("pre_data/preSaved_10x_serial.RData")
+
+```
+
+### Include all spots 
+
+If you expect that you have over-permeabilized your tissue it could be useful to look at the expression patterns outside the tissue region as well. This can be done by loading the 
+
+```{r package_infotable_Visium, eval=FALSE, include = FALSE}
+
+samples <- c("~/10x/Public_data/S1_Sagittal_posterior/V1_Mouse_Brain_Sagittal_Posterior_raw_feature_bc_matrix.h5",
+             "~/10x/Public_data/S2_Sagittal_posterior/V1_Mouse_Brain_Sagittal_Posterior_Section_2_raw_feature_bc_matrix.h5",
+             "~/10x/Public_data/S1_Sagittal_anterior/V1_Mouse_Brain_Sagittal_Anterior_raw_feature_bc_matrix.h5",
+             "~/10x/Public_data/S2_Sagittal_anterior/V1_Mouse_Brain_Sagittal_Anterior_Section_2_raw_feature_bc_matrix.h5")
+imgs <- c("~/10x/Public_data/S1_Sagittal_posterior/tissue_hires_image.png",
+             "~/10x/Public_data/S2_Sagittal_posterior/tissue_hires_image.png",
+             "~/10x/Public_data/S1_Sagittal_anterior/tissue_hires_image.png",
+             "~/10x/Public_data/S2_Sagittal_anterior/tissue_hires_image.png")
+spotfiles <- c("~/10x/Public_data/S1_Sagittal_posterior/tissue_positions_list.csv",
+             "~/10x/Public_data/S2_Sagittal_posterior/tissue_positions_list.csv",
+             "~/10x/Public_data/S1_Sagittal_anterior/tissue_positions_list.csv",
+             "~/10x/Public_data/S2_Sagittal_anterior/tissue_positions_list.csv")
+json <- c("~/10x/Public_data/S1_Sagittal_posterior/scalefactors_json.json",
+             "~/10x/Public_data/S2_Sagittal_posterior/scalefactors_json.json",
+             "~/10x/Public_data/S1_Sagittal_anterior/scalefactors_json.json",
+             "~/10x/Public_data/S2_Sagittal_anterior/scalefactors_json.json")
+infoTable <- data.frame(samples, imgs, spotfiles, json, stringsAsFactors = FALSE)
+
+```
+
+
+```{r load_infotable, eval=TRUE, include=FALSE}
+
+load("pre_data/preSaved_10x_serial_all_spots.RData")
+
+infoTable <- readRDS("pre_data/infoTable_raw")
+
+```
+
+Here we have a new infotable data.frame where the file paths in the "samples" column have been set to the "*raw_feature_bc_matrix.h5" matrrices instead of the filtered ones. Now we can load all spots into our Seurat object by setting `disable.subset = TRUE`.
+
+```{r print_infotable}
+
+infoTable
+
+```
+```{r load_all_spots, eval=FALSE}
+
+se <- InputFromTable(infoTable, disable.subset = TRUE)
+
+```
+
+The tissue borders are quite easy to see in the plot but you can also see that there have been transcripts captured also outside of the tissue. During library preparation, transcripts can diffuse out into the solution and end up anywhere outside the tissue but we can know from the TO experiments that the transcripts captured under the tissue form a cDNA footprint that accurately reflects the tissue morphology and that the transcripts have diffused vertically from the cells in the tissue down onto the capture area surface. 
+
+It can be good to keep this in mind when you see that you have holes in your tissue with no cells. You might detect quite a lot of transcripts in such holes and it is therefore important to carefully remove spots that are not covered by cells. If the automatic tissue detection algorithm run by spaceranger fails to find such holes, it could be a good idea to manually remove them using Loupe Browser before running spaceranger.
+
+```{r plot_all_spots, fig.width=12, fig.height=12, out.width="100%"}
+
+ST.FeaturePlot(se, features = "nFeature_RNA", dark.theme = TRUE, cols = c("dark blue", "cyan", "yellow", "red", "dark red"))
+
+```
+
+
+```{r read_infotable, include=FALSE}
+
+infoTable <- readRDS(file = "pre_data/infoTable_filtered")
+
+```
+
+Now let's load the data with the subsetting enabled. Here we can use wither the raw matrices or the filtered matrices as long as we have spotfiles available in our infoTable data.frame which will be used to select the spots under tissue.
+
+```{r load_all_spots_filtered, eval=FALSE}
+
+se <- InputFromTable(infoTable)
+
+```
+
+Sometimes it can be a good idea to filter the data to remove low quality spots or low abundant genes. When running `InputFromTable`, spots with 0 counts will automatically be removed but you also have the option to filter the data directly using one of the following arguments:
+  
+  - min.gene.count : sets a threshold for the minimum allowed UMI counts of a gene across the whole dataset
+  - min.gene.spots : sets a threshold for the minimum allowed number of spots where a gene is detected cross the whole dataset
+  - min.spot.feature.count : sets a threshold for the minimum allowed number of unique genes in a spot
+  - min.spot.count : sets a threshold for the minimum allowed UMI counts in a spot
+  - topN : subset the expression matrix to include only the topN most expressed genes
+  
+You can also apply filters when the Seurat obect has been created which gives you more freedom to explore what could be a good threshold. Below we have plotted some basic features that you can use to define your filtering thresholds when running `InputFromTable`.
+
+```{r qc_plots, fig.width=12, fig.height=7, out.width="100%"}
+
+
+p1 <- ggplot() +
+  geom_histogram(data = se[[]], aes(nFeature_RNA), fill = "red", alpha = 0.7, color = "gray", bins = 50) +
+  Seurat::DarkTheme() +
+  ggtitle("Unique genes per spot")
+
+p2 <- ggplot() +
+  geom_histogram(data = se[[]], aes(nCount_RNA), fill = "red", alpha = 0.7, color = "gray", bins = 50) +
+  Seurat::DarkTheme() +
+  ggtitle("Total counts per spots")
+
+gene_attr <- data.frame(nUMI = Matrix::rowSums(se@assays$RNA@counts), 
+                        nSpots = Matrix::rowSums(se@assays$RNA@counts > 0))
+p3 <- ggplot() +
+  geom_histogram(data = gene_attr, aes(nUMI), fill = "red", alpha = 0.7, color = "gray", bins = 50) +
+  Seurat::DarkTheme() +
+  scale_x_log10() +
+  ggtitle("Total counts per gene (log10 scale)")
+
+p4 <- ggplot() +
+  geom_histogram(data = gene_attr, aes(nSpots), fill = "red", alpha = 0.7, color = "gray", bins = 50) +
+  Seurat::DarkTheme() +
+  ggtitle("Total spots per gene")
+
+cowplot::plot_grid(p1, p2, p3, p4)
+
+```
+
+### Filter out spots
+
+Let's say that we want to remove all spots with fewer than 500 unique genes we can simply subset the using the `SubsetSTData` function and an expression.
+
+NOTE: The Seurat package provides a `subset` method for Seurat objects but unfotunately this method will not work when using STUtility.
+
+```{r subset_by_genes}
+
+se.subset <- SubsetSTData(se, expression = nFeature_RNA > 500)
+
+cat("Spots removed: ", ncol(se) - ncol(se.subset), "\n")
+
+```
+
+### Mitochondrial content
+
+It can also be useful to explore other features of the dataset to use for filtering, for example mitochondrial transcript content or ribosomal protein coding transcript content. Mitochondrial genes are prefixed with "mt-" in MGI nomenclature so we can collect these genes and then calculate the percentage of mitochondrial content per spot and add this information to our meta.data.
+
+```{r subset_by_mt, fig.width=12, fig.height=12, out.width="100%"}
+
+# Collect all genes coded on the mitochondrial genome
+mt.genes <- grep(pattern = "^mt-", x = rownames(se), value = TRUE)
+se$percent.mito <- (Matrix::colSums(se@assays$RNA@counts[mt.genes, ])/Matrix::colSums(se@assays$RNA@counts))*100
+
+# Collect all genes coding for ribosomal proteins
+rp.genes <- grep(pattern = "^Rpl|^Rps", x = rownames(se), value = TRUE)
+se$percent.ribo <- (Matrix::colSums(se@assays$RNA@counts[rp.genes, ])/Matrix::colSums(se@assays$RNA@counts))*100
+
+ST.FeaturePlot(se, features = "percent.mito", dark.theme = TRUE, cols = c("dark blue", "cyan", "yellow", "red", "dark red"))
+ST.FeaturePlot(se, features = "percent.ribo", dark.theme = TRUE, cols = c("dark blue", "cyan", "yellow", "red", "dark red"))
+
+```
+
+We can also combine different thresholds to filter the data. Let's say that we want to remove all spots with fewer than 500 unique genes and also spots with a high mitochondrial transcript content (>30%). 
+
+```{r filter_combined}
+
+# Keep spots with more than 500 unique genes and less than 30% mitochondrial content
+se.subset <- SubsetSTData(se, expression = nFeature_RNA > 500 & percent.mito < 30)
+
+cat("Spots removed: ", ncol(se) - ncol(se.subset), "\n")
+
+```
+
+### Removing genes
+
+If you have good reson to remove a certain type of gene, this can also be done quite easily as well. For example, you might want to keep only protein coding genes in your dataset. Here we demonstrate how to subset a Seurat object to include only protein coding genes using our predefined covnersion table, but you could also get this information elsewhere, e.g. bioMart.
+
+```{r annotation, eval=FALSE}
+
+ensids <- read.table(file = list.files(system.file("extdata", package = "STutility"), full.names = T, pattern = "mouse_genes"), header = T, sep = "\t", stringsAsFactors = F)
+
+# Print available biotypes
+unique(ensids$gene_type)
+keep.genes <- subset(ensids, gene_type %in% "protein_coding")$gene_name
+
+# Subset Seurat object
+se.subset <- se[intersect(rownames(se), keep.genes), ]
+
+cat("Number of genes removed : ", nrow(se) - nrow(se.subset), "\n")
+
+```
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;
+

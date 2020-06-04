@@ -1,20 +1,6 @@
 ---
 title: "Normalization"
 date: ''
-#output:
-#  html_document:
-#    theme: darkly
-#    css: style.css
-#    number_sections: false
-#    toc: yes
-#    toc_depth: 3
-#    toc_float:
-#      collapsed: false
-#      smooth_scroll: true
-#  pdf_document:
-#    number_sections: false
-#    toc: yes
-#    toc_depth: 3
 ---
 
 <style type="text/css">
@@ -58,13 +44,14 @@ body {
 ```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
 library(STutility)
 ```
-```{r, pre-load, echo=F, eval=T}
+```{r, pre-load, echo=FALSE, eval=TRUE}
 
-load("~/STUtility/saved/preSaved_10xHippo.RData")
+load("pre_data/preSaved_10xHippo.RData")
 
 ```
 
 ## SCTransform (Seurat)
+***
 
 In order to normalize the data we recommend using [variance stabilized transformation](https://www.biorxiv.org/content/10.1101/576827v1) available in the SCTransform function in Seurat as of v3.0. 
 
@@ -81,6 +68,7 @@ Note: for comprehensive tutorials in the different options and workflow possibil
 ---
 
 ## Rationale of approach
+***
 
 Each spot in a Spatial Transcriptomics dataset typically contains RNA from a mixture of cells so why would we apply a workflow that was developed for single-cell RNAseq data? We can calculate some properties to visually inspect the data to see that ST data have similar properties to that of scRNAseq data.
 <br>
