@@ -1,5 +1,5 @@
 ---
-title: "Spatial Features"
+title: "Neighborhood analysis"
 author:
 date: ''
 ---
