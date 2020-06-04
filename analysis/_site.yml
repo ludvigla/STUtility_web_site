@@ -9,14 +9,22 @@ navbar:
     href: about.html
   - text: Installation
     href: installation.html
-  - text: Getting Started
-    href: getting_started.html
-  - text: Image processing
-    href: image_processing.html
-  - text: Normalization
-    href: normalization.html
-  - text: Spatial features
-    href: spatial_features.html
+  - text: Getting started
+    menu:
+      - text: Load data
+        href: getting_started.html
+      - text: Quality Control
+        href: Quality_Control.html
+      - text: Image processing
+        href: image_processing.html
+      - text: Normalization
+        href: normalization.html
+      - text: Spatial features
+        href: spatial_features.html
+      - text: Neighborhood Analysis
+        href: Neighborhood.html
+      - text: 3D visualization
+        href: visualization_3D.html
   - text: License
     href: license.html
   right:
