@@ -112,7 +112,7 @@ The tissue borders are quite easy to see in the plot but you can also see that t
 
 It can be good to keep this in mind when you see that you have holes in your tissue with no cells. You might detect quite a lot of transcripts in such holes and it is therefore important to carefully remove spots that are not covered by cells. If the automatic tissue detection algorithm run by spaceranger fails to find such holes, it could be a good idea to manually remove them using Loupe Browser before running spaceranger.
 
-```{r plot_all_spots, fig.width=12, fig.height=12, out.width="100%"}
+```{r plot_all_spots, fig.width=8, fig.height=8, out.width="100%"}
 
 ST.FeaturePlot(se, features = "nFeature_RNA", dark.theme = TRUE, cols = c("dark blue", "cyan", "yellow", "red", "dark red"))
 
@@ -122,6 +122,7 @@ ST.FeaturePlot(se, features = "nFeature_RNA", dark.theme = TRUE, cols = c("dark 
 ```{r read_infotable, include=FALSE}
 
 infoTable <- readRDS(file = "pre_data/infoTable_filtered")
+load("pre_data/preSaved_10x_serial_all_spots_filtered.RData")
 
 ```
 
@@ -144,7 +145,6 @@ Sometimes it can be a good idea to filter the data to remove low quality spots o
 You can also apply filters when the Seurat obect has been created which gives you more freedom to explore what could be a good threshold. Below we have plotted some basic features that you can use to define your filtering thresholds when running `InputFromTable`.
 
 ```{r qc_plots, fig.width=12, fig.height=7, out.width="100%"}
-
 
 p1 <- ggplot() +
   geom_histogram(data = se[[]], aes(nFeature_RNA), fill = "red", alpha = 0.7, color = "gray", bins = 50) +
@@ -191,7 +191,7 @@ cat("Spots removed: ", ncol(se) - ncol(se.subset), "\n")
 
 It can also be useful to explore other features of the dataset to use for filtering, for example mitochondrial transcript content or ribosomal protein coding transcript content. Mitochondrial genes are prefixed with "mt-" in MGI nomenclature so we can collect these genes and then calculate the percentage of mitochondrial content per spot and add this information to our meta.data.
 
-```{r subset_by_mt, fig.width=12, fig.height=12, out.width="100%"}
+```{r subset_by_mt, fig.width=8, fig.height=8, out.width="100%"}
 
 # Collect all genes coded on the mitochondrial genome
 mt.genes <- grep(pattern = "^mt-", x = rownames(se), value = TRUE)
