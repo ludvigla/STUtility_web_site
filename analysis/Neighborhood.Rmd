@@ -111,7 +111,7 @@ FeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, cols 
 ```
 <br>
 
-Using these two sets of spots, we can run a DE analysis to check what egnes are up-regulated outside the cluster border.
+Using these two sets of spots, we can run a DE analysis to check what genes are up-regulated outside the cluster border.
 
 <br>
 ```{r de_neighbors, fig.width=10, fig.height=10}
