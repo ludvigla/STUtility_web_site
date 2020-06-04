@@ -48,25 +48,17 @@ body {
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
 ```
 
-```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
+```{r load_lib, include=FALSE}
 library(STutility)
-load("~/STUtility/saved/preSaved_10xHippo_norm_reductions.RData")
-#setwd("/run/media/joey/KING-JOSEPH/JoeDocs/PhD/STUtility/STutility/inst/extdata/10xVisium/serial")
+library(ggplot2)
+
+load("pre_data/preSaved_10xHippo_norm_reductions.RData")
+
 ```
-```{r, eval=FALSE, echo=FALSE}
-infoTable <- read.table("infoTable_serial.csv", sep=",", header=T, stringsAsFactors = F)
-se <- InputFromTable(infotable = infoTable, 
-                      min.gene.count = 100, 
-                      min.gene.spots = 5,
-                      min.spot.count = 500,
-                      platform="Visium",
-                      scaleVisium = 0.17211704)
-se <- LoadImages(se)
-se <- MaskImages(se)
-se <- AlignImages(se)
-```
+<br>
 
 ## Creating 3D stack of points
+***
 
 STutility currently allows for visualization of features in 3D using a point cloud created from the nuclei detected in aligned HE images using the `Create3DStack()` function. The cell nuclei coordinates are extracted based on color intensity as nuclei are typically darker in color than the surrounding tissue. This is not an exact cell segmentation but it will typically capture the density of nuclei well enough to define various morphological structures. 
 
@@ -89,6 +81,7 @@ se <- Create3DStack(se)
 <br>
 
 ## Point patterns
+***
 
 We can plot the stacked coordinates in 2D to see what the point patterns look like. From the plot below you can see that a higher density of points is picked up in areas width darker color, which is typically the case for the tissue edges. 
 <br>
@@ -108,6 +101,7 @@ ggplot(stack_3d, aes(x, 2e3 - y)) +
 <br>
 
 ## Data interpolation
+***
 
 The next step to visualize features is to interpolate values across the point patterns. Since each point is assigned to a grid cell, we can interpolate values across the grid and assign an interpolated values back to the points. Remember that the width of the grid is determined by the `nx` parameter and you can increase the resolution of the interpolation by setting `nx` to a higher value when running the `Create3DStack()` function. Increasing the value of this parameter will improve the "smoothness" of the colormap but will slow down the computation significantly.
 <br>
@@ -129,6 +123,7 @@ ggplot(interpolated.data, aes(x, 2e3 - y, color = val)) +
 <br> 
 
 ## 3D plot
+***
 
 To generate 3D plots you can use the visualization functions `FeaturePlot3D()`, `DimPlot3D()`, and `HSVPlot3D()`. Each section will by default be assigned a z coordinate ranging from 1 to N where N is the number of samples. If you wish to change these z coordinates you can use the parameter `zcoords` to map each section to a new value (note that you need to provide as many z coordinates as the number of samples in your Seurat object). 
 
@@ -143,20 +138,24 @@ Now we are ready to plot features in 3D. We'll run the `FeaturePlot3D()` functio
 FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6)
 
 ```
+<br>
 
 see `?FeaturePlot3D` for more plotting alternatives, e.g. the z-distance can be changed to more truthfully represent the actual distance between the sections:
 
+<br>
 ```{r plt_3d2}
 
 FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6, add.margins = 2)
 
 ```
+<br>
 
-Various other features and analysis results can be visualized, e.g. if we previously had performed a factor analysis on the samples, we can e.g. show theses factors simultaneously on the HSV color scale:
+Various other features and analysis results can be visualized, e.g. if we previously had performed a factor analysis on the samples, we can for example show theses factors simultaneously using the HSV color coding scheme. Just keep in mind that the factors needs to be non-overlapping. The HSV color scheme can be useful to show mulltiple features simultaneously, but it's recommended to also explore the features one by one.
 
+<br>
 ```{r plt_3d_HSV}
 
-HSVPlot3D(se, features = paste("factor_", c(2,4,6,7,9,13, 17, 18, 21, 22, 23), sep=""), pt.size = 1, dark.theme = T, add.margins = 1)
+HSVPlot3D(se, features = paste0("factor_", c(4,5,7,9,11,13,14,15,18,22,24,25,29,30,31,33,36)), pt.size = 1, dark.theme = T, add.margins = 1)
 
 
 ```
@@ -164,6 +163,7 @@ HSVPlot3D(se, features = paste("factor_", c(2,4,6,7,9,13, 17, 18, 21, 22, 23), s
 <br>
 
 ## Multiple 3D plots
+***
 
 The 3D plots are drawn using the `plotly` R package and you can specify a layout attribute called scene to the `FeaturePlot3D()` to enable the visualization of multiple 3D plots at the same time. Below we plot the features "Mbp" and "Calb2" in two different scenes and we can then use `subplot()` to visualize them side by side.
 
@@ -171,8 +171,8 @@ The 3D plots are drawn using the `plotly` R package and you can specify a layout
 
 ```{r subplot, out.width = "100%"}
 
-p1 <- FeaturePlot3D(se, features = "Mbp", scene = "scene", cols = c("black", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
-p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("black", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
+p1 <- FeaturePlot3D(se, features = "Mbp", scene = "scene", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
+p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
 
 plotly::subplot(p1, p2, margin = 0)
 
