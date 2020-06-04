@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -28,6 +27,14 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -238,6 +245,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -266,6 +274,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -388,13 +402,6 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<!-- Add a small amount of space between sections. -->
-<style type="text/css">
-div.section {
-  padding-top: 12px;
-}
-</style>
-
 <div class="fluid-row" id="header">
 
 
@@ -406,7 +413,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -415,7 +422,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -424,17 +431,17 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-01-17
+<strong>Last updated:</strong> 2020-06-04
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.5.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -472,7 +479,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -491,18 +498,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
-<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-The following chunks had caches available:
-<ul>
-<li>
-annotation
-</li>
-</ul>
-<p>To ensure reproducibility of the results, delete the cache directory <code>getting_started_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
 </div>
 </div>
 </div>
@@ -521,19 +522,32 @@ annotation
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree74b686086b69c1a42bb202298d90e841e2511201targetblank74b6860a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/74b686086b69c1a42bb202298d90e841e2511201" target="_blank">74b6860</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree3660612d2d42cb8373d862dd22152e65ca236547targetblank3660612a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/3660612d2d42cb8373d862dd22152e65ca236547" target="_blank">3660612</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree74b686086b69c1a42bb202298d90e841e2511201targetblank74b6860a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree3660612d2d42cb8373d862dd22152e65ca236547targetblank3660612a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/3660612d2d42cb8373d862dd22152e65ca236547" target="_blank">3660612</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .Rhistory
-    Ignored:    .Rproj.user/
-    Ignored:    analysis/getting_started_cache/
+    Ignored:    .DS_Store
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/manual_annotation.png
+    Ignored:    analysis/visualization_3D.Rmd
+
+Untracked files:
+    Untracked:  pre_data/
+
+Unstaged changes:
+    Modified:   analysis/Manual_annotation.Rmd
 
 </code></pre>
 <p>
@@ -546,9 +560,460 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/getting_started.Rmd</code>) and HTML (<code>docs/getting_started.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/3660612d2d42cb8373d862dd22152e65ca236547/analysis/getting_started.Rmd" target="_blank">3660612</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+<td>
+update website
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/cd4bf7d3c21072f76ddfd6f82003be69a40daa89/docs/getting_started.html" target="_blank">cd4bf7d</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/74b686086b69c1a42bb202298d90e841e2511201/analysis/getting_started.Rmd" target="_blank">74b6860</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-17
+</td>
+<td>
+wflow_publish(“analysis/getting_started.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/7d3885a295f7a75a710989f582a64de51768db9d/docs/getting_started.html" target="_blank">7d3885a</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/2eb9eadd73f7182464f1e098723aca1afde1e781/analysis/getting_started.Rmd" target="_blank">2eb9ead</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+<td>
+Updated InputFromTable info
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/fb06450963f0f83237398d130bc27741c74088fe/docs/getting_started.html" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/baff98e3760bbbf3174503840e5df18f2fc71a4e/analysis/getting_started.Rmd" target="_blank">baff98e</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-12-16
+</td>
+<td>
+adding
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/5cb8ab1a6077d5b0bdd819027308d896dbb714eb/analysis/getting_started.Rmd" target="_blank">5cb8ab1</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-12-02
+</td>
+<td>
+update2
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/8f9876e8b15d5194fc6919cecc8a85f092089a5b/analysis/getting_started.Rmd" target="_blank">8f9876e</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-11-29
+</td>
+<td>
+Update
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/03c9b7c5d986c9f9b3fc1fb350cf679d8bb0ca05/analysis/getting_started.Rmd" target="_blank">03c9b7c</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-11-19
+</td>
+<td>
+Added JB
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/03c9b7c5d986c9f9b3fc1fb350cf679d8bb0ca05/docs/getting_started.html" target="_blank">03c9b7c</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-11-19
+</td>
+<td>
+Added JB
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/be8be1dd978189fd6e4582c2db31effd9a0039b6/docs/getting_started.html" target="_blank">be8be1d</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/f42af97b5ee66eb67aa263efcd091733bd30333b/docs/getting_started.html" target="_blank">f42af97</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/0754921643b10ad3761ccee0fcb5f45bcd22e443/docs/getting_started.html" target="_blank">0754921</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/908fe2cc69d6d4d358c8a50ddd86e283ccd72e5a/docs/getting_started.html" target="_blank">908fe2c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/54787b574cc423311c7397610728bc0885eb2bad/docs/getting_started.html" target="_blank">54787b5</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/d96da86a15037552b02d65078a836b22078bbcff/docs/getting_started.html" target="_blank">d96da86</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/e4e84dc0a66461a8915b3c9eac5274bed8ca3b16/analysis/getting_started.Rmd" target="_blank">e4e84dc</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added theme
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/0c7935326179d261a14f1f8bd908f6c94dab92dc/docs/getting_started.html" target="_blank">0c79353</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/6257541b6adf98ffffb4bad1744288cf22cdbfeb/analysis/getting_started.Rmd" target="_blank">6257541</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/22413634e278bb83e5eedce8552a3dca8d917385/docs/getting_started.html" target="_blank">2241363</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/8bae4fa8aacfa4c6061e5b94de222d85f8430960/analysis/getting_started.Rmd" target="_blank">8bae4fa</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/a53305cfbcc4ee1876e86d2de96f63e09cce9d0c/docs/getting_started.html" target="_blank">a53305c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/6f61b955fa6ca26eaab92a1b4858df80c2ac44b7/docs/getting_started.html" target="_blank">6f61b95</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/429c12c00a29edf3cac450c8c51e0a291261c328/analysis/getting_started.Rmd" target="_blank">429c12c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Publish the initial files for myproject
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -588,21 +1053,18 @@ body {
 <pre class="r"><code>library(STutility)</code></pre>
 <div id="x-visium-platform" class="section level2">
 <h2>10X Visium platform</h2>
+<hr />
 <div id="input-files" class="section level3">
 <h3>Input files</h3>
-<p>10X Visium data output is produced with the <a href="url">SpaceRanger</a>. The output includes a number of files, but the ones that needs to be imported into R for STUtility is the following:</p>
+<hr />
+<p>10X Visium data output is produced with the <a href="url">spaceranger</a> command line tool from raw fastq files. The output includes a number of files, and the ones that needs to be imported into R for STUtility are the following:</p>
 <ol style="list-style-type: decimal">
-<li>Count file (Count file with raw counts (UMI filtered) for each gene and capture spot. SpaceRanger outputs this in .h5 format, and the file is typically called “xxxxx_filtered_feature_bc_matrix.h5”)</li>
-<li>Position list (tissue_positions_list.txt for each sample, contains capture-spot barcode spatial information and pixel coordinates)</li>
-<li>H&amp;E image (tissue_hires_image.png or tissue_lowres_image.png for each sample)</li>
+<li>“filtered_feature_bc_matrix.h5” or “raw_feature_bc_matrix.h5” : Gene expression matrices in .h5 format containing the raw UMI counts for each spot and each gene</li>
+<li>“tissue_positions_list.txt” : contains capture-spot barcode spatial information and pixel coordinates</li>
+<li>“tissue_hires_image.png” : H&amp;E image in PNG format</li>
+<li>“scalefactors_json.json” : This file contains scaling factors subject to the H&amp;E images of different resolutions. E.g. “tissue_hires_scalef”: 0.063, implies that the pixel coordinates in the position list should be scaled with 0.063 to match the size of the hires_image.png file.</li>
 </ol>
-<p>Also, there is a forth file which holds information about the image scale:</p>
-<ol start="4" style="list-style-type: decimal">
-<li>scalefactors_json.json</li>
-</ol>
-<p>This file contains scaling factors subject to the H&amp;E images of different resolutions. E.g. “tissue_hires_scalef”: 0.063, implies that the pixel coordinates in the position list should be scaled with 0.063 to match the size of the hires_image.png file.</p>
-<p><em>In the current version of STUtility, this scaling factors needs to be noted manually and stated during the input when using the InputFromTable() function</em> We have chosen this to minimize the number of dependencies.</p>
-<p>To use the full range of functions within STUtility, all three files are needed for each sample along with the information in the forth file. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input. To read in the 10x Visium .h5 files, the package <code>hdf5r</code> needs to be installed (<code>BiocManager::install("hdf5r")</code>).</p>
+<p>To use the full range of functions within STUtility, all four files are needed for each sample. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input. To read in the 10x Visium .h5 files, the package <code>hdf5r</code> needs to be installed (<code>BiocManager::install(&quot;hdf5r&quot;)</code>).</p>
 <hr />
 <p>To follow along this tutorial with a test data set, go to the <a href="https://support.10xgenomics.com/spatial-gene-expression/datasets">10x Dataset repo</a> and download the following two files:</p>
 <ul>
@@ -614,7 +1076,7 @@ body {
 <li>scalefactors_json</li>
 </ul></li>
 </ul>
-<p>The .zip file contains the H&amp;E image (in two resolution formats; “tissue_lowres_image” and “tissue_hires_image”), the “tissue_positions_list” with pixel coordinates for the orginial .tif image and the scalefactors_json.json that contains the scalefactors used to dervive the pixel cooridinates for the lowres and hires images. There are some alternatives to handle the scalefactors. Either, you manualy open the .json file and note the scalefactor used for the images you want to use (lowres or hires), and state these numbers in a column in the infoTable named “scaleVisium” (see below). Or, you add a column named “json” with paths to the “scalefactors_json.json” files. A third option is to manually input the values to the function InputFromTable (see <code>?InputFromTable</code>).</p>
+<p>The .zip file contains the H&amp;E image (in two resolution formats; “tissue_lowres_image” and “tissue_hires_image”), the “tissue_positions_list” with pixel coordinates for the orginial .tif image and the “scalefactors_json.json” that contains the scalefactors used to dervive the pixel cooridinates for the hires images. There are some alternatives to handle the scalefactors. Either, you manualy open the .json file and note the scalefactor and state these numbers in a column in the infoTable named “scaleVisium” (see below). Or, you add a column named “json” with paths to the “scalefactors_json.json” files. A third option is to manually input the values to the function InputFromTable (see <code>?InputFromTable</code>).</p>
 <p>In this vignette we show e.g. the data sets from Mouse Brain Serial Section 1 and 2 (Sagittal-Posterior)</p>
 </div>
 <div id="prepare-data" class="section level3">
@@ -623,14 +1085,12 @@ body {
 <pre><code>                samples                spotfiles                imgs
 1 Path to count file 1  Path to position list  1 Path to H&amp;E image 1
 2  Path to count file 2 Path to position list  2 Path to H&amp;E image 2
-       scaleVisium
-1 scale to image 1
-2 scale to image 2</code></pre>
-<p>These contains the paths to the files. Any number of <em>extra</em> columns can be added with metadata. This information can then be used to e.g. coloring of plots and subsetting. These columns can be named as you like, but <em>not</em> “sample”, “spotfiles” or “imgs”. Analysis of the data can be performed without the images, and then those columns are simply left out.</p>
-<p>Lets load the provided infoTable <br></p>
-<pre class="r"><code>infoTable &lt;- read.table(&quot;infoTable.csv&quot;, sep=&quot;,&quot;, header=T, stringsAsFactors = F)</code></pre>
-<p>We are now ready to load our samples and create a “seurat” object.</p>
-<p>Here, we demonstrate the creation of the seurat object, while also including some filtering:</p>
+                 json
+1 Path to json file 1
+2 Path to json file 2</code></pre>
+<p>These contains the paths to the files. Any number of <em>extra</em> columns can be added to the infoTable data.frame that you want to include as meta data in your Seurat object, e.g. “gender”, “age”, “slide_id” etc. These columns can be named as you like, but <em>not</em> “sample”, “spotfiles” or “imgs”.</p>
+<p>We are now ready to load our samples and create a “Seurat” object using our infotTable data.frame.</p>
+<p>Here, we demonstrate the creation of the Seurat object, while also including some filtering (see section “Quality Control” for more information on filtering):</p>
 <ul>
 <li>Keeping the genes that are found in at least 5 capture spots and has a total count value &gt;= 100.</li>
 <li>Keeping the capture-spots that contains &gt;= 500 total transcripts.</li>
@@ -640,11 +1100,71 @@ body {
                       min.gene.count = 100, 
                       min.gene.spots = 5,
                       min.spot.count = 500,
-                      platform=&quot;Visium&quot;)</code></pre>
+                      platform =  &quot;Visium&quot;)</code></pre>
 <p><br> Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the Seurat package. There are many vignettes to get started available at the <a href="https://satijalab.org/seurat/vignettes.html">Seurat web site</a>.</p>
-<p>For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the <code>ST.FeaturePlot()</code> function. <br></p>
+<p>For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the <code>ST.FeaturePlot()</code> function. Features include any column stored in the “meta.data” slot, dimensionality reduction objects or gene expression vectors.</p>
+<p><br></p>
 <pre class="r"><code>ST.FeaturePlot(se, features = c(&quot;nFeature_RNA&quot;), dark.theme = T, cols = c(&quot;black&quot;, &quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;))</code></pre>
 <p><img src="figure/getting_started.Rmd/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
+Past versions of unnamed-chunk-1-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/getting_started.Rmd/unnamed-chunk-1-1.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/03c9b7c5d986c9f9b3fc1fb350cf679d8bb0ca05/docs/figure/getting_started.Rmd/unnamed-chunk-1-1.png" target="_blank">03c9b7c</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-11-19
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/getting_started.Rmd/unnamed-chunk-1-1.png" target="_blank">d96da86</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><br></p>
 </div>
 </div>
@@ -664,15 +1184,16 @@ body {
 <h3>Prepare data</h3>
 <p>The recommended method to read the files into R is via the creation of a “infoTable”, which is a table with at least three columns “samples”, “spotfiles” and “imgs”. <br></p>
 <p>Test data is provided:</p>
-<pre class="r"><code>infoTable &lt;- read.table(&quot;metaData_mmBrain.csv&quot;, sep=&quot;;&quot;, header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]</code></pre>
+<pre class="r"><code>infoTable &lt;- read.table(&quot;~/STUtility/inst/extdata/metaData_mmBrain.csv&quot;, sep=&quot;;&quot;, header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]</code></pre>
 </div>
 <div id="load-data-and-convert-from-ensambleids-to-gene-symbols" class="section level3">
 <h3>Load data and convert from EnsambleIDs to gene symbols</h3>
-<p>The provided count matrices uses EnsambleIDs (with version id) for the gene names. Gene symbols are often a preference for easier reading, and we provide a transformation table accordingly. <br></p>
+<p>The provided count matrices uses EnsambleIDs (with version id) for the gene symbols. Gene symbols are often a preference for easier reading, and we have therefore included an option to directly convert the gene IDs when creating the Seurat object. The data.frame object required for conversion should have one column called “gene_id” matching the original gene IDs and a column called “gene_name” with the desired symbols. you also need to make sure that these columns have unique names, otherwise the converiion will not work. We have provided such a table that you can use to convert between EnsambleIDs and MGI symbols (mus musculus gene nomenclature).</p>
+<p><br></p>
 <pre class="r"><code>#Transformation table for geneIDs
 ensids &lt;- read.table(file = list.files(system.file(&quot;extdata&quot;, package = &quot;STutility&quot;), full.names = T, pattern = &quot;mouse_genes&quot;), header = T, sep = &quot;\t&quot;, stringsAsFactors = F)</code></pre>
-<p>We are now ready to load our samples and create a “seurat” object.</p>
-<p>Here, we demonstrate the creation of the seurat object, while also including some filtering:</p>
+<p>We are now ready to load our samples and create a “Seurat” object.</p>
+<p>Here, we demonstrate the creation of the Seurat object, while also including some filtering:</p>
 <ul>
 <li>Keeping the genes that are found in at least 5 capture spots and has a total count value &gt;= 100.</li>
 <li>Keeping the capture-spots that contains &gt;= 500 total transcripts.</li>
@@ -685,20 +1206,67 @@ se &lt;- InputFromTable(infotable = infoTable,
                       min.spot.count = 500, 
                       annotation = ensids, 
                       platform = &quot;2k&quot;,
-                      transpose = T,
-                      pattern.remove = &quot;^mt-&quot;)</code></pre>
+                      transpose = TRUE)</code></pre>
 <p><br> Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the Seurat package. There are many vignettes to get started available at the <a href="https://satijalab.org/seurat/vignettes.html">Seurat web site</a>.</p>
 <p>Some of the functionalities provided in the Seurat package are not yet supported by STUtility, such as dataset integration and multimodal analysis. These methods should in principle work if you treat the data like a scRNA-seq experiment, but you will not be able to make use of the image related data or the spatial visualization functions.</p>
 <p>For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the <code>ST.FeaturePlot()</code> function. <br></p>
-<pre class="r"><code>ST.FeaturePlot(se, features = c(&quot;nFeature_RNA&quot;), dark.theme = T, cols = c(&quot;black&quot;, &quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;))</code></pre>
-<p><img src="figure/getting_started.Rmd/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /> <br></p>
+<pre class="r"><code>ST.FeaturePlot(se, features = c(&quot;nFeature_RNA&quot;), dark.theme = T, cols = c(&quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;))</code></pre>
+<p><img src="figure/getting_started.Rmd/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
+Past versions of unnamed-chunk-2-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/getting_started.Rmd/unnamed-chunk-2-1.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
 </div>
 </div>
 <div id="navigating-and-accessing-data" class="section level2">
 <h2>Navigating and accessing data</h2>
-<p>Please look at the Seurat website for basic navigation of the Seurat object and how to access the different data transformations, dim.reductions etc. However, specific for STUtility, there is another S4 object stored within the Seurat objects “tool” slot, called “Staffli”. This object contains all the STUtility specific meta data, like pixel cooridinates, sample IDs, platform types etc.</p>
+<hr />
+<p>We recommend that unexperienced users have look at the Seurat website and tutorials for basic navigation of the Seurat object such as getting and setting identities and accessing various method outputs.</p>
+<p>However, specific for STUtility, there is another S4 object stored within the Seurat objects “tools” slot, called “Staffli”. This object contains all the STUtility specific meta data, like pixel cooridinates, sample IDs, platform types etc.</p>
 <p>You can reach this via:</p>
-<pre class="r"><code>head(se@tools$Staffli[[]])</code></pre>
+<pre class="r"><code>st.object &lt;- se@tools$Staffli
+st.object</code></pre>
+<pre><code>An object of class Staffli 
+4557 spots across 4 samples. 
+
+Available image representations: 
+   raw, masked, masked.masks, processed, processed.masks </code></pre>
+<pre class="r"><code># Access meta data
+head(st.object[[]])</code></pre>
 <pre><code>       x  y adj_x adj_y pixel_x pixel_y sample warped_x warped_y
 2x20_1 2 20  2.01 19.99  1431.9  2640.9      1   1431.9   2640.9
 2x22_1 2 22  2.01 21.98  1432.2  2880.2      1   1432.2   2880.2
@@ -706,8 +1274,7 @@ se &lt;- InputFromTable(infotable = infoTable,
 2x26_1 2 26  2.03 26.00  1434.0  3363.4      1   1434.0   3363.4
 2x28_1 2 28  1.98 27.97  1429.3  3600.9      1   1429.3   3600.9
 2x30_1 2 30  2.00 29.95  1431.3  3839.2      1   1431.3   3839.2</code></pre>
-<p>This can be used to set Idents, subset the seurat object etc.</p>
-<p>In the next section we will show how you can load images into the Seurat object and how they can be manipulated to improve interpretability of you results.</p>
+<p>It can for example be useful to access the spot coordinates and images if you want to write your own plotting functions.</p>
  
 <hr />
 <p style="text-align: center;">
@@ -728,105 +1295,83 @@ A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and 
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.6.1 (2019-07-05)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18363)
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Mojave 10.14.6
 
 Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
 
 locale:
-[1] LC_COLLATE=English_Sweden.1252  LC_CTYPE=English_Sweden.1252   
-[3] LC_MONETARY=English_Sweden.1252 LC_NUMERIC=C                   
-[5] LC_TIME=English_Sweden.1252    
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
 [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
 [8] methods   base     
 
 other attached packages:
- [1] STutility_0.1.0             ggplot2_3.2.1              
- [3] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.1
- [5] DelayedArray_0.10.0         BiocParallel_1.18.1        
- [7] matrixStats_0.55.0          Biobase_2.44.0             
- [9] GenomicRanges_1.36.1        GenomeInfoDb_1.20.0        
-[11] IRanges_2.18.2              S4Vectors_0.22.1           
-[13] BiocGenerics_0.30.0         Seurat_3.1.1.9023          
+ [1] STutility_0.1.0             ggplot2_3.3.0              
+ [3] SingleCellExperiment_1.10.1 SummarizedExperiment_1.18.1
+ [5] DelayedArray_0.14.0         matrixStats_0.56.0         
+ [7] Biobase_2.48.0              GenomicRanges_1.40.0       
+ [9] GenomeInfoDb_1.24.0         IRanges_2.22.1             
+[11] S4Vectors_0.26.0            BiocGenerics_0.34.0        
+[13] Seurat_3.1.5                workflowr_1.6.2            
 
 loaded via a namespace (and not attached):
-  [1] reticulate_1.13         R.utils_2.9.0          
-  [3] tidyselect_0.2.5        htmlwidgets_1.3        
-  [5] grid_3.6.1              Rtsne_0.15             
-  [7] munsell_0.5.0           codetools_0.2-16       
-  [9] ica_1.0-2               future_1.15.0          
- [11] miniUI_0.1.1.1          withr_2.1.2            
- [13] colorspace_1.4-1        knitr_1.24             
- [15] ROCR_1.0-7              tensor_1.5             
- [17] gbRd_0.4-11             listenv_0.7.0          
- [19] labeling_0.3            Rdpack_0.11-0          
- [21] git2r_0.26.1            GenomeInfoDbData_1.2.1 
- [23] polyclip_1.10-0         rprojroot_1.3-2        
- [25] vctrs_0.2.0             xfun_0.9               
- [27] R6_2.4.0                doParallel_1.0.15      
- [29] rsvd_1.0.2              Morpho_2.7             
- [31] ggiraph_0.6.1           manipulateWidget_0.10.0
- [33] bitops_1.0-6            spatstat.utils_1.13-0  
- [35] assertthat_0.2.1        promises_1.0.1         
- [37] SDMTools_1.1-221.1      scales_1.0.0           
- [39] imager_0.41.2           gtable_0.3.0           
- [41] npsurv_0.4-0            globals_0.12.4         
- [43] bmp_0.3                 goftest_1.1-1          
- [45] workflowr_1.5.0         rlang_0.4.1            
- [47] zeallot_0.1.0           akima_0.6-2            
- [49] systemfonts_0.1.1       splines_3.6.1          
- [51] lazyeval_0.2.2          rgl_0.100.30           
- [53] yaml_2.2.0              reshape2_1.4.3         
- [55] abind_1.4-5             crosstalk_1.0.0        
- [57] backports_1.1.4         httpuv_1.5.2           
- [59] tools_3.6.1             gplots_3.0.1.1         
- [61] raster_3.0-7            RColorBrewer_1.1-2     
- [63] Rvcg_0.18               ggridges_0.5.1         
- [65] Rcpp_1.0.3              plyr_1.8.4             
- [67] zlibbioc_1.30.0         purrr_0.3.3            
- [69] RCurl_1.95-4.12         rpart_4.1-15           
- [71] deldir_0.1-23           viridis_0.5.1          
- [73] pbapply_1.4-2           cowplot_1.0.0          
- [75] zoo_1.8-6               ggrepel_0.8.1          
- [77] cluster_2.1.0           colorRamps_2.3         
- [79] fs_1.3.1                magrittr_1.5           
- [81] data.table_1.12.2       magick_2.2             
- [83] readbitmap_0.1.5        lmtest_0.9-37          
- [85] RANN_2.6.1              fitdistrplus_1.0-14    
- [87] shinyjs_1.0             lsei_1.2-0             
- [89] mime_0.7                evaluate_0.14          
- [91] xtable_1.8-4            jpeg_0.1-8.1           
- [93] gridExtra_2.3           compiler_3.6.1         
- [95] tibble_2.1.3            KernSmooth_2.23-15     
- [97] crayon_1.3.4            R.oo_1.22.0            
- [99] htmltools_0.3.6         mgcv_1.8-28            
-[101] later_0.8.0             tiff_0.1-5             
-[103] tidyr_1.0.0             RcppParallel_4.4.3     
-[105] MASS_7.3-51.4           Matrix_1.2-17          
-[107] R.methodsS3_1.7.1       gdata_2.18.0           
-[109] metap_1.1               igraph_1.2.4.1         
-[111] pkgconfig_2.0.2         sp_1.3-2               
-[113] plotly_4.9.1            xml2_1.2.2             
-[115] foreach_1.4.7           webshot_0.5.1          
-[117] XVector_0.24.0          bibtex_0.4.2           
-[119] stringr_1.4.0           digest_0.6.22          
-[121] sctransform_0.2.0       RcppAnnoy_0.0.12       
-[123] tsne_0.1-3              spatstat.data_1.4-0    
-[125] rmarkdown_1.15          leiden_0.3.1           
-[127] uwot_0.1.4              gdtools_0.2.0          
-[129] shiny_1.3.2             gtools_3.8.1           
-[131] lifecycle_0.1.0         nlme_3.1-141           
-[133] jsonlite_1.6            viridisLite_0.3.0      
-[135] pillar_1.4.2            lattice_0.20-38        
-[137] httr_1.4.1              survival_2.44-1.1      
-[139] glue_1.3.1              spatstat_1.61-0        
-[141] png_0.1-7               iterators_1.0.12       
-[143] stringi_1.4.3           caTools_1.17.1.2       
-[145] dplyr_0.8.3             irlba_2.3.3            
-[147] future.apply_1.3.0      ape_5.3                </code></pre>
+  [1] reticulate_1.15         tidyselect_1.0.0        htmlwidgets_1.5.1      
+  [4] grid_4.0.0              Rtsne_0.15              munsell_0.5.0          
+  [7] codetools_0.2-16        ica_1.0-2               units_0.6-6            
+ [10] future_1.17.0           miniUI_0.1.1.1          withr_2.2.0            
+ [13] colorspace_1.4-1        knitr_1.28              uuid_0.1-4             
+ [16] ROCR_1.0-11             tensor_1.5              listenv_0.8.0          
+ [19] labeling_0.3            git2r_0.27.1            GenomeInfoDbData_1.2.3 
+ [22] polyclip_1.10-0         farver_2.0.3            rprojroot_1.3-2        
+ [25] coda_0.19-3             LearnBayes_2.15.1       vctrs_0.3.0            
+ [28] xfun_0.13               R6_2.4.1                doParallel_1.0.15      
+ [31] rsvd_1.0.3              Morpho_2.8              ggiraph_0.7.0          
+ [34] manipulateWidget_0.10.1 bitops_1.0-6            spatstat.utils_1.17-0  
+ [37] assertthat_0.2.1        promises_1.1.0          scales_1.1.0           
+ [40] imager_0.42.1           gtable_0.3.0            npsurv_0.4-0.1         
+ [43] globals_0.12.5          bmp_0.3                 goftest_1.2-2          
+ [46] rlang_0.4.6             zeallot_0.1.0           akima_0.6-2            
+ [49] systemfonts_0.2.1       splines_4.0.0           lazyeval_0.2.2         
+ [52] rgl_0.100.54            yaml_2.2.1              reshape2_1.4.4         
+ [55] abind_1.4-5             crosstalk_1.1.0.1       backports_1.1.6        
+ [58] httpuv_1.5.2            tools_4.0.0             spData_0.3.5           
+ [61] ellipsis_0.3.0          raster_3.1-5            RColorBrewer_1.1-2     
+ [64] Rvcg_0.19.1             ggridges_0.5.2          Rcpp_1.0.4.6           
+ [67] plyr_1.8.6              zlibbioc_1.34.0         classInt_0.4-3         
+ [70] purrr_0.3.4             RCurl_1.98-1.2          rpart_4.1-15           
+ [73] dbscan_1.1-5            deldir_0.1-25           viridis_0.5.1          
+ [76] pbapply_1.4-2           cowplot_1.0.0           zoo_1.8-8              
+ [79] ggrepel_0.8.2           cluster_2.1.0           colorRamps_2.3         
+ [82] fs_1.4.1                magrittr_1.5            data.table_1.12.8      
+ [85] magick_2.3              readbitmap_0.1.5        gmodels_2.18.1         
+ [88] lmtest_0.9-37           RANN_2.6.1              whisker_0.4            
+ [91] fitdistrplus_1.0-14     patchwork_1.0.0         shinyjs_1.1            
+ [94] lsei_1.2-0.1            mime_0.9                evaluate_0.14          
+ [97] xtable_1.8-4            jpeg_0.1-8.1            gridExtra_2.3          
+[100] compiler_4.0.0          tibble_3.0.1            KernSmooth_2.23-17     
+[103] crayon_1.3.4            htmltools_0.4.0         mgcv_1.8-31            
+[106] later_1.0.0             spdep_1.1-3             tiff_0.1-5             
+[109] tidyr_1.0.3             expm_0.999-4            DBI_1.1.0              
+[112] MASS_7.3-51.6           sf_0.9-3                boot_1.3-25            
+[115] Matrix_1.2-18           gdata_2.18.0            igraph_1.2.5           
+[118] pkgconfig_2.0.3         sp_1.4-1                plotly_4.9.2.1         
+[121] xml2_1.3.2              foreach_1.5.0           webshot_0.5.2          
+[124] XVector_0.28.0          stringr_1.4.0           digest_0.6.25          
+[127] sctransform_0.2.1       RcppAnnoy_0.0.16        tsne_0.1-3             
+[130] spatstat.data_1.4-3     rmarkdown_2.1           leiden_0.3.3           
+[133] uwot_0.1.8              gdtools_0.2.2           gtools_3.8.2           
+[136] shiny_1.4.0.2           lifecycle_0.2.0         nlme_3.1-147           
+[139] jsonlite_1.6.1          viridisLite_0.3.0       pillar_1.4.4           
+[142] lattice_0.20-41         fastmap_1.0.1           httr_1.4.1             
+[145] survival_3.1-12         glue_1.4.0              spatstat_1.63-3        
+[148] png_0.1-7               iterators_1.0.12        class_7.3-17           
+[151] stringi_1.4.6           dplyr_0.8.5             irlba_2.3.3            
+[154] e1071_1.7-3             future.apply_1.5.0      ape_5.3                </code></pre>
 </div>
 </div>
 

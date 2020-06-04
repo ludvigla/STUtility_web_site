@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="" />
+
+
+<title>Spatial Features</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STUtility</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="installation.html">Installation</a>
+</li>
+<li>
+  <a href="getting_started.html">Getting Started</a>
+</li>
+<li>
+  <a href="image_processing.html">Image processing</a>
+</li>
+<li>
+  <a href="normalization.html">Normalization</a>
+</li>
+<li>
+  <a href="spatial_features.html">Spatial features</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ludvigla/STUtility_web_site">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Spatial Features</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2020-06-04
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191031code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191031)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree3660612d2d42cb8373d862dd22152e65ca236547targetblank3660612a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/3660612d2d42cb8373d862dd22152e65ca236547" target="_blank">3660612</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree3660612d2d42cb8373d862dd22152e65ca236547targetblank3660612a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/3660612d2d42cb8373d862dd22152e65ca236547" target="_blank">3660612</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/manual_annotation.png
+    Ignored:    analysis/visualization_3D.Rmd
+
+Untracked files:
+    Untracked:  pre_data/
+
+Unstaged changes:
+    Modified:   analysis/Manual_annotation.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/Neighborhood.Rmd</code>) and HTML (<code>docs/Neighborhood.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/3660612d2d42cb8373d862dd22152e65ca236547/analysis/Neighborhood.Rmd" target="_blank">3660612</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+<td>
+update website
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<style type="text/css">
+div.main-container {
+  background-color: #000000 !important;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  op: 5%;
+  opacity: 0.8;
+  width: 500px;
+  color: white;
+  border-color: #000000 !important;
+}
+</style>
+<style> code, pre{
+  background-color: #000000 !important;
+  color: white !important;
+}
+</style>
+<style> 
+body {
+  color: white
+}
+</style>
+<style>
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #375a7f;
+}
+</style>
+<div id="region-neighbors" class="section level2">
+<h2>Region neighbors</h2>
+<hr />
+<p>Sometimes it can be useful to extract the “neighborhood” of a set of spots. As an example, we show how this can be applied to find all the neighboring spots of any region of interest.</p>
+<p>To demonstrate the regional neighbors feature, we will use the Breast Cancer data available on the 10x Genomics <a href="https://support.10xgenomics.com/spatial-gene-expression/datasets">website</a>.</p>
+<p>The Seurat object below contain 2 breast cancer tissue sections which have already been normalized and clustered.</p>
+<p><br></p>
+<pre class="r"><code>FeatureOverlay(se, features = &quot;seurat_clusters&quot;, sampleids = 1:2, ncols.samples = 2, dark.theme = T)</code></pre>
+<p><img src="figure/Neighborhood.Rmd/plot_BC_data-1.png" width="1344" style="display: block; margin: auto;" /> <br></p>
+<div id="connected-spatial-network" class="section level3">
+<h3>Connected Spatial Network</h3>
+<p>Once you have defined a region of interest and you want to find all spots neighboring to this region you can use the <code>RegionNeighbours</code> function to automatically detect such spots.</p>
+<p>For example, let’s say that we want to select all neighbors to cluster 2. The first step is to make sure that the identity of your seurat object is correct, here we need to set it to “seurat_clusters”. <br></p>
+<pre class="r"><code>se &lt;- SetIdent(se, value = &quot;seurat_clusters&quot;)
+se &lt;- RegionNeighbours(se, id = &quot;2&quot;, verbose = TRUE)</code></pre>
+<pre><code>Creating Connected Netork using KNN ... 
+Found 4763 neighbours for id 2 ... 
+Excluding neighbours from the same group ... 
+569 neighbours left ... 
+Naming all neighbours nbs_2 ... 
+Saving neighbour ids to column &#39;nbs_2&#39; ... 
+Finished. </code></pre>
+<p><br> The default behavior is to find all spots which are neighbors with the selected id but ignoring its label, therefore it will simply be called nbs_2 as in “neighbors to 2”. The output will be stored as a new column in the meta.data slot, and in this example will be called “nbs_2”. The neighborhood detection algorithm is applied to each section separately and can therefore be run on multiple sections at the same time. <br></p>
+<pre class="r"><code>FeatureOverlay(se, features = &quot;nbs_2&quot;, ncols.samples = 2, sampleids = 1:2, cols = c(&quot;red&quot;, &quot;lightgray&quot;), pt.size = 2, dark.theme = T)</code></pre>
+<p><img src="figure/Neighborhood.Rmd/find_neighbors-1.png" width="100%" style="display: block; margin: auto;" /> <br> You can also keep all spots from the id group by setting keep.within.id = TRUE. <br></p>
+<pre class="r"><code>se &lt;- SetIdent(se, value = &quot;seurat_clusters&quot;)
+se &lt;- RegionNeighbours(se, id = 2, keep.within.id = T, verbose = TRUE)</code></pre>
+<pre><code>Creating Connected Netork using KNN ... 
+Found 4763 neighbours for id 2 ... 
+Naming all neighbours nbs_2 ... 
+Saving neighbour ids to column &#39;nbs_2&#39; ... 
+Finished. </code></pre>
+<pre class="r"><code>FeatureOverlay(se, features = &quot;nbs_2&quot;, ncols.samples = 2, sampleids = 1:2, cols = c(&quot;red&quot;, &quot;lightgray&quot;), pt.size = 2, dark.theme = T)</code></pre>
+<p><img src="figure/Neighborhood.Rmd/find_neighbors_2-1.png" width="100%" style="display: block; margin: auto;" /> <br></p>
+<p>Using these two sets of spots, we can run a DE analysis to check what egnes are up-regulated outside the cluster border.</p>
+<p><br></p>
+<pre class="r"><code>library(magrittr)
+library(dplyr)
+
+se &lt;- SetIdent(se, value = &quot;nbs_2&quot;)
+nbs_2.markers &lt;- FindMarkers(se, ident.1 = &quot;2&quot;, ident.2 = &quot;nbs_2&quot;)
+nbs_2.markers$gene &lt;- rownames(nbs_2.markers)
+se.subset &lt;- SubsetSTData(se, expression = nbs_2 %in% c(&quot;2&quot;, &quot;nbs_2&quot;))
+sorted.marks &lt;- nbs_2.markers %&gt;% top_n(n = 40, wt = abs(avg_logFC))
+sorted.marks &lt;- sorted.marks[order(sorted.marks$avg_logFC, decreasing = T), ]
+DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c(&quot;red&quot;, &quot;lightgray&quot;), disp.min = -2, disp.max = 2) + DarkTheme() </code></pre>
+<p><img src="figure/Neighborhood.Rmd/de_neighbors-1.png" width="960" style="display: block; margin: auto;" /> <br></p>
+<p>From this DE-test we can for example see that the genes COX6C and FCGR3B genes are up-regulated inside the cluser whereas LGALS1 and CYBA genes are more highly expressed outisde the cluster border.</p>
+<p><br></p>
+<pre class="r"><code>FeatureOverlay(se.subset, features = c(&quot;COX6C&quot;, &quot;FCGR3B&quot;, &quot;LGALS1&quot;, &quot;CYBA&quot;), pt.size = 2, dark.theme = T, 
+               ncols.features = 2, cols = c(&quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;))</code></pre>
+<p><img src="figure/Neighborhood.Rmd/plot_markers-1.png" width="100%" style="display: block; margin: auto;" /> <br></p>
+<p>And lastly, if you want to keep the labels for the neighbors you can set keep.idents = TRUE and you can keep one label per identity for the neighboring spots, e.g. “label”_nb_to_2</p>
+<p><br></p>
+<pre class="r"><code>se &lt;- SetIdent(se, value = &quot;seurat_clusters&quot;)
+se &lt;- RegionNeighbours(se, id = 2, keep.idents = TRUE, verbose = TRUE)</code></pre>
+<pre><code>Creating Connected Netork using KNN ... 
+Found 4763 neighbours for id 2 ... 
+Excluding neighbours from the same group ... 
+569 neighbours left ... 
+Naming neighbours to id_nb_to* ... 
+Saving neighbour ids to column &#39;nbs_2&#39; ... 
+Finished. </code></pre>
+<pre class="r"><code>FeatureOverlay(se, features = &quot;nbs_2&quot;, ncols.samples = 2, sampleids = 1:2, pt.size = 2, dark.theme = T)</code></pre>
+<p><img src="figure/Neighborhood.Rmd/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+ 
+<hr />
+<p style="text-align: center;">
+A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a>
+</p>
+<!-- Add icon library -->
+<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></p>
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+<a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+<p> </p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] dplyr_0.8.5                 magrittr_1.5               
+ [3] STutility_0.1.0             ggplot2_3.3.0              
+ [5] SingleCellExperiment_1.10.1 SummarizedExperiment_1.18.1
+ [7] DelayedArray_0.14.0         matrixStats_0.56.0         
+ [9] Biobase_2.48.0              GenomicRanges_1.40.0       
+[11] GenomeInfoDb_1.24.0         IRanges_2.22.1             
+[13] S4Vectors_0.26.0            BiocGenerics_0.34.0        
+[15] Seurat_3.1.5                workflowr_1.6.2            
+
+loaded via a namespace (and not attached):
+  [1] reticulate_1.15         tidyselect_1.0.0        htmlwidgets_1.5.1      
+  [4] grid_4.0.0              Rtsne_0.15              munsell_0.5.0          
+  [7] codetools_0.2-16        ica_1.0-2               units_0.6-6            
+ [10] future_1.17.0           miniUI_0.1.1.1          withr_2.2.0            
+ [13] colorspace_1.4-1        knitr_1.28              uuid_0.1-4             
+ [16] ROCR_1.0-11             tensor_1.5              listenv_0.8.0          
+ [19] labeling_0.3            git2r_0.27.1            GenomeInfoDbData_1.2.3 
+ [22] polyclip_1.10-0         farver_2.0.3            rprojroot_1.3-2        
+ [25] coda_0.19-3             LearnBayes_2.15.1       vctrs_0.3.0            
+ [28] xfun_0.13               R6_2.4.1                doParallel_1.0.15      
+ [31] rsvd_1.0.3              Morpho_2.8              ggiraph_0.7.0          
+ [34] manipulateWidget_0.10.1 bitops_1.0-6            spatstat.utils_1.17-0  
+ [37] assertthat_0.2.1        promises_1.1.0          scales_1.1.0           
+ [40] imager_0.42.1           gtable_0.3.0            npsurv_0.4-0.1         
+ [43] globals_0.12.5          bmp_0.3                 goftest_1.2-2          
+ [46] rlang_0.4.6             zeallot_0.1.0           akima_0.6-2            
+ [49] systemfonts_0.2.1       splines_4.0.0           lazyeval_0.2.2         
+ [52] rgl_0.100.54            yaml_2.2.1              reshape2_1.4.4         
+ [55] abind_1.4-5             crosstalk_1.1.0.1       backports_1.1.6        
+ [58] httpuv_1.5.2            tools_4.0.0             spData_0.3.5           
+ [61] ellipsis_0.3.0          raster_3.1-5            RColorBrewer_1.1-2     
+ [64] Rvcg_0.19.1             ggridges_0.5.2          Rcpp_1.0.4.6           
+ [67] plyr_1.8.6              zlibbioc_1.34.0         classInt_0.4-3         
+ [70] purrr_0.3.4             RCurl_1.98-1.2          rpart_4.1-15           
+ [73] dbscan_1.1-5            deldir_0.1-25           viridis_0.5.1          
+ [76] pbapply_1.4-2           cowplot_1.0.0           zoo_1.8-8              
+ [79] ggrepel_0.8.2           cluster_2.1.0           colorRamps_2.3         
+ [82] fs_1.4.1                data.table_1.12.8       magick_2.3             
+ [85] readbitmap_0.1.5        gmodels_2.18.1          lmtest_0.9-37          
+ [88] RANN_2.6.1              whisker_0.4             fitdistrplus_1.0-14    
+ [91] patchwork_1.0.0         shinyjs_1.1             lsei_1.2-0.1           
+ [94] mime_0.9                evaluate_0.14           xtable_1.8-4           
+ [97] jpeg_0.1-8.1            gridExtra_2.3           compiler_4.0.0         
+[100] tibble_3.0.1            KernSmooth_2.23-17      crayon_1.3.4           
+[103] htmltools_0.4.0         mgcv_1.8-31             later_1.0.0            
+[106] spdep_1.1-3             tiff_0.1-5              tidyr_1.0.3            
+[109] expm_0.999-4            DBI_1.1.0               MASS_7.3-51.6          
+[112] sf_0.9-3                boot_1.3-25             Matrix_1.2-18          
+[115] gdata_2.18.0            igraph_1.2.5            pkgconfig_2.0.3        
+[118] sp_1.4-1                plotly_4.9.2.1          xml2_1.3.2             
+[121] foreach_1.5.0           webshot_0.5.2           XVector_0.28.0         
+[124] stringr_1.4.0           digest_0.6.25           sctransform_0.2.1      
+[127] RcppAnnoy_0.0.16        tsne_0.1-3              spatstat.data_1.4-3    
+[130] rmarkdown_2.1           leiden_0.3.3            uwot_0.1.8             
+[133] gdtools_0.2.2           gtools_3.8.2            shiny_1.4.0.2          
+[136] lifecycle_0.2.0         nlme_3.1-147            jsonlite_1.6.1         
+[139] limma_3.44.1            viridisLite_0.3.0       pillar_1.4.4           
+[142] lattice_0.20-41         fastmap_1.0.1           httr_1.4.1             
+[145] survival_3.1-12         glue_1.4.0              spatstat_1.63-3        
+[148] png_0.1-7               iterators_1.0.12        class_7.3-17           
+[151] stringi_1.4.6           irlba_2.3.3             e1071_1.7-3            
+[154] future.apply_1.5.0      ape_5.3                </code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

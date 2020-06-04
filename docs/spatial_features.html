@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -29,6 +28,14 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -239,6 +246,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -267,6 +275,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -389,13 +403,6 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<!-- Add a small amount of space between sections. -->
-<style type="text/css">
-div.section {
-  padding-top: 12px;
-}
-</style>
-
 <div class="fluid-row" id="header">
 
 
@@ -425,7 +432,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-04-01
+<strong>Last updated:</strong> 2020-06-04
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -435,7 +442,7 @@ div.section {
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.5.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -473,7 +480,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -516,22 +523,32 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreed1999a18633e7e2c6892526cd8e1bdb41904826dtargetblankd1999a1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/d1999a18633e7e2c6892526cd8e1bdb41904826d" target="_blank">d1999a1</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree3660612d2d42cb8373d862dd22152e65ca236547targetblank3660612a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/3660612d2d42cb8373d862dd22152e65ca236547" target="_blank">3660612</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreed1999a18633e7e2c6892526cd8e1bdb41904826dtargetblankd1999a1a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree3660612d2d42cb8373d862dd22152e65ca236547targetblank3660612a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/3660612d2d42cb8373d862dd22152e65ca236547" target="_blank">3660612</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .Rhistory
-    Ignored:    .Rproj.user/
-    Ignored:    analysis/getting_started_cache/
+    Ignored:    .DS_Store
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/manual_annotation.png
+    Ignored:    analysis/visualization_3D.Rmd
+
+Untracked files:
+    Untracked:  pre_data/
 
 Unstaged changes:
-    Modified:   analysis/normalization.Rmd
+    Modified:   analysis/Manual_annotation.Rmd
 
 </code></pre>
 <p>
@@ -544,9 +561,375 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/spatial_features.Rmd</code>) and HTML (<code>docs/spatial_features.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/3660612d2d42cb8373d862dd22152e65ca236547/analysis/spatial_features.Rmd" target="_blank">3660612</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+<td>
+update website
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/f677bf174dd612aa4a8660ddd1bf58dbf200fdf3/docs/spatial_features.html" target="_blank">f677bf1</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-04-01
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/d1999a18633e7e2c6892526cd8e1bdb41904826d/analysis/spatial_features.Rmd" target="_blank">d1999a1</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-04-01
+</td>
+<td>
+Refs added
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/a024bcef5b323923109bf893838bcffddaeb57e4/docs/spatial_features.html" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/d936ce7287f396c301ecbc32d982cce6df49f7a5/analysis/spatial_features.Rmd" target="_blank">d936ce7</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+<td>
+changed to 10x public data
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/spatial_features.html" target="_blank">0b6d8e8</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/859a8e77f88219af986f85419fbb21866fdb57f4/analysis/spatial_features.Rmd" target="_blank">859a8e7</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+<td>
+Fixed figure aspect ratios
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/fb06450963f0f83237398d130bc27741c74088fe/docs/spatial_features.html" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/6444381572c0008e014df542631603261b6a4c78/analysis/spatial_features.Rmd" target="_blank">6444381</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-10
+</td>
+<td>
+Removed MultipleFeature..
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/2890e656cba9defd0ef2de290fbe4c217af13da5/analysis/spatial_features.Rmd" target="_blank">2890e65</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-08
+</td>
+<td>
+pre-pek
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/efbbda3072444603b218ea36d324ccf843c3e74d/analysis/spatial_features.Rmd" target="_blank">efbbda3</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-01
+</td>
+<td>
+update pek
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/672191f8148d8e38bd1a2aa0d62c5789c7c6893d/analysis/spatial_features.Rmd" target="_blank">672191f</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-12-16
+</td>
+<td>
+Added 3D plotting to vignette
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/baff98e3760bbbf3174503840e5df18f2fc71a4e/analysis/spatial_features.Rmd" target="_blank">baff98e</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-12-16
+</td>
+<td>
+adding
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/5cb8ab1a6077d5b0bdd819027308d896dbb714eb/analysis/spatial_features.Rmd" target="_blank">5cb8ab1</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2019-12-02
+</td>
+<td>
+update2
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/a3a1f1fd0dfc159100a1f175dd6503d8d3fb6546/docs/spatial_features.html" target="_blank">a3a1f1f</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Changed font
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/7cdf8e1eeac24a7e6a2fe74899ba52e9e42fcdf8/analysis/spatial_features.Rmd" target="_blank">7cdf8e1</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Changed font size
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/786357d1f7a30673432e5e023be09971cc9c0ff0/analysis/spatial_features.Rmd" target="_blank">786357d</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Fixed warnings
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/786357d1f7a30673432e5e023be09971cc9c0ff0/docs/spatial_features.html" target="_blank">786357d</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Fixed warnings
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/analysis/spatial_features.Rmd" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added section noramlization and spatial faetures
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/f10ef37c91fac6802927c25f259822368759b560/docs/spatial_features.html" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+<td>
+Added section noramlization and spatial faetures
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -589,11 +972,13 @@ body {
 </style>
 <div id="finding-spatial-expression-patterns" class="section level2">
 <h2>Finding spatial expression patterns</h2>
-<p>The strength of untargeted whole transcriptome capture is the ability to perform unsupervised analysis and the ability to find spatial gene expression patterns. We’ve found good use of using non-negative matrix factorization (NMF) to find underlying patterns of transcriptomic profiles. This factor analysis, along with various dimensionality reduction techniques, can all be ran via “RunXXX()”, where X = the method of choice, e.g.: <br></p>
+<hr />
+<p>The strength of untargeted whole transcriptome capture is the ability to perform unsupervised analysis and the ability to find spatial gene expression patterns. We’ve found good use of using non-negative matrix factorization (NNMF or NMF) to find underlying patterns of transcriptomic profiles. This factor analysis, along with various dimensionality reduction techniques, can all be ran via “RunXXX()”, where X = the method of choice, e.g.: <br></p>
 <pre class="r"><code>se &lt;- RunNMF(se, nfactors = 40) #Specificy nfactors to choose the number of factors, default=20.</code></pre>
 <p><br> While <code>RunNMF()</code> is an STUtility add-on, others are supported via Seurat (<code>RunPCA()</code>, <code>RunTSNE</code>, <code>RunICA()</code>, <code>runUMAP()</code> ) and for all of them, the output are stored in the Seurat object.</p>
-<p>We can then plot a variable number of dimensions across the samples. <br></p>
-<pre class="r"><code>cscale &lt;- c(&quot;black&quot;, &quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;)
+<p>We can then plot a variable number of dimensions across the samples using <code>ST.DimPlot</code> or as an overlay using <code>DimOverlay</code>. These two functions are similar to the <code>ST.FeaturePlot</code> and <code>FeatureOverlay</code> but have been adapted to specifically draw dimensionality reduction vectors instead of features.</p>
+<p>NOTE: by default, the colorscale of dimensionality reduction vectors will be centered at 0. If we have a dimensionality reduction vector x this means that the range of colors will go from -max(abs(x)) to max(abs(x)). This behaviour is typically desired when plotting e.g. PCA vectors, but for NMF all values are strictly positive so you can disable this centering by setting <code>center.zero = FALSE</code>. <br></p>
+<pre class="r"><code>cscale &lt;- c(&quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;)
 
 ST.DimPlot(se, 
            dims = 1:10,
@@ -605,6 +990,76 @@ ST.DimPlot(se,
            center.zero = F, 
            cols = cscale)</code></pre>
 <p><img src="figure/spatial_features.Rmd/dimplot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dimplot-1">
+Past versions of dimplot-1.png
+</button>
+</p>
+<div id="fig-dimplot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">0b6d8e8</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>ST.DimPlot(se, 
            dims = 11:20,
            ncol = 2, 
@@ -615,6 +1070,65 @@ ST.DimPlot(se,
            center.zero = F, 
            cols = cscale)</code></pre>
 <p><img src="figure/spatial_features.Rmd/dimplot-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dimplot-2">
+Past versions of dimplot-2.png
+</button>
+</p>
+<div id="fig-dimplot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">0b6d8e8</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>ST.DimPlot(se, 
            dims = 21:30,
            ncol = 2, 
@@ -625,6 +1139,65 @@ ST.DimPlot(se,
                center.zero = F, 
            cols = cscale)</code></pre>
 <p><img src="figure/spatial_features.Rmd/dimplot-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dimplot-3">
+Past versions of dimplot-3.png
+</button>
+</p>
+<div id="fig-dimplot-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">0b6d8e8</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>ST.DimPlot(se, 
            dims = 31:40,
            ncol = 2, 
@@ -634,26 +1207,78 @@ ST.DimPlot(se,
            pt.size = 0.5, 
                center.zero = F, 
            cols = cscale)</code></pre>
-<p><img src="figure/spatial_features.Rmd/dimplot-4.png" width="100%" style="display: block; margin: auto;" /> <br> To extract the genes that drives the separation according to the dimensionality reduction, we can use the <code>ProjectDim()</code> function. <br></p>
-<pre class="r"><code>ProjectDim(se, reduction = &quot;NMF&quot;, dims = c(2,4))</code></pre>
-<pre><code>factor_ 2 
-Positive:  Gng4, Synpr, Pcp4l1, Gad1, Gpsm1, Pcbp3, Meis2, Ptpro, Shisa8, Dlx1 
-       Cpne4, Pbx3, Inpp5j, Cpne6, Tshz1, Sp8, Doc2g, Dcx, Lgr6, Rasl11b 
-Negative:  Plp1, Pvalb, Mbp, Ptgds, Ttr, Pcp2, Trf, Calb1, Nrgn, Bc1 
-       Sst, Mobp, Gng13, Itpr1, Cck, Ppp1r1b, Vsnl1, Fth1, Hpca, Enc1 
+<p><img src="figure/spatial_features.Rmd/dimplot-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dimplot-4">
+Past versions of dimplot-4.png
+</button>
+</p>
+<div id="fig-dimplot-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/dimplot-4.png" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br> We can also print a summary of the genes that contribute most to the dimensionality reduction vectors.</p>
+<p>For NMF output which is not centered at 0 looking at the “negative” side of the distribution doesn’t really add any valuable information, instead you can aget a barplot summarizing the top most contributing genes using <code>FactorGeneLoadingPlot</code>. <br></p>
+<pre class="r"><code>print(se[[&quot;NMF&quot;]])</code></pre>
+<pre><code>factor_ 1 
+Positive:  Pvalb, Gad1, Spp1, Slc32a1, Six3, Sparc, Lsm6, Ndufb8, Nsg1, Agt 
+       Enho, Ldhb, Gabra1, Cst3, Cox6c, Ndrg2, Cox5a, Ckb, Lgi2, Nefh 
+Negative:  Rgs20, C1qtnf2, Lyn, Nid2, St6galnac2, Rbm20, Pdzd2, Mndal, Emx2, Sp9 
+       Gcnt2, Gm19410, Irak2, Tbx2, Gm11627, Nfatc1, Bambi, Sorcs1, Pam, Arhgap45 
+factor_ 2 
+Positive:  Vamp1, Pvalb, Bend6, Nat8l, Cox5a, Pcp4l1, Stmn3, Nefm, Syt2, Snrpn 
+       Pcsk1n, Ndufa4, Ctxn3, Slc17a6, Cend1, Kcnab3, Cox4i1, Mdh1, Scn1b, Camk2n2 
+Negative:  Plxnc1, Cdhr1, C1qtnf2, Evc, Klf11, Nid2, Ly6g6f, Hist1h4h, Ppp1r18, St6galnac2 
+       Fxyd2, Blnk, Fam89a, Dock8, Emx2, Cyp20a1, Sp9, Ginm1, Acacb, Gm10561 
+factor_ 3 
+Positive:  mt-Nd3, Rps29, Rps21, Rpl39, Rplp1, mt-Co3, Cnot3, Rpl37, Rps19, Rps27 
+       mt-Nd5, Rpl35a, Rps28, mt-Nd4l, Rpl37a, Tatdn1, Rpl26, Nnat, Uba52, mt-Co1 
+Negative:  Otx1, Rgs20, Evc, Pkd2, Nid2, Ppp1r18, St6galnac2, Tnxb, Atf4, Rbm20 
+       Slc25a45, Pdzd2, Mndal, Amt, Blnk, Agtrap, Grik1, Fam89a, Dock8, Pcdh18 
 factor_ 4 
-Positive:  Nptxr, Lypd1, Nov, Olfm1, Trh, Slc30a3, Ly6h, Hap1, Crym, Enc1 
-       Hpcal1, Ak5, Cck, Atp2b4, Bhlhe22, Gda, Rtn1, Nnat, Pcdh8, Camk2d 
-Negative:  Mbp, Plp1, Mobp, Trf, Pvalb, Apod, Hba-a1, Hbb-bs, Hba-a2, Pcp2 
-       Cnp, Mag, Mal, Pcp4, Plekhb1, Hbb-bt, Cryab, Sept4, Qdpr, Cldn11 </code></pre>
-<pre><code>An object of class Seurat 
-37188 features across 12125 samples within 2 assays 
-Active assay: SCT (18594 features)
- 1 other assay present: RNA
- 2 dimensional reductions calculated: NMF, umap</code></pre>
+Positive:  Th, Slc6a3, Slc18a2, Ddc, Sncg, Slc10a4, Ret, Dlk1, En1, Chrna6 
+       Drd2, Cplx1, Sv2c, Aldh1a1, Gch1, Uchl1, Gap43, Chrnb3, Tagln3, Foxa1 
+Negative:  Cdhr1, Evc, Nid2, St6galnac2, Slc25a45, Blnk, C530008M17Rik, Dock8, Emx2, Sp9 
+       Bin2, Wnt5b, Nfatc1, Bambi, Sorcs1, Phactr4, Masp1, Rapgef3, Kdr, Epha8 
+factor_ 5 
+Positive:  Spink8, Tmsb4x, Fibcd1, Hpca, Fkbp1a, Itpka, Cnih2, Calm2, Tspan13, Lefty1 
+       Crym, Prnp, Dynll1, Rprml, Cpne6, Arpc5, Mpped1, Cpne7, Neurod6, Ociad2 
+Negative:  Cdh9, Otx1, Spsb1, Cdhr1, Rgs20, Nid2, Ly6g6f, Ppp1r18, Rbm20, Slc25a45 
+       Pdzd2, Mndal, Atp2a3, Grik1, Fam89a, Cux1, Tex9, Dock8, Msi1, Sp9 </code></pre>
+<pre class="r"><code>FactorGeneLoadingPlot(se, factor = 1, dark.theme = TRUE)</code></pre>
+<p><img src="figure/spatial_features.Rmd/project_dim-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="clustering" class="section level2">
 <h2>Clustering</h2>
+<hr />
 <p>Clustering is a standard procedure in genomic analysis, and the methods for doing so are numerous. Here we demonstrate an example where we use the result of the factor analysis the previous section. Going through the list of factors (e.g. via <code>ST:DimPlot(se, dims = [dims you want to look at])</code>), we can notice dimensions that are “spatially active”, i.e. that seems to confer a spatial pattern along their axis. We can extract these dimensions and use as input to e.g. clustering functions. Here, we use all dimensions from the NMF and construct a Shared Nearest Neighbor (SSN) Graph. <br></p>
 <pre class="r"><code>se &lt;- FindNeighbors(object = se, verbose = FALSE, reduction = &quot;NMF&quot;, dims = 1:40)</code></pre>
 <p><br> Followed by clustering using a modularity optimizer <br></p>
@@ -665,42 +1290,359 @@ qual_col_pals = brewer.pal.info[brewer.pal.info$category == &#39;qual&#39;,]
 col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
 
 ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, dark.theme = T, cols = col_vector, pt.size = 0.5)</code></pre>
-<p><img src="figure/spatial_features.Rmd/plot_clusters-1.png" width="100%" style="display: block; margin: auto;" /> <br> If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored. <br></p>
-<pre class="r"><code>ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, dark.theme = T, pt.size = 1, split.labels = T, indices = 1)</code></pre>
+<p><img src="figure/spatial_features.Rmd/plot_clusters-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_clusters-1">
+Past versions of plot_clusters-1.png
+</button>
+</p>
+<div id="fig-plot_clusters-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">0b6d8e8</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br> If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored, just note that you can only do this for one section at the time (set <code>ìndex</code>). <br></p>
+<pre class="r"><code>ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, dark.theme = T, pt.size = 1, split.labels = T, indices = 1, show.sb = FALSE)</code></pre>
 <p><img src="figure/spatial_features.Rmd/plot_clusters_split-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, dark.theme = T, pt.size = 1, split.labels = T, indices = 3)</code></pre>
-<p><img src="figure/spatial_features.Rmd/plot_clusters_split-2.png" width="100%" style="display: block; margin: auto;" /> <br></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_clusters_split-1">
+Past versions of plot_clusters_split-1.png
+</button>
+</p>
+<div id="fig-plot_clusters_split-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, dark.theme = T, pt.size = 1, split.labels = T, indices = 2, show.sb = FALSE)</code></pre>
+<p><img src="figure/spatial_features.Rmd/plot_clusters_split-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_clusters_split-2">
+Past versions of plot_clusters_split-2.png
+</button>
+</p>
+<div id="fig-plot_clusters_split-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/plot_clusters_split-2.png" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
 </div>
 <div id="most-variable-features" class="section level2">
 <h2>Most variable features</h2>
-<p>We can take a specific look at some of the most variable features. <br></p>
+<hr />
+<p>We can take a specific look at some of the most variable features defined during the normalization step. <br></p>
 <pre class="r"><code>head(se@assays$SCT@var.features, 20)</code></pre>
-<pre><code> [1] &quot;Ttr&quot;           &quot;Pcp2&quot;          &quot;Ptgds&quot;         &quot;Hbb-bs&quot;       
- [5] &quot;Hba-a1&quot;        &quot;Plp1&quot;          &quot;Car8&quot;          &quot;Hba-a2&quot;       
- [9] &quot;Mbp&quot;           &quot;S100a5&quot;        &quot;Hbb-bt&quot;        &quot;Penk&quot;         
-[13] &quot;Pvalb&quot;         &quot;Enpp2&quot;         &quot;Sst&quot;           &quot;Ppp1r1b&quot;      
-[17] &quot;Gpr88&quot;         &quot;1500015O10Rik&quot; &quot;Mobp&quot;          &quot;Pcp4&quot;         </code></pre>
+<pre><code> [1] &quot;Hbb-bs&quot;  &quot;Hba-a1&quot;  &quot;Hba-a2&quot;  &quot;Plp1&quot;    &quot;Mbp&quot;     &quot;Ptgds&quot;   &quot;Hbb-bt&quot; 
+ [8] &quot;Slc6a3&quot;  &quot;Sst&quot;     &quot;Th&quot;      &quot;Ddc&quot;     &quot;Npy&quot;     &quot;Slc18a2&quot; &quot;Mobp&quot;   
+[15] &quot;Nrgn&quot;    &quot;Mal&quot;     &quot;Pcp4&quot;    &quot;Prkcd&quot;   &quot;Apod&quot;    &quot;Myoc&quot;   </code></pre>
 <pre class="r"><code>top &lt;- se@assays$SCT@var.features
 
-fts &lt;- c(&quot;Ttr&quot;, &quot;Mbp&quot;, &quot;Nrgn&quot;)
+fts &lt;- c(&quot;Th&quot;, &quot;Mbp&quot;, &quot;Nrgn&quot;)
 for (ftr in fts) {
-  FeatureOverlay(se, 
-                    features = ftr, 
-                    sampleids = 1:2,
-                    cols = c(&quot;black&quot;, &quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;),
-                    pt.size = 0.5, 
-                    pt.alpha = 0.5, 
-                    dark.theme = T)
+  p &lt;- FeatureOverlay(se, 
+                  features = ftr, 
+                  sampleids = 1:2,
+                  cols = c(&quot;black&quot;, &quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;),
+                  pt.size = 1.5, 
+                  pt.alpha = 0.5, 
+                  dark.theme = T, 
+                 ncols.samples = 2)
+  print(p)
 }</code></pre>
+<p><img src="figure/spatial_features.Rmd/variable_features-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-1">
+Past versions of variable_features-1.png
+</button>
+</p>
+<div id="fig-variable_features-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/variable_features-1.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/spatial_features.Rmd/variable_features-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-2">
+Past versions of variable_features-2.png
+</button>
+</p>
+<div id="fig-variable_features-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/variable_features-2.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-2.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/spatial_features.Rmd/variable_features-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-3">
+Past versions of variable_features-3.png
+</button>
+</p>
+<div id="fig-variable_features-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/variable_features-3.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-3.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><br></p>
 </div>
 <div id="compare-graph-embeddings" class="section level2">
 <h2>Compare graph embeddings</h2>
+<hr />
 <p>Another useful feature is that you can now compare the spatial distribution of a gene with the typical “graph embeddings” s.a. UMAP and t-SNE. <br></p>
 <pre class="r"><code># Run UMAP
-se &lt;- RunUMAP(se, reduction = &quot;NMF&quot;, n.neighbors = 10)</code></pre>
+se &lt;- RunUMAP(se, reduction = &quot;NMF&quot;, dims = 1:40, n.neighbors = 10)</code></pre>
 <pre class="r"><code># Define colors for heatmap
-heatmap.colors &lt;- c(rgb(40, 40, 40, maxColorValue = 255), &quot;darkblue&quot;, &quot;cyan&quot;, &quot;white&quot;)
+heatmap.colors &lt;- viridis::viridis(n = 9)
 fts &lt;- c(&quot;Prkcd&quot;, &quot;Opalin&quot;, &quot;Lamp5&quot;)
 
 # plot transformed features expression on UMAP embedding
@@ -709,128 +1651,202 @@ p.fts &lt;- lapply(fts, function(ftr) {
 })
 
 # plot transformed features expression on Visium coordinates
-p3 &lt;- ST.FeaturePlot(se, features = fts, ncol = 2, grid.ncol = 1, cols = heatmap.colors, pt.size = 0.5, dark.theme = T)
+p3 &lt;- ST.FeaturePlot(se, features = fts, ncol = 2, grid.ncol = 1, cols = heatmap.colors, pt.size = 1, dark.theme = T, show.sb = FALSE)
 
 # Construct final plot
-cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2, rel_widths = c(1, 1))</code></pre>
-<p><img src="figure/spatial_features.Rmd/embedding_vs_ST-1.png" width="864" style="display: block; margin: auto;" /></p>
+cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2, rel_widths = c(1, 1.3))</code></pre>
+<p><img src="figure/spatial_features.Rmd/embedding_vs_ST-1.png" width="1344" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-embedding_vs_ST-1">
+Past versions of embedding_vs_ST-1.png
+</button>
+</p>
+<div id="fig-embedding_vs_ST-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">0b6d8e8</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="rgb-dimensionality-reduction-plots" class="section level2">
 <h2>RGB dimensionality reduction plots</h2>
+<hr />
 <p>One approach to visualize the result of dimensionality reduction is to use the first three dimensions and transform the values into RGB color space. This 3 dimensional space can then be utilized for spatial visualization. We demonstrate the technique with UMAP, using our factors as input: <br></p>
 <pre class="r"><code>se &lt;- RunUMAP(object = se, dims = 1:40, verbose = FALSE, n.components = 3, reduction = &quot;NMF&quot;, reduction.name = &quot;umap.3d&quot;)</code></pre>
 <p><br> We use the first three dimensions for plotting: <br></p>
-<pre class="r"><code>ST.DimPlot(object = se, dims = 1:3, reduction = &quot;umap.3d&quot;, blend = T, dark.theme = T, pt.size = 0.5)</code></pre>
-<p><img src="figure/spatial_features.Rmd/UMAP_blend-1.png" width="960" style="display: block; margin: auto;" /></p>
-<p><br> Once again the <code>ProjectDim()</code> function can be used to display the genes that are most strongly correlated with the coordinate system. Note in the function call above that we defined <code>reduction.name</code>, which are subsequently stored in the Seurat object in the reduction slot: <br></p>
-<pre class="r"><code>ProjectDim(se, reduction = &quot;umap.3d&quot;)</code></pre>
-<pre><code>umap.3d_ 1 
-Positive:  Mbp, Plp1, Pvalb, Pcp2, Mobp, Trf, Cbln1, Cbln3, Car8, Gabra6 
-       Apod, Zic1, Cnp, Mag, Sparc, Gm2694, Plekhb1, S100b, Ptgds, Sept4 
-Negative:  Nrgn, Camk2n1, Ctxn1, Cck, Camk2a, Olfm1, Basp1, Nptxr, Chn1, Sst 
-       Arpp21, Ddn, Enc1, Hpcal4, Gpr88, Penk, Calm2, Rtn1, Mef2c, Snca 
-umap.3d_ 2 
-Positive:  Calb2, Pcp2, Car8, Fabp7, Pvalb, Doc2g, Gng4, Gng13, Cbln1, Ppp1r17 
-       Cdhr1, Zic1, Slc1a3, Homer3, Calb1, Cbln3, Dner, Rgs8, Gabra6, S100a5 
-Negative:  Ppp1r1b, Gpr88, Penk, Mbp, Plp1, Pde10a, Tac1, Rgs9, Pde1b, Mobp 
-       Hpca, Scn4b, Adcy5, Nrgn, Rasd2, Adora2a, Arpp21, Mal, Ngef, Gng7 
-umap.3d_ 3 
-Positive:  Nrgn, Cck, Slc17a7, Pcp2, Olfm1, 3110035E14Rik, Cbln1, Cbln3, Camk2n1, Atp1a1 
-       Adcy1, Snap25, Car8, Gabra6, 1110008P14Rik, Stx1a, Gng13, Itpr1, Gm2694, Pvalb 
-Negative:  Penk, Ppp1r1b, Gpr88, Ttr, Pde10a, Plp1, Mbp, Tac1, Pde1b, Rgs9 
-       Pcp4, Scn4b, Adcy5, Mobp, Rasd2, Adora2a, Pcp4l1, Nnat, Drd2, Gng7 </code></pre>
-<pre><code>An object of class Seurat 
-37188 features across 12125 samples within 2 assays 
-Active assay: SCT (18594 features)
- 1 other assay present: RNA
- 3 dimensional reductions calculated: NMF, umap, umap.3d</code></pre>
+<pre class="r"><code>ST.DimPlot(object = se, dims = 1:3, reduction = &quot;umap.3d&quot;, blend = T, dark.theme = T, pt.size = 1.5)</code></pre>
+<p><img src="figure/spatial_features.Rmd/UMAP_blend-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-UMAP_blend-1">
+Past versions of UMAP_blend-1.png
+</button>
+</p>
+<div id="fig-UMAP_blend-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">a024bce</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-12
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">0b6d8e8</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">fb06450</a>
+</td>
+<td>
+jbergenstrahle
+</td>
+<td>
+2020-01-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">f10ef37</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2019-10-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><br></p>
 </div>
 <div id="dea" class="section level2">
 <h2>DEA</h2>
+<hr />
 <p>Lets try this out by an example. Looking at , lets say we are interested in cluster 19, and want to answer - “Which genes are significantly up-regulated in this region compared to the overall expression across the tissue?”</p>
 <pre class="r"><code>markers &lt;- FindMarkers(se, ident.1 = &quot;19&quot;)
 head(markers)</code></pre>
-<pre><code>     p_val avg_logFC pct.1 pct.2 p_val_adj
-Dlx1     0  1.525068 0.993 0.147         0
-Dcx      0  1.410173 0.975 0.141         0
-Sp9      0  1.179423 0.942 0.132         0
-Sp8      0  1.142941 0.892 0.061         0
-Lgr6     0  1.065057 0.813 0.071         0
-Dlx2     0  1.054816 0.896 0.098         0</code></pre>
+<pre><code>              p_val avg_logFC pct.1 pct.2     p_val_adj
+Dsp    0.000000e+00 1.2427413 0.818 0.015  0.000000e+00
+Lct    0.000000e+00 0.9157160 0.768 0.021  0.000000e+00
+Tdo2  3.125802e-267 0.7143539 0.707 0.026 4.200140e-263
+Capn3 4.582401e-158 1.1263876 0.859 0.084 6.157372e-154
+Prox1 6.644757e-139 1.1988020 0.919 0.117 8.928560e-135
+C1ql2 1.183283e-134 1.7382051 1.000 0.169 1.589977e-130</code></pre>
 <p>Note that the clusters were already set as the Seurat objects levels. Type <code>levels(se)</code> to see the current levels of your object. If other clusters, annotations etc are of interest, set this before by specifying <code>Idents(se) &lt;-</code></p>
 <p>Note also, if we are interested in comparing two levels against each other, and not just “one against the rest”, we simply add a <code>ident.2 =</code> parameter to the above.</p>
-<pre class="r"><code>FeatureOverlay(se, features = &quot;Dlx1&quot;, 
-                    sampleids = 1:2,
-                    cols = c(&quot;black&quot;, &quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;),
-                    pt.size = 1, 
-                    pt.alpha = 0.5,
-                    dark.theme = T)</code></pre>
-<p><img src="figure/spatial_features.Rmd/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /> <br></p>
+<pre class="r"><code>FeatureOverlay(se, features = &quot;Dsp&quot;, 
+              sampleids = 1:2,
+              cols = c(&quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;),
+              pt.size = 1.5, 
+              pt.alpha = 0.5,
+              ncols.samples = 2,
+              dark.theme = T)</code></pre>
+<p><img src="figure/spatial_features.Rmd/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /> <br></p>
 </div>
 <div id="spatial-auto-correlation" class="section level2">
 <h2>Spatial Auto-correlation</h2>
-</div>
-<div id="spatial-auto-correlation-1" class="section level2">
-<h2>Spatial Auto-correlation</h2>
-<p>STUtility also includes an additional method for finding genes with spatial patterns across the tissue. The ranking method makes use neighborhood networks to compute the spatial lag for each gene, here defined as the summed expression of that gene in neighboring spots. Each gene is then ranked by the correlation between the lag vector and the original expression vector. The output is a ranked list of the genes with highest correlation between the two vectors.</p>
-<p>This method is inspired by work from the <a href="http://spatial.rc.fas.harvard.edu/spatialgiotto/giotto.html">Giotto team</a> and we reccomend you to check out their R package Giotto and their preprint; <a href="https://www.biorxiv.org/content/10.1101/701680v1">“Giotto, a pipeline for integrative analysis and visualization of single-cell spatial transcriptomic data”</a> that is available on bioRxiv.</p>
-<pre class="r"><code>CorSpatialGenes(se)</code></pre>
-</div>
-<div id="region-neighbors" class="section level2">
-<h2>Region neighbors</h2>
-<p>To demonstrate the regional neighbors feature, we will use the Breast Cancer data available on the 10x Genomics <a href="https://support.10xgenomics.com/spatial-gene-expression/datasets">website</a>.</p>
-<div id="connected-spatial-network" class="section level3">
-<h3>Connected Spatial Network</h3>
-<p>If you have defined a region of interest and you want to find all spots neighboring to this region you can use the RegionNeighbours() function to automatically detect such spots. For example, let’s say that we want to select all neighbors to cluster 12 in the plot below and find the differential expressed markers between the neighbors.</p>
-<pre class="r"><code>cols &lt;- c(&quot;#771155&quot;, &quot;#AA4488&quot;, &quot;#CC99BB&quot;, &quot;#114477&quot;, &quot;#4477AA&quot;, &quot;#77AADD&quot;, &quot;#117777&quot;, &quot;#44AAAA&quot;, &quot;#77CCCC&quot;, &quot;#117744&quot;, &quot;#44AA77&quot;, &quot;#88CCAA&quot;, &quot;#777711&quot;, &quot;#AAAA44&quot;, &quot;#DDDD77&quot;, &quot;#774411&quot;, &quot;#AA7744&quot;, &quot;#DDAA77&quot;)
-
-ST.FeaturePlot(se, features = &quot;seurat_clusters&quot;, pt.size = 1, cols=cols, dark.theme = T)</code></pre>
-<p><img src="figure/spatial_features.Rmd/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>First, RegionNeighbours() function to find the neighboring spots but we have to make sure that the active identity is appropriately set, here we use ‘seurat_clusters’.</p>
-<pre class="r"><code>se &lt;- SetIdent(se, value = &quot;seurat_clusters&quot;)
-se &lt;- RegionNeighbours(se, id = 2, verbose = TRUE)</code></pre>
-<pre><code>Creating Connected Netork using KNN ... 
-Found 4763 neighbours for id 2 ... 
-Excluding neighbours from the same group ... 
-569 neighbours left ... 
-Naming all neighbours nbs_2 ... 
-Saving neighbour ids to column &#39;nbs_2&#39; ... 
-Finished. </code></pre>
-<p>The default behavior is to find all spots which are neighbors with the selected id but ignoring its label, therefore it will simply be called nbs_12 as in “neighbors to 12”.</p>
-<pre class="r"><code>FeatureOverlay(se, features = &quot;nbs_2&quot;, ncols.samples = 2, sampleids = 1:2, cols = c(&quot;red&quot;, &quot;black&quot;, &quot;lightgray&quot;), pt.size = 1, dark.theme = T)</code></pre>
-<p><img src="figure/spatial_features.Rmd/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>You can also keep all spots from the id group by setting keep.within.id = TRUE.</p>
-<pre class="r"><code>se &lt;- SetIdent(se, value = &quot;seurat_clusters&quot;)
-se &lt;- RegionNeighbours(se, id = 2, keep.within.id = T, verbose = TRUE)</code></pre>
-<pre><code>Creating Connected Netork using KNN ... 
-Found 4763 neighbours for id 2 ... 
-Naming all neighbours nbs_2 ... 
-Saving neighbour ids to column &#39;nbs_2&#39; ... 
-Finished. </code></pre>
-<pre class="r"><code>FeatureOverlay(se, features = &quot;nbs_2&quot;, ncols.samples = 2, sampleids = 1:2, cols = c(&quot;red&quot;, &quot;black&quot;, &quot;lightgray&quot;), pt.size = 1, dark.theme = T)</code></pre>
-<p><img src="figure/spatial_features.Rmd/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>se &lt;- SetIdent(se, value = &quot;nbs_2&quot;)
-nbs_2.markers &lt;- FindMarkers(se, ident.1 = &quot;2&quot;, ident.2 = &quot;nbs_2&quot;)
-nbs_2.markers$gene &lt;- rownames(nbs_2.markers)
-se.subset &lt;- SubsetSTData(se, spots = rownames(subset(se[[]], nbs_2 %in% c(&quot;2&quot;, &quot;nbs_2&quot;))))
-sorted.marks &lt;- nbs_2.markers %&gt;% top_n(n = 40, wt = abs(avg_logFC))
-sorted.marks &lt;- sorted.marks[order(sorted.marks$avg_logFC, decreasing = T), ]
-DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c(&quot;black&quot;, &quot;lightgray&quot;), disp.min = -2, disp.max = 2)+ DarkTheme() </code></pre>
-<p><img src="figure/spatial_features.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>And lastly, if you want to keep the labels for the neighbors you can set keep.idents = TRUE and the neighbors will be called label_nb_to_12.</p>
-<pre class="r"><code>se &lt;- SetIdent(se, value = &quot;seurat_clusters&quot;)
-se &lt;- RegionNeighbours(se, id = 2, keep.idents = TRUE, verbose = TRUE)</code></pre>
-<pre><code>Creating Connected Netork using KNN ... 
-Found 4763 neighbours for id 2 ... 
-Excluding neighbours from the same group ... 
-569 neighbours left ... 
-Naming neighbours to id_nb_to* ... 
-Saving neighbour ids to column &#39;nbs_2&#39; ... 
-Finished. </code></pre>
-<pre class="r"><code>FeatureOverlay(se, features = &quot;nbs_2&quot;, ncols.samples = 2, sampleids = 1:2, pt.size = 1, dark.theme = T)</code></pre>
-<p><img src="figure/spatial_features.Rmd/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<hr />
+<p>STUtility also includes an additional method for finding genes with spatial patterns across the tissue. The ranking method makes use neighborhood networks to compute the spatial lag for each gene, here defined as the summed expression of that gene in neighboring spots. Each gene is then ranked by the correlation between the lag vector and the original expression vector. The output is data.frame genes ranked by correlation between the two vectors.</p>
+<p>This method is partly inspired by work from the <a href="http://spatial.rc.fas.harvard.edu/spatialgiotto/giotto.html">Giotto team</a> and we reccomend you to check out their R package Giotto and their preprint; <a href="https://www.biorxiv.org/content/10.1101/701680v1">“Giotto, a pipeline for integrative analysis and visualization of single-cell spatial transcriptomic data”</a> that is available on bioRxiv.</p>
 <p><br></p>
+<pre class="r"><code>library(spdep)
+spatgenes &lt;- CorSpatialGenes(se)</code></pre>
+<pre class="r"><code>head(spatgenes)</code></pre>
+<pre><code>           gene       cor
+Mbp         Mbp 0.9203725
+Camk2n1 Camk2n1 0.9054777
+Slc6a3   Slc6a3 0.8917767
+Th           Th 0.8762578
+Nrgn       Nrgn 0.8744128
+Tmsb4x   Tmsb4x 0.8715944</code></pre>
  
 <hr />
 <p style="text-align: center;">
@@ -851,108 +1867,84 @@ A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and 
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.6.1 (2019-07-05)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18363)
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Mojave 10.14.6
 
 Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
 
 locale:
-[1] LC_COLLATE=English_Sweden.1252  LC_CTYPE=English_Sweden.1252   
-[3] LC_MONETARY=English_Sweden.1252 LC_NUMERIC=C                   
-[5] LC_TIME=English_Sweden.1252    
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
 [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
 [8] methods   base     
 
 other attached packages:
- [1] dplyr_0.8.3                 magrittr_1.5               
- [3] RColorBrewer_1.1-2          STutility_0.1.0            
- [5] ggplot2_3.2.1               SingleCellExperiment_1.6.0 
- [7] SummarizedExperiment_1.14.1 DelayedArray_0.10.0        
- [9] BiocParallel_1.18.1         matrixStats_0.55.0         
-[11] Biobase_2.44.0              GenomicRanges_1.36.1       
-[13] GenomeInfoDb_1.20.0         IRanges_2.18.2             
-[15] S4Vectors_0.22.1            BiocGenerics_0.30.0        
-[17] Seurat_3.1.1.9023          
+ [1] RColorBrewer_1.1-2          magrittr_1.5               
+ [3] STutility_0.1.0             ggplot2_3.3.0              
+ [5] SingleCellExperiment_1.10.1 SummarizedExperiment_1.18.1
+ [7] DelayedArray_0.14.0         matrixStats_0.56.0         
+ [9] Biobase_2.48.0              GenomicRanges_1.40.0       
+[11] GenomeInfoDb_1.24.0         IRanges_2.22.1             
+[13] S4Vectors_0.26.0            BiocGenerics_0.34.0        
+[15] Seurat_3.1.5                workflowr_1.6.2            
 
 loaded via a namespace (and not attached):
-  [1] reticulate_1.13         R.utils_2.9.0          
-  [3] tidyselect_0.2.5        htmlwidgets_1.3        
-  [5] grid_3.6.1              Rtsne_0.15             
-  [7] munsell_0.5.0           codetools_0.2-16       
-  [9] ica_1.0-2               future_1.15.0          
- [11] miniUI_0.1.1.1          withr_2.1.2            
- [13] colorspace_1.4-1        knitr_1.24             
- [15] uuid_0.1-2              ROCR_1.0-7             
- [17] tensor_1.5              gbRd_0.4-11            
- [19] listenv_0.7.0           labeling_0.3           
- [21] Rdpack_0.11-0           git2r_0.26.1           
- [23] GenomeInfoDbData_1.2.1  polyclip_1.10-0        
- [25] rprojroot_1.3-2         vctrs_0.2.0            
- [27] xfun_0.9                R6_2.4.0               
- [29] doParallel_1.0.15       rsvd_1.0.2             
- [31] Morpho_2.7              ggiraph_0.7.0          
- [33] manipulateWidget_0.10.0 bitops_1.0-6           
- [35] spatstat.utils_1.13-0   assertthat_0.2.1       
- [37] promises_1.0.1          SDMTools_1.1-221.1     
- [39] scales_1.0.0            imager_0.41.2          
- [41] gtable_0.3.0            npsurv_0.4-0           
- [43] globals_0.12.4          bmp_0.3                
- [45] goftest_1.1-1           workflowr_1.5.0        
- [47] rlang_0.4.1             zeallot_0.1.0          
- [49] akima_0.6-2             systemfonts_0.1.1      
- [51] splines_3.6.1           lazyeval_0.2.2         
- [53] rgl_0.100.30            yaml_2.2.0             
- [55] reshape2_1.4.3          abind_1.4-5            
- [57] crosstalk_1.0.0         backports_1.1.4        
- [59] httpuv_1.5.2            tools_3.6.1            
- [61] gplots_3.0.1.1          raster_3.0-7           
- [63] Rvcg_0.18               ggridges_0.5.1         
- [65] Rcpp_1.0.3              plyr_1.8.4             
- [67] zlibbioc_1.30.0         purrr_0.3.3            
- [69] RCurl_1.95-4.12         rpart_4.1-15           
- [71] dbscan_1.1-5            deldir_0.1-23          
- [73] viridis_0.5.1           pbapply_1.4-2          
- [75] cowplot_1.0.0           zoo_1.8-6              
- [77] ggrepel_0.8.1           cluster_2.1.0          
- [79] colorRamps_2.3          fs_1.3.1               
- [81] RSpectra_0.15-0         data.table_1.12.2      
- [83] magick_2.2              readbitmap_0.1.5       
- [85] lmtest_0.9-37           RANN_2.6.1             
- [87] fitdistrplus_1.0-14     shinyjs_1.1            
- [89] lsei_1.2-0              mime_0.7               
- [91] evaluate_0.14           xtable_1.8-4           
- [93] jpeg_0.1-8.1            gridExtra_2.3          
- [95] compiler_3.6.1          tibble_2.1.3           
- [97] KernSmooth_2.23-15      crayon_1.3.4           
- [99] R.oo_1.22.0             htmltools_0.3.6        
-[101] mgcv_1.8-28             later_0.8.0            
-[103] tiff_0.1-5              tidyr_1.0.0            
-[105] RcppParallel_4.4.3      MASS_7.3-51.4          
-[107] Matrix_1.2-17           R.methodsS3_1.7.1      
-[109] gdata_2.18.0            metap_1.1              
-[111] igraph_1.2.4.1          pkgconfig_2.0.2        
-[113] sp_1.3-2                plotly_4.9.1           
-[115] xml2_1.2.2              foreach_1.4.7          
-[117] webshot_0.5.1           XVector_0.24.0         
-[119] bibtex_0.4.2            stringr_1.4.0          
-[121] digest_0.6.22           sctransform_0.2.0      
-[123] RcppAnnoy_0.0.12        tsne_0.1-3             
-[125] spatstat.data_1.4-0     rmarkdown_1.15         
-[127] leiden_0.3.1            uwot_0.1.4             
-[129] gdtools_0.2.1           shiny_1.3.2            
-[131] gtools_3.8.1            lifecycle_0.1.0        
-[133] nlme_3.1-141            jsonlite_1.6           
-[135] viridisLite_0.3.0       pillar_1.4.2           
-[137] lattice_0.20-38         httr_1.4.1             
-[139] survival_2.44-1.1       glue_1.3.1             
-[141] spatstat_1.61-0         png_0.1-7              
-[143] iterators_1.0.12        stringi_1.4.3          
-[145] caTools_1.17.1.2        irlba_2.3.3            
-[147] future.apply_1.3.0      ape_5.3                </code></pre>
-</div>
+  [1] reticulate_1.15         tidyselect_1.0.0        htmlwidgets_1.5.1      
+  [4] grid_4.0.0              Rtsne_0.15              munsell_0.5.0          
+  [7] codetools_0.2-16        ica_1.0-2               units_0.6-6            
+ [10] future_1.17.0           miniUI_0.1.1.1          withr_2.2.0            
+ [13] colorspace_1.4-1        knitr_1.28              uuid_0.1-4             
+ [16] ROCR_1.0-11             tensor_1.5              listenv_0.8.0          
+ [19] labeling_0.3            git2r_0.27.1            GenomeInfoDbData_1.2.3 
+ [22] polyclip_1.10-0         farver_2.0.3            rprojroot_1.3-2        
+ [25] coda_0.19-3             LearnBayes_2.15.1       vctrs_0.3.0            
+ [28] xfun_0.13               R6_2.4.1                doParallel_1.0.15      
+ [31] rsvd_1.0.3              Morpho_2.8              ggiraph_0.7.0          
+ [34] manipulateWidget_0.10.1 bitops_1.0-6            spatstat.utils_1.17-0  
+ [37] assertthat_0.2.1        promises_1.1.0          scales_1.1.0           
+ [40] imager_0.42.1           gtable_0.3.0            npsurv_0.4-0.1         
+ [43] globals_0.12.5          bmp_0.3                 goftest_1.2-2          
+ [46] rlang_0.4.6             zeallot_0.1.0           akima_0.6-2            
+ [49] systemfonts_0.2.1       splines_4.0.0           lazyeval_0.2.2         
+ [52] rgl_0.100.54            yaml_2.2.1              reshape2_1.4.4         
+ [55] abind_1.4-5             crosstalk_1.1.0.1       backports_1.1.6        
+ [58] httpuv_1.5.2            tools_4.0.0             spData_0.3.5           
+ [61] ellipsis_0.3.0          raster_3.1-5            Rvcg_0.19.1            
+ [64] ggridges_0.5.2          Rcpp_1.0.4.6            plyr_1.8.6             
+ [67] zlibbioc_1.34.0         classInt_0.4-3          purrr_0.3.4            
+ [70] RCurl_1.98-1.2          rpart_4.1-15            dbscan_1.1-5           
+ [73] deldir_0.1-25           viridis_0.5.1           pbapply_1.4-2          
+ [76] cowplot_1.0.0           zoo_1.8-8               ggrepel_0.8.2          
+ [79] cluster_2.1.0           colorRamps_2.3          fs_1.4.1               
+ [82] data.table_1.12.8       magick_2.3              readbitmap_0.1.5       
+ [85] gmodels_2.18.1          lmtest_0.9-37           RANN_2.6.1             
+ [88] whisker_0.4             fitdistrplus_1.0-14     patchwork_1.0.0        
+ [91] shinyjs_1.1             lsei_1.2-0.1            mime_0.9               
+ [94] evaluate_0.14           xtable_1.8-4            jpeg_0.1-8.1           
+ [97] gridExtra_2.3           compiler_4.0.0          tibble_3.0.1           
+[100] KernSmooth_2.23-17      crayon_1.3.4            htmltools_0.4.0        
+[103] mgcv_1.8-31             later_1.0.0             spdep_1.1-3            
+[106] tiff_0.1-5              tidyr_1.0.3             expm_0.999-4           
+[109] DBI_1.1.0               MASS_7.3-51.6           sf_0.9-3               
+[112] boot_1.3-25             Matrix_1.2-18           gdata_2.18.0           
+[115] igraph_1.2.5            pkgconfig_2.0.3         sp_1.4-1               
+[118] plotly_4.9.2.1          xml2_1.3.2              foreach_1.5.0          
+[121] webshot_0.5.2           XVector_0.28.0          stringr_1.4.0          
+[124] digest_0.6.25           sctransform_0.2.1       RcppAnnoy_0.0.16       
+[127] tsne_0.1-3              spatstat.data_1.4-3     rmarkdown_2.1          
+[130] leiden_0.3.3            uwot_0.1.8              gdtools_0.2.2          
+[133] gtools_3.8.2            shiny_1.4.0.2           lifecycle_0.2.0        
+[136] nlme_3.1-147            jsonlite_1.6.1          limma_3.44.1           
+[139] viridisLite_0.3.0       pillar_1.4.4            lattice_0.20-41        
+[142] fastmap_1.0.1           httr_1.4.1              survival_3.1-12        
+[145] glue_1.4.0              spatstat_1.63-3         png_0.1-7              
+[148] iterators_1.0.12        class_7.3-17            stringi_1.4.6          
+[151] dplyr_0.8.5             irlba_2.3.3             e1071_1.7-3            
+[154] future.apply_1.5.0      ape_5.3                </code></pre>
 </div>
 </div>
 
