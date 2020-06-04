@@ -2,20 +2,6 @@
 title: "Manual Annotation"
 author:
 date: ''
-#output:
-#  html_document:
-#    theme: darkly
-#    css: style.css
-#    number_sections: false
-#    toc: yes
-#    toc_depth: 3
-#    toc_float:
-#      collapsed: false
-#      smooth_scroll: true
-#  pdf_document:
-#    number_sections: false
-#    toc: yes
-#    toc_depth: 3
 ---
 
 <style type="text/css">
@@ -63,8 +49,8 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 
 ```
 
-```{r load_lib, warning=FALSE, message=FALSE, results="hide", autodep=TRUE, include=FALSE}
-#
+```{r load_lib, warning=FALSE, message=FALSE, include=FALSE}
+library(STutility)
 ```
 
 Included in STUtility is a Shiny application for manual annotation. It lets the user select and give a/several specific capture-spot(s) a label. This could be used for e.g. visualization or DEA purposes. Instructions for how to use the tool is included in the actual app. 
