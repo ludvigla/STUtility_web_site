@@ -135,7 +135,7 @@ Now we are ready to plot features in 3D. We'll run the `FeaturePlot3D()` functio
 
 ```{r plt_3d}
 
-FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6)
+FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6, pts.downsample = 5e4)
 
 ```
 <br>
@@ -145,7 +145,7 @@ see `?FeaturePlot3D` for more plotting alternatives, e.g. the z-distance can be 
 <br>
 ```{r plt_3d2}
 
-FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6, add.margins = 2)
+FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6, add.margins = 2, pts.downsample = 5e4)
 
 ```
 <br>
@@ -171,8 +171,8 @@ The 3D plots are drawn using the `plotly` R package and you can specify a layout
 
 ```{r subplot, out.width = "100%"}
 
-p1 <- FeaturePlot3D(se, features = "Mbp", scene = "scene", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
-p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
+p1 <- FeaturePlot3D(se, features = "Mbp", scene = "scene", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1, pts.downsample = 5e4)
+p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1, pts.downsample = 5e4)
 
 plotly::subplot(p1, p2, margin = 0)
 
