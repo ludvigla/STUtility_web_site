@@ -85,7 +85,7 @@ se <- Create3DStack(se)
 
 We can plot the stacked coordinates in 2D to see what the point patterns look like. From the plot below you can see that a higher density of points is picked up in areas width darker color, which is typically the case for the tissue edges. 
 <br>
-```{r dimplot, fig.width = 18, fig.height = 36, out.width = "100%"}
+```{r dimplot, fig.width = 9, fig.height = 18, out.width = "100%"}
 
 stack_3d <- setNames(GetStaffli(se)@scatter.data, c("x", "y", "z", "grid.cell"))
 
@@ -105,7 +105,7 @@ ggplot(stack_3d, aes(x, 2e3 - y)) +
 
 The next step to visualize features is to interpolate values across the point patterns. Since each point is assigned to a grid cell, we can interpolate values across the grid and assign an interpolated values back to the points. Remember that the width of the grid is determined by the `nx` parameter and you can increase the resolution of the interpolation by setting `nx` to a higher value when running the `Create3DStack()` function. Increasing the value of this parameter will improve the "smoothness" of the colormap but will slow down the computation significantly.
 <br>
-```{r interpolate data, fig.width = 18, fig.height = 36, out.width = "100%"}
+```{r interpolate data, fig.width = 9, fig.height = 18, out.width = "100%"}
 
 interpolated.data <- FeaturePlot3D(se, features = "Mbp", return.data = TRUE)
 
@@ -140,22 +140,12 @@ FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6, pts.downsa
 ```
 <br>
 
-see `?FeaturePlot3D` for more plotting alternatives, e.g. the z-distance can be changed to more truthfully represent the actual distance between the sections:
-
-<br>
-```{r plt_3d2}
-
-FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6, add.margins = 2, pts.downsample = 5e4)
-
-```
-<br>
-
 Various other features and analysis results can be visualized, e.g. if we previously had performed a factor analysis on the samples, we can for example show theses factors simultaneously using the HSV color coding scheme. Just keep in mind that the factors needs to be non-overlapping. The HSV color scheme can be useful to show mulltiple features simultaneously, but it's recommended to also explore the features one by one.
 
 <br>
 ```{r plt_3d_HSV}
 
-HSVPlot3D(se, features = paste0("factor_", c(4,5,7,9,11,13,14,15,18,22,24,25,29,30,31,33,36)), pt.size = 1, dark.theme = T, add.margins = 1)
+HSVPlot3D(se, features = paste0("factor_", c(4,5,7,9,11,13,14,15,18,22,24,25,29,30,31,33,36)), pt.size = 1, dark.theme = T, add.margins = 1, mode = "spots")
 
 
 ```
@@ -172,7 +162,7 @@ The 3D plots are drawn using the `plotly` R package and you can specify a layout
 ```{r subplot, out.width = "100%"}
 
 p1 <- FeaturePlot3D(se, features = "Mbp", scene = "scene", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1, pts.downsample = 5e4)
-p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1, pts.downsample = 5e4)
+p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
 
 plotly::subplot(p1, p2, margin = 0)
 
