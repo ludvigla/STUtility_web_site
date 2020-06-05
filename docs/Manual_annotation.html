@@ -374,17 +374,38 @@ div.tocify {
 <li>
   <a href="installation.html">Installation</a>
 </li>
-<li>
-  <a href="getting_started.html">Getting Started</a>
-</li>
-<li>
-  <a href="image_processing.html">Image processing</a>
-</li>
-<li>
-  <a href="normalization.html">Normalization</a>
-</li>
-<li>
-  <a href="spatial_features.html">Spatial features</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Getting started
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="getting_started.html">Load data</a>
+    </li>
+    <li>
+      <a href="Quality_Control.html">Quality Control</a>
+    </li>
+    <li>
+      <a href="image_processing.html">Image processing</a>
+    </li>
+    <li>
+      <a href="Manual_annotation.Rmd">Manual annotation</a>
+    </li>
+    <li>
+      <a href="normalization.html">Normalization</a>
+    </li>
+    <li>
+      <a href="spatial_features.html">Spatial features</a>
+    </li>
+    <li>
+      <a href="Neighborhood.html">Neighborhood Analysis</a>
+    </li>
+    <li>
+      <a href="visualization_3D.html">3D visualization</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="license.html">License</a>
@@ -414,7 +435,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -423,7 +444,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -432,10 +453,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-06-03
+<strong>Last updated:</strong> 2020-06-05
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -451,12 +472,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -523,16 +544,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree52004c5d3251941f5d0955c591c8290095512cb0targetblank52004c5a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/52004c5d3251941f5d0955c591c8290095512cb0" target="_blank">52004c5</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree98f1fe2122b2dfc5c9af1809edbe6a1fdcdd748ctargetblank98f1fe2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/98f1fe2122b2dfc5c9af1809edbe6a1fdcdd748c" target="_blank">98f1fe2</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree52004c5d3251941f5d0955c591c8290095512cb0targetblank52004c5a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree98f1fe2122b2dfc5c9af1809edbe6a1fdcdd748ctargetblank98f1fe2a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/52004c5d3251941f5d0955c591c8290095512cb0" target="_blank">52004c5</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/98f1fe2122b2dfc5c9af1809edbe6a1fdcdd748c" target="_blank">98f1fe2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -543,19 +564,10 @@ Ignored files:
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/manual_annotation.png
     Ignored:    analysis/visualization_3D.Rmd
-
-Untracked files:
-    Untracked:  analysis/Neighborhood.Rmd
-    Untracked:  analysis/Quality_Control.Rmd
-    Untracked:  pre_data/
+    Ignored:    pre_data/
 
 Unstaged changes:
-    Modified:   analysis/Manual_annotation.Rmd
-    Modified:   analysis/getting_started.Rmd
-    Modified:   analysis/image_processing.Rmd
-    Modified:   analysis/installation.Rmd
-    Modified:   analysis/normalization.Rmd
-    Modified:   analysis/spatial_features.Rmd
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -594,6 +606,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/09fb8810ce4d4674a973482c2d63bf4514b61be5/analysis/Manual_annotation.Rmd" target="_blank">09fb881</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+<td>
+wflow_git_commit(all = T)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/09fb8810ce4d4674a973482c2d63bf4514b61be5/docs/Manual_annotation.html" target="_blank">09fb881</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-04
+</td>
+<td>
+wflow_git_commit(all = T)
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -734,7 +780,7 @@ other attached packages:
  [7] Biobase_2.48.0              GenomicRanges_1.40.0       
  [9] GenomeInfoDb_1.24.0         IRanges_2.22.1             
 [11] S4Vectors_0.26.0            BiocGenerics_0.34.0        
-[13] Seurat_3.1.5               
+[13] Seurat_3.1.5                workflowr_1.6.2            
 
 loaded via a namespace (and not attached):
   [1] reticulate_1.15         tidyselect_1.0.0        htmlwidgets_1.5.1      
@@ -751,44 +797,44 @@ loaded via a namespace (and not attached):
  [34] spatstat.utils_1.17-0   assertthat_0.2.1        promises_1.1.0         
  [37] scales_1.1.0            imager_0.42.1           gtable_0.3.0           
  [40] npsurv_0.4-0.1          globals_0.12.5          bmp_0.3                
- [43] goftest_1.2-2           workflowr_1.6.2         rlang_0.4.6            
- [46] zeallot_0.1.0           akima_0.6-2             systemfonts_0.2.1      
- [49] splines_4.0.0           lazyeval_0.2.2          rgl_0.100.54           
- [52] yaml_2.2.1              reshape2_1.4.4          abind_1.4-5            
- [55] crosstalk_1.1.0.1       backports_1.1.6         httpuv_1.5.2           
- [58] tools_4.0.0             spData_0.3.5            ellipsis_0.3.0         
- [61] raster_3.1-5            RColorBrewer_1.1-2      Rvcg_0.19.1            
- [64] ggridges_0.5.2          Rcpp_1.0.4.6            plyr_1.8.6             
- [67] zlibbioc_1.34.0         classInt_0.4-3          purrr_0.3.4            
- [70] RCurl_1.98-1.2          rpart_4.1-15            dbscan_1.1-5           
- [73] deldir_0.1-25           viridis_0.5.1           pbapply_1.4-2          
- [76] cowplot_1.0.0           zoo_1.8-8               ggrepel_0.8.2          
- [79] cluster_2.1.0           colorRamps_2.3          fs_1.4.1               
- [82] magrittr_1.5            data.table_1.12.8       magick_2.3             
- [85] readbitmap_0.1.5        gmodels_2.18.1          lmtest_0.9-37          
- [88] RANN_2.6.1              whisker_0.4             fitdistrplus_1.0-14    
- [91] patchwork_1.0.0         shinyjs_1.1             lsei_1.2-0.1           
- [94] mime_0.9                evaluate_0.14           xtable_1.8-4           
- [97] jpeg_0.1-8.1            gridExtra_2.3           compiler_4.0.0         
-[100] tibble_3.0.1            KernSmooth_2.23-17      crayon_1.3.4           
-[103] htmltools_0.4.0         mgcv_1.8-31             later_1.0.0            
-[106] spdep_1.1-3             tiff_0.1-5              tidyr_1.0.3            
-[109] expm_0.999-4            DBI_1.1.0               MASS_7.3-51.6          
-[112] sf_0.9-3                boot_1.3-25             Matrix_1.2-18          
-[115] gdata_2.18.0            igraph_1.2.5            pkgconfig_2.0.3        
-[118] sp_1.4-1                plotly_4.9.2.1          xml2_1.3.2             
-[121] foreach_1.5.0           webshot_0.5.2           XVector_0.28.0         
-[124] stringr_1.4.0           digest_0.6.25           sctransform_0.2.1      
-[127] RcppAnnoy_0.0.16        tsne_0.1-3              spatstat.data_1.4-3    
-[130] rmarkdown_2.1           leiden_0.3.3            uwot_0.1.8             
-[133] gdtools_0.2.2           gtools_3.8.2            shiny_1.4.0.2          
-[136] lifecycle_0.2.0         nlme_3.1-147            jsonlite_1.6.1         
-[139] viridisLite_0.3.0       pillar_1.4.4            lattice_0.20-41        
-[142] fastmap_1.0.1           httr_1.4.1              survival_3.1-12        
-[145] glue_1.4.0              spatstat_1.63-3         png_0.1-7              
-[148] iterators_1.0.12        class_7.3-17            stringi_1.4.6          
-[151] dplyr_0.8.5             irlba_2.3.3             e1071_1.7-3            
-[154] future.apply_1.5.0      ape_5.3                </code></pre>
+ [43] goftest_1.2-2           rlang_0.4.6             zeallot_0.1.0          
+ [46] akima_0.6-2             systemfonts_0.2.1       splines_4.0.0          
+ [49] lazyeval_0.2.2          rgl_0.100.54            yaml_2.2.1             
+ [52] reshape2_1.4.4          abind_1.4-5             crosstalk_1.1.0.1      
+ [55] backports_1.1.6         httpuv_1.5.2            tools_4.0.0            
+ [58] spData_0.3.5            ellipsis_0.3.0          raster_3.1-5           
+ [61] RColorBrewer_1.1-2      Rvcg_0.19.1             ggridges_0.5.2         
+ [64] Rcpp_1.0.4.6            plyr_1.8.6              zlibbioc_1.34.0        
+ [67] classInt_0.4-3          purrr_0.3.4             RCurl_1.98-1.2         
+ [70] rpart_4.1-15            dbscan_1.1-5            deldir_0.1-25          
+ [73] viridis_0.5.1           pbapply_1.4-2           cowplot_1.0.0          
+ [76] zoo_1.8-8               ggrepel_0.8.2           cluster_2.1.0          
+ [79] colorRamps_2.3          fs_1.4.1                magrittr_1.5           
+ [82] data.table_1.12.8       magick_2.3              readbitmap_0.1.5       
+ [85] gmodels_2.18.1          lmtest_0.9-37           RANN_2.6.1             
+ [88] whisker_0.4             fitdistrplus_1.0-14     patchwork_1.0.0        
+ [91] shinyjs_1.1             lsei_1.2-0.1            mime_0.9               
+ [94] evaluate_0.14           xtable_1.8-4            jpeg_0.1-8.1           
+ [97] gridExtra_2.3           compiler_4.0.0          tibble_3.0.1           
+[100] KernSmooth_2.23-17      crayon_1.3.4            htmltools_0.4.0        
+[103] mgcv_1.8-31             later_1.0.0             spdep_1.1-3            
+[106] tiff_0.1-5              tidyr_1.0.3             expm_0.999-4           
+[109] DBI_1.1.0               MASS_7.3-51.6           sf_0.9-3               
+[112] boot_1.3-25             Matrix_1.2-18           gdata_2.18.0           
+[115] igraph_1.2.5            pkgconfig_2.0.3         sp_1.4-1               
+[118] plotly_4.9.2.1          xml2_1.3.2              foreach_1.5.0          
+[121] webshot_0.5.2           XVector_0.28.0          stringr_1.4.0          
+[124] digest_0.6.25           sctransform_0.2.1       RcppAnnoy_0.0.16       
+[127] tsne_0.1-3              spatstat.data_1.4-3     rmarkdown_2.1          
+[130] leiden_0.3.3            uwot_0.1.8              gdtools_0.2.2          
+[133] gtools_3.8.2            shiny_1.4.0.2           lifecycle_0.2.0        
+[136] nlme_3.1-147            jsonlite_1.6.1          viridisLite_0.3.0      
+[139] pillar_1.4.4            lattice_0.20-41         fastmap_1.0.1          
+[142] httr_1.4.1              survival_3.1-12         glue_1.4.0             
+[145] spatstat_1.63-3         png_0.1-7               iterators_1.0.12       
+[148] class_7.3-17            stringi_1.4.6           dplyr_0.8.5            
+[151] irlba_2.3.3             e1071_1.7-3             future.apply_1.5.0     
+[154] ape_5.3                </code></pre>
 </div>
 
 
