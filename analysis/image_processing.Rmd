@@ -118,7 +118,6 @@ To overlay a spatial feature heatmaps on top of the HE image we use the FeatureO
 FeatureOverlay(se, 
                features = "Cck", 
                pt.size = 1.5,
-               pt.alpha = 0.5, 
                cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
                dark.theme = T, 
                type = "raw")
@@ -131,7 +130,6 @@ You can see that by default, the first sample was selected for the feature overl
 
 FeatureOverlay(se, 
                features = c("Cck", "Calb2", "Dcn", "Nrgn"), 
-               pt.alpha = 0.5, 
                cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
                dark.theme = T, 
                type = "raw",
@@ -145,7 +143,6 @@ If you want to highlight only the regions with high feature values, you can add 
 
 FeatureOverlay(se, 
                features = c("Cck", "Calb2", "Dcn", "Nrgn"), 
-               pt.alpha = 0.5, 
                add.alpha = TRUE,
                cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
                dark.theme = T, 
@@ -164,7 +161,6 @@ customtheme <- theme(legend.position = "None", plot.title = element_blank())
 
 FeatureOverlay(se, 
                features = c("Cck", "Calb2", "Dcn", "Nrgn"), 
-               pt.alpha = 0.5, 
                cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
                dark.theme = T, 
                type = "raw",
@@ -280,7 +276,6 @@ So far we have only plotted section 1 using the `FeatureOverlay` function. If yo
 
 FeatureOverlay(se, features = "Nrgn", 
                 sampleids = 1:2,
-                pt.alpha = 0.5,
                 cols = c("dark blue", "cyan", "yellow", "red", "dark red"),
                 method = "raster",
                 dark.theme = T, ncols.samples = 2)
@@ -293,7 +288,6 @@ As mentioned before, we can change the `type` parameter in the `FeatureOverlay()
 
 FeatureOverlay(object = se, features = c("Nrgn", "Cck"), 
                cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
-               pt.alpha = 0.5,
                sampleids = 2,
                type = "raw", 
                dark.theme = T)
