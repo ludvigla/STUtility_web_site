@@ -544,16 +544,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree42cb54d1b38dac80f6d200b171a63b74572c7fd2targetblank42cb54da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/42cb54d1b38dac80f6d200b171a63b74572c7fd2" target="_blank">42cb54d</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree259ba7bc5ee58083282d59feecc7a2b9d23bcccctargetblank259ba7ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/259ba7bc5ee58083282d59feecc7a2b9d23bcccc" target="_blank">259ba7b</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree42cb54d1b38dac80f6d200b171a63b74572c7fd2targetblank42cb54da" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree259ba7bc5ee58083282d59feecc7a2b9d23bcccctargetblank259ba7ba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/42cb54d1b38dac80f6d200b171a63b74572c7fd2" target="_blank">42cb54d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/259ba7bc5ee58083282d59feecc7a2b9d23bcccc" target="_blank">259ba7b</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -564,10 +564,8 @@ Ignored files:
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/manual_annotation.png
     Ignored:    analysis/visualization_3D.Rmd
+    Ignored:    assets/
     Ignored:    pre_data/
-
-Unstaged changes:
-    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -606,6 +604,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/259ba7bc5ee58083282d59feecc7a2b9d23bcccc/analysis/spatial_features.Rmd" target="_blank">259ba7b</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-05
+</td>
+<td>
+downsampled points in 3D visualization
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/e339ebcaa756c901788b01c27098f386077d2ed7/docs/spatial_features.html" target="_blank">e339ebc</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1248,7 +1280,7 @@ body {
 <h2>Finding spatial expression patterns</h2>
 <hr />
 <p>The strength of untargeted whole transcriptome capture is the ability to perform unsupervised analysis and the ability to find spatial gene expression patterns. We’ve found good use of using non-negative matrix factorization (NNMF or NMF) to find underlying patterns of transcriptomic profiles. This factor analysis, along with various dimensionality reduction techniques, can all be ran via “RunXXX()”, where X = the method of choice, e.g.: <br></p>
-<pre class="r"><code>se &lt;- RunNMF(se, nfactors = 40) #Specificy nfactors to choose the number of factors, default=20.</code></pre>
+<pre class="r"><code>se &lt;- RunNMF(se, nfactors = 40) # Specificy nfactors to choose the number of factors, default=20.</code></pre>
 <p><br> While <code>RunNMF()</code> is an STUtility add-on, others are supported via Seurat (<code>RunPCA()</code>, <code>RunTSNE</code>, <code>RunICA()</code>, <code>runUMAP()</code> ) and for all of them, the output are stored in the Seurat object.</p>
 <p>We can then plot a variable number of dimensions across the samples using <code>ST.DimPlot</code> or as an overlay using <code>DimOverlay</code>. These two functions are similar to the <code>ST.FeaturePlot</code> and <code>FeatureOverlay</code> but have been adapted to specifically draw dimensionality reduction vectors instead of features.</p>
 <p>NOTE: by default, the colorscale of dimensionality reduction vectors will be centered at 0. If we have a dimensionality reduction vector x this means that the range of colors will go from -max(abs(x)) to max(abs(x)). This behaviour is typically desired when plotting e.g. PCA vectors, but for NMF all values are strictly positive so you can disable this centering by setting <code>center.zero = FALSE</code>. <br></p>
@@ -1260,7 +1292,7 @@ ST.DimPlot(se,
            grid.ncol = 2, # Sets the number of columns at sample level
            reduction = &quot;NMF&quot;, 
            dark.theme = T, 
-           pt.size = 0.5, 
+           pt.size = 1, 
            center.zero = F, 
            cols = cscale)</code></pre>
 <p><img src="figure/spatial_features.Rmd/dimplot-1.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -1351,7 +1383,7 @@ Ludvig Larsson
            grid.ncol = 2, 
            reduction = &quot;NMF&quot;, 
            dark.theme = T, 
-           pt.size = 0.5, 
+           pt.size = 1, 
            center.zero = F, 
            cols = cscale)</code></pre>
 <p><img src="figure/spatial_features.Rmd/dimplot-2.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -1431,7 +1463,7 @@ jbergenstrahle
            grid.ncol = 2, 
            reduction = &quot;NMF&quot;, 
            dark.theme = T, 
-           pt.size = 0.5, 
+           pt.size = 1, 
                center.zero = F, 
            cols = cscale)</code></pre>
 <p><img src="figure/spatial_features.Rmd/dimplot-3.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -1511,7 +1543,7 @@ jbergenstrahle
            grid.ncol = 2, 
            reduction = &quot;NMF&quot;, 
            dark.theme = T, 
-           pt.size = 0.5, 
+           pt.size = 1, 
                center.zero = F, 
            cols = cscale)</code></pre>
 <p><img src="figure/spatial_features.Rmd/dimplot-4.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -1644,7 +1676,7 @@ n &lt;- 19
 qual_col_pals = brewer.pal.info[brewer.pal.info$category == &#39;qual&#39;,]
 col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
 
-ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, dark.theme = T, cols = col_vector, pt.size = 0.5)</code></pre>
+ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, dark.theme = T, cols = col_vector, pt.size = 1)</code></pre>
 <p><img src="figure/spatial_features.Rmd/plot_clusters-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_clusters-1">
@@ -1867,7 +1899,7 @@ for (ftr in fts) {
   p &lt;- FeatureOverlay(se, 
                   features = ftr, 
                   sampleids = 1:2,
-                  cols = c(&quot;black&quot;, &quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;),
+                  cols = c(&quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;),
                   pt.size = 1.5, 
                   pt.alpha = 0.5, 
                   dark.theme = T, 
