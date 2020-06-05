@@ -17,6 +17,8 @@ navbar:
         href: Quality_Control.html
       - text: Image processing
         href: image_processing.html
+      - text: Manual annotation
+        href: Manual_annotation.Rmd
       - text: Normalization
         href: normalization.html
       - text: Spatial features
