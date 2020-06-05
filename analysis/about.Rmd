@@ -77,7 +77,7 @@ Spatial Transcriptomics is a method that allows visualization and quantitative a
 For details, see the publication. In short, the schematic below gives a brief overview of the concept.
 An introductory animation is available on our website: http://www.spatialresearch.org/
 
-![Schematic Spatial Transcriptomics](assets/st_method_1.png)
+![Schematic Spatial Transcriptomics](assets/st_method_1.PNG)
 
 The array featured 1000 capture-spots, 100 µm in diameter and accordingly we refer this as the "1k" array in this tutorial and package parameters. The ST technology was futher developed, and the capture-spot number increased to 2000, hence the "2k" array. 
 
