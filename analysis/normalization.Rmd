@@ -63,7 +63,23 @@ se <- SCTransform(se)
 
 ```
 
-Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website https://satijalab.org/seurat/. Special consideration should be put into if and how the user apply the `vars.to.regress` parameter, which specifies which variables to regress out. This can be used to correct for heterogeneity in the data that is of no interest.     
+### Regressing out batch effects
+
+When deciding on a normalization strategy using SCTransform it is important to consider potential batch effects that could confound downstream analysis. Such batch effects could for example arise between different sample specimens, storage times, array slides etc. and even between consecutive sections prepared on the same slide. The experimental setup is crucial to make it possible to combat such batch effects and it is important to carefully think through if and how they should be removed to make the biological variation in your data more meaningful. Some of these effects can be effectively removed during normalization with `SCTransform` by specifying your batches with the `vars.to.regress` option. 
+
+For example if you want to regress out the "section number" from the data you need to make sure that you have a variable in your meta.data giving a unique ID for each section. If you don't have this information in your meta.data you can get it from the "Staffli" object stored inside the Seurat object. Then you can simply set `vars.to.regress = "section"` when running `SCTransform` to correct for potential technical effects separating the two sections.
+
+```{r batch_effects, eval=FALSE}
+
+# Add a section column to your meta.data
+se$section <- paste0("section_", GetStaffli(se)[[, "sample", drop = T]])
+
+# Run normalization with "vars.to.regress" option
+se.batch.cor <- SCTransform(se, vars.to.regress = "section")
+
+```
+
+Note: for comprehensive tutorials in the different options and workflow possibilities available within Seurat, we recommend looking at their website https://satijalab.org/seurat/.  
 
 ---
 
