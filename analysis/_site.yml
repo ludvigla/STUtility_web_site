@@ -18,7 +18,7 @@ navbar:
       - text: Image processing
         href: image_processing.html
       - text: Manual annotation
-        href: Manual_annotation.Rmd
+        href: Manual_annotation.html
       - text: Normalization
         href: normalization.html
       - text: Spatial features
@@ -26,7 +26,7 @@ navbar:
       - text: Neighborhood Analysis
         href: Neighborhood.html
       - text: 3D visualization
-        href: visualization_3D.html
+        href: 3D_visualization.html
   - text: License
     href: license.html
   right:
