@@ -145,7 +145,7 @@ Various other features and analysis results can be visualized, e.g. if we previo
 <br>
 ```{r plt_3d_HSV}
 
-HSVPlot3D(se, features = paste0("factor_", c(4,5,7,9,11,13,14,15,18,22,24,25,29,30,31,33,36)), pt.size = 1, dark.theme = T, add.margins = 1, mode = "spots")
+HSVPlot3D(se, features = paste0("factor_", c(4,5,7,9,11,13,14,15,18,22,24,25,29,30,31,33,36)), pt.size = 2, dark.theme = T, add.margins = 1, mode = "spots")
 
 
 ```
