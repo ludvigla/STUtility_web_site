@@ -13,6 +13,7 @@
 
 <title>Normalization</title>
 
+<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
@@ -35,6 +36,8 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -452,7 +455,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-06-05
+<strong>Last updated:</strong> 2020-10-06
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -500,7 +503,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -543,16 +546,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree5e01b6869d4b7e61eb254e69e09f96287a4ecd53targetblank5e01b68a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/5e01b6869d4b7e61eb254e69e09f96287a4ecd53" target="_blank">5e01b68</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree36493b20a75ad3dca555419997d81c9bc2f5dcc9targetblank36493b2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/36493b20a75ad3dca555419997d81c9bc2f5dcc9" target="_blank">36493b2</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree5e01b6869d4b7e61eb254e69e09f96287a4ecd53targetblank5e01b68a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree36493b20a75ad3dca555419997d81c9bc2f5dcc9targetblank36493b2a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/5e01b6869d4b7e61eb254e69e09f96287a4ecd53" target="_blank">5e01b68</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/36493b20a75ad3dca555419997d81c9bc2f5dcc9" target="_blank">36493b2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -602,6 +605,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/d13dabd2370c3fec826d46365e6e511d2c2c8d0e/docs/normalization.html" target="_blank">d13dabd</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1164,7 +1184,7 @@ body {
 <div id="regressing-out-batch-effects" class="section level3">
 <h3>Regressing out batch effects</h3>
 <p>When deciding on a normalization strategy using SCTransform it is important to consider potential batch effects that could confound downstream analysis. Such batch effects could for example arise between different sample specimens, storage times, array slides etc. and even between consecutive sections prepared on the same slide. The experimental setup is crucial to make it possible to combat such batch effects and it is important to carefully think through if and how they should be removed to make the biological variation in your data more meaningful. Some of these effects can be effectively removed during normalization with <code>SCTransform</code> by specifying your batches with the <code>vars.to.regress</code> option.</p>
-<p>For example if you want to regress out the “section number” from the data you need to make sure that you have a variable in your meta.data giving a unique ID for each section. If you don’t have this information in your meta.data you can get it from the “Staffli” object stored inside the Seurat object. Then you can simply set <code>vars.to.regress = &quot;section&quot;</code> when running <code>SCTransform</code> to correct for potential technical effects separating the two sections.</p>
+<p>For example if you want to regress out the “section number” from the data you need to make sure that you have a variable in your meta.data giving a unique ID for each section. If you don’t have this information in your meta.data you can get it from the “Staffli” object stored inside the Seurat object. Then you can simply set <code>vars.to.regress = "section"</code> when running <code>SCTransform</code> to correct for potential technical effects separating the two sections.</p>
 <pre class="r"><code># Add a section column to your meta.data
 se$section &lt;- paste0(&quot;section_&quot;, GetStaffli(se)[[, &quot;sample&quot;, drop = T]])
 
@@ -1327,7 +1347,7 @@ other attached packages:
  [9] matrixStats_0.56.0          Biobase_2.48.0             
 [11] GenomicRanges_1.40.0        GenomeInfoDb_1.24.0        
 [13] IRanges_2.22.1              S4Vectors_0.26.0           
-[15] BiocGenerics_0.34.0         Seurat_3.1.5               
+[15] BiocGenerics_0.34.0         Seurat_3.2.2               
 [17] workflowr_1.6.2            
 
 loaded via a namespace (and not attached):
@@ -1342,7 +1362,7 @@ loaded via a namespace (and not attached):
  [25] coda_0.19-3             LearnBayes_2.15.1       vctrs_0.3.0            
  [28] xfun_0.13               R6_2.4.1                doParallel_1.0.15      
  [31] rsvd_1.0.3              isoband_0.2.1           Morpho_2.8             
- [34] ggiraph_0.7.0           manipulateWidget_0.10.1 bitops_1.0-6           
+ [34] ggiraph_0.7.7           manipulateWidget_0.10.1 bitops_1.0-6           
  [37] spatstat.utils_1.17-0   assertthat_0.2.1        promises_1.1.0         
  [40] scales_1.1.0            imager_0.42.1           gtable_0.3.0           
  [43] npsurv_0.4-0.1          globals_0.12.5          bmp_0.3                
@@ -1356,7 +1376,7 @@ loaded via a namespace (and not attached):
  [67] Rcpp_1.0.4.6            plyr_1.8.6              zlibbioc_1.34.0        
  [70] classInt_0.4-3          purrr_0.3.4             RCurl_1.98-1.2         
  [73] rpart_4.1-15            dbscan_1.1-5            deldir_0.1-25          
- [76] viridis_0.5.1           pbapply_1.4-2           cowplot_1.0.0          
+ [76] pbapply_1.4-2           viridis_0.5.1           cowplot_1.0.0          
  [79] zoo_1.8-8               ggrepel_0.8.2           cluster_2.1.0          
  [82] colorRamps_2.3          fs_1.4.1                data.table_1.12.8      
  [85] magick_2.3              readbitmap_0.1.5        gmodels_2.18.1         
@@ -1370,19 +1390,18 @@ loaded via a namespace (and not attached):
 [109] tidyr_1.0.3             expm_0.999-4            DBI_1.1.0              
 [112] MASS_7.3-51.6           sf_0.9-3                boot_1.3-25            
 [115] gdata_2.18.0            igraph_1.2.5            pkgconfig_2.0.3        
-[118] sp_1.4-1                plotly_4.9.2.1          xml2_1.3.2             
-[121] foreach_1.5.0           webshot_0.5.2           XVector_0.28.0         
-[124] stringr_1.4.0           digest_0.6.25           sctransform_0.2.1      
-[127] RcppAnnoy_0.0.16        tsne_0.1-3              spatstat.data_1.4-3    
-[130] rmarkdown_2.1           leiden_0.3.3            uwot_0.1.8             
-[133] gdtools_0.2.2           gtools_3.8.2            shiny_1.4.0.2          
-[136] lifecycle_0.2.0         nlme_3.1-147            jsonlite_1.6.1         
-[139] viridisLite_0.3.0       pillar_1.4.4            lattice_0.20-41        
-[142] fastmap_1.0.1           httr_1.4.1              survival_3.1-12        
-[145] glue_1.4.0              spatstat_1.63-3         png_0.1-7              
-[148] iterators_1.0.12        class_7.3-17            stringi_1.4.6          
-[151] irlba_2.3.3             e1071_1.7-3             future.apply_1.5.0     
-[154] ape_5.3                </code></pre>
+[118] sp_1.4-1                plotly_4.9.2.1          foreach_1.5.0          
+[121] webshot_0.5.2           XVector_0.28.0          stringr_1.4.0          
+[124] digest_0.6.25           sctransform_0.3         RcppAnnoy_0.0.16       
+[127] spatstat.data_1.4-3     rmarkdown_2.1           leiden_0.3.3           
+[130] uwot_0.1.8              gdtools_0.2.2           shiny_1.4.0.2          
+[133] gtools_3.8.2            lifecycle_0.2.0         nlme_3.1-147           
+[136] jsonlite_1.6.1          viridisLite_0.3.0       pillar_1.4.4           
+[139] lattice_0.20-41         fastmap_1.0.1           httr_1.4.1             
+[142] survival_3.1-12         glue_1.4.0              spatstat_1.63-3        
+[145] png_0.1-7               iterators_1.0.12        class_7.3-17           
+[148] stringi_1.4.6           irlba_2.3.3             e1071_1.7-3            
+[151] future.apply_1.5.0     </code></pre>
 </div>
 </div>
 
@@ -1398,6 +1417,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 </div>

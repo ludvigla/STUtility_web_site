@@ -13,6 +13,7 @@
 
 <title>Quality control</title>
 
+<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
@@ -35,6 +36,8 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -452,7 +455,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-06-05
+<strong>Last updated:</strong> 2020-10-06
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -500,7 +503,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -543,16 +546,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree5e01b6869d4b7e61eb254e69e09f96287a4ecd53targetblank5e01b68a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/5e01b6869d4b7e61eb254e69e09f96287a4ecd53" target="_blank">5e01b68</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree36493b20a75ad3dca555419997d81c9bc2f5dcc9targetblank36493b2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/36493b20a75ad3dca555419997d81c9bc2f5dcc9" target="_blank">36493b2</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree5e01b6869d4b7e61eb254e69e09f96287a4ecd53targetblank5e01b68a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree36493b20a75ad3dca555419997d81c9bc2f5dcc9targetblank36493b2a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/5e01b6869d4b7e61eb254e69e09f96287a4ecd53" target="_blank">5e01b68</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/36493b20a75ad3dca555419997d81c9bc2f5dcc9" target="_blank">36493b2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -602,6 +605,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/d13dabd2370c3fec826d46365e6e511d2c2c8d0e/docs/Quality_Control.html" target="_blank">d13dabd</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2020-06-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -989,7 +1009,7 @@ library(ggplot2)</code></pre>
 <div id="include-all-spots" class="section level3">
 <h3>Include all spots</h3>
 <p>If you expect that you have over-permeabilized your tissue it could be useful to look at the expression patterns outside the tissue region as well. This can be done by loading the</p>
-<p>Here we have a new infotable data.frame where the file paths in the “samples” column have been set to the &quot;*raw_feature_bc_matrix.h5&quot; matrrices instead of the filtered ones. Now we can load all spots into our Seurat object by setting <code>disable.subset = TRUE</code>.</p>
+<p>Here we have a new infotable data.frame where the file paths in the “samples” column have been set to the "*raw_feature_bc_matrix.h5" matrrices instead of the filtered ones. Now we can load all spots into our Seurat object by setting <code>disable.subset = TRUE</code>.</p>
 <pre class="r"><code>infoTable</code></pre>
 <pre><code>                                                                                                     samples
 1         ~/10x/Public_data/S1_Sagittal_posterior/V1_Mouse_Brain_Sagittal_Posterior_raw_feature_bc_matrix.h5
@@ -1068,13 +1088,11 @@ Ludvig Larsson
 <pre class="r"><code>se &lt;- InputFromTable(infoTable)</code></pre>
 <p>Sometimes it can be a good idea to filter the data to remove low quality spots or low abundant genes. When running <code>InputFromTable</code>, spots with 0 counts will automatically be removed but you also have the option to filter the data directly using one of the following arguments:</p>
 <ul>
-<li>min.gene.count : sets a threshold for the minimum allowed UMI counts of a gene across the whole dataset
-<ul>
+<li>min.gene.count : sets a threshold for the minimum allowed UMI counts of a gene across the whole dataset</li>
 <li>min.gene.spots : sets a threshold for the minimum allowed number of spots where a gene is detected cross the whole dataset</li>
 <li>min.spot.feature.count : sets a threshold for the minimum allowed number of unique genes in a spot</li>
 <li>min.spot.count : sets a threshold for the minimum allowed UMI counts in a spot</li>
 <li>topN : subset the expression matrix to include only the topN most expressed genes</li>
-</ul></li>
 </ul>
 <p>You can also apply filters when the Seurat obect has been created which gives you more freedom to explore what could be a good threshold. Below we have plotted some basic features that you can use to define your filtering thresholds when running <code>InputFromTable</code>.</p>
 <pre class="r"><code>p1 &lt;- ggplot() +
@@ -1338,7 +1356,7 @@ other attached packages:
  [7] Biobase_2.48.0              GenomicRanges_1.40.0       
  [9] GenomeInfoDb_1.24.0         IRanges_2.22.1             
 [11] S4Vectors_0.26.0            BiocGenerics_0.34.0        
-[13] Seurat_3.1.5                workflowr_1.6.2            
+[13] Seurat_3.2.2                workflowr_1.6.2            
 
 loaded via a namespace (and not attached):
   [1] reticulate_1.15         tidyselect_1.0.0        htmlwidgets_1.5.1      
@@ -1351,7 +1369,7 @@ loaded via a namespace (and not attached):
  [22] polyclip_1.10-0         farver_2.0.3            rprojroot_1.3-2        
  [25] coda_0.19-3             LearnBayes_2.15.1       vctrs_0.3.0            
  [28] xfun_0.13               R6_2.4.1                doParallel_1.0.15      
- [31] rsvd_1.0.3              Morpho_2.8              ggiraph_0.7.0          
+ [31] rsvd_1.0.3              Morpho_2.8              ggiraph_0.7.7          
  [34] manipulateWidget_0.10.1 bitops_1.0-6            spatstat.utils_1.17-0  
  [37] assertthat_0.2.1        promises_1.1.0          scales_1.1.0           
  [40] imager_0.42.1           gtable_0.3.0            npsurv_0.4-0.1         
@@ -1365,8 +1383,8 @@ loaded via a namespace (and not attached):
  [64] Rvcg_0.19.1             ggridges_0.5.2          Rcpp_1.0.4.6           
  [67] plyr_1.8.6              zlibbioc_1.34.0         classInt_0.4-3         
  [70] purrr_0.3.4             RCurl_1.98-1.2          rpart_4.1-15           
- [73] dbscan_1.1-5            deldir_0.1-25           viridis_0.5.1          
- [76] pbapply_1.4-2           cowplot_1.0.0           zoo_1.8-8              
+ [73] dbscan_1.1-5            deldir_0.1-25           pbapply_1.4-2          
+ [76] viridis_0.5.1           cowplot_1.0.0           zoo_1.8-8              
  [79] ggrepel_0.8.2           cluster_2.1.0           colorRamps_2.3         
  [82] fs_1.4.1                magrittr_1.5            data.table_1.12.8      
  [85] magick_2.3              readbitmap_0.1.5        gmodels_2.18.1         
@@ -1381,18 +1399,17 @@ loaded via a namespace (and not attached):
 [112] MASS_7.3-51.6           sf_0.9-3                boot_1.3-25            
 [115] Matrix_1.2-18           gdata_2.18.0            igraph_1.2.5           
 [118] pkgconfig_2.0.3         sp_1.4-1                plotly_4.9.2.1         
-[121] xml2_1.3.2              foreach_1.5.0           webshot_0.5.2          
-[124] XVector_0.28.0          stringr_1.4.0           digest_0.6.25          
-[127] sctransform_0.2.1       RcppAnnoy_0.0.16        tsne_0.1-3             
-[130] spatstat.data_1.4-3     rmarkdown_2.1           leiden_0.3.3           
-[133] uwot_0.1.8              gdtools_0.2.2           gtools_3.8.2           
-[136] shiny_1.4.0.2           lifecycle_0.2.0         nlme_3.1-147           
-[139] jsonlite_1.6.1          viridisLite_0.3.0       pillar_1.4.4           
-[142] lattice_0.20-41         fastmap_1.0.1           httr_1.4.1             
-[145] survival_3.1-12         glue_1.4.0              spatstat_1.63-3        
-[148] png_0.1-7               iterators_1.0.12        class_7.3-17           
-[151] stringi_1.4.6           dplyr_0.8.5             irlba_2.3.3            
-[154] e1071_1.7-3             future.apply_1.5.0      ape_5.3                </code></pre>
+[121] foreach_1.5.0           webshot_0.5.2           XVector_0.28.0         
+[124] stringr_1.4.0           digest_0.6.25           sctransform_0.3        
+[127] RcppAnnoy_0.0.16        spatstat.data_1.4-3     rmarkdown_2.1          
+[130] leiden_0.3.3            uwot_0.1.8              gdtools_0.2.2          
+[133] shiny_1.4.0.2           gtools_3.8.2            lifecycle_0.2.0        
+[136] nlme_3.1-147            jsonlite_1.6.1          viridisLite_0.3.0      
+[139] pillar_1.4.4            lattice_0.20-41         fastmap_1.0.1          
+[142] httr_1.4.1              survival_3.1-12         glue_1.4.0             
+[145] spatstat_1.63-3         png_0.1-7               iterators_1.0.12       
+[148] class_7.3-17            stringi_1.4.6           dplyr_0.8.5            
+[151] irlba_2.3.3             e1071_1.7-3             future.apply_1.5.0     </code></pre>
 </div>
 </div>
 </div>
@@ -1409,6 +1426,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 </div>
