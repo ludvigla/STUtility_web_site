@@ -68,7 +68,7 @@ To install STUtility from github (currently only option), you need to have `devt
 ```{r, eval=FALSE}
 
 install.packages("devtools")
-devtools::install_hithub("linxihui/NNLM")
+devtools::install_github("linxihui/NNLM")
 
 ```
 
@@ -84,9 +84,11 @@ devtools::install_github(
 ```
 
 
-### Note on MacOS
+### Common issues on Mac OS
 
 If you run into `Error in dyn.load(file, DLLpath = DLLpath, ...):`, make sure you have XQuartz installed, which can be downloaded from [xquartz.org](https://www.xquartz.org/)
+
+If you are missing gfortran you can get it from [CRAN](https://cran.r-project.org/bin/macosx/tools/)
 
 &nbsp;
 <hr />
