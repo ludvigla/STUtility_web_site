@@ -57,7 +57,6 @@ install.packages("devtools")
 
 Using devtools, execute the following from the R console to install STUtility:
 
-<br>
 ```{r, eval=FALSE}
 
 devtools::install_github("jbergenstrahle/STUtility")
