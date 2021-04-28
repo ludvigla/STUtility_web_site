@@ -543,16 +543,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree83100edd48bb170faee8b969c2f74591075375f9targetblank83100eda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/83100edd48bb170faee8b969c2f74591075375f9" target="_blank">83100ed</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreef91ff8cbda6a6abf172b6da14e5d1112259b9dc0targetblankf91ff8ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/f91ff8cbda6a6abf172b6da14e5d1112259b9dc0" target="_blank">f91ff8c</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree83100edd48bb170faee8b969c2f74591075375f9targetblank83100eda" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreef91ff8cbda6a6abf172b6da14e5d1112259b9dc0targetblankf91ff8ca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/83100edd48bb170faee8b969c2f74591075375f9" target="_blank">83100ed</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/f91ff8cbda6a6abf172b6da14e5d1112259b9dc0" target="_blank">f91ff8c</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -602,6 +602,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f91ff8cbda6a6abf172b6da14e5d1112259b9dc0/analysis/getting_started.Rmd" target="_blank">f91ff8c</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2021-04-28
+</td>
+<td>
+wflow_publish(files = c(“analysis/index.Rmd”, “analysis/about.Rmd”,
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/getting_started.html" target="_blank">1e9c615</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2021-04-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1447,14 +1481,14 @@ body {
 <div id="input-files" class="section level3">
 <h3>Input files</h3>
 <hr />
-<p>10X Visium data output is produced with the <a href="url">spaceranger</a> command line tool from raw fastq files. The output includes a number of files, and the ones that needs to be imported into R for STUtility are the following:</p>
+<p>10X Visium data output is produced with the <a href="https://support.10xgenomics.com/spatial-gene-expression/software/visualization/latest/installation">spaceranger</a> command line tool from raw fastq files. The output includes a number of files, and the ones that needs to be imported into R for STUtility are the following:</p>
 <ol style="list-style-type: decimal">
-<li>“filtered_feature_bc_matrix.h5” or “raw_feature_bc_matrix.h5” : Gene expression matrices in .h5 format containing the raw UMI counts for each spot and each gene</li>
-<li>“tissue_positions_list.csv” : contains capture-spot barcode spatial information and pixel coordinates</li>
-<li>“tissue_hires_image.png” : H&amp;E image in PNG format</li>
-<li>“scalefactors_json.json” : This file contains scaling factors subject to the H&amp;E images of different resolutions. E.g. “tissue_hires_scalef”: 0.063, implies that the pixel coordinates in the position list should be scaled with 0.063 to match the size of the hires_image.png file.</li>
+<li>“filtered_feature_bc_matrix.h5” or “raw_feature_bc_matrix.h5” : Gene expression matrices in .h5 format containing the raw UMI counts for each spot and each gene. The “filtered_feature_bc_matrix.h5” matrix contains spots that are localized under the tissue while the “raw_feature_bc_matrix.h5” matrix contain all spots from the entire capture area. NOTE: if you want to include spots outside of the tissue, you need to set <code>disable.subset = TRUE</code> when running <code>InputFromTable</code>.</li>
+<li>“tissue_positions_list.csv” : contains capture-spot barcode and capture-spot coordinates.</li>
+<li>“tissue_hires_image.png” : H&amp;E image in PNG format with a width of 2000 pixels.</li>
+<li>“scalefactors_json.json” : This file contains scaling factors subject to the H&amp;E images of different resolutions. E.g. “tissue_hires_scalef”: 0.1, means that the pixel coordinates in the “tissue_positions_list.csv” table should be scaled by a factor of 0.1 to match the size of the “hires_image.png” file.</li>
 </ol>
-<p>To use the full range of functions within STUtility, all four files are needed for each sample. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input. To read in the 10x Visium .h5 files, the package <code>hdf5r</code> needs to be installed (<code>BiocManager::install(&quot;hdf5r&quot;)</code>).</p>
+<p>To use the full range of functions within STUtility, all four files are needed for each sample. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input. To read in the 10x Visium .h5 files, the package <code>hdf5r</code> needs to be installed: <code>BiocManager::install(&quot;hdf5r&quot;)</code>.</p>
 <hr />
 <p>To follow along this tutorial with a test data set, go to the <a href="https://support.10xgenomics.com/spatial-gene-expression/datasets">10x Dataset repo</a> and download the following two files:</p>
 <ul>
@@ -1466,35 +1500,38 @@ body {
 <li>scalefactors_json</li>
 </ul></li>
 </ul>
-<p>The .zip file contains the H&amp;E image (in two resolution formats; “tissue_lowres_image” and “tissue_hires_image”), the “tissue_positions_list” with pixel coordinates for the orginial .tif image and the “scalefactors_json.json” that contains the scalefactors used to dervive the pixel cooridinates for the hires images. There are some alternatives to handle the scalefactors. Either, you manualy open the .json file and note the scalefactor and state these numbers in a column in the infoTable named “scaleVisium” (see below). Or, you add a column named “json” with paths to the “scalefactors_json.json” files. A third option is to manually input the values to the function InputFromTable (see <code>?InputFromTable</code>).</p>
-<p>In this vignette we show e.g. the data sets from Mouse Brain Serial Section 1 and 2 (Sagittal-Posterior)</p>
+<p>The .zip file contains the H&amp;E image (in two resolution formats; “tissue_lowres_image” and “tissue_hires_image”), the “tissue_positions_list” with pixel coordinates for the orginial TIF image and the “scalefactors_json.json” that contains the scalefactors used to derive the pixel cooridinates for the hires images. There are three alternatives to handle the scaling of pixel coordinates. Either, you manualy open the JSON file and note the scalefactor and state these numbers in a column in the infoTable named “scaleVisium” (see below). Or, you add a column named “json” with paths to the “scalefactors_json.json” files. A third option is to manually input the values to the function InputFromTable (see <code>?InputFromTable</code>). If the scalefactors are incorrect, you will end up with misaligned coordinates. This could for example happen if you are trying to use the orignal H&amp;E image and not the “tissue_hires_image.png” when running <code>InputFromTable</code>.</p>
+<p>In this vignette we have used the datasets from Mouse Brain Serial Section 1 and 2 (Sagittal-Posterior)</p>
 </div>
 <div id="prepare-data" class="section level3">
 <h3>Prepare data</h3>
-<p>The recommended method to read the files into R is via the creation of a “infoTable”, there are three columns that the package will note whether they are included or not: “samples”, “spotfiles” and “imgs”. <br></p>
-<pre><code>                samples                spotfiles                imgs
-1 Path to count file 1  Path to position list  1 Path to H&amp;E image 1
-2  Path to count file 2 Path to position list  2 Path to H&amp;E image 2
-                 json
-1 Path to json file 1
-2 Path to json file 2</code></pre>
-<p>These contains the paths to the files. Any number of <em>extra</em> columns can be added to the infoTable data.frame that you want to include as meta data in your Seurat object, e.g. “gender”, “age”, “slide_id” etc. These columns can be named as you like, but <em>not</em> “sample”, “spotfiles” or “imgs”.</p>
-<p>We are now ready to load our samples and create a “Seurat” object using our infotTable data.frame.</p>
+<p>The recommended method to read the files into R is via the creation of a <code>data.frame</code> that we will call the <code>infoTable</code>. There are four columns in this table that are required for Visium data: “samples”, “spotfiles”, “imgs” and “json”. These columns specify the paths to the required input files. <br></p>
+<pre><code>                            samples                                  spotfiles
+1 path/to/sample_1/count_file_1.h5  path/to/sample_1/tissue_positions_list.csv
+2  path/to/sample_2/count_file_2.h5 path/to/sample_2/tissue_positions_list.csv
+                                     imgs
+1 path/to/sample_1/tissue_hires_image.png
+2 path/to/sample_2/tissue_hires_image.png
+                                     json
+1 path/to/sample_1/scalefactors_json.json
+2 path/to/sample_2/scalefactors_json.json</code></pre>
+<p>Any number of <em>extra</em> columns can be added to the infoTable data.frame that you want to include as meta data in your Seurat object, e.g. “gender”, “age”, “slide_id” etc. These columns can be named as you like, but they should not be called <em>not</em> “sample”, “spotfiles”, “imgs” or “json”.</p>
+<p>We are now ready to load our samples and create a “Seurat” object using our infotTable <code>data.frame</code>.</p>
 <p>Here, we demonstrate the creation of the Seurat object, while also including some filtering (see section “Quality Control” for more information on filtering):</p>
 <ul>
 <li>Keeping the genes that are found in at least 5 capture spots and has a total count value &gt;= 100.</li>
 <li>Keeping the capture-spots that contains &gt;= 500 total transcripts.</li>
 </ul>
-<p>Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from the older ST platforms, there is support for “1k” and “2k” arrays. You can also mix datasets from different platforms by specifying one of; “Visium”, “1k” or “2k” in a separate column of the infoTable named “platform”. You just have to make sure that the datasets have gene symbols which follows the same nomenclature. <br></p>
+<p>Note that you have to specify which platform the data comes from. The default platform is 10X Visium but if you wish to run data from the older ST platforms, there is support for “1k” and “2k” arrays. You can also mix datasets from different platforms by specifying one of; “Visium”, “1k” or “2k” in a separate column of the infoTable named “platform”. You just have to make sure that the datasets have gene symbols which follows the same nomenclature so that count matrices can be merged. <br></p>
 <pre class="r"><code>se &lt;- InputFromTable(infotable = infoTable, 
                       min.gene.count = 100, 
                       min.gene.spots = 5,
                       min.spot.count = 500,
                       platform =  &quot;Visium&quot;)</code></pre>
-<p><br> Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the Seurat package. There are many vignettes to get started available at the <a href="https://satijalab.org/seurat/vignettes.html">Seurat web site</a>.</p>
+<p><br> Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the <code>Seurat</code> package. There are many vignettes to get started available at the <a href="https://satijalab.org/seurat/vignettes.html">Seurat web site</a>.</p>
 <p>For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the <code>ST.FeaturePlot()</code> function. Features include any column stored in the “meta.data” slot, dimensionality reduction objects or gene expression vectors.</p>
 <p><br></p>
-<pre class="r"><code>ST.FeaturePlot(se, features = c(&quot;nFeature_RNA&quot;), dark.theme = T, cols = c(&quot;black&quot;, &quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;))</code></pre>
+<pre class="r"><code>ST.FeaturePlot(se, features = c(&quot;nFeature_RNA&quot;), dark.theme = T, cols = c(&quot;black&quot;, &quot;darkblue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;), ncol = 2)</code></pre>
 <p><img src="figure/getting_started.Rmd/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
@@ -1518,6 +1555,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/getting_started.Rmd/unnamed-chunk-1-1.png" target="_blank">1e9c615</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2021-04-28
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/getting_started.Rmd/unnamed-chunk-1-1.png" target="_blank">4f42429</a>
@@ -1569,16 +1617,16 @@ Ludvig Larsson
 <p><br></p>
 </div>
 </div>
-<div id="original-st-platform" class="section level2">
-<h2>Original ST platform</h2>
+<div id="older-st-platforms" class="section level2">
+<h2>Older ST platforms</h2>
 <p>In general, using STUtility for the old ST platform data follows the same workflow as for the 10X Visium arrays. The only difference is when loading the data into R.</p>
 <div id="input-files-1" class="section level3">
 <h3>Input files</h3>
 <p>The original ST workflow produces the following three output files:</p>
 <ol style="list-style-type: decimal">
-<li>Count file (Count file with raw counts (UMI filtered) for each gene and capture spot)</li>
-<li>Spot detector output (File with spatial pixel coordinate information produces via the <a href="https://github.com/SpatialTranscriptomicsResearch/st_spot_detector">Spot Detector webtool</a>)</li>
-<li>H&amp;E image</li>
+<li>Count file in TSV format (Count file with raw counts (UMI filtered) for each gene and capture spot)</li>
+<li>Spot detector output (File with spatial pixel coordinate information produced using the <a href="https://github.com/SpatialTranscriptomicsResearch/st_spot_detector">Spot Detector webtool</a>)</li>
+<li>H&amp;E image (same as the one used for spot detection)</li>
 </ol>
 </div>
 <div id="prepare-data-1" class="section level3">
@@ -1611,7 +1659,7 @@ se &lt;- InputFromTable(infotable = infoTable,
 <p><br> Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the Seurat package. There are many vignettes to get started available at the <a href="https://satijalab.org/seurat/vignettes.html">Seurat web site</a>.</p>
 <p>Some of the functionalities provided in the Seurat package are not yet supported by STUtility, such as dataset integration and multimodal analysis. These methods should in principle work if you treat the data like a scRNA-seq experiment, but you will not be able to make use of the image related data or the spatial visualization functions.</p>
 <p>For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the <code>ST.FeaturePlot()</code> function. <br></p>
-<pre class="r"><code>ST.FeaturePlot(se, features = c(&quot;nFeature_RNA&quot;), dark.theme = T, cols = c(&quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;))</code></pre>
+<pre class="r"><code>ST.FeaturePlot(se, features = c(&quot;nFeature_RNA&quot;), dark.theme = T, cols = c(&quot;dark blue&quot;, &quot;cyan&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;darkred&quot;), ncol = 2)</code></pre>
 <p><img src="figure/getting_started.Rmd/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
@@ -1635,6 +1683,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/getting_started.Rmd/unnamed-chunk-2-1.png" target="_blank">1e9c615</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2021-04-28
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/getting_started.Rmd/unnamed-chunk-2-1.png" target="_blank">4f42429</a>
@@ -1667,10 +1726,10 @@ jbergenstrahle
 <div id="navigating-and-accessing-data" class="section level2">
 <h2>Navigating and accessing data</h2>
 <hr />
-<p>We recommend that unexperienced users have look at the Seurat website and tutorials for basic navigation of the Seurat object such as getting and setting identities and accessing various method outputs.</p>
-<p>However, specific for STUtility, there is another S4 object stored within the Seurat objects “tools” slot, called “Staffli”. This object contains all the STUtility specific meta data, like pixel cooridinates, sample IDs, platform types etc.</p>
+<p>We recommend that unexperienced users have look at the <code>Seurat</code> website and tutorials for basic navigation of the Seurat object such as getting and setting identities and accessing various method outputs.</p>
+<p>However, specific for STUtility, there is another S4 class object stored inside the <code>Seurat</code> object, called <code>Staffli</code>. This object contains all the STUtility specific meta data, like pixel cooridinates, sample IDs, platform types etc.</p>
 <p>You can reach this via:</p>
-<pre class="r"><code>st.object &lt;- se@tools$Staffli
+<pre class="r"><code>st.object &lt;- GetStaffli(se)
 st.object</code></pre>
 <pre><code>An object of class Staffli 
 4557 spots across 4 samples. 
@@ -1687,6 +1746,10 @@ head(st.object[[]])</code></pre>
 2x28_1 2 28  1.98 27.97  1429.3  3600.9      1   1429.3   3600.9
 2x30_1 2 30  2.00 29.95  1431.3  3839.2      1   1431.3   3839.2</code></pre>
 <p>It can for example be useful to access the spot coordinates and images if you want to write your own plotting functions.</p>
+<div id="important-note" class="section level3">
+<h3>Important note</h3>
+<hr />
+<p>Because the spatial infromation is stored in a slot that is normally not part of the <code>Seurat</code> environment, some function such as <code>subset</code> or <code>merge</code> will not work as expected. Instead, you should use the <code>SubsetSTData</code> and <code>MergeSTData</code> functions from STUtility.</p>
  
 <hr />
 <p style="text-align: center;">
@@ -1774,6 +1837,7 @@ loaded via a namespace (and not attached):
 [139] coda_0.19-3             class_7.3-18            rmarkdown_2.1          
 [142] Rtsne_0.15              git2r_0.27.1            sf_0.9-7               
 [145] shiny_1.4.0.2          </code></pre>
+</div>
 </div>
 </div>
 
