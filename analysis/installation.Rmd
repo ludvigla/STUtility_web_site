@@ -45,30 +45,13 @@ body {
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
-# Prerequisite
+# Install
 
-STUtility requires R version >=3.6 and two packages (`SingleCellExperiment` and `multtest`) within the Bioconductor suit needs to be installed prior to installing STUtility from github:
-
-If you don't have bioconductor installed:
-```{r, eval=FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install()
-```
-
-```{r, eval=FALSE}
-
-BiocManager::install("SingleCellExperiment")
-BiocManager::install("multtest")
-
-```
-
-To install STUtility from github (currently only option), you need to have `devtools` and the `NNLM` R package installed:
+To install STUtility from github (currently only option), you need to have `devtools` installed:
 
 ```{r, eval=FALSE}
 
 install.packages("devtools")
-devtools::install_github("linxihui/NNLM")
 
 ```
 
@@ -77,9 +60,7 @@ Using devtools, execute the following from the R console to install STUtility:
 <br>
 ```{r, eval=FALSE}
 
-devtools::install_github(
-    "jbergenstrahle/STUtility"
-)
+devtools::install_github("jbergenstrahle/STUtility")
 
 ```
 
