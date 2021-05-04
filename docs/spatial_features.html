@@ -407,6 +407,9 @@ div.tocify {
     <li>
       <a href="3D_visualization.html">3D visualization</a>
     </li>
+    <li>
+      <a href="Split_Data.html">Split Data</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -546,16 +549,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreefc3278ae8ec68cd0285fe2f31afcec58071eeb1btargetblankfc3278aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b" target="_blank">fc3278a</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree7444d062f40a447ca9059a16b98f49c6db83a141targetblank7444d06a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/7444d062f40a447ca9059a16b98f49c6db83a141" target="_blank">7444d06</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreefc3278ae8ec68cd0285fe2f31afcec58071eeb1btargetblankfc3278aa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree7444d062f40a447ca9059a16b98f49c6db83a141targetblank7444d06a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b" target="_blank">fc3278a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/7444d062f40a447ca9059a16b98f49c6db83a141" target="_blank">7444d06</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -565,8 +568,10 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/manual_annotation.png
-    Ignored:    analysis/visualization_3D.Rmd
     Ignored:    pre_data/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -581,7 +586,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/spatial_features.Rmd</code>) and HTML (<code>docs/spatial_features.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/Spatial_Features.Rmd</code>) and HTML (<code>docs/spatial_features.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -607,10 +612,10 @@ Message
 <tbody>
 <tr>
 <td>
-Rmd
+html
 </td>
 <td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b/analysis/spatial_features.Rmd" target="_blank">fc3278a</a>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/3ef1b70af980bc0610c233da00ad8f3621e9dcb6/docs/spatial_features.html" target="_blank">3ef1b70</a>
 </td>
 <td>
 Ludvig Larsson
@@ -619,7 +624,7 @@ Ludvig Larsson
 2021-05-04
 </td>
 <td>
-Updated website with new theme and content
+Build site.
 </td>
 </tr>
 <tr>
@@ -654,23 +659,6 @@ Ludvig Larsson
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/eba61ce0669af24a575aea652094c40dd1f8861b/analysis/spatial_features.Rmd" target="_blank">eba61ce</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-<td>
-Updated website with new theme and content
 </td>
 </tr>
 <tr>
@@ -756,23 +744,6 @@ Ludvig Larsson
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/259ba7bc5ee58083282d59feecc7a2b9d23bcccc/analysis/spatial_features.Rmd" target="_blank">259ba7b</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-<td>
-downsampled points in 3D visualization
 </td>
 </tr>
 <tr>
@@ -1049,23 +1020,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/3660612d2d42cb8373d862dd22152e65ca236547/analysis/spatial_features.Rmd" target="_blank">3660612</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-<td>
-update website
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1079,23 +1033,6 @@ jbergenstrahle
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d1999a18633e7e2c6892526cd8e1bdb41904826d/analysis/spatial_features.Rmd" target="_blank">d1999a1</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-04-01
-</td>
-<td>
-Refs added
 </td>
 </tr>
 <tr>
@@ -1117,23 +1054,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d936ce7287f396c301ecbc32d982cce6df49f7a5/analysis/spatial_features.Rmd" target="_blank">d936ce7</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-<td>
-changed to 10x public data
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1147,23 +1067,6 @@ jbergenstrahle
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/859a8e77f88219af986f85419fbb21866fdb57f4/analysis/spatial_features.Rmd" target="_blank">859a8e7</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-<td>
-Fixed figure aspect ratios
 </td>
 </tr>
 <tr>
@@ -1185,108 +1088,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/6444381572c0008e014df542631603261b6a4c78/analysis/spatial_features.Rmd" target="_blank">6444381</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-10
-</td>
-<td>
-Removed MultipleFeature..
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/2890e656cba9defd0ef2de290fbe4c217af13da5/analysis/spatial_features.Rmd" target="_blank">2890e65</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-08
-</td>
-<td>
-pre-pek
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/efbbda3072444603b218ea36d324ccf843c3e74d/analysis/spatial_features.Rmd" target="_blank">efbbda3</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-01
-</td>
-<td>
-update pek
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/672191f8148d8e38bd1a2aa0d62c5789c7c6893d/analysis/spatial_features.Rmd" target="_blank">672191f</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-12-16
-</td>
-<td>
-Added 3D plotting to vignette
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/baff98e3760bbbf3174503840e5df18f2fc71a4e/analysis/spatial_features.Rmd" target="_blank">baff98e</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2019-12-16
-</td>
-<td>
-adding
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/5cb8ab1a6077d5b0bdd819027308d896dbb714eb/analysis/spatial_features.Rmd" target="_blank">5cb8ab1</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2019-12-02
-</td>
-<td>
-update2
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1304,40 +1105,6 @@ Changed font
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/7cdf8e1eeac24a7e6a2fe74899ba52e9e42fcdf8/analysis/spatial_features.Rmd" target="_blank">7cdf8e1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Changed font size
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/786357d1f7a30673432e5e023be09971cc9c0ff0/analysis/spatial_features.Rmd" target="_blank">786357d</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Fixed warnings
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1351,23 +1118,6 @@ Ludvig Larsson
 </td>
 <td>
 Fixed warnings
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/analysis/spatial_features.Rmd" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Added section noramlization and spatial faetures
 </td>
 </tr>
 <tr>
@@ -1535,88 +1285,7 @@ Tmsb4x
               pt.size = 1.5, 
               add.alpha = TRUE,
               ncol = 2)</code></pre>
-<p><img src="figure/spatial_features.Rmd/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
-Past versions of unnamed-chunk-2-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-2-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/unnamed-chunk-2-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/unnamed-chunk-2-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/unnamed-chunk-2-1.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/unnamed-chunk-2-1.png" target="_blank">0b6d8e8</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/unnamed-chunk-2-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Spatial_Features.Rmd/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="matrix-factorization" class="section level2">
 <h2>Matrix factorization</h2>
@@ -1637,121 +1306,7 @@ ST.DimPlot(se,
            center.zero = F, 
            cols = cscale, 
            show.sb = FALSE)</code></pre>
-<p><img src="figure/spatial_features.Rmd/dimplot-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dimplot-1">
-Past versions of dimplot-1.png
-</button>
-</p>
-<div id="fig-dimplot-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">0b6d8e8</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/dimplot-1.png" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Spatial_Features.Rmd/dimplot-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ST.DimPlot(se, 
            dims = 11:20,
            ncol = 2, 
@@ -1761,110 +1316,7 @@ Ludvig Larsson
            center.zero = F, 
            cols = cscale, 
            show.sb = FALSE)</code></pre>
-<p><img src="figure/spatial_features.Rmd/dimplot-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dimplot-2">
-Past versions of dimplot-2.png
-</button>
-</p>
-<div id="fig-dimplot-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">0b6d8e8</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/dimplot-2.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Spatial_Features.Rmd/dimplot-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ST.DimPlot(se, 
            dims = 21:30,
            ncol = 2, 
@@ -1874,110 +1326,7 @@ jbergenstrahle
            center.zero = F, 
            cols = cscale, 
            show.sb = FALSE)</code></pre>
-<p><img src="figure/spatial_features.Rmd/dimplot-3.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dimplot-3">
-Past versions of dimplot-3.png
-</button>
-</p>
-<div id="fig-dimplot-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">0b6d8e8</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/dimplot-3.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Spatial_Features.Rmd/dimplot-3.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ST.DimPlot(se, 
            dims = 31:40,
            ncol = 2, 
@@ -1987,89 +1336,7 @@ jbergenstrahle
            center.zero = F, 
            cols = cscale, 
            show.sb = FALSE)</code></pre>
-<p><img src="figure/spatial_features.Rmd/dimplot-4.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dimplot-4">
-Past versions of dimplot-4.png
-</button>
-</p>
-<div id="fig-dimplot-4" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/dimplot-4.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/dimplot-4.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/dimplot-4.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/dimplot-4.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/dimplot-4.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br> We can also print a summary of the genes that contribute most to the dimensionality reduction vectors.</p>
+<p><img src="figure/Spatial_Features.Rmd/dimplot-4.png" width="100%" style="display: block; margin: auto;" /> <br> We can also print a summary of the genes that contribute most to the dimensionality reduction vectors.</p>
 <p>For NMF output which is not centered at 0 looking at the “negative” side of the distribution doesn’t really add any valuable information, instead you can aget a barplot summarizing the top most contributing genes using <code>FactorGeneLoadingPlot</code>. <br></p>
 <pre class="r"><code>print(se[[&quot;NMF&quot;]])</code></pre>
 <pre><code>factor_ 1 
@@ -2098,55 +1365,7 @@ Positive:  Spink8, Tmsb4x, Fibcd1, Hpca, Fkbp1a, Itpka, Cnih2, Calm2, Tspan13, L
 Negative:  Cdh9, Otx1, Spsb1, Cdhr1, Rgs20, Nid2, Ly6g6f, Ppp1r18, Rbm20, Slc25a45 
        Pdzd2, Mndal, Atp2a3, Grik1, Fam89a, Cux1, Tex9, Dock8, Msi1, Sp9 </code></pre>
 <pre class="r"><code>FactorGeneLoadingPlot(se, factor = 1)</code></pre>
-<p><img src="figure/spatial_features.Rmd/project_dim-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-project_dim-1">
-Past versions of project_dim-1.png
-</button>
-</p>
-<div id="fig-project_dim-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/project_dim-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/project_dim-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Spatial_Features.Rmd/project_dim-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="clustering" class="section level2">
 <h2>Clustering</h2>
@@ -2162,311 +1381,11 @@ qual_col_pals = brewer.pal.info[brewer.pal.info$category == &#39;qual&#39;,]
 col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
 
 ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, cols = col_vector, pt.size = 1, ncol = 2)</code></pre>
-<p><img src="figure/spatial_features.Rmd/plot_clusters-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_clusters-1">
-Past versions of plot_clusters-1.png
-</button>
-</p>
-<div id="fig-plot_clusters-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">0b6d8e8</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/plot_clusters-1.png" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br> If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored, just note that you can only do this for one section at the time (set <code>ìndex</code>). <br></p>
+<p><img src="figure/Spatial_Features.Rmd/plot_clusters-1.png" width="100%" style="display: block; margin: auto;" /> <br> If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored, just note that you can only do this for one section at the time (set <code>ìndex</code>). <br></p>
 <pre class="r"><code>ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, pt.size = 1, split.labels = T, indices = 1, show.sb = FALSE, ncol = 5)</code></pre>
-<p><img src="figure/spatial_features.Rmd/plot_clusters_split-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_clusters_split-1">
-Past versions of plot_clusters_split-1.png
-</button>
-</p>
-<div id="fig-plot_clusters_split-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/plot_clusters_split-1.png" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Spatial_Features.Rmd/plot_clusters_split-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ST.FeaturePlot(object = se, features = &quot;seurat_clusters&quot;, pt.size = 1, split.labels = T, indices = 2, show.sb = FALSE, ncol = 5)</code></pre>
-<p><img src="figure/spatial_features.Rmd/plot_clusters_split-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_clusters_split-2">
-Past versions of plot_clusters_split-2.png
-</button>
-</p>
-<div id="fig-plot_clusters_split-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/plot_clusters_split-2.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/plot_clusters_split-2.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/plot_clusters_split-2.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/plot_clusters_split-2.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/plot_clusters_split-2.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br></p>
+<p><img src="figure/Spatial_Features.Rmd/plot_clusters_split-2.png" width="100%" style="display: block; margin: auto;" /> <br></p>
 </div>
 <div id="most-variable-features" class="section level2">
 <h2>Most variable features</h2>
@@ -2489,286 +1408,7 @@ for (ftr in fts) {
                  ncols = 2)
   print(p)
 }</code></pre>
-<p><img src="figure/spatial_features.Rmd/variable_features-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-1">
-Past versions of variable_features-1.png
-</button>
-</p>
-<div id="fig-variable_features-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/variable_features-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/variable_features-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/variable_features-1.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/variable_features-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/variable_features-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-1.png" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/spatial_features.Rmd/variable_features-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-2">
-Past versions of variable_features-2.png
-</button>
-</p>
-<div id="fig-variable_features-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/variable_features-2.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/variable_features-2.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/variable_features-2.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/variable_features-2.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/variable_features-2.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-2.png" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/spatial_features.Rmd/variable_features-3.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variable_features-3">
-Past versions of variable_features-3.png
-</button>
-</p>
-<div id="fig-variable_features-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/variable_features-3.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/variable_features-3.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/spatial_features.Rmd/variable_features-3.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/variable_features-3.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/variable_features-3.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/variable_features-3.png" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br></p>
+<p><img src="figure/Spatial_Features.Rmd/variable_features-1.png" width="100%" style="display: block; margin: auto;" /><img src="figure/Spatial_Features.Rmd/variable_features-2.png" width="100%" style="display: block; margin: auto;" /><img src="figure/Spatial_Features.Rmd/variable_features-3.png" width="100%" style="display: block; margin: auto;" /> <br></p>
 </div>
 <div id="spatial-vs.umap-visualziation" class="section level2">
 <h2>Spatial vs. UMAP visualziation</h2>
@@ -2790,110 +1430,7 @@ p3 &lt;- ST.FeaturePlot(se, features = fts, ncol = 2, grid.ncol = 1, cols = heat
 
 # Construct final plot
 cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2, rel_widths = c(1, 1.3))</code></pre>
-<p><img src="figure/spatial_features.Rmd/embedding_vs_ST-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-embedding_vs_ST-1">
-Past versions of embedding_vs_ST-1.png
-</button>
-</p>
-<div id="fig-embedding_vs_ST-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">0b6d8e8</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/embedding_vs_ST-1.png" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Spatial_Features.Rmd/embedding_vs_ST-1.png" width="1152" style="display: block; margin: auto;" /></p>
 </div>
 <div id="rgb-dimensionality-reduction-plots" class="section level2">
 <h2>RGB dimensionality reduction plots</h2>
@@ -2902,110 +1439,7 @@ Ludvig Larsson
 <pre class="r"><code>se &lt;- RunUMAP(object = se, dims = 1:40, verbose = FALSE, n.components = 3, reduction = &quot;NMF&quot;, reduction.name = &quot;umap.3d&quot;)</code></pre>
 <p><br> We use the first three dimensions for plotting: <br></p>
 <pre class="r"><code>ST.DimPlot(object = se, dims = 1:3, reduction = &quot;umap.3d&quot;, blend = T, pt.size = 1.8)</code></pre>
-<p><img src="figure/spatial_features.Rmd/UMAP_blend-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-UMAP_blend-1">
-Past versions of UMAP_blend-1.png
-</button>
-</p>
-<div id="fig-UMAP_blend-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/a024bcef5b323923109bf893838bcffddaeb57e4/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">a024bce</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-12
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/0b6d8e871a07261789497880c4dff3da5a8db0a1/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">0b6d8e8</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f10ef37c91fac6802927c25f259822368759b560/docs/figure/spatial_features.Rmd/UMAP_blend-1.png" target="_blank">f10ef37</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Spatial_Features.Rmd/UMAP_blend-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><br></p>
 </div>
 <div id="dea" class="section level2">
@@ -3169,45 +1603,7 @@ C1ql2
               pt.size = 1.5, 
               pt.alpha = 0.5,
               ncol = 2)</code></pre>
-<p><img src="figure/spatial_features.Rmd/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
-Past versions of unnamed-chunk-3-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-3-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/spatial_features.Rmd/unnamed-chunk-3-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br></p>
+<p><img src="figure/Spatial_Features.Rmd/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /> <br></p>
  
 <hr />
 <p style="text-align: center;">

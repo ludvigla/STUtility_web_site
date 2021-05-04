@@ -406,6 +406,9 @@ div.tocify {
     <li>
       <a href="3D_visualization.html">3D visualization</a>
     </li>
+    <li>
+      <a href="Split_Data.html">Split Data</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -547,16 +550,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreefc3278ae8ec68cd0285fe2f31afcec58071eeb1btargetblankfc3278aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b" target="_blank">fc3278a</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree7444d062f40a447ca9059a16b98f49c6db83a141targetblank7444d06a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/7444d062f40a447ca9059a16b98f49c6db83a141" target="_blank">7444d06</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreefc3278ae8ec68cd0285fe2f31afcec58071eeb1btargetblankfc3278aa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree7444d062f40a447ca9059a16b98f49c6db83a141targetblank7444d06a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b" target="_blank">fc3278a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/7444d062f40a447ca9059a16b98f49c6db83a141" target="_blank">7444d06</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -566,8 +569,10 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/manual_annotation.png
-    Ignored:    analysis/visualization_3D.Rmd
     Ignored:    pre_data/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -582,7 +587,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/about.Rmd</code>) and HTML (<code>docs/about.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/About.Rmd</code>) and HTML (<code>docs/about.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -608,10 +613,10 @@ Message
 <tbody>
 <tr>
 <td>
-Rmd
+html
 </td>
 <td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b/analysis/about.Rmd" target="_blank">fc3278a</a>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/3ef1b70af980bc0610c233da00ad8f3621e9dcb6/docs/about.html" target="_blank">3ef1b70</a>
 </td>
 <td>
 Ludvig Larsson
@@ -620,7 +625,7 @@ Ludvig Larsson
 2021-05-04
 </td>
 <td>
-Updated website with new theme and content
+Build site.
 </td>
 </tr>
 <tr>
@@ -655,23 +660,6 @@ Ludvig Larsson
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/eba61ce0669af24a575aea652094c40dd1f8861b/analysis/about.Rmd" target="_blank">eba61ce</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-<td>
-Updated website with new theme and content
 </td>
 </tr>
 <tr>
@@ -740,23 +728,6 @@ Ludvig Larsson
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/5e01b6869d4b7e61eb254e69e09f96287a4ecd53/analysis/about.Rmd" target="_blank">5e01b68</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-<td>
-downsampled points in 3D visualization
 </td>
 </tr>
 <tr>
@@ -1067,74 +1038,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/efbbda3072444603b218ea36d324ccf843c3e74d/analysis/about.Rmd" target="_blank">efbbda3</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-01
-</td>
-<td>
-update pek
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/baff98e3760bbbf3174503840e5df18f2fc71a4e/analysis/about.Rmd" target="_blank">baff98e</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2019-12-16
-</td>
-<td>
-adding
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/5cb8ab1a6077d5b0bdd819027308d896dbb714eb/analysis/about.Rmd" target="_blank">5cb8ab1</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2019-12-02
-</td>
-<td>
-update2
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/8f9876e8b15d5194fc6919cecc8a85f092089a5b/analysis/about.Rmd" target="_blank">8f9876e</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2019-11-29
-</td>
-<td>
-Update
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1322,23 +1225,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/e8e6c33931d77285c83f6ccefcd8c9cfc40267af/analysis/about.Rmd" target="_blank">e8e6c33</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Added theme
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1356,23 +1242,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/b7681ac494b98e62451b969dee38cfbdd332506d/analysis/about.Rmd" target="_blank">b7681ac</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Publish the initial files for myproject
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1386,23 +1255,6 @@ Ludvig Larsson
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/8bae4fa8aacfa4c6061e5b94de222d85f8430960/analysis/about.Rmd" target="_blank">8bae4fa</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Publish the initial files for myproject
 </td>
 </tr>
 <tr>
@@ -1441,23 +1293,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/429c12c00a29edf3cac450c8c51e0a291261c328/analysis/about.Rmd" target="_blank">429c12c</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Publish the initial files for myproject
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1488,23 +1323,6 @@ Ludvig Larsson
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/77ea12264e6a2b5eedbcce0f1aa9bcdc9527683a/analysis/about.Rmd" target="_blank">77ea122</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Publish the initial files for myproject
 </td>
 </tr>
 <tr>
@@ -1546,7 +1364,7 @@ hubba
 Rmd
 </td>
 <td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/f3d1542eb260fa2cdda184bf6cd21c4f200c9b3e/analysis/about.Rmd" target="_blank">f3d1542</a>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/f3d1542eb260fa2cdda184bf6cd21c4f200c9b3e/analysis/About.Rmd" target="_blank">f3d1542</a>
 </td>
 <td>
 Ludvig Larsson

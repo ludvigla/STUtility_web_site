@@ -405,6 +405,9 @@ div.tocify {
     <li>
       <a href="3D_visualization.html">3D visualization</a>
     </li>
+    <li>
+      <a href="Split_Data.html">Split Data</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -544,16 +547,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreefc3278ae8ec68cd0285fe2f31afcec58071eeb1btargetblankfc3278aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b" target="_blank">fc3278a</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree7444d062f40a447ca9059a16b98f49c6db83a141targetblank7444d06a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/7444d062f40a447ca9059a16b98f49c6db83a141" target="_blank">7444d06</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreefc3278ae8ec68cd0285fe2f31afcec58071eeb1btargetblankfc3278aa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree7444d062f40a447ca9059a16b98f49c6db83a141targetblank7444d06a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b" target="_blank">fc3278a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/7444d062f40a447ca9059a16b98f49c6db83a141" target="_blank">7444d06</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -563,8 +566,10 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/manual_annotation.png
-    Ignored:    analysis/visualization_3D.Rmd
     Ignored:    pre_data/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -579,7 +584,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/image_processing.Rmd</code>) and HTML (<code>docs/image_processing.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/Image_Processing.Rmd</code>) and HTML (<code>docs/image_processing.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -605,10 +610,10 @@ Message
 <tbody>
 <tr>
 <td>
-Rmd
+html
 </td>
 <td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b/analysis/image_processing.Rmd" target="_blank">fc3278a</a>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/3ef1b70af980bc0610c233da00ad8f3621e9dcb6/docs/image_processing.html" target="_blank">3ef1b70</a>
 </td>
 <td>
 Ludvig Larsson
@@ -617,7 +622,7 @@ Ludvig Larsson
 2021-05-04
 </td>
 <td>
-Updated website with new theme and content
+Build site.
 </td>
 </tr>
 <tr>
@@ -652,23 +657,6 @@ Ludvig Larsson
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/eba61ce0669af24a575aea652094c40dd1f8861b/analysis/image_processing.Rmd" target="_blank">eba61ce</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-<td>
-Updated website with new theme and content
 </td>
 </tr>
 <tr>
@@ -754,23 +742,6 @@ Ludvig Larsson
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/259ba7bc5ee58083282d59feecc7a2b9d23bcccc/analysis/image_processing.Rmd" target="_blank">259ba7b</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-<td>
-downsampled points in 3D visualization
 </td>
 </tr>
 <tr>
@@ -1047,23 +1018,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/3660612d2d42cb8373d862dd22152e65ca236547/analysis/image_processing.Rmd" target="_blank">3660612</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-<td>
-update website
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1077,23 +1031,6 @@ jbergenstrahle
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d1999a18633e7e2c6892526cd8e1bdb41904826d/analysis/image_processing.Rmd" target="_blank">d1999a1</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-04-01
-</td>
-<td>
-Refs added
 </td>
 </tr>
 <tr>
@@ -1115,23 +1052,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/36df0f25147f4df152be36067836c5b1b3255a93/analysis/image_processing.Rmd" target="_blank">36df0f2</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-<td>
-Changed to 10x public data
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1145,57 +1065,6 @@ jbergenstrahle
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/6444381572c0008e014df542631603261b6a4c78/analysis/image_processing.Rmd" target="_blank">6444381</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-10
-</td>
-<td>
-Removed MultipleFeature..
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/5cb8ab1a6077d5b0bdd819027308d896dbb714eb/analysis/image_processing.Rmd" target="_blank">5cb8ab1</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2019-12-02
-</td>
-<td>
-update2
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/8f9876e8b15d5194fc6919cecc8a85f092089a5b/analysis/image_processing.Rmd" target="_blank">8f9876e</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2019-11-29
-</td>
-<td>
-Update
 </td>
 </tr>
 <tr>
@@ -1217,23 +1086,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/7cdf8e1eeac24a7e6a2fe74899ba52e9e42fcdf8/analysis/image_processing.Rmd" target="_blank">7cdf8e1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Changed font size
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1251,23 +1103,6 @@ Build site.
 </tr>
 <tr>
 <td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/50c8053e8ab147389ea6fb97f69889c1cca5c41d/analysis/image_processing.Rmd" target="_blank">50c8053</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Added theme
-</td>
-</tr>
-<tr>
-<td>
 html
 </td>
 <td>
@@ -1281,23 +1116,6 @@ Ludvig Larsson
 </td>
 <td>
 Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/9bd839633018245b39b1ad85e7e16fbf3eecfa09/analysis/image_processing.Rmd" target="_blank">9bd8396</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Added theme
 </td>
 </tr>
 <tr>
@@ -1351,23 +1169,6 @@ Ludvig Larsson
 Build site.
 </td>
 </tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/e4e84dc0a66461a8915b3c9eac5274bed8ca3b16/analysis/image_processing.Rmd" target="_blank">e4e84dc</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-<td>
-Added theme
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -1419,55 +1220,7 @@ body {
 <pre class="r"><code>se &lt;- LoadImages(se, time.resolve = FALSE, verbose = TRUE)</code></pre>
 <p><br> If you want to have a quick look at the sections you can draw them in the RStudio Viewer using the <code>ImagePlot</code> function. If you specify <code>method = &quot;raster&quot;</code> the images will be drawn as a plot instead. <br></p>
 <pre class="r"><code>ImagePlot(se, method = &quot;raster&quot;, type = &quot;raw&quot;)</code></pre>
-<p><img src="figure/image_processing.Rmd/plot_raw_he-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot_raw_he-1">
-Past versions of plot_raw_he-1.png
-</button>
-</p>
-<div id="fig-plot_raw_he-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/plot_raw_he-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/plot_raw_he-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/plot_raw_he-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><br> OBS: We have noted that some systems experience memory problems due to large size image information not being cleared when removing old objects. If this is the case, the user can set <code>time.resolve = TRUE</code>, which will add a small garbage collection step to avoid this issue.</p>
 <p>NOTE: time.resolve is set to TRUE as default in the current version. This will imply that the process takes approximately 5 sec longer per sample.</p>
 <hr />
@@ -1480,440 +1233,31 @@ ST.FeaturePlot(object = se,
                features = c(&quot;nFeature_RNA&quot;), 
                cols = c(&quot;lightgray&quot;, &quot;mistyrose&quot;, &quot;red&quot;, &quot;dark red&quot;, &quot;black&quot;),
                ncol = 2)</code></pre>
-<p><img src="figure/image_processing.Rmd/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
-Past versions of unnamed-chunk-1-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/unnamed-chunk-1-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/unnamed-chunk-1-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/unnamed-chunk-1-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/unnamed-chunk-1-1.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ST.FeaturePlot(object = se, 
                features = c(&quot;nCount_RNA&quot;), 
                cols = c(&quot;lightgray&quot;, &quot;mistyrose&quot;, &quot;red&quot;, &quot;dark red&quot;, &quot;black&quot;),
                ncol = 2)</code></pre>
-<p><img src="figure/image_processing.Rmd/unnamed-chunk-1-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-2">
-Past versions of unnamed-chunk-1-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-1-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/unnamed-chunk-1-2.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/unnamed-chunk-1-2.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/unnamed-chunk-1-2.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/unnamed-chunk-1-2.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br> To overlay a spatial feature heatmaps on top of the HE image we use the FeatureOverlay() function. Handling large images gets clumsy so we recommend to work with down-scaled versions of the images that takes up less memory. <br></p>
+<p><img src="figure/Image_Processing.Rmd/unnamed-chunk-1-2.png" width="100%" style="display: block; margin: auto;" /> <br> To overlay a spatial feature heatmaps on top of the HE image we use the FeatureOverlay() function. Handling large images gets clumsy so we recommend to work with down-scaled versions of the images that takes up less memory. <br></p>
 <pre class="r"><code>FeatureOverlay(se, 
                features = &quot;Cck&quot;, 
                pt.size = 1.5,
                cols = c(&quot;lightgray&quot;, &quot;mistyrose&quot;, &quot;red&quot;, &quot;dark red&quot;, &quot;black&quot;), 
                type = &quot;raw&quot;)</code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_features1-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-overlay_features1-1">
-Past versions of overlay_features1-1.png
-</button>
-</p>
-<div id="fig-overlay_features1-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/overlay_features1-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/overlay_features1-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/image_processing.Rmd/overlay_features1-1.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/overlay_features1-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/overlay_features1-1.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/overlay_features1-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/overlay_features1-1.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br> You can see that by default, the first sample was selected for the feature overlay. If you wish to visualize another sample you can specify the <code>sample.index</code> parameter. If you wish to plot several features side by side, you can just specify as many as you want. The layout of the Overlay plots are controlled by the <code>ncols.samples</code> and the <code>ncols.features</code> parameters. <code>ncols.samples</code> can be used to adjust how many columns should be drawn for the sections in your Seurat object while the <code>ncols.features</code> controls how many columns should be drawn for the selected features. Here we are drawing 4 features on 1 section so if we want to draw the features a layout of 2x2 we can simply set <code>ncols.features = 2</code> <br></p>
+<p><img src="figure/Image_Processing.Rmd/overlay_features1-1.png" width="100%" style="display: block; margin: auto;" /> <br> You can see that by default, the first sample was selected for the feature overlay. If you wish to visualize another sample you can specify the <code>sample.index</code> parameter. If you wish to plot several features side by side, you can just specify as many as you want. The layout of the Overlay plots are controlled by the <code>ncols.samples</code> and the <code>ncols.features</code> parameters. <code>ncols.samples</code> can be used to adjust how many columns should be drawn for the sections in your Seurat object while the <code>ncols.features</code> controls how many columns should be drawn for the selected features. Here we are drawing 4 features on 1 section so if we want to draw the features a layout of 2x2 we can simply set <code>ncols.features = 2</code> <br></p>
 <pre class="r"><code>FeatureOverlay(se, 
                features = c(&quot;Cck&quot;, &quot;Calb2&quot;, &quot;Dcn&quot;, &quot;Nrgn&quot;), 
                cols = c(&quot;lightgray&quot;, &quot;mistyrose&quot;, &quot;red&quot;, &quot;dark red&quot;, &quot;black&quot;), 
                type = &quot;raw&quot;,
                ncols = 2)</code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_features_2-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-overlay_features_2-1">
-Past versions of overlay_features_2-1.png
-</button>
-</p>
-<div id="fig-overlay_features_2-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/overlay_features_2-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/overlay_features_2-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/image_processing.Rmd/overlay_features_2-1.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/overlay_features_2-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/overlay_features_2-1.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/overlay_features_2-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/overlay_features_2-1.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br> If you want to highlight only the regions with high feature values, you can add some opacity to the spots using the <code>add.alpha</code> parameter. Setting <code>add.alpha = TRUE</code> will add opacity to the spots scaled by the feature values, meaning that spots with high values will be visible and spots with low values will be transparent. <br></p>
+<p><img src="figure/Image_Processing.Rmd/overlay_features_2-1.png" width="100%" style="display: block; margin: auto;" /> <br> If you want to highlight only the regions with high feature values, you can add some opacity to the spots using the <code>add.alpha</code> parameter. Setting <code>add.alpha = TRUE</code> will add opacity to the spots scaled by the feature values, meaning that spots with high values will be visible and spots with low values will be transparent. <br></p>
 <pre class="r"><code>FeatureOverlay(se, 
                features = c(&quot;Cck&quot;, &quot;Calb2&quot;, &quot;Dcn&quot;, &quot;Nrgn&quot;), 
                add.alpha = TRUE,
                cols = c(&quot;lightgray&quot;, &quot;mistyrose&quot;, &quot;red&quot;, &quot;dark red&quot;, &quot;black&quot;), 
                type = &quot;raw&quot;,
                ncols = 2)</code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_features_3-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-overlay_features_3-1">
-Past versions of overlay_features_3-1.png
-</button>
-</p>
-<div id="fig-overlay_features_3-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/overlay_features_3-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/overlay_features_3-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/overlay_features_3-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br> Within the overlay area you also have a section number in the top left corner as well as a scale bar (showing the width of 500 microns) in the top right corner which can be disabled using the <code>sample.label</code> and <code>show.sb</code> options. Another thing we can do is to pass a custom theme (compatible with ggplot2 plots) if you wish to change the plot appearance.</p>
+<p><img src="figure/Image_Processing.Rmd/overlay_features_3-1.png" width="100%" style="display: block; margin: auto;" /> <br> Within the overlay area you also have a section number in the top left corner as well as a scale bar (showing the width of 500 microns) in the top right corner which can be disabled using the <code>sample.label</code> and <code>show.sb</code> options. Another thing we can do is to pass a custom theme (compatible with ggplot2 plots) if you wish to change the plot appearance.</p>
 <p>Now we can for example disable the section number, scale bar, plot title and remove the legend from the plots. <br></p>
 <pre class="r"><code>customtheme &lt;- theme(legend.position = &quot;None&quot;, plot.title = element_blank())
 
@@ -1924,77 +1268,7 @@ FeatureOverlay(se,
                ncols = 2,
                sample.label = FALSE,
                show.sb = FALSE) &amp; customtheme </code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_features_4-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-overlay_features_4-1">
-Past versions of overlay_features_4-1.png
-</button>
-</p>
-<div id="fig-overlay_features_4-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/overlay_features_4-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/overlay_features_4-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/image_processing.Rmd/overlay_features_4-1.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/overlay_features_4-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/overlay_features_4-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><br> Another feature that can be useful for visualization purposes is to mask the background of the HE images. The function <code>MaskImages()</code> can be used to remove the background currently works well for tissues with a clearly defined border. Since masking is a non trivial problem, it is possible that the masking will fail for certain tissue types. If this happens you can try to modify the parameters in <code>MaskImages()</code> or create your own masking function to see if you can obtain better results (see <code>?MaskImages</code> for more details).</p>
 <p>NOTE: the image procesing methods have been optimized for small images and if you have loaded images in higher resolution there is a greater risk that some steps will fail. If you still wish to use images with higher resolution there are instructions on how to do this in the Resolution section below. <br></p>
 <pre class="r"><code>se &lt;- MaskImages(object = se)</code></pre>
@@ -2002,254 +1276,11 @@ Ludvig Larsson
 <p>You can look at the HE images using the ImagePlot() function.The ImagePlot function will automatically label the samples from 1 to N where N is the total number of samples. If you are running the function within RStudio you can take advantage of the Viewer panel to explore the images. Setting method=“raster” and the plot function will use the default plotting device in R. You can also change the layout of the images by forcing a different number of columns by setting ncols. <br></p>
 <pre class="r"><code># Plot HE images
 ImagePlot(se, ncols = 2, method = &quot;raster&quot;, type = &quot;raw&quot;) # Raw image</code></pre>
-<p><img src="figure/image_processing.Rmd/image_types-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-image_types-1">
-Past versions of image_types-1.png
-</button>
-</p>
-<div id="fig-image_types-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/image_types-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/image_types-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/image_types-1.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/image_types-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/image_types-1.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/image_types-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ImagePlot(se, ncols = 2, method = &quot;raster&quot;, type = &quot;masked&quot;) # Masked image</code></pre>
-<p><img src="figure/image_processing.Rmd/image_types-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-image_types-2">
-Past versions of image_types-2.png
-</button>
-</p>
-<div id="fig-image_types-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/image_types-2.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/image_types-2.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/image_types-2.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/image_types-2.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/image_types-2.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/image_types-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ImagePlot(se, ncols = 2, method = &quot;raster&quot;, type = &quot;masked.masks&quot;, darken = TRUE) # Mask</code></pre>
-<p><img src="figure/image_processing.Rmd/image_types-3.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-image_types-3">
-Past versions of image_types-3.png
-</button>
-</p>
-<div id="fig-image_types-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/image_types-3.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/image_types-3.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/image_types-3.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/image_types-3.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/image_types-3.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/image_types-3.png" width="100%" style="display: block; margin: auto;" /></p>
 <div id="individual-transformations-to-images" class="section level3">
 <h3>Individual transformations to images</h3>
 <p>If you follow along the test set in this vignette, you will notice that the samples are not quite aligned with respect to each other on the array. We have implemented three different methods to align or process images; <code>AlignImages()</code>, <code>WarpImages()</code> and <code>ManualAlignImages()</code>.</p>
@@ -2261,108 +1292,11 @@ Ludvig Larsson
 <p>The automatic alignment should only be used on tissue sections with the same morphology, so to demonstrate this we’ll look at the “2k” array mouse brain data. <br></p>
 <pre class="r"><code># Look at the HE images from the &quot;2k&quot; array mouse brain dataset
 ImagePlot(se, method = &quot;raster&quot;, type = &quot;raw&quot;, ncols = 4)</code></pre>
-<p><img src="figure/image_processing.Rmd/2k_images-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-2k_images-1">
-Past versions of 2k_images-1.png
-</button>
-</p>
-<div id="fig-2k_images-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/2k_images-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/2k_images-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/2k_images-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>First we need to mask the images and then we can apply the automatic alignment method. As you can see, the automatic alignment method can apply rotations, translations and reflections to the images.</p>
 <pre class="r"><code>se &lt;- se %&gt;% MaskImages() %&gt;% AlignImages()</code></pre>
 <pre class="r"><code>ImagePlot(se, method = &quot;raster&quot;, type = &quot;processed&quot;, ncols = 4)</code></pre>
-<p><img src="figure/image_processing.Rmd/align_images-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-align_images-1">
-Past versions of align_images-1.png
-</button>
-</p>
-<div id="fig-align_images-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/align_images-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/align_images-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br></p>
+<p><img src="figure/Image_Processing.Rmd/align_images-1.png" width="1152" style="display: block; margin: auto;" /> <br></p>
 <div id="manual-rigid-transformations" class="section level4">
 <h4>Manual rigid transformations</h4>
 <p>An alternative method is to apply rigid transformations to the images using the <code>WarpImages()</code> function. This function takes a list of transformations for the samples of your choice and converts the transformations into mapping functions which can be used to warp the images.</p>
@@ -2371,636 +1305,24 @@ Ludvig Larsson
 <pre class="r"><code>transforms &lt;- list(&quot;2&quot; = list(&quot;angle&quot; = 90))
 se.rotate90 &lt;- WarpImages(se, transforms)
 ImagePlot(se.rotate90, method = &quot;raster&quot;)</code></pre>
-<p><img src="figure/image_processing.Rmd/warpimages-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-warpimages-1">
-Past versions of warpimages-1.png
-</button>
-</p>
-<div id="fig-warpimages-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/warpimages-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/warpimages-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/warpimages-1.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/warpimages-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/warpimages-1.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/warpimages-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>transforms &lt;- list(&quot;2&quot; = list(&quot;mirror.x&quot; = T))
 se.mirrorx &lt;- WarpImages(se, transforms)
 ImagePlot(se.mirrorx, method = &quot;raster&quot;)</code></pre>
-<p><img src="figure/image_processing.Rmd/warpimages-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-warpimages-2">
-Past versions of warpimages-2.png
-</button>
-</p>
-<div id="fig-warpimages-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/warpimages-2.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/warpimages-2.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/warpimages-2.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/warpimages-2.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/warpimages-2.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/warpimages-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>transforms &lt;- list(&quot;2&quot; = list(&quot;mirror.y&quot; = T))
 se.mirrory &lt;- WarpImages(se, transforms)
 ImagePlot(se.mirrory, method = &quot;raster&quot;)</code></pre>
-<p><img src="figure/image_processing.Rmd/warpimages-3.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-warpimages-3">
-Past versions of warpimages-3.png
-</button>
-</p>
-<div id="fig-warpimages-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/warpimages-3.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/warpimages-3.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/warpimages-3.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/warpimages-3.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/warpimages-3.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br> Any transformations applied to the images will also be applied to the coordinates used to map gene expression values onto the images. If you want to draw the plots on other images you can pass one of “raw”, “masked”, “processed” to the <code>type</code> option in the <code>FeatureOverlay</code> function. <br></p>
+<p><img src="figure/Image_Processing.Rmd/warpimages-3.png" width="100%" style="display: block; margin: auto;" /> <br> Any transformations applied to the images will also be applied to the coordinates used to map gene expression values onto the images. If you want to draw the plots on other images you can pass one of “raw”, “masked”, “processed” to the <code>type</code> option in the <code>FeatureOverlay</code> function. <br></p>
 <pre class="r"><code>heatmap.colors &lt;- c(&quot;lightgray&quot;, &quot;mistyrose&quot;, &quot;red&quot;, &quot;dark red&quot;, &quot;black&quot;)
 ST.FeaturePlot(se, features = &quot;Cck&quot;, cols = heatmap.colors, ncol = 2)</code></pre>
-<p><img src="figure/image_processing.Rmd/show_warp-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-show_warp-1">
-Past versions of show_warp-1.png
-</button>
-</p>
-<div id="fig-show_warp-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/show_warp-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/show_warp-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/show_warp-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/show_warp-1.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/show_warp-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/show_warp-1.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/show_warp-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ST.FeaturePlot(se.rotate90, features = &quot;Cck&quot;, cols = heatmap.colors, ncol = 2)</code></pre>
-<p><img src="figure/image_processing.Rmd/show_warp-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-show_warp-2">
-Past versions of show_warp-2.png
-</button>
-</p>
-<div id="fig-show_warp-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/show_warp-2.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/show_warp-2.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/show_warp-2.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/show_warp-2.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/show_warp-2.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/show_warp-2.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/show_warp-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ST.FeaturePlot(se.mirrorx, features = &quot;Cck&quot;, cols = heatmap.colors, ncol = 2)</code></pre>
-<p><img src="figure/image_processing.Rmd/show_warp-3.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-show_warp-3">
-Past versions of show_warp-3.png
-</button>
-</p>
-<div id="fig-show_warp-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/show_warp-3.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/show_warp-3.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/show_warp-3.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/show_warp-3.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/show_warp-3.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/show_warp-3.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/show_warp-3.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ST.FeaturePlot(se.mirrory, features = &quot;Cck&quot;, cols = heatmap.colors, ncol = 2)</code></pre>
-<p><img src="figure/image_processing.Rmd/show_warp-4.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-show_warp-4">
-Past versions of show_warp-4.png
-</button>
-</p>
-<div id="fig-show_warp-4" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/show_warp-4.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/show_warp-4.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/show_warp-4.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/show_warp-4.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/show_warp-4.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/show_warp-4.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/show_warp-4.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="visualize-multiple-samples" class="section level3">
@@ -3011,186 +1333,12 @@ Ludvig Larsson
                 cols = c(&quot;lightgray&quot;, &quot;mistyrose&quot;, &quot;red&quot;, &quot;dark red&quot;, &quot;black&quot;),
                 method = &quot;raster&quot;,
                 ncols = 2)</code></pre>
-<p><img src="figure/image_processing.Rmd/viz_multiple-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-viz_multiple-1">
-Past versions of viz_multiple-1.png
-</button>
-</p>
-<div id="fig-viz_multiple-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/viz_multiple-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/viz_multiple-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/image_processing.Rmd/viz_multiple-1.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/viz_multiple-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><br> As mentioned before, we can change the <code>type</code> parameter in the <code>FeatureOverlay()</code> function to override the default use of processed images. <br></p>
+<p><img src="figure/Image_Processing.Rmd/viz_multiple-1.png" width="100%" style="display: block; margin: auto;" /> <br> As mentioned before, we can change the <code>type</code> parameter in the <code>FeatureOverlay()</code> function to override the default use of processed images. <br></p>
 <pre class="r"><code>FeatureOverlay(object = se, features = c(&quot;Nrgn&quot;, &quot;Cck&quot;), 
                cols = c(&quot;lightgray&quot;, &quot;mistyrose&quot;, &quot;red&quot;, &quot;dark red&quot;, &quot;black&quot;), 
                sampleids = 2,
                type = &quot;raw&quot;)</code></pre>
-<p><img src="figure/image_processing.Rmd/overlay_multi_raw-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-overlay_multi_raw-1">
-Past versions of overlay_multi_raw-1.png
-</button>
-</p>
-<div id="fig-overlay_multi_raw-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/bfe87d1c3742db92df6f4c16ff5fe0447470be99/docs/figure/image_processing.Rmd/overlay_multi_raw-1.png" target="_blank">bfe87d1</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-05-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/1e9c615b5ede644d48956092639a4dce0f2b6aa4/docs/figure/image_processing.Rmd/overlay_multi_raw-1.png" target="_blank">1e9c615</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2021-04-28
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/60407bb23202f88dbf83ba7d37a93a096c74cd48/docs/figure/image_processing.Rmd/overlay_multi_raw-1.png" target="_blank">60407bb</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/4f42429b56872cd53e2bf772a36a76fe5d2778d8/docs/figure/image_processing.Rmd/overlay_multi_raw-1.png" target="_blank">4f42429</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2020-06-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/dad142d74d4d0323e19277613b39568d5a1018e1/docs/figure/image_processing.Rmd/overlay_multi_raw-1.png" target="_blank">dad142d</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/fb06450963f0f83237398d130bc27741c74088fe/docs/figure/image_processing.Rmd/overlay_multi_raw-1.png" target="_blank">fb06450</a>
-</td>
-<td>
-jbergenstrahle
-</td>
-<td>
-2020-01-11
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ludvigla/STUtility_web_site/blob/d96da86a15037552b02d65078a836b22078bbcff/docs/figure/image_processing.Rmd/overlay_multi_raw-1.png" target="_blank">d96da86</a>
-</td>
-<td>
-Ludvig Larsson
-</td>
-<td>
-2019-10-31
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/Image_Processing.Rmd/overlay_multi_raw-1.png" width="100%" style="display: block; margin: auto;" /></p>
  
 <hr />
 <p style="text-align: center;">
