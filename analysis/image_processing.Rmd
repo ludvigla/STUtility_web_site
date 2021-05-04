@@ -6,39 +6,41 @@ date: ''
 
 <style type="text/css">
 div.main-container {
-  background-color: #000000 !important;
-  max-width: 1400px;
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
 }
 </style>
+
 <style>
 #TOC {
   background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
   padding-top: 100px !important;
   background-repeat: no-repeat;
-  op: 5%;
-  opacity: 0.8;
   width: 500px;
-  color: white;
-  border-color: #000000 !important;
+  color: black;
+  border-color: #FFFFFF !important;
 }
 </style>
 
 <style> code, pre{
-  background-color: #000000 !important;
-  color: white !important;
+  background-color: #F8F8F8 !important;
+  color: black !important;
 }
 </style>
+
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
 <style> 
 body {
-  color: white
-}
-</style>
-<style>
-.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
-    background-color: #375a7f;
+  color: black;
+  font-size: 20pt;
 }
 </style>
 
@@ -60,9 +62,9 @@ You should be aware that the resolution is by default very low (400 pixels wide)
 NOTE: If you ever need to reload your images or load them in higher resolution you must make sure that the image paths are correct. If you have moved the images or changed your working directory, reloading the images will not work.
 
 <br>
-```{r load_images, echo=TRUE, eval=FALSE}
+```{r load_images, eval=FALSE}
 
-se <- LoadImages(se, time.resolve = F, verbose = T)
+se <- LoadImages(se, time.resolve = FALSE, verbose = TRUE)
 
 ```
 ```{r, pre-load, echo=FALSE, eval=TRUE, include=FALSE}
@@ -75,7 +77,7 @@ If you want to have a quick look at the sections you can draw them in the RStudi
 <br>
 ```{r plot_raw_he, fig.height=6, fig.width=12, out.width = "100%"}
 
-ImagePlot(se, method = "raster", darken = TRUE, type = "raw")
+ImagePlot(se, method = "raster", type = "raw")
 
 ```
 
@@ -96,17 +98,13 @@ For example, we can visualize the number of RNA features and RNA counts on the S
 
 ST.FeaturePlot(object = se, 
                features = c("nFeature_RNA"), 
-               cols = c("dark blue", "cyan", "yellow", "red", "dark red"),
-               ncol = 2, 
-               grid.ncol = 1, 
-               dark.theme = T)
+               cols = c("lightgray", "mistyrose", "red", "dark red", "black"),
+               ncol = 2)
 
 ST.FeaturePlot(object = se, 
                features = c("nCount_RNA"), 
-               cols = c("dark blue", "cyan", "yellow", "red", "dark red"),
-               ncol = 2, 
-               grid.ncol = 1, 
-               dark.theme = T)
+               cols = c("lightgray", "mistyrose", "red", "dark red", "black"),
+               ncol = 2)
 
 ```
 <br>
@@ -118,8 +116,7 @@ To overlay a spatial feature heatmaps on top of the HE image we use the FeatureO
 FeatureOverlay(se, 
                features = "Cck", 
                pt.size = 1.5,
-               cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
-               dark.theme = T, 
+               cols = c("lightgray", "mistyrose", "red", "dark red", "black"), 
                type = "raw")
 
 ```
@@ -130,10 +127,9 @@ You can see that by default, the first sample was selected for the feature overl
 
 FeatureOverlay(se, 
                features = c("Cck", "Calb2", "Dcn", "Nrgn"), 
-               cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
-               dark.theme = T, 
+               cols = c("lightgray", "mistyrose", "red", "dark red", "black"), 
                type = "raw",
-               ncols.features = 2)
+               ncols = 2)
 
 ```
 <br>
@@ -144,10 +140,9 @@ If you want to highlight only the regions with high feature values, you can add 
 FeatureOverlay(se, 
                features = c("Cck", "Calb2", "Dcn", "Nrgn"), 
                add.alpha = TRUE,
-               cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
-               dark.theme = T, 
+               cols = c("lightgray", "mistyrose", "red", "dark red", "black"), 
                type = "raw",
-               ncols.features = 2)
+               ncols = 2)
 
 ```
 <br>
@@ -161,13 +156,11 @@ customtheme <- theme(legend.position = "None", plot.title = element_blank())
 
 FeatureOverlay(se, 
                features = c("Cck", "Calb2", "Dcn", "Nrgn"), 
-               cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
-               dark.theme = T, 
+               cols = c("lightgray", "mistyrose", "red", "dark red", "black"), 
                type = "raw",
-               ncols.features = 2,
+               ncols = 2,
                sample.label = FALSE,
-               show.sb = FALSE,
-               custom.theme = customtheme)
+               show.sb = FALSE) & customtheme 
 
 ```
 
@@ -189,9 +182,9 @@ You can look at the HE images using the ImagePlot() function.The ImagePlot funct
 ```{r image_types, fig.width=12, fig.height=6, out.width = '100%'}
 
 # Plot HE images
-ImagePlot(se, ncols = 2, method = "raster", type = "raw", darken = T) # Raw image
-ImagePlot(se, ncols = 2, method = "raster", type = "masked", darken = T) # Masked image
-ImagePlot(se, ncols = 2, method = "raster", type = "masked.masks") # Mask
+ImagePlot(se, ncols = 2, method = "raster", type = "raw") # Raw image
+ImagePlot(se, ncols = 2, method = "raster", type = "masked") # Masked image
+ImagePlot(se, ncols = 2, method = "raster", type = "masked.masks", darken = TRUE) # Mask
 
 ```
 
@@ -214,7 +207,7 @@ load("pre_data/preSaved_2kHippo.RData")
 ```{r 2k_images, fig.width=12, fig.height=4}
 
 # Look at the HE images from the "2k" array mouse brain dataset
-ImagePlot(se, method = "raster", darken = TRUE, type = "raw", ncols = 4)
+ImagePlot(se, method = "raster", type = "raw", ncols = 4)
 ```
 
 First we need to mask the images and then we can apply the automatic alignment method. As you can see, the automatic alignment method can apply rotations, translations and reflections to the images. 
@@ -224,7 +217,7 @@ se <- se %>% MaskImages() %>% AlignImages()
 ```
 ```{r align_images, fig.width=12, fig.height=4}
 
-ImagePlot(se, method = "raster", darken = TRUE, type = "processed", ncols = 4)
+ImagePlot(se, method = "raster", type = "processed", ncols = 4)
 
 ```
 <br>
@@ -237,22 +230,22 @@ The available transformations are; "center.x", "center.y", "mirror.x", "mirror.y
 
 Remember that you need to mask the images before processing them!
 <br>
-```{r load_Hippo_again}
+```{r load_Hippo_again, include=FALSE}
 load("pre_data/preSaved_10xHippo.RData")
 ```
 ```{r warpimages, fig.width=12, fig.height=6, out.width = '100%'}
 
 transforms <- list("2" = list("angle" = 90))
 se.rotate90 <- WarpImages(se, transforms)
-ImagePlot(se.rotate90, method = "raster", darken = T)
+ImagePlot(se.rotate90, method = "raster")
 
 transforms <- list("2" = list("mirror.x" = T))
 se.mirrorx <- WarpImages(se, transforms)
-ImagePlot(se.mirrorx, method = "raster", darken = T)
+ImagePlot(se.mirrorx, method = "raster")
 
 transforms <- list("2" = list("mirror.y" = T))
 se.mirrory <- WarpImages(se, transforms)
-ImagePlot(se.mirrory, method = "raster", darken = T)
+ImagePlot(se.mirrory, method = "raster")
 
 ```
 <br>
@@ -260,11 +253,11 @@ Any transformations applied to the images will also be applied to the coordinate
 <br>
 ```{r show_warp, fig.height=6, fig.width=12, out.width = '100%'}
 
-heatmap.colors <- c("dark blue", "cyan", "yellow", "red", "dark red")
-ST.FeaturePlot(se, features = "Cck", cols = heatmap.colors, dark.theme = T)
-ST.FeaturePlot(se.rotate90, features = "Cck", cols = heatmap.colors, dark.theme = T)
-ST.FeaturePlot(se.mirrorx, features = "Cck", cols = heatmap.colors, dark.theme = T)
-ST.FeaturePlot(se.mirrory, features = "Cck", cols = heatmap.colors, dark.theme = T)
+heatmap.colors <- c("lightgray", "mistyrose", "red", "dark red", "black")
+ST.FeaturePlot(se, features = "Cck", cols = heatmap.colors, ncol = 2)
+ST.FeaturePlot(se.rotate90, features = "Cck", cols = heatmap.colors, ncol = 2)
+ST.FeaturePlot(se.mirrorx, features = "Cck", cols = heatmap.colors, ncol = 2)
+ST.FeaturePlot(se.mirrory, features = "Cck", cols = heatmap.colors, ncol = 2)
 
 ```
 
@@ -276,9 +269,9 @@ So far we have only plotted section 1 using the `FeatureOverlay` function. If yo
 
 FeatureOverlay(se, features = "Nrgn", 
                 sampleids = 1:2,
-                cols = c("dark blue", "cyan", "yellow", "red", "dark red"),
+                cols = c("lightgray", "mistyrose", "red", "dark red", "black"),
                 method = "raster",
-                dark.theme = T, ncols.samples = 2)
+                ncols = 2)
 
 ```
 <br>
@@ -287,10 +280,9 @@ As mentioned before, we can change the `type` parameter in the `FeatureOverlay()
 ```{r overlay_multi_raw, fig.height = 6, fig.width = 12, out.width = '100%'}
 
 FeatureOverlay(object = se, features = c("Nrgn", "Cck"), 
-               cols = c("dark blue", "cyan", "yellow", "red", "dark red"), 
+               cols = c("lightgray", "mistyrose", "red", "dark red", "black"), 
                sampleids = 2,
-               type = "raw", 
-               dark.theme = T)
+               type = "raw")
 
 ```
 

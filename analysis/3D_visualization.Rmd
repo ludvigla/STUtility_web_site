@@ -6,43 +6,43 @@ date: ''
 
 <style type="text/css">
 div.main-container {
-  background-color: #000000 !important;
-  max-width: 1400px;
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
 }
 </style>
+
 <style>
 #TOC {
   background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
   padding-top: 100px !important;
   background-repeat: no-repeat;
-  op: 5%;
-  opacity: 0.8;
   width: 500px;
-  color: white;
-  border-color: #000000 !important;
+  color: black;
+  border-color: #FFFFFF !important;
 }
 </style>
 
 <style> code, pre{
-  background-color: #000000 !important;
-  color: white !important;
+  background-color: #F8F8F8 !important;
+  color: black !important;
 }
 </style>
+
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
 <style> 
 body {
-  color: white
+  color: black;
+  font-size: 20pt;
 }
 </style>
-<style>
-.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
-    background-color: #375a7f;
-}
-</style>
-
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
@@ -92,10 +92,7 @@ stack_3d <- setNames(GetStaffli(se)@scatter.data, c("x", "y", "z", "grid.cell"))
 ggplot(stack_3d, aes(x, 2e3 - y)) +
   geom_point(size = 0.1, color = "lightgray") +
   facet_wrap(~z, ncol = 1) +
-  theme_void() +
-  theme(plot.background = element_rect(fill = "black"), 
-        plot.title = element_text(colour = "white"), 
-        legend.text = element_text(colour = "white"))
+  theme_void()
 
 ```
 <br>
@@ -114,10 +111,7 @@ ggplot(interpolated.data, aes(x, 2e3 - y, color = val)) +
   facet_wrap(~z, ncol = 1) +
   theme_void() +
   ggtitle("Mbp") +
-  scale_color_gradientn(colours = c("black", "dark blue", "cyan", "yellow", "red", "dark red")) +
-  theme(plot.background = element_rect(fill = "black"), 
-        plot.title = element_text(colour = "white"), 
-        legend.text = element_text(colour = "white"))
+  scale_color_gradientn(colours = c("black", "dark blue", "cyan", "yellow", "red", "dark red"))
 
 ```
 <br> 
@@ -135,7 +129,7 @@ Now we are ready to plot features in 3D. We'll run the `FeaturePlot3D()` functio
 
 ```{r plt_3d}
 
-FeaturePlot3D(se, features = "Mbp", dark.theme = TRUE, pt.size = 0.6, pts.downsample = 5e4)
+FeaturePlot3D(se, features = "Mbp", pt.size = 0.6, pts.downsample = 5e4)
 
 ```
 <br>
@@ -146,7 +140,7 @@ Various other features and analysis results can be visualized, e.g. if we previo
 ```{r plt_3d_HSV}
 
 selected.factors <- paste0("factor_", c(4, 5, 7, 9, 11, 13, 14, 15, 18, 22, 24, 25, 29, 30, 31, 33, 36))
-HSVPlot3D(se, features = selected.factors, pt.size = 2, dark.theme = T, add.margins = 1, mode = "spots")
+HSVPlot3D(se, features = selected.factors, pt.size = 2, add.margins = 1, mode = "spots")
 
 
 ```
@@ -160,10 +154,10 @@ The 3D plots are drawn using the `plotly` R package and you can specify a layout
 
 <br>
 
-```{r subplot, out.width = "100%"}
+```{r subplot, out.width = "100%", warning=FALSE}
 
-p1 <- FeaturePlot3D(se, features = "Mbp", scene = "scene", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1, pts.downsample = 5e4)
-p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("dark blue", "navyblue", "cyan", "white"), dark.theme = TRUE, add.margins = 1)
+p1 <- FeaturePlot3D(se, features = "Mbp", scene = "scene", cols = c("dark blue", "navyblue", "cyan", "white"), add.margins = 1, pts.downsample = 5e4)
+p2 <- FeaturePlot3D(se, features = "Calb2", scene = "scene2", cols = c("dark blue", "navyblue", "cyan", "white"), add.margins = 1)
 
 plotly::subplot(p1, p2, margin = 0)
 

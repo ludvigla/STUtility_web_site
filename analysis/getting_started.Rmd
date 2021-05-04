@@ -5,37 +5,43 @@ date: ''
 
 <style type="text/css">
 div.main-container {
-  background-color: #000000 !important;
-  max-width: 1400px;
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
 }
 </style>
+
 <style>
 #TOC {
   background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
   padding-top: 100px !important;
   background-repeat: no-repeat;
-  op: 5%;
-  opacity: 0.8;
   width: 500px;
-  color: white;
-  border-color: #000000 !important;
+  color: black;
+  border-color: #FFFFFF !important;
 }
 </style>
 
 <style> code, pre{
-  background-color: #000000 !important;
-  color: white !important;
-}
-</style>
-<style> 
-body {
-  color: white
+  background-color: #F8F8F8 !important;
+  color: black !important;
 }
 </style>
 
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
+<style> 
+body {
+  color: black;
+  font-size: 20pt;
+}
+</style>
 
 
 ```{r setup, include=FALSE}
@@ -45,9 +51,11 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 First you need to load the library into your R session.
 
 ```{r load_lib}
-
 library(STutility)
-
+```
+```{r load_lib_hidden, include=FALSE}
+library(kableExtra)
+library(magrittr)
 ```
 
 ## 10X Visium platform
@@ -82,14 +90,20 @@ In this vignette we have used the datasets from Mouse Brain Serial Section 1 and
 ### Prepare data
 
 The recommended method to read the files into R is via the creation of a `data.frame` that we will call the `infoTable`. There are four columns in this table that are required for Visium data: "samples", "spotfiles", "imgs" and "json". These columns specify the paths to the required input files.
+
 <br>
-```{r example_infotable_Visium, echo=FALSE, eval=T}
+```{r example_infotable_Visium, echo=FALSE, eval=TRUE}
 
 samples <- c("path/to/sample_1/count_file_1.h5 ", "path/to/sample_2/count_file_2.h5")
 spotfiles <- c("path/to/sample_1/tissue_positions_list.csv", "path/to/sample_2/tissue_positions_list.csv")
 imgs <- c("path/to/sample_1/tissue_hires_image.png", "path/to/sample_2/tissue_hires_image.png")
 json <- c("path/to/sample_1/scalefactors_json.json", "path/to/sample_2/scalefactors_json.json")
-data.frame(samples, spotfiles, imgs, json)
+infoTable <- data.frame(samples, spotfiles, imgs, json)
+
+infoTable %>%
+  kbl() %>%
+  kable_paper() %>%
+  scroll_box(width = "800px")
 ```
 
 Any number of _extra_ columns can be added to the infoTable data.frame that you want to include as meta data in your Seurat object, e.g. "gender", "age", "slide_id" etc. These columns can be named as you like, but they should not be called _not_ "sample", "spotfiles", "imgs" or "json".
@@ -158,9 +172,9 @@ For example, if you wish to explore the spatial distribution of various features
 <br>
 
 
-```{r, eval=TRUE, fig.width=14, fig.height=12, out.width='100%'}
+```{r, eval=TRUE, fig.width=10, fig.height=10, out.width='100%'}
 
-ST.FeaturePlot(se, features = c("nFeature_RNA"), dark.theme = T, cols = c("black", "darkblue", "cyan", "yellow", "red", "darkred"), ncol = 2)
+ST.FeaturePlot(se, features = c("nFeature_RNA"), cols = c("lightgray", "mistyrose", "red", "darkred", "black"), ncol = 2, pt.size = 1.3)
 
 ```
 
@@ -181,19 +195,16 @@ The original ST workflow produces the following three output files:
 ### Prepare data
 
 The recommended method to read the files into R is via the creation of a "infoTable", which is a table with at least three columns "samples", "spotfiles" and "imgs". 
-<br>
-```{r example_infotable, echo=FALSE, eval=FALSE}
-samples <- c("path/to/sample_1/count_file_1.h5 ", "path/to/sample_2/count_file_2.h5")
-spotfiles <- c("path/to/sample_1/spot-selection.tsv", "path/to/sample_2/spot-selection.tsv")
-imgs <- c("path/to/sample_1/HE_image_sample_1.jpg", "path/to/sample_2/HE_image_sample_2.jpg")
-data.frame(samples, spotfiles, imgs)
-```
 
-Test data is provided:
+Test data:
 
 ```{r package_infotable, eval=FALSE}
 
-infoTable <- read.table("~/STUtility/inst/extdata/metaData_mmBrain.csv", sep=";", header=T, stringsAsFactors = F)[c(1, 5, 6, 7), ]
+samples <- list.files(pattern = "^Hippo[1-6].tsv.gz", path = system.file("extdata/counts", package = "STutility"), full.names = TRUE)
+spotfiles <- list.files(pattern = "^alignment_table_Hippo[1-6].tsv.gz", path = system.file("extdata/counts", package = "STutility"), full.names = TRUE)
+imgs <- list.files(pattern = "^Hippo[1-6].jpg", path = system.file("extdata/counts", package = "STutility"), full.names = TRUE)
+
+infoTable <- data.frame(samples, imgs, spotfiles, stringsAsFactors = F)
 
 ```
 
@@ -249,9 +260,9 @@ load("pre_data/preSaved_2kHippo.RData")
 
 ```
 
-```{r, eval=TRUE, fig.width=12, fig.height=10, out.width='100%'}
+```{r, eval=TRUE, fig.width=8, fig.height=8, out.width='100%'}
 
-ST.FeaturePlot(se, features = c("nFeature_RNA"), dark.theme = T, cols = c("dark blue", "cyan", "yellow", "red", "darkred"), ncol = 2)
+ST.FeaturePlot(se, features = c("nFeature_RNA"), cols = c("lightgray", "mistyrose", "red", "darkred", "black"), ncol = 2, pt.size = 1.5, show.sb = FALSE)
 
 ```
 <br>
@@ -271,7 +282,9 @@ st.object <- GetStaffli(se)
 st.object
 
 # Access meta data
-head(st.object[[]])
+head(st.object[[]]) %>%
+  kbl() %>%
+  kable_styling()
 
 ```
 

@@ -7,34 +7,41 @@ date: ''
 
 <style type="text/css">
 div.main-container {
-  background-color: #000000 !important;
-  max-width: 1400px;
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
 }
 </style>
+
 <style>
 #TOC {
   background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
   padding-top: 100px !important;
   background-repeat: no-repeat;
-  op: 5%;
-  opacity: 0.8;
   width: 500px;
-  color: white;
-  border-color: #000000 !important;
+  color: black;
+  border-color: #FFFFFF !important;
 }
 </style>
 
 <style> code, pre{
-  background-color: #000000 !important;
-  color: white !important;
+  background-color: #F8F8F8 !important;
+  color: black !important;
 }
 </style>
+
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
 <style> 
 body {
-  color: white
+  color: black;
+  font-size: 20pt;
 }
 </style>
 
@@ -69,6 +76,31 @@ devtools::install_github("jbergenstrahle/STUtility")
 If you run into `Error in dyn.load(file, DLLpath = DLLpath, ...):`, make sure you have XQuartz installed, which can be downloaded from [xquartz.org](https://www.xquartz.org/)
 
 If you are missing gfortran you can get it from [CRAN](https://cran.r-project.org/bin/macosx/tools/)
+
+
+### Set up conda environment (Mac OS)
+
+Below are instructions for how to set up a conda environment to install STUtility. 
+
+From the terminal
+
+```{r, eval=FALSE}
+
+conda create -n R4.0
+conda activate R4.0
+conda install -c conda-forge r-essentials r-base r-devtools r-spdep r-hdf5r
+conda install -c bioconda r-fftwtools
+
+```
+
+From R
+
+```{r, eval=FALSE}
+
+devtools::install_github("jbergenstrahle/STUtility")
+
+```
+
 
 &nbsp;
 <hr />

@@ -5,39 +5,41 @@ date: ''
 
 <style type="text/css">
 div.main-container {
-  background-color: #000000 !important;
-  max-width: 1400px;
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
 }
 </style>
+
 <style>
 #TOC {
   background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
   padding-top: 100px !important;
   background-repeat: no-repeat;
-  op: 5%;
-  opacity: 0.8;
   width: 500px;
-  color: white;
-  border-color: #000000 !important;
+  color: black;
+  border-color: #FFFFFF !important;
 }
 </style>
 
 <style> code, pre{
-  background-color: #000000 !important;
-  color: white !important;
+  background-color: #F8F8F8 !important;
+  color: black !important;
 }
 </style>
+
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
 <style> 
 body {
-  color: white
-}
-</style>
-<style>
-.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
-    background-color: #375a7f;
+  color: black;
+  font-size: 20pt;
 }
 </style>
 
@@ -88,7 +90,7 @@ Note: for comprehensive tutorials in the different options and workflow possibil
 
 Each spot in a Spatial Transcriptomics dataset typically contains RNA from a mixture of cells so why would we apply a workflow that was developed for single-cell RNAseq data? We can calculate some properties to visually inspect the data to see that ST data have similar properties to that of scRNAseq data.
 <br>
-```{r poisson_comparison, fig.width = 4, fig.height = 8, cache=F, warning=FALSE, message=FALSE, results='hide'}
+```{r poisson_comparison, fig.width = 10, fig.height = 4, cache=F, warning=FALSE, message=FALSE, results='hide'}
 
 library(Matrix)
 library(magrittr)
@@ -110,20 +112,20 @@ gene_attr <- data.frame(mean = rowMeans(umi_data),
 spot_attr <- se[[c("nFeature_RNA", "nCount_RNA")]]
 
 p1 <- ggplot(gene_attr, aes(log_mean, log_var)) + 
-  geom_point(alpha = 0.3, shape = 16, color = "white") + 
+  geom_point(alpha = 0.3, shape = 16) + 
   geom_density_2d(size = 0.3) +
   geom_abline(intercept = 0, slope = 1, color = 'red') +
-  ggtitle("Mean-variance relationship") + DarkTheme()
+  ggtitle("Mean-variance relationship")
 
 # add the expected detection rate under Poisson model
 x = seq(from = -2, to = 2, length.out = 1000)
 poisson_model <- data.frame(log_mean = x, detection_rate = 1 - dpois(0, lambda = 10^x))
 p2 <- ggplot(gene_attr, aes(log_mean, detection_rate)) + 
-  geom_point(alpha = 0.3, shape = 16, color = "white") + 
+  geom_point(alpha = 0.3, shape = 16) + 
   geom_line(data = poisson_model, color='red') +
-  ggtitle("Mean-detection-rate relationship") + DarkTheme()
+  ggtitle("Mean-detection-rate relationship")
 
-cowplot::plot_grid(p1, p2, nrow = 2)
+p1 - p2
 
 ```
 

@@ -6,42 +6,43 @@ date: ''
 
 <style type="text/css">
 div.main-container {
-  background-color: #000000 !important;
-  max-width: 1400px;
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
 }
 </style>
+
 <style>
 #TOC {
   background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
   padding-top: 100px !important;
   background-repeat: no-repeat;
-  op: 5%;
-  opacity: 0.8;
   width: 500px;
-  color: white;
-  border-color: #000000 !important;
+  color: black;
+  border-color: #FFFFFF !important;
 }
 </style>
 
 <style> code, pre{
-  background-color: #000000 !important;
-  color: white !important;
-}
-</style>
-<style> 
-body {
-  color: white
-}
-</style>
-<style>
-.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
-    background-color: #375a7f;
+  background-color: #F8F8F8 !important;
+  color: black !important;
 }
 </style>
 
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
+<style> 
+body {
+  color: black;
+  font-size: 20pt;
+}
+</style>
 
 
 ```{r setup, include=FALSE}
@@ -70,7 +71,7 @@ load("pre_data/preSaved_10x_BC.RData")
 
 ```
 ```{r plot_BC_data, fig.width=14, fig.height=6}
-FeatureOverlay(se, features = "seurat_clusters", sampleids = 1:2, ncols.samples = 2, dark.theme = T)
+FeatureOverlay(se, features = "seurat_clusters", sampleids = 1:2, ncols = 2)
 ```
 <br>
 
@@ -91,7 +92,7 @@ The default behavior is to find all spots which are neighbors with the selected 
 <br>
 ```{r find_neighbors, fig.width = 14, fig.height=6, out.width = "100%"}
 
-FeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, cols = c("red", "lightgray"), pt.size = 2, dark.theme = T)
+FeatureOverlay(se, features = "nbs_2", ncols = 2, sampleids = 1:2, cols = c("red", "lightgray"), pt.size = 2)
 
 ```
 <br>
@@ -106,7 +107,7 @@ se <- RegionNeighbours(se, id = 2, keep.within.id = T, verbose = TRUE)
 
 ```{r find_neighbors_2, fig.width = 14, fig.height=6, out.width = "100%"}
 
-FeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, cols = c("red", "lightgray"), pt.size = 2, dark.theme = T)
+FeatureOverlay(se, features = "nbs_2", ncols = 2, sampleids = 1:2, cols = c("red", "lightgray"), pt.size = 2)
 
 ```
 <br>
@@ -125,7 +126,7 @@ nbs_2.markers$gene <- rownames(nbs_2.markers)
 se.subset <- SubsetSTData(se, expression = nbs_2 %in% c("2", "nbs_2"))
 sorted.marks <- nbs_2.markers %>% top_n(n = 40, wt = abs(avg_logFC))
 sorted.marks <- sorted.marks[order(sorted.marks$avg_logFC, decreasing = T), ]
-DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c("red", "lightgray"), disp.min = -2, disp.max = 2) + DarkTheme() 
+DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c("red", "lightgray"), disp.min = -2, disp.max = 2)
 
 ```
 <br>
@@ -135,8 +136,8 @@ From this DE-test we can for example see that the genes COX6C and FCGR3B genes a
 <br>
 ```{r plot_markers, fig.width = 14, fig.height=12, out.width = "100%"}
 
-FeatureOverlay(se.subset, features = c("COX6C", "FCGR3B", "LGALS1", "CYBA"), pt.size = 2, dark.theme = T, 
-               ncols.features = 2, cols = c("darkblue", "cyan", "yellow", "red", "darkred"))
+FeatureOverlay(se.subset, features = c("COX6C", "FCGR3B", "LGALS1", "CYBA"), pt.size = 2,  
+               ncols = 2, cols = c("darkblue", "cyan", "yellow", "red", "darkred"))
 
 ```
 <br>
@@ -149,7 +150,7 @@ And lastly, if you want to keep the labels for the neighbors you can set keep.id
 
 se <- SetIdent(se, value = "seurat_clusters")
 se <- RegionNeighbours(se, id = 2, keep.idents = TRUE, verbose = TRUE)
-FeatureOverlay(se, features = "nbs_2", ncols.samples = 2, sampleids = 1:2, pt.size = 2, dark.theme = T)
+FeatureOverlay(se, features = "nbs_2", ncols = 2, sampleids = 1:2, pt.size = 2)
 
 ```
 

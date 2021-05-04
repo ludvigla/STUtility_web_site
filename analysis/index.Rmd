@@ -5,7 +5,46 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Home
+<style type="text/css">
+div.main-container {
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  width: 500px;
+  color: black;
+  border-color: #FFFFFF !important;
+}
+</style>
+
+<style> code, pre{
+  background-color: #F8F8F8 !important;
+  color: black !important;
+}
+</style>
+
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
+<style> 
+body {
+  color: black;
+  font-size: 20pt;
+}
+</style>
+
 
 Welcome to the STUtility web site. STUtility is an R-package with the goal of providing an easy-to-use visualization and analysis tool kit for spatial transcriptomics data. The developers of the tool, Ludvig Larsson and Joseph Bergenstråhle, are PhD students at prof. Joakim Lundebergs group, the original inventors of the Spatial Transcriptomics (ST) technology, later acquired by 10X Genomics. We are located at [Science for Life Laboratory](https://www.scilifelab.se/) (SciLifeLab), in Stockholm, Sweden. 
 

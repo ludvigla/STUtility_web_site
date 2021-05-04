@@ -6,42 +6,43 @@ date: ''
 
 <style type="text/css">
 div.main-container {
-  background-color: #000000 !important;
-  max-width: 1400px;
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
   margin-left: auto;
   margin-right: auto;
 }
 </style>
+
 <style>
 #TOC {
   background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
   background-size: contain;
   padding-top: 100px !important;
   background-repeat: no-repeat;
-  op: 5%;
-  opacity: 0.8;
   width: 500px;
-  color: white;
-  border-color: #000000 !important;
+  color: black;
+  border-color: #FFFFFF !important;
 }
 </style>
 
 <style> code, pre{
-  background-color: #000000 !important;
-  color: white !important;
-}
-</style>
-<style> 
-body {
-  color: white
-}
-</style>
-<style>
-.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
-    background-color: #375a7f;
+  background-color: #F8F8F8 !important;
+  color: black !important;
 }
 </style>
 
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
+<style> 
+body {
+  color: black;
+  font-size: 20pt;
+}
+</style>
 
 
 ```{r setup, include=FALSE}
@@ -51,6 +52,9 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = T
 
 ```{r load_lib, warning=FALSE, message=FALSE, include=FALSE}
 library(STutility)
+```
+```{r load_lib_hidden, include=FALSE}
+library(kableExtra)
 library(magrittr)
 ```
 
@@ -60,7 +64,53 @@ load("pre_data/preSaved_10xHippo_norm_reductions.RData")
 
 ```
 
-## Finding spatial expression patterns 
+## Spatial Auto-correlation
+***
+
+STUtility includes a method for finding genes with spatially conserved patterns across the tissue. The ranking method makes use neighborhood networks to compute the spatial lag for each gene, here defined as the summed expression of that gene in neighboring spots. Each gene is then ranked by the correlation between the lag vector and the original expression vector. The output is a `data.frame` with gene names ranked by decreasing spatial auto-correlation. 
+
+This method is partly inspired by work from the [Giotto team](http://spatial.rc.fas.harvard.edu/spatialgiotto/giotto.html) and we reccomend you to check out their R package Giotto and the related publication; ["Giotto: a toolbox for integrative analysis and visualization of spatial expression data"](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02286-2.
+
+<br>
+```{r autocorrelation, eval=FALSE}
+
+library(spdep)
+spatgenes <- CorSpatialGenes(se)
+
+```
+
+By default, the saptial-auto-correlation scores are only calculated for the variable genes in the Seurat object, here we have 3000. Among the top most variable features in our Seurat object, we find genes coding for hemoglobin; "Hbb-bs" "Hba-a1" "Hba-a2". These are typically expressed in blood vessels which are more randomly distributed across the tissue compared to larger tissue structures. Knowing the spatial auto-correlation can therefore be useful to distinguish genes expressed in larger tissue compartments. One way to make use of this is to restrict the selection of features used for dimensionality reduction and clustering to include ony gene that are highly variable and spatially auto-correlated, and that way avoid clustering based on structures such as blood vessels. 
+
+```{r load_spatgenes, include=FALSE}
+load("pre_data/spatgenes")
+```
+```{r}
+
+head(VariableFeatures(se))
+spatgenes[c("Hbb-bs", "Hba-a1", "Hba-a2"), ]
+
+```
+
+Let's plot some of the genes with highest spatial auto-correlation.
+
+```{r print_spatgenes}
+head(spatgenes) %>%
+  kbl() %>%
+  kable_styling()
+```
+```{r, fig.height=12, fig.width=12, out.width="100%"}
+
+FeatureOverlay(se, features = c("Mbp", "Camk2n1", "Slc6a3", "Th"), 
+              sampleids = 1,
+              cols = c("lightgray", "mistyrose", "red", "darkred", "black"),
+              pt.size = 1.5, 
+              add.alpha = TRUE,
+              ncol = 2)
+
+```
+
+
+## Matrix factorization
 ***
 
 The strength of untargeted whole transcriptome capture is the ability to perform unsupervised analysis and the ability to find spatial gene expression patterns. We've found good use of using non-negative matrix factorization (NNMF or NMF) to find underlying patterns of transcriptomic profiles. This factor analysis, along with various dimensionality reduction techniques, can all be ran via "RunXXX()", where X = the method of choice, e.g.:
@@ -79,27 +129,27 @@ NOTE: by default, the colorscale of dimensionality reduction vectors will be cen
 <br>
 ```{r dimplot, fig.height=18, fig.width=12, out.width = "100%"}
 
-cscale <- c("darkblue", "cyan", "yellow", "red", "darkred")
+cscale <- c("lightgray", "mistyrose", "red", "darkred", "black")
 
 ST.DimPlot(se, 
            dims = 1:10,
            ncol = 2, # Sets the number of columns at dimensions level
            grid.ncol = 2, # Sets the number of columns at sample level
            reduction = "NMF", 
-           dark.theme = T, 
            pt.size = 1, 
            center.zero = F, 
-           cols = cscale)
+           cols = cscale, 
+           show.sb = FALSE)
 
 ST.DimPlot(se, 
            dims = 11:20,
            ncol = 2, 
            grid.ncol = 2, 
            reduction = "NMF", 
-           dark.theme = T, 
            pt.size = 1, 
            center.zero = F, 
-           cols = cscale)
+           cols = cscale, 
+           show.sb = FALSE)
 
 
 ST.DimPlot(se, 
@@ -107,20 +157,20 @@ ST.DimPlot(se,
            ncol = 2, 
            grid.ncol = 2, 
            reduction = "NMF", 
-           dark.theme = T, 
            pt.size = 1, 
-               center.zero = F, 
-           cols = cscale)
+           center.zero = F, 
+           cols = cscale, 
+           show.sb = FALSE)
 
 ST.DimPlot(se, 
            dims = 31:40,
            ncol = 2, 
            grid.ncol = 2, 
            reduction = "NMF", 
-           dark.theme = T, 
            pt.size = 1, 
-               center.zero = F, 
-           cols = cscale)
+           center.zero = F, 
+           cols = cscale, 
+           show.sb = FALSE)
 
 ```
 <br>
@@ -131,7 +181,7 @@ For NMF output which is not centered at 0 looking at the "negative" side of the 
 ```{r project_dim}
 
 print(se[["NMF"]])
-FactorGeneLoadingPlot(se, factor = 1, dark.theme = TRUE)
+FactorGeneLoadingPlot(se, factor = 1)
 
 ```
 
@@ -153,24 +203,24 @@ se <- FindClusters(object = se, verbose = FALSE)
 <br>
 And plotting of the clusters spatially
 <br>
-```{r plot_clusters, fig.height = 6, fig.width = 12, out.width='100%'}
+```{r plot_clusters, fig.height = 5, fig.width = 10, out.width='100%'}
 
 library(RColorBrewer)
 n <- 19
 qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
 col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
 
-ST.FeaturePlot(object = se, features = "seurat_clusters", dark.theme = T, cols = col_vector, pt.size = 1)
+ST.FeaturePlot(object = se, features = "seurat_clusters", cols = col_vector, pt.size = 1, ncol = 2)
 
 ```
 <br>
 If you think that the distribution of clusters gets too cluttered, you can also split the view so that only one cluster at the time gets colored, just note that you can only do this for one section at the time (set `ìndex`).
 <br>
-```{r plot_clusters_split, fig.height=22, fig.width=22, out.width="100%"}
+```{r plot_clusters_split, fig.height=16, fig.width=16, out.width="100%"}
 
-ST.FeaturePlot(object = se, features = "seurat_clusters", dark.theme = T, pt.size = 1, split.labels = T, indices = 1, show.sb = FALSE)
+ST.FeaturePlot(object = se, features = "seurat_clusters", pt.size = 1, split.labels = T, indices = 1, show.sb = FALSE, ncol = 5)
 
-ST.FeaturePlot(object = se, features = "seurat_clusters", dark.theme = T, pt.size = 1, split.labels = T, indices = 2, show.sb = FALSE)
+ST.FeaturePlot(object = se, features = "seurat_clusters", pt.size = 1, split.labels = T, indices = 2, show.sb = FALSE, ncol = 5)
 ```
 <br>
 
@@ -189,18 +239,17 @@ for (ftr in fts) {
   p <- FeatureOverlay(se, 
                   features = ftr, 
                   sampleids = 1:2,
-                  cols = c("darkblue", "cyan", "yellow", "red", "darkred"),
+                  cols = c("lightgray", "mistyrose", "red", "darkred", "black"),
                   pt.size = 1.5, 
                   pt.alpha = 0.5, 
-                  dark.theme = T, 
-                 ncols.samples = 2)
+                 ncols = 2)
   print(p)
 }
 
 ```
 <br>
 
-## Compare graph embeddings
+## Spatial vs. UMAP visualziation
 ***
 
 Another useful feature is that you can now compare the spatial distribution of a gene with the typical "graph embeddings" s.a. UMAP and t-SNE. 
@@ -212,19 +261,19 @@ se <- RunUMAP(se, reduction = "NMF", dims = 1:40, n.neighbors = 10)
 
 ````
 
-```{r embedding_vs_ST, fig.width = 14, fig.height = 14}
+```{r embedding_vs_ST, fig.width = 12, fig.height = 12}
 
 # Define colors for heatmap
-heatmap.colors <- viridis::viridis(n = 9)
+heatmap.colors <- c("lightgray", "mistyrose", "red", "darkred", "black")
 fts <- c("Prkcd", "Opalin", "Lamp5")
 
 # plot transformed features expression on UMAP embedding
 p.fts <- lapply(fts, function(ftr) {
-  FeaturePlot(se, features = ftr, reduction = "umap", order = TRUE, cols = heatmap.colors) + DarkTheme()
+  FeaturePlot(se, features = ftr, reduction = "umap", order = TRUE, cols = heatmap.colors)
 })
 
 # plot transformed features expression on Visium coordinates
-p3 <- ST.FeaturePlot(se, features = fts, ncol = 2, grid.ncol = 1, cols = heatmap.colors, pt.size = 1, dark.theme = T, show.sb = FALSE)
+p3 <- ST.FeaturePlot(se, features = fts, ncol = 2, grid.ncol = 1, cols = heatmap.colors, pt.size = 1, show.sb = FALSE)
 
 # Construct final plot
 cowplot::plot_grid(cowplot::plot_grid(plotlist = p.fts, ncol = 1), p3, ncol = 2, rel_widths = c(1, 1.3))
@@ -247,7 +296,7 @@ We use the first three dimensions for plotting:
 <br>
 ```{r UMAP_blend, fig.height = 7, fig.width = 12, out.width="100%"}
 
-ST.DimPlot(object = se, dims = 1:3, reduction = "umap.3d", blend = T, dark.theme = T, pt.size = 1.5)
+ST.DimPlot(object = se, dims = 1:3, reduction = "umap.3d", blend = T, pt.size = 1.8)
 
 ```
 
@@ -261,7 +310,9 @@ Lets try this out by an example. Looking at \ref{plot_clusters_split}, lets say 
 ```{r de_analysis}
 
 markers <- FindMarkers(se, ident.1 = "19")
-head(markers)
+head(markers) %>%
+  kbl() %>%
+  kable_styling()
 
 ```
 
@@ -274,36 +325,14 @@ Note also, if we are interested in comparing two levels against each other, and 
 
 FeatureOverlay(se, features = "Dsp", 
               sampleids = 1:2,
-              cols = c("darkblue", "cyan", "yellow", "red", "darkred"),
+              cols = c("lightgray", "mistyrose", "red", "darkred", "black"),
               pt.size = 1.5, 
               pt.alpha = 0.5,
-              ncols.samples = 2,
-              dark.theme = T)
+              ncol = 2)
 
 ```
 <br>
 
-## Spatial Auto-correlation
-***
-
-STUtility also includes an additional method for finding genes with spatial patterns across the tissue. The ranking method makes use neighborhood networks to compute the spatial lag for each gene, here defined as the summed expression of that gene in neighboring spots. Each gene is then ranked by the correlation between the lag vector and the original expression vector. The output is data.frame genes ranked by correlation between the two vectors. 
-
-This method is partly inspired by work from the [Giotto team](http://spatial.rc.fas.harvard.edu/spatialgiotto/giotto.html) and we reccomend you to check out their R package Giotto and their preprint; ["Giotto, a pipeline for integrative analysis and visualization of single-cell spatial transcriptomic data"](https://www.biorxiv.org/content/10.1101/701680v1) that is available on bioRxiv.
-
-<br>
-```{r autocorrelation, eval=FALSE}
-
-library(spdep)
-spatgenes <- CorSpatialGenes(se)
-
-```
-
-```{r load_spatgenes, include=FALSE}
-load("pre_data/spatgenes")
-```
-```{r print_spatgenes}
-head(spatgenes)
-```
 
 &nbsp;
 <hr />
