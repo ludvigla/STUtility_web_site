@@ -1,0 +1,205 @@
+---
+title: "Splitting data"
+date: ""
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  width: 500px;
+  color: black;
+  border-color: #FFFFFF !important;
+}
+</style>
+
+<style> code, pre{
+  background-color: #F8F8F8 !important;
+  color: black !important;
+}
+</style>
+
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
+<style> 
+body {
+  color: black;
+  font-size: 20pt;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load_libs, warning=FALSE, message=FALSE}
+library(STutility)
+library(magrittr)
+library(dplyr)
+library(Seurat)
+```
+
+# How to split Visium data
+
+First, you need to make sure that the images that you provide to `InputFromTable` are in high resolution. The images output by spaceranger called "tissue_hires_image.png" are 2000 pixels wide which is typically too low resolution if you want to split your Visium capture area into multiple smaller ones. 
+What this means is that in addition to the spaceranger output you will need the HE images in high resolution and you might have to do some additional tweaks to make things work properly.
+
+In the example provided here, the HE images were downscaled to 30% of the original size (~14000x14000 pixels). You can use the original HE images in full resolution as well, but these are a little bit easier to work with. But just to make things more complicated, the pixel coordinates prvovided in the "tissue_positions_list.csv" files (spaceranger output) will give the spot pixel coordinates mapped to the full resolution image, so we have to scale down these pixel coordinates to make them work with our downscaled HE images. 
+
+Normally, you would provide a JSON file with scalefactors to the `InputFromTable` function so that it knows how to scale the pixel coordinates approproiately. Now that we're using a higher resolution HE image we need to set the parameter `scaleVisium` manually to tell `InputFromTable` how to scale the pixel coordinates.
+
+Here we'll set `scaleVisium = 0.3` to tell `InputFromTable` that the the scale factor between the HE image and the pixel coordinates is 0.3.
+
+```{r, include = FALSE}
+se <- readRDS(file = "pre_data/organoids/se_object")
+```
+
+```{r load_data, eval = FALSE}
+
+samples <- list.files(path = "~/workflowr/STUtility_web_site/pre_data/organoids/", pattern = "filtered_feature_bc_matrix.h5", recursive = T, full.names = T)
+imgs <- list.files(path = "~/workflowr/STUtility_web_site/pre_data/organoids/", pattern = "small.jpg", recursive = T, full.names = T)
+spotfiles <- list.files(path = "~/workflowr/STUtility_web_site/pre_data/organoids/", pattern = "tissue_positions_list.csv", recursive = T, full.names = T)
+
+infoTable <- data.frame(samples, imgs, spotfiles, 
+                        sample_id = c("A1", "B1"), 
+                        stringsAsFactors = F)
+
+# Set scaleVisium = 0.3 and skip the json column in the infoTable
+se <- InputFromTable(infoTable, scaleVisium = 0.3)
+
+```
+
+## Crop data
+
+To split the data into smaller sets, all you need to do is to specify a "crop geometry" for each region that you want to keep as a separate dataset.
+
+The easiest way to do this is to just open the HE image (same as used above), create a rectangle marking out the area that you want to keep and note the width, height, offeset along x-asis and offset along y-axis of the rectangle. For example, let's say you want to keep a rectangular area which is 1000 pixels wide, 900 pixels high and offset by 400 pixels along both the x and y axis, the crop geometry would be written as "1000x900+400+400".
+
+__grop geometry = "(width)x(height)+(x offset)+(y offset)__
+
+Another way to do this, which is perhaps faster, is to define the crop geometries based on spot selection.
+
+## Manual labelling of regions
+
+Let's have a look at the HE image. Here we have a few organoids places on a Visium capture area that we want to separate.
+
+```{r, eval=FALSE}
+se <- LoadImages(se, time.resolve = FALSE)
+```
+
+```{r show_HE, fig.width=12, fig.height=6}
+ImagePlot(se, method = "raster")
+```
+
+Now, let's label these organoids using the `ManualAnnotation` function. (NOTE: if the size of the inputHE image is large, the shiny app can take quite some time to start up)
+
+```{r manual_annotation, eval=FALSE}
+se <- ManualAnnotation(se)
+```
+```{r save_se, include=FALSE, eval=FALSE}
+saveRDS(se, file = "~/workflowr/STUtility_web_site/pre_data/organoids/se_object")
+```
+
+We can exclude any spots that were not labelled and visualize the selection.
+
+```{r show_HE_with_labels, fig.width=12, fig.height=6}
+
+# Create a new column with the organoid labels
+se$organoid <- factor(se$labels, levels = paste0("Org", 1:6))
+organoid.cols <- setNames(RColorBrewer::brewer.pal(n = 6, name = "Spectral"), nm = paste0("Org", 1:6))
+
+# Subset data to exclude non-labelled spots 
+se <- SubsetSTData(se, expression = organoid %in% paste0("Org", 1:6))
+
+# Plot organoid selections
+FeatureOverlay(se, features = "labels", sampleids = 1:2, ncols = 2, cols = organoid.cols)
+```
+
+To generate the crop geometries, we first need to access the pixel coordinates. Then we can use the selections to determine the size and position of a rectangular window that encompass a selection of interest.
+
+Once the crop geometries have been creates, you can create a named list to defined what section is being split, for example:
+
+`crop_windows <- list("1" = "1000x900+400+400", "2" = "1000x900+700+800")` 
+
+will crop out a "1000x900+400+400" rectangle from section "1" and a "1000x900+700+800" rectangle from section "2".
+
+```{r find_crop_geometries}
+
+# Get pixel coodinates 
+pxs <- cbind(GetStaffli(se)@meta.data[, c("pixel_x", "pixel_y", "sample")], selection = se$organoid)
+
+# Split pixel coodinates data.frame by section
+pxs.split <- split(pxs, pxs$sample)
+
+# Create crop geometries
+pxs.split <- setNames(lapply(pxs.split, function(pxs) {
+  sel.split <- lapply(split(pxs, pxs$selection), function(pxs) {
+    m <- apply(pxs[, 1:2], 2, range) # Find centroids
+    centroid <- apply(m , 2, mean) # Find centroids
+    hw <- apply(m, 2, function(x) round(diff(range(x)))) + 400 # Get height/width and add some extra space
+    offsets <- centroid - max(hw)/2 # Find offsets
+    geometry <- magick::geometry_area(width = max(hw), height = max(hw), x_off = offsets[1], y_off = offsets[2])
+  })
+}), nm = unique(pxs$sample))
+
+# Collect crop areas
+crop.windows <- do.call(c, lapply(unique(pxs$sample), function(s) {
+  crop_geometries <- setNames(pxs.split[[s]], nm = rep(s, length(pxs.split[[s]])))
+}))
+
+crop.windows
+
+```
+
+To do the actual splitting, you need to run `CropImages` from STUtility. This step can take some time to run depending on the size of the input HE images and the number of regions to crop out.
+
+```{r crop, fig.width=12, fig.height=6}
+
+# Crop data
+se.cropped <- CropImages(se, crop.geometry.list = crop.windows, time.resolve = TRUE, verbose = TRUE)
+
+```
+
+Now each organoid should be treated as a separate dataset.
+
+```{r plot_split_image, fig.width=12, fig.height=9}
+
+ImagePlot(se.cropped, method = "raster")
+
+```
+
+```{r vlnplt_qc_per_organoid, fig.width=8, fig.height=4}
+
+VlnPlot(se, features = "nFeature_RNA", group.by = "organoid")
+
+```
+
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;
