@@ -545,16 +545,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreebfe87d1c3742db92df6f4c16ff5fe0447470be99targetblankbfe87d1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/bfe87d1c3742db92df6f4c16ff5fe0447470be99" target="_blank">bfe87d1</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreefc3278ae8ec68cd0285fe2f31afcec58071eeb1btargetblankfc3278aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b" target="_blank">fc3278a</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreebfe87d1c3742db92df6f4c16ff5fe0447470be99targetblankbfe87d1a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreefc3278ae8ec68cd0285fe2f31afcec58071eeb1btargetblankfc3278aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/bfe87d1c3742db92df6f4c16ff5fe0447470be99" target="_blank">bfe87d1</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b" target="_blank">fc3278a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -566,10 +566,6 @@ Ignored files:
     Ignored:    analysis/manual_annotation.png
     Ignored:    analysis/visualization_3D.Rmd
     Ignored:    pre_data/
-
-Staged changes:
-    Modified:   analysis/_site.yml
-    Modified:   analysis/style.css
 
 </code></pre>
 <p>
@@ -608,6 +604,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ludvigla/STUtility_web_site/blob/fc3278ae8ec68cd0285fe2f31afcec58071eeb1b/analysis/getting_started.Rmd" target="_blank">fc3278a</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2021-05-04
+</td>
+<td>
+Updated website with new theme and content
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/9fe84d94ec2304532d9073c97623c14858f82de5/docs/getting_started.html" target="_blank">9fe84d9</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2021-05-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1540,14 +1570,14 @@ body {
 <div id="input-files" class="section level3">
 <h3>Input files</h3>
 <hr />
-<p>10X Visium data output is produced with the <a href="https://support.10xgenomics.com/spatial-gene-expression/software/visualization/latest/installation">spaceranger</a> command line tool from raw fastq files. The output includes a number of files, and the ones that needs to be imported into R for STUtility are the following:</p>
+<p>10X Visium data output is produced with the <a href="https://support.10xgenomics.com/spatial-gene-expression/software/visualization/latest/installation">spaceranger</a> command line tool from raw fastq files. The output includes a number of files, and the ones that needs to be imported into R for STutility are the following:</p>
 <ol style="list-style-type: decimal">
 <li>“filtered_feature_bc_matrix.h5” or “raw_feature_bc_matrix.h5” : Gene expression matrices in .h5 format containing the raw UMI counts for each spot and each gene. The “filtered_feature_bc_matrix.h5” matrix contains spots that are localized under the tissue while the “raw_feature_bc_matrix.h5” matrix contain all spots from the entire capture area. NOTE: if you want to include spots outside of the tissue, you need to set <code>disable.subset = TRUE</code> when running <code>InputFromTable</code>.</li>
 <li>“tissue_positions_list.csv” : contains capture-spot barcode and capture-spot coordinates.</li>
 <li>“tissue_hires_image.png” : H&amp;E image in PNG format with a width of 2000 pixels.</li>
 <li>“scalefactors_json.json” : This file contains scaling factors subject to the H&amp;E images of different resolutions. E.g. “tissue_hires_scalef”: 0.1, means that the pixel coordinates in the “tissue_positions_list.csv” table should be scaled by a factor of 0.1 to match the size of the “hires_image.png” file.</li>
 </ol>
-<p>To use the full range of functions within STUtility, all four files are needed for each sample. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input. To read in the 10x Visium .h5 files, the package <code>hdf5r</code> needs to be installed: <code>BiocManager::install(&quot;hdf5r&quot;)</code>.</p>
+<p>To use the full range of functions within STutility, all four files are needed for each sample. However, all data analysis steps that do not involve the H&amp;E image can be performed with only the count file as input. To read in the 10x Visium .h5 files, the package <code>hdf5r</code> needs to be installed: <code>BiocManager::install(&quot;hdf5r&quot;)</code>.</p>
 <hr />
 <p>To follow along this tutorial with a test data set, go to the <a href="https://support.10xgenomics.com/spatial-gene-expression/datasets">10x Dataset repo</a> and download the following two files:</p>
 <ul>
@@ -1742,7 +1772,7 @@ Ludvig Larsson
 </div>
 <div id="older-st-platforms" class="section level2">
 <h2>Older ST platforms</h2>
-<p>In general, using STUtility for the old ST platform data follows the same workflow as for the 10X Visium arrays. The only difference is when loading the data into R.</p>
+<p>In general, using STutility for the old ST platform data follows the same workflow as for the 10X Visium arrays. The only difference is when loading the data into R.</p>
 <div id="input-files-1" class="section level3">
 <h3>Input files</h3>
 <p>The original ST workflow produces the following three output files:</p>
@@ -1784,7 +1814,7 @@ se &lt;- InputFromTable(infotable = infoTable,
                       platform = &quot;2k&quot;,
                       transpose = TRUE)</code></pre>
 <p><br> Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the Seurat package. There are many vignettes to get started available at the <a href="https://satijalab.org/seurat/vignettes.html">Seurat web site</a>.</p>
-<p>Some of the functionalities provided in the Seurat package are not yet supported by STUtility, such as dataset integration and multimodal analysis. These methods should in principle work if you treat the data like a scRNA-seq experiment, but you will not be able to make use of the image related data or the spatial visualization functions.</p>
+<p>Some of the functionalities provided in the Seurat package are not yet supported by STutility, such as dataset integration and multimodal analysis. These methods should in principle work if you treat the data like a scRNA-seq experiment, but you will not be able to make use of the image related data or the spatial visualization functions.</p>
 <p>For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the <code>ST.FeaturePlot()</code> function. <br></p>
 <pre class="r"><code>ST.FeaturePlot(se, features = c(&quot;nFeature_RNA&quot;), cols = c(&quot;lightgray&quot;, &quot;mistyrose&quot;, &quot;red&quot;, &quot;darkred&quot;, &quot;black&quot;), ncol = 2, pt.size = 1.5, show.sb = FALSE)</code></pre>
 <p><img src="figure/getting_started.Rmd/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -1876,7 +1906,7 @@ jbergenstrahle
 <h2>Navigating and accessing data</h2>
 <hr />
 <p>We recommend that unexperienced users have look at the <code>Seurat</code> website and tutorials for basic navigation of the Seurat object such as getting and setting identities and accessing various method outputs.</p>
-<p>However, specific for STUtility, there is another S4 class object stored inside the <code>Seurat</code> object, called <code>Staffli</code>. This object contains all the STUtility specific meta data, like pixel cooridinates, sample IDs, platform types etc.</p>
+<p>However, specific for STutility, there is another S4 class object stored inside the <code>Seurat</code> object, called <code>Staffli</code>. This object contains all the STutility specific meta data, like pixel cooridinates, sample IDs, platform types etc.</p>
 <p>You can reach this via:</p>
 <pre class="r"><code>st.object &lt;- GetStaffli(se)
 st.object</code></pre>
@@ -2122,7 +2152,7 @@ warped_y
 <div id="important-note" class="section level3">
 <h3>Important note</h3>
 <hr />
-<p>Because the spatial infromation is stored in a slot that is normally not part of the <code>Seurat</code> environment, some function such as <code>subset</code> or <code>merge</code> will not work as expected. Instead, you should use the <code>SubsetSTData</code> and <code>MergeSTData</code> functions from STUtility.</p>
+<p>Because the spatial infromation is stored in a slot that is normally not part of the <code>Seurat</code> environment, some function such as <code>subset</code> or <code>merge</code> will not work as expected. Instead, you should use the <code>SubsetSTData</code> and <code>MergeSTData</code> functions from STutility.</p>
  
 <hr />
 <p style="text-align: center;">
