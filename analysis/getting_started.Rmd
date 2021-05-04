@@ -64,14 +64,14 @@ library(magrittr)
 ### Input files
 ***
 
-10X Visium data output is produced with the [spaceranger](https://support.10xgenomics.com/spatial-gene-expression/software/visualization/latest/installation) command line tool from raw fastq files. The output includes a number of files, and the ones that needs to be imported into R for STUtility are the following:
+10X Visium data output is produced with the [spaceranger](https://support.10xgenomics.com/spatial-gene-expression/software/visualization/latest/installation) command line tool from raw fastq files. The output includes a number of files, and the ones that needs to be imported into R for STutility are the following:
 
 1. "filtered_feature_bc_matrix.h5" or "raw_feature_bc_matrix.h5" : Gene expression matrices in .h5 format containing the raw UMI counts for each spot and each gene. The "filtered_feature_bc_matrix.h5" matrix contains spots that are localized under the tissue while the "raw_feature_bc_matrix.h5" matrix contain all spots from the entire capture area. NOTE: if you want to include spots outside of the tissue, you need to set `disable.subset = TRUE` when running `InputFromTable`.
 2. "tissue_positions_list.csv" : contains capture-spot barcode and capture-spot coordinates.
 3. "tissue_hires_image.png" : H&E image in PNG format with a width of 2000 pixels.
 4. "scalefactors_json.json" : This file contains scaling factors subject to the H&E images of different resolutions. E.g. "tissue_hires_scalef": 0.1, means that the pixel coordinates in the "tissue_positions_list.csv" table should be scaled by a factor of 0.1 to match the size of the "hires_image.png" file. 
 
-To use the full range of functions within STUtility, all four files are needed for each sample. However, all data analysis steps that do not involve the H&E image can be performed with only the count file as input. To read in the 10x Visium .h5 files, the package `hdf5r` needs to be installed: `BiocManager::install("hdf5r")`.
+To use the full range of functions within STutility, all four files are needed for each sample. However, all data analysis steps that do not involve the H&E image can be performed with only the count file as input. To read in the 10x Visium .h5 files, the package `hdf5r` needs to be installed: `BiocManager::install("hdf5r")`.
 
 ---
 
@@ -182,7 +182,7 @@ ST.FeaturePlot(se, features = c("nFeature_RNA"), cols = c("lightgray", "mistyros
 
 ## Older ST platforms
 
-In general, using STUtility for the old ST platform data follows the same workflow as for the 10X Visium arrays. The only difference is when loading the data into R.
+In general, using STutility for the old ST platform data follows the same workflow as for the 10X Visium arrays. The only difference is when loading the data into R.
 
 ### Input files
 
@@ -244,7 +244,7 @@ se <- InputFromTable(infotable = infoTable,
 <br>
 Once you have created a Seurat object you can process and visualize your data just like in a scRNA-seq experiment and make use of the plethora of functions provided in the Seurat package. There are many vignettes to get started available at the [Seurat web site](https://satijalab.org/seurat/vignettes.html).
 
-Some of the functionalities provided in the Seurat package are not yet supported by STUtility, such as dataset integration and multimodal analysis. These methods should in principle work if you treat the data like a scRNA-seq experiment, but you will not be able to make use of the image related data or the spatial visualization functions.
+Some of the functionalities provided in the Seurat package are not yet supported by STutility, such as dataset integration and multimodal analysis. These methods should in principle work if you treat the data like a scRNA-seq experiment, but you will not be able to make use of the image related data or the spatial visualization functions.
 
 For example, if you wish to explore the spatial distribution of various features on the array coordinates you can do this using the `ST.FeaturePlot()` function.
 <br>
@@ -272,7 +272,7 @@ ST.FeaturePlot(se, features = c("nFeature_RNA"), cols = c("lightgray", "mistyros
 
 We recommend that unexperienced users have look at the `Seurat` website and tutorials for basic navigation of the Seurat object such as getting and setting identities and accessing various method outputs.
 
-However, specific for STUtility, there is another S4 class object stored inside the `Seurat` object, called `Staffli`. This object contains all the STUtility specific meta data, like pixel cooridinates, sample IDs, platform types etc.
+However, specific for STutility, there is another S4 class object stored inside the `Seurat` object, called `Staffli`. This object contains all the STutility specific meta data, like pixel cooridinates, sample IDs, platform types etc.
 
 You can reach this via:
 
@@ -293,7 +293,7 @@ It can for example be useful to access the spot coordinates and images if you wa
 ### Important note
 ***
 
-Because the spatial infromation is stored in a slot that is normally not part of the `Seurat` environment, some function such as `subset` or `merge` will not work as expected. Instead, you should use the `SubsetSTData` and `MergeSTData` functions from STUtility.
+Because the spatial infromation is stored in a slot that is normally not part of the `Seurat` environment, some function such as `subset` or `merge` will not work as expected. Instead, you should use the `SubsetSTData` and `MergeSTData` functions from STutility.
 
 &nbsp;
 <hr />

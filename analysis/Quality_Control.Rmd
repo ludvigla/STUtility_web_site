@@ -193,7 +193,7 @@ p4 <- ggplot() +
 
 Let's say that we want to remove all spots with fewer than 500 unique genes we can simply subset the using the `SubsetSTData` function and an expression.
 
-NOTE: The Seurat package provides a `subset` method for Seurat objects but unfotunately this method will not work when using STUtility.
+NOTE: The Seurat package provides a `subset` method for Seurat objects but unfotunately this method will not work when using STutility.
 
 ```{r subset_by_genes}
 

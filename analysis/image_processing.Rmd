@@ -57,7 +57,7 @@ library(STutility)
 
 With the Seurat object created, we are ready to load the H&E images from the file paths provided in the infoTable. The LoadImages() function allow you to load the images into the Seurat object and will automatically save a scaled down version of each image that you can use for plotting.
 
-You should be aware that the resolution is by default very low (400 pixels wide). The first reason for this is that STUtility makes it possible to apply various image transformations to the images, but since these processing steps are slow and requires significant amounts of memory, it is much faster to learn the transformations on a small image and later apply the transformations to a higher resolution image. The second reason is that drawing higher resoltuion images inside RStudio can be extremely slow and clumsy to work with interactively.
+You should be aware that the resolution is by default very low (400 pixels wide). The first reason for this is that STutility makes it possible to apply various image transformations to the images, but since these processing steps are slow and requires significant amounts of memory, it is much faster to learn the transformations on a small image and later apply the transformations to a higher resolution image. The second reason is that drawing higher resoltuion images inside RStudio can be extremely slow and clumsy to work with interactively.
 
 NOTE: If you ever need to reload your images or load them in higher resolution you must make sure that the image paths are correct. If you have moved the images or changed your working directory, reloading the images will not work.
 

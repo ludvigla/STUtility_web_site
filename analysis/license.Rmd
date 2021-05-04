@@ -4,11 +4,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-STUtility is licensed under the MIT License
+STutility is licensed under the MIT License
 
 The written content on this site is licensed under the Creative Commons license 
 
-To cite STUtility, use citation("STUtility") 
+To cite STutility, run `citation("STutility")` 
 
 &nbsp;
 <hr />

@@ -54,7 +54,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = F
 
 # Background
 
-STUtility R-package is an effort to create a user-friendly infrastructure for analysis of spatial transcriptomcis data. The tool is built to work on top of [Seurat](https://github.com/satijalab/seurat), which is a popular single-cell genomics analysis toolkit. 
+STutility R-package is an effort to create a user-friendly infrastructure for analysis of spatial transcriptomcis data. The tool is built to work on top of [Seurat](https://github.com/satijalab/seurat), which is a popular single-cell genomics analysis toolkit. 
 
 ### Spatial Transcriptomics (ST)
 
@@ -89,11 +89,11 @@ The gene expression data consists of a count matrix with genes in rows and "capt
 
 ### Seurat workflow
 
-The STUtility package is designed to work on top of the popular single-cell genomics analysis toolkit [Seurat](https://satijalab.org/seurat/). Although a spot represents an averaged expression profile from multiple cells, as opposed to a single-cell profile, the characteristics of the ST data resembles that of scRNAseq to a large extent with regards to count distributions and sparsity. Many of the analyses that have been developed for scRNA-seq data can therefore be directly applied to ST data as well. 
+The STutility package is designed to work on top of the popular single-cell genomics analysis toolkit [Seurat](https://satijalab.org/seurat/). Although a spot represents an averaged expression profile from multiple cells, as opposed to a single-cell profile, the characteristics of the ST data resembles that of scRNAseq to a large extent with regards to count distributions and sparsity. Many of the analyses that have been developed for scRNA-seq data can therefore be directly applied to ST data as well. 
 
 ### Naming conventions
 
-For users familiar with the Seurat workflow, there are two commonly used plotting functions available to draw feature expression in a 2D-embedding such as UMAP or t-SNE, namely `FeaturePlot()` and `DimPlot`. These two plotting functions are available in STUtility where "ST." is prefixed to the function name, but will instead draw feature expression in the spatial coordinate system.
+For users familiar with the Seurat workflow, there are two commonly used plotting functions available to draw feature expression in a 2D-embedding such as UMAP or t-SNE, namely `FeaturePlot()` and `DimPlot`. These two plotting functions are available in STutility where "ST." is prefixed to the function name, but will instead draw feature expression in the spatial coordinate system.
 
 &nbsp;
 <hr />

@@ -54,7 +54,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 # Install
 
-To install STUtility from github (currently only option), you need to have `devtools` installed:
+To install STutility from github (currently only option), you need to have `devtools` installed:
 
 ```{r, eval=FALSE}
 
@@ -62,7 +62,7 @@ install.packages("devtools")
 
 ```
 
-Using devtools, execute the following from the R console to install STUtility:
+Using devtools, execute the following from the R console to install STutility:
 
 ```{r, eval=FALSE}
 
@@ -80,7 +80,7 @@ If you are missing gfortran you can get it from [CRAN](https://cran.r-project.or
 
 ### Set up conda environment (Mac OS)
 
-Below are instructions for how to set up a conda environment to install STUtility. 
+Below are instructions for how to set up a conda environment to install STutility. 
 
 From the terminal
 

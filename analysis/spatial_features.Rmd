@@ -67,7 +67,7 @@ load("pre_data/preSaved_10xHippo_norm_reductions.RData")
 ## Spatial Auto-correlation
 ***
 
-STUtility includes a method for finding genes with spatially conserved patterns across the tissue. The ranking method makes use neighborhood networks to compute the spatial lag for each gene, here defined as the summed expression of that gene in neighboring spots. Each gene is then ranked by the correlation between the lag vector and the original expression vector. The output is a `data.frame` with gene names ranked by decreasing spatial auto-correlation. 
+STutility includes a method for finding genes with spatially conserved patterns across the tissue. The ranking method makes use neighborhood networks to compute the spatial lag for each gene, here defined as the summed expression of that gene in neighboring spots. Each gene is then ranked by the correlation between the lag vector and the original expression vector. The output is a `data.frame` with gene names ranked by decreasing spatial auto-correlation. 
 
 This method is partly inspired by work from the [Giotto team](http://spatial.rc.fas.harvard.edu/spatialgiotto/giotto.html) and we reccomend you to check out their R package Giotto and the related publication; ["Giotto: a toolbox for integrative analysis and visualization of spatial expression data"](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02286-2.
 
@@ -121,7 +121,7 @@ se <- RunNMF(se, nfactors = 40) # Specificy nfactors to choose the number of fac
 
 ``` 
 <br>
-While `RunNMF()` is an STUtility add-on, others are supported via Seurat (`RunPCA()`, `RunTSNE`, `RunICA()`, `runUMAP()` ) and for all of them, the output are stored in the Seurat object. 
+While `RunNMF()` is an STutility add-on, others are supported via Seurat (`RunPCA()`, `RunTSNE`, `RunICA()`, `runUMAP()` ) and for all of them, the output are stored in the Seurat object. 
 
 We can then plot a variable number of dimensions across the samples using `ST.DimPlot` or as an overlay using `DimOverlay`. These two functions are similar to the `ST.FeaturePlot` and `FeatureOverlay` but have been adapted to specifically draw dimensionality reduction vectors instead of features.
 
