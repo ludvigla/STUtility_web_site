@@ -35,7 +35,7 @@ navbar:
     href: https://github.com/ludvigla/STUtility_web_site
 output:
   workflowr::wflow_html:
-    theme: darkly
+    theme: flatly
     css: style.css
     number_sections: false
     toc: yes
