@@ -90,7 +90,7 @@ To split the data into smaller sets, all you need to do is to specify a "crop ge
 
 The easiest way to do this is to just open the HE image (same as used above), create a rectangle marking out the area that you want to keep and note the width, height, offeset along x-asis and offset along y-axis of the rectangle. For example, let's say you want to keep a rectangular area which is 1000 pixels wide, 900 pixels high and offset by 400 pixels along both the x and y axis, the crop geometry would be written as "1000x900+400+400".
 
-__grop geometry = "(width)x(height)+(x offset)+(y offset)__
+> grop geometry = "(width)x(height)+(x offset)+(y offset)"
 
 Another way to do this, which is perhaps faster, is to define the crop geometries based on spot selection.
 
