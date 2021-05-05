@@ -270,7 +270,6 @@ So far we have only plotted section 1 using the `FeatureOverlay` function. If yo
 FeatureOverlay(se, features = "Nrgn", 
                 sampleids = 1:2,
                 cols = c("lightgray", "mistyrose", "red", "dark red", "black"),
-                method = "raster",
                 ncols = 2)
 
 ```
