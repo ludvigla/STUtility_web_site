@@ -27,6 +27,8 @@ navbar:
         href: Neighborhood.html
       - text: 3D visualization
         href: 3D_visualization.html
+      - text: Split Data
+        href: Split_Data.html
   - text: License
     href: license.html
   right:
