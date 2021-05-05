@@ -4,25 +4,25 @@ navbar:
   title: STUtility
   left:
   - text: Home
-    href: index.html
+    href: Index.html
   - text: About
-    href: about.html
+    href: About.html
   - text: Installation
-    href: installation.html
+    href: Installation.html
   - text: Getting started
     menu:
       - text: Load data
-        href: getting_started.html
+        href: Getting_Started.html
       - text: Quality Control
         href: Quality_Control.html
       - text: Image processing
-        href: image_processing.html
+        href: Image_Processing.html
       - text: Manual annotation
-        href: Manual_annotation.html
+        href: Manual_Annotation.html
       - text: Normalization
-        href: normalization.html
+        href: Normalization.html
       - text: Spatial features
-        href: spatial_features.html
+        href: Spatial_Features.html
       - text: Neighborhood Analysis
         href: Neighborhood.html
       - text: 3D visualization
@@ -30,7 +30,7 @@ navbar:
       - text: Split Data
         href: Split_Data.html
   - text: License
-    href: license.html
+    href: License.html
   right:
   - icon: fa-github
     text: Source code
