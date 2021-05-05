@@ -55,7 +55,7 @@ load("pre_data/preSaved_10xHippo.RData")
 ## SCTransform (Seurat)
 ***
 
-In order to normalize the data we recommend using [variance stabilized transformation](https://www.biorxiv.org/content/10.1101/576827v1) available in the SCTransform function in Seurat as of v3.0. 
+In order to normalize the data we recommend using [variance stabilized transformation](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1) available in the SCTransform function in Seurat as of v3.0. 
 
 Following the rationale expressed below, we transform the data according to the Seurat workflow. 
 <br>
