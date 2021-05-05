@@ -4,7 +4,7 @@ navbar:
   title: STUtility
   left:
   - text: Home
-    href: Index.html
+    href: index.html
   - text: About
     href: About.html
   - text: Installation
