@@ -260,7 +260,7 @@ load("pre_data/preSaved_2kHippo.RData")
 
 ```
 
-```{r, eval=TRUE, fig.width=8, fig.height=8, out.width='100%'}
+```{r pot_fts, fig.width=8, fig.height=8, out.width='100%'}
 
 ST.FeaturePlot(se, features = c("nFeature_RNA"), cols = c("lightgray", "mistyrose", "red", "darkred", "black"), ncol = 2, pt.size = 1.5, show.sb = FALSE)
 
