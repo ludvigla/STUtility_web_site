@@ -194,10 +194,8 @@ VlnPlot(se, features = "nFeature_RNA", group.by = "organoid")
 <hr />
 <p style="text-align: center;">A work by <a href="mailto: j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="mailto: ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
 
-<!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- Add font awesome icons -->
 <p style="text-align: center;">
     <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
 </p>
