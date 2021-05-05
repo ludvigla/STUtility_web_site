@@ -11,24 +11,24 @@ navbar:
     href: Installation.html
   - text: Getting started
     menu:
-      - text: Load data
-        href: Getting_Started.html
-      - text: Quality Control
-        href: Quality_Control.html
-      - text: Image processing
-        href: Image_Processing.html
-      - text: Manual annotation
-        href: Manual_Annotation.html
-      - text: Normalization
-        href: Normalization.html
-      - text: Spatial features
-        href: Spatial_Features.html
-      - text: Neighborhood Analysis
-        href: Neighborhood.html
-      - text: 3D visualization
-        href: 3D_visualization.html
-      - text: Split Data
-        href: Split_Data.html
+    - text: Load data
+      href: Getting_Started.html
+    - text: Quality Control
+      href: Quality_Control.html
+    - text: Image processing
+      href: Image_Processing.html
+    - text: Manual annotation
+      href: Manual_Annotation.html
+    - text: Normalization
+      href: Normalization.html
+    - text: Spatial features
+      href: Spatial_Features.html
+    - text: Neighborhood Analysis
+      href: Neighborhood.html
+    - text: 3D visualization
+      href: 3D_visualization.html
+    - text: Split Data
+      href: Split_Data.html
   - text: License
     href: License.html
   right:
@@ -39,19 +39,13 @@ output:
   workflowr::wflow_html:
     theme: flatly
     css: style.css
-    number_sections: false
+    number_sections: no
     toc: yes
     toc_depth: 3
     toc_float:
-      collapsed: false
-      smooth_scroll: true
+      collapsed: no
+      smooth_scroll: yes
   pdf_document:
-    number_sections: false
+    number_sections: no
     toc: yes
     toc_depth: 3
-#output:
-#  workflowr::wflow_html:
-#    toc: yes
-#    toc_float: yes
-#    theme: cosmo
-#    highlight: textmate
