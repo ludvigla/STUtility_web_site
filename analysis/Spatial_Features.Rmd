@@ -249,7 +249,7 @@ for (ftr in fts) {
 ```
 <br>
 
-## Spatial vs. UMAP visualziation
+## Spatial vs. UMAP visualization
 ***
 
 Another useful feature is that you can now compare the spatial distribution of a gene with the typical "graph embeddings" s.a. UMAP and t-SNE. 
