@@ -9,12 +9,16 @@ navbar:
     href: About.html
   - text: Installation
     href: Installation.html
-  - text: Getting started
+  - text: Tutorials
     menu:
     - text: Load data
       href: Getting_Started.html
+    - text: Subset and Merge
+      href: Subset_and_Merge.html
     - text: Quality Control
       href: Quality_Control.html
+    - text: Plots and Themes
+      href: Plots_and_Themes.html
     - text: Image processing
       href: Image_Processing.html
     - text: Manual annotation
