@@ -1,0 +1,165 @@
+---
+title: "Subset/merge"
+author:
+date: ''
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  width: 500px;
+  color: black;
+  border-color: #FFFFFF !important;
+}
+</style>
+
+<style> code, pre{
+  background-color: #F8F8F8 !important;
+  color: black !important;
+}
+</style>
+
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
+<style> 
+body {
+  color: black;
+  font-size: 20pt;
+}
+</style>
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, autodep = TRUE)
+
+```
+
+```{r load_lib, warning=FALSE, message=FALSE, include=FALSE}
+library(STutility)
+```
+```{r load_lib_hidden, include=FALSE}
+library(kableExtra)
+library(magrittr)
+```
+
+```{r, pre-load, echo=FALSE, eval=TRUE, include=FALSE}
+
+load("pre_data/preSaved_10xHippo_norm_reductions.RData")
+
+```
+
+## Subsetting
+***
+
+A `Seurat` object created with the `STutility` workflow contain special S4 class object called `Staffli`. In order to use `STutility` fucntions for plotting and image processing, this object needs to be present as it holds all the data related to the HE images and spatial coordinates. Unfortunately, this means that the generic functions typically used for subsetting and merging; `subset` and `merge`, will not work as expected. Instead, you should use the `SubsetSTData` and `MergeSTData` functions to perform the two operations.
+
+For example, let's say that we want to subset our `Seurat` object to include spots with at least 2000 unique genes. For this we can use `SubsetSTData`. Under the hood, `SubsetSTData` calls the generic function `subset` (see `?subset.Seurat` for details), but in addition it will make sure that the `Staffli` object is also subsetted properly.
+
+<br>
+```{r subset}
+
+se.subset <- SubsetSTData(se, expression = nFeature_RNA >= 2000)
+cat("Number of spots before filtering:", ncol(se), "\n")
+cat("Number of spots after filtering:", ncol(se.subset), "\n")
+
+```
+
+The `expression` argument allows you to evaluate any feature/variable pulled by `FetchData` so you can for example use this argument to subset based on meta.data columns or genes. You can also just specify the spot IDs that you want to keep to subset the data.
+
+```{r subset2, fig.width=12, fig.height=9}
+
+se.subset <- SubsetSTData(se, spots = colnames(se)[1:2000])
+cat("Number of spots before filtering:", ncol(se), "\n")
+cat("Number of spots after filtering:", ncol(se.subset), "\n")
+
+p1 <- ST.FeaturePlot(se, features = "nFeature_RNA")
+p2 <- ST.FeaturePlot(se.subset, features = "nFeature_RNA", pt.size = 2)
+p1 - p2 + patchwork::plot_layout(widths = c(1, 2))
+
+```
+
+Alternatively, if you want to filter the object at the gene level, you can use the `features` argument.
+
+```{r subset3}
+
+se.subset <- SubsetSTData(se, features = VariableFeatures(se))
+cat("Number of genes before filtering:", nrow(se), "\n")
+cat("Number of genes after filtering:", nrow(se.subset), "\n")
+
+```
+
+If you want to subset one or several specific section(s) you just need a group variable in your meta.data slot. If you don't have one it's really easy to create one by pulling out the "sample" column from the `Staffli` object meta.data slot.
+
+
+```{r subset4, fig.width=12, fig.height=9}
+
+se$sample_id <- paste0("section_", GetStaffli(se)@meta.data$sample)
+
+# Select section 2
+se.subset <- SubsetSTData(se, expression = sample_id %in% "section_2")
+cat("Number of spots before filtering:", ncol(se), "\n")
+cat("Number of spots after filtering:", ncol(se.subset), "\n")
+
+p1 <- ST.FeaturePlot(se, features = "nFeature_RNA")
+p2 <- ST.FeaturePlot(se.subset, features = "nFeature_RNA", pt.size = 2)
+p1 - p2 + patchwork::plot_layout(widths = c(1, 2))
+
+```
+
+
+## Merging
+***
+
+If you want to merge data, you will have to use the `MergeSTData` function to make sure that the `Staffli` objects are merged properly. Same as for the `SubsetSTData`, `MergeSTData` calls the generic function `merge` (see `?merge.Seurat`) under the hood and then merges the `Staffli` objects.
+
+```{r merge, fig.width=10, fig.height=5}
+
+# Create subsets
+se1 <- SubsetSTData(se, expression = sample_id %in% "section_1")
+se2 <- SubsetSTData(se, expression = sample_id %in% "section_2")
+
+se.merged <- MergeSTData(se1, se2)
+
+ST.FeaturePlot(se.merged, features = "nFeature_RNA", ncol = 2)
+
+```
+
+You can also merge multiple samples at the same time if you put the second argument as a list of `Seurat` objects.
+
+```{r merge2, eval = FALSE}
+
+se.merged <- MergeSTData(se1, y = list(se2, se3, se4))
+
+```
+
+
+<br>
+
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="mailto: j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="mailto: ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;
