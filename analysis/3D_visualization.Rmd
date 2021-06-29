@@ -131,6 +131,10 @@ Now we are ready to plot features in 3D. We'll run the `FeaturePlot3D()` functio
 
 FeaturePlot3D(se, features = "Mbp", pt.size = 0.6, pts.downsample = 5e4)
 
+jpeg(filename = "~/Downloads/HippoHE.jpg", width = 3000, height = 1600, res = 300)
+ImagePlot(se, method="raster", annotate = F)
+dev.off()
+
 ```
 <br>
 

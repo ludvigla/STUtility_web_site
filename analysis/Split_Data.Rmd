@@ -177,9 +177,9 @@ se.cropped <- CropImages(se, crop.geometry.list = crop.windows, time.resolve = T
 
 Now each organoid should be treated as a separate dataset.
 
-```{r plot_split_image, fig.width=12, fig.height=9}
+```{r plot_split_image, fig.width=12, fig.height=4}
 
-ImagePlot(se.cropped, method = "raster")
+ImagePlot(se.cropped, method = "raster", ncols = 6)
 
 ```
 
