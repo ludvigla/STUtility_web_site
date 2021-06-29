@@ -4,4 +4,4 @@ A [workflowr][] project.
 
 [STutility web site][]
 
-[workflowr]: https://ludvigla.github.io/STUtility_web_site/
+[STutility web site]: https://ludvigla.github.io/STUtility_web_site/
