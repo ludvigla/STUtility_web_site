@@ -1,13 +1,6 @@
 ---
 title: "Maize seed analysis and z-stack"
-author: "Ludvig Larsson"
-date: "5/24/2021"
-output: 
-  html_document:
-    theme: flatly
-    toc: true
-    toc_depth: 2
-    toc_float: true
+date: ''
 ---
 
 <style type="text/css">
@@ -18,6 +11,38 @@ div.main-container {
   margin-right: auto;
 }
 </style>
+
+<style>
+#TOC {
+  background: url("https://www.spatialresearch.org/wp-content/uploads/2019/09/str-logo-spatial_research_3@2x.png");
+  background-size: contain;
+  padding-top: 100px !important;
+  background-repeat: no-repeat;
+  width: 500px;
+  color: black;
+  border-color: #FFFFFF !important;
+}
+</style>
+
+<style> code, pre{
+  background-color: #F8F8F8 !important;
+  color: black !important;
+}
+</style>
+
+<style> .watch-out {
+  background-color: #F0F0F0;
+  border: 1px #F0F0F0;
+}
+<style>
+
+<style> 
+body {
+  color: black;
+  font-size: 20pt;
+}
+</style>
+
 ---
 
 ```{r setup, include=FALSE}
@@ -100,9 +125,16 @@ The ´crop.geoms´ is a list where each element is named by section id (for exam
 
 To illustrate this, we can plot the "crop windows" on our histological image:
 
+```{r include=FALSE}
+im <- magick::image_read("~/chi_chih/data/tissue_hires_image.png") %>% imager::magick2cimg()
+```
+```{r, eval=FALSE}
+im <- magick::image_read(GetStaffli(se)@imgs[1]) %>% imager::magick2cimg()
+```
+
+
 ```{r fig.width=9, fig.height=9}
 
-im <- magick::image_read(GetStaffli(se)@imgs[1]) %>% imager::magick2cimg()
 corners <- apply(do.call(rbind, sapply(crop.geoms, function(x) {
   strsplit(x[1], "x|\\+")
 })), 2, as.numeric)
@@ -355,4 +387,16 @@ date()
 ```{r session}
 devtools::session_info()
 ```
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="mailto: j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle</a> and <a href="mailto: ludvig.larsson@scilifelab.se">Ludvig Larsson</a></p>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<p style="text-align: center;">
+    <a href="https://www.spatialresearch.org" class="fa fa-beer"></a>
+</p>
+
+&nbsp;
 
