@@ -1,5 +1,5 @@
 ---
-title: "Maize seed analysis and z-stack"
+title: "Maize embryonic leaf analysis and z-stack"
 date: ''
 ---
 
