@@ -9,17 +9,26 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="" />
 
 
 <title>Spatial Features</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -31,7 +40,7 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -39,12 +48,18 @@ div.section {
 }
 </style>
 
-<style type="text/css">code{white-space: pre;}</style>
+
+
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -57,32 +72,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
@@ -93,10 +83,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -113,40 +99,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -174,7 +133,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -186,7 +145,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -197,10 +156,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -212,7 +184,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -344,13 +315,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -418,6 +389,18 @@ div.tocify {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Walkthroughs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Maize_data.html">Maize data analysis</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="License.html">License</a>
 </li>
@@ -425,7 +408,7 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ludvigla/STUtility_web_site">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
     Source code
   </a>
@@ -435,11 +418,12 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Spatial Features</h1>
+<h4 class="author"></h4>
 
 </div>
 
@@ -464,7 +448,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-05-06
+<strong>Last updated:</strong> 2022-02-28
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -473,8 +457,8 @@ div.tocify {
 <strong>Knit directory:</strong> <code>STUtility_web_site/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -512,7 +496,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20191031code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20191031)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -555,30 +539,26 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreeb7a0414f72f5a1793d17b102b26c9faeed8a73cftargetblankb7a0414a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/b7a0414f72f5a1793d17b102b26c9faeed8a73cf" target="_blank">b7a0414</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree2c7a289834dca851fc41f777deac5cf0933412f8targetblank2c7a289a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ludvigla/STUtility_web_site/tree/2c7a289834dca851fc41f777deac5cf0933412f8" target="_blank">2c7a289</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetreeb7a0414f72f5a1793d17b102b26c9faeed8a73cftargetblankb7a0414a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomludviglaSTUtilitywebsitetree2c7a289834dca851fc41f777deac5cf0933412f8targetblank2c7a289a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/b7a0414f72f5a1793d17b102b26c9faeed8a73cf" target="_blank">b7a0414</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ludvigla/STUtility_web_site/tree/2c7a289834dca851fc41f777deac5cf0933412f8" target="_blank">2c7a289</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
-    Ignored:    .Rproj.user/
+    Ignored:    .Rhistory
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/manual_annotation.png
     Ignored:    pre_data/
-
-Unstaged changes:
-    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -617,6 +597,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ludvigla/STUtility_web_site/0dafcee92125a64ba11fd8e833fbd65d63393dfd/docs/Spatial_Features.html" target="_blank">0dafcee</a>
+</td>
+<td>
+Ludvig Larsson
+</td>
+<td>
+2021-05-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1442,7 +1439,7 @@ Ludvig Larsson
 </div>
 <p><br></p>
 </div>
-<div id="spatial-vs.umap-visualization" class="section level2">
+<div id="spatial-vs.-umap-visualization" class="section level2">
 <h2>Spatial vs. UMAP visualization</h2>
 <hr />
 <p>Another useful feature is that you can now compare the spatial distribution of a gene with the typical “graph embeddings” s.a. UMAP and t-SNE. <br></p>
@@ -1565,7 +1562,7 @@ head(markers) %&gt;%
 p_val
 </th>
 <th style="text-align:right;">
-avg_logFC
+avg_log2FC
 </th>
 <th style="text-align:right;">
 pct.1
@@ -1581,33 +1578,13 @@ p_val_adj
 <tbody>
 <tr>
 <td style="text-align:left;">
-Dsp
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1.2427413
-</td>
-<td style="text-align:right;">
-0.818
-</td>
-<td style="text-align:right;">
-0.015
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 Lct
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-0.9157160
+1.321099
 </td>
 <td style="text-align:right;">
 0.768
@@ -1621,13 +1598,33 @@ Lct
 </tr>
 <tr>
 <td style="text-align:left;">
+Dsp
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.792897
+</td>
+<td style="text-align:right;">
+0.818
+</td>
+<td style="text-align:right;">
+0.015
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Tdo2
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-0.7143539
+1.030595
 </td>
 <td style="text-align:right;">
 0.707
@@ -1647,7 +1644,7 @@ Capn3
 0
 </td>
 <td style="text-align:right;">
-1.1263876
+1.625034
 </td>
 <td style="text-align:right;">
 0.859
@@ -1667,7 +1664,7 @@ Prox1
 0
 </td>
 <td style="text-align:right;">
-1.1988020
+1.729506
 </td>
 <td style="text-align:right;">
 0.919
@@ -1687,7 +1684,7 @@ C1ql2
 0
 </td>
 <td style="text-align:right;">
-1.7382051
+2.507700
 </td>
 <td style="text-align:right;">
 1.000
@@ -1766,13 +1763,12 @@ A work by <a href="mailto: j.bergenstrahle@scilifelab.se">Joseph Bergenstråhle<
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.5 (2021-03-31)
-Platform: x86_64-apple-darwin17.0 (64-bit)
+<pre><code>R version 4.0.3 (2020-10-10)
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
 Running under: macOS Mojave 10.14.6
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+BLAS/LAPACK: /Users/ludviglarsson/anaconda3/envs/R4.0/lib/libopenblasp-r0.3.12.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -1782,66 +1778,72 @@ attached base packages:
 
 other attached packages:
 [1] RColorBrewer_1.1-2 magrittr_2.0.1     kableExtra_1.3.4   STutility_0.1.0   
-[5] ggplot2_3.3.3      Seurat_3.1.5       workflowr_1.6.2   
+[5] ggplot2_3.3.5      SeuratObject_4.0.0 Seurat_4.0.2       workflowr_1.7.0   
 
 loaded via a namespace (and not attached):
-  [1] uuid_0.1-4              backports_1.1.6         systemfonts_0.2.1      
-  [4] plyr_1.8.6              igraph_1.2.6            lazyeval_0.2.2         
-  [7] sp_1.4-1                splines_4.0.5           crosstalk_1.1.1        
- [10] listenv_0.8.0           digest_0.6.27           foreach_1.5.0          
- [13] htmltools_0.5.1.1       viridis_0.5.1           magick_2.3             
- [16] tiff_0.1-5              gdata_2.18.0            fansi_0.4.2            
- [19] cluster_2.1.1           doParallel_1.0.15       ROCR_1.0-11            
- [22] limma_3.44.1            globals_0.14.0          gmodels_2.18.1         
- [25] svglite_1.2.3           jpeg_0.1-8.1            colorspace_2.0-0       
- [28] rvest_0.3.6             blob_1.2.1              ggrepel_0.9.1          
- [31] xfun_0.13               dplyr_1.0.5             crayon_1.4.1           
- [34] jsonlite_1.7.2          zeallot_0.1.0           survival_3.2-10        
- [37] zoo_1.8-9               iterators_1.0.12        ape_5.4-1              
- [40] glue_1.4.2              gtable_0.3.0            webshot_0.5.2          
- [43] leiden_0.3.7            future.apply_1.7.0      scales_1.1.1           
- [46] DBI_1.1.0               miniUI_0.1.1.1          Rcpp_1.0.6             
- [49] viridisLite_0.3.0       xtable_1.8-4            spData_0.3.5           
- [52] units_0.6-6             reticulate_1.18         spdep_1.1-3            
- [55] rsvd_1.0.3              akima_0.6-2             tsne_0.1-3             
- [58] htmlwidgets_1.5.3       httr_1.4.2              ellipsis_0.3.1         
- [61] ica_1.0-2               farver_2.1.0            pkgconfig_2.0.3        
- [64] uwot_0.1.10             deldir_0.1-25           utf8_1.2.1             
- [67] labeling_0.4.2          tidyselect_1.1.0        rlang_0.4.10           
- [70] manipulateWidget_0.10.1 reshape2_1.4.4          later_1.1.0.1          
- [73] munsell_0.5.0           tools_4.0.5             dbscan_1.1-5           
- [76] generics_0.1.0          ggridges_0.5.3          evaluate_0.14          
- [79] stringr_1.4.0           fastmap_1.0.1           yaml_2.2.1             
- [82] knitr_1.28              fs_1.5.0                fitdistrplus_1.1-3     
- [85] rgl_0.100.54            purrr_0.3.4             RANN_2.6.1             
- [88] readbitmap_0.1.5        pbapply_1.4-3           future_1.21.0          
- [91] nlme_3.1-152            whisker_0.4             mime_0.10              
- [94] ggiraph_0.7.7           xml2_1.3.2              rstudioapi_0.13        
- [97] compiler_4.0.5          plotly_4.9.3            png_0.1-7              
-[100] e1071_1.7-3             Morpho_2.8              tibble_3.1.0           
-[103] stringi_1.5.3           highr_0.8               gdtools_0.2.2          
-[106] lattice_0.20-41         Matrix_1.3-2            classInt_0.4-3         
-[109] shinyjs_1.1             vctrs_0.3.7             LearnBayes_2.15.1      
-[112] pillar_1.5.1            lifecycle_1.0.0         lmtest_0.9-38          
-[115] RcppAnnoy_0.0.18        data.table_1.14.0       cowplot_1.1.1          
-[118] irlba_2.3.3             Rvcg_0.19.1             raster_3.1-5           
-[121] httpuv_1.5.2            patchwork_1.1.1         colorRamps_2.3         
-[124] R6_2.5.0                imager_0.42.1           promises_1.2.0.1       
-[127] KernSmooth_2.23-18      gridExtra_2.3           bmp_0.3                
-[130] parallelly_1.24.0       codetools_0.2-18        gtools_3.8.2           
-[133] boot_1.3-27             MASS_7.3-53.1           assertthat_0.2.1       
-[136] rprojroot_1.3-2         withr_2.4.1             sctransform_0.2.1      
-[139] expm_0.999-4            parallel_4.0.5          grid_4.0.5             
-[142] tidyr_1.1.3             coda_0.19-3             class_7.3-18           
-[145] rmarkdown_2.1           Rtsne_0.15              git2r_0.27.1           
-[148] sf_0.9-7                shiny_1.4.0.2          </code></pre>
+  [1] utf8_1.2.1              reticulate_1.18         tidyselect_1.1.1       
+  [4] htmlwidgets_1.5.3       grid_4.0.3              Rtsne_0.15             
+  [7] munsell_0.5.0           codetools_0.2-18        ica_1.0-2              
+ [10] units_0.7-1             future_1.21.0           miniUI_0.1.1.1         
+ [13] withr_2.4.1             colorspace_2.0-0        highr_0.8              
+ [16] knitr_1.31              uuid_0.1-4              rstudioapi_0.13        
+ [19] ROCR_1.0-11             tensor_1.5              listenv_0.8.0          
+ [22] labeling_0.4.2          git2r_0.28.0            polyclip_1.10-0        
+ [25] farver_2.1.0            rprojroot_2.0.2         coda_0.19-4            
+ [28] parallelly_1.25.0       LearnBayes_2.15.1       vctrs_0.3.8            
+ [31] generics_0.1.0          xfun_0.20               R6_2.5.0               
+ [34] doParallel_1.0.16       Morpho_2.8              ggiraph_0.7.8          
+ [37] manipulateWidget_0.11.0 spatstat.utils_2.2-0    assertthat_0.2.1       
+ [40] promises_1.2.0.1        scales_1.1.1            imager_0.42.8          
+ [43] gtable_0.3.0            globals_0.14.0          bmp_0.3                
+ [46] processx_3.5.1          goftest_1.2-2           rlang_1.0.1            
+ [49] zeallot_0.1.0           akima_0.6-2.1           systemfonts_1.0.1      
+ [52] splines_4.0.3           lazyeval_0.2.2          spatstat.geom_2.3-0    
+ [55] rgl_0.105.22            yaml_2.2.1              reshape2_1.4.4         
+ [58] abind_1.4-5             crosstalk_1.1.1         httpuv_1.5.5           
+ [61] tools_4.0.3             spData_0.3.8            ellipsis_0.3.2         
+ [64] spatstat.core_2.3-0     raster_3.4-10           jquerylib_0.1.3        
+ [67] proxy_0.4-25            Rvcg_0.19.2             ggridges_0.5.3         
+ [70] Rcpp_1.0.6              plyr_1.8.6              classInt_0.4-3         
+ [73] purrr_0.3.4             ps_1.6.0                rpart_4.1-15           
+ [76] dbscan_1.1-6            deldir_1.0-6            pbapply_1.4-3          
+ [79] viridis_0.6.1           cowplot_1.1.1           zoo_1.8-9              
+ [82] ggrepel_0.9.1           cluster_2.1.1           colorRamps_2.3         
+ [85] fs_1.5.0                data.table_1.14.0       magick_2.7.2           
+ [88] scattermore_0.7         readbitmap_0.1.5        gmodels_2.18.1         
+ [91] lmtest_0.9-38           RANN_2.6.1              whisker_0.4            
+ [94] fitdistrplus_1.1-3      matrixStats_0.58.0      patchwork_1.1.1        
+ [97] shinyjs_2.0.0           mime_0.10               evaluate_0.14          
+[100] xtable_1.8-4            jpeg_0.1-8.1            gridExtra_2.3          
+[103] compiler_4.0.3          tibble_3.1.6            KernSmooth_2.23-18     
+[106] crayon_1.4.1            htmltools_0.5.1.1       mgcv_1.8-34            
+[109] later_1.1.0.1           spdep_1.1-7             tiff_0.1-8             
+[112] tidyr_1.2.0             expm_0.999-6            DBI_1.1.1              
+[115] MASS_7.3-53.1           sf_0.9-8                boot_1.3-27            
+[118] Matrix_1.3-2            cli_3.1.1               gdata_2.18.0           
+[121] parallel_4.0.3          igraph_1.2.6            pkgconfig_2.0.3        
+[124] getPass_0.2-2           sp_1.4-5                plotly_4.9.3           
+[127] spatstat.sparse_2.0-0   xml2_1.3.2              foreach_1.5.1          
+[130] svglite_2.0.0           bslib_0.2.4             webshot_0.5.2          
+[133] rvest_1.0.0             stringr_1.4.0           callr_3.7.0            
+[136] digest_0.6.27           sctransform_0.3.2       RcppAnnoy_0.0.18       
+[139] spatstat.data_2.1-0     rmarkdown_2.7           leiden_0.3.7           
+[142] uwot_0.1.10             gdtools_0.2.3           shiny_1.6.0            
+[145] gtools_3.8.2            lifecycle_1.0.1         nlme_3.1-152           
+[148] jsonlite_1.7.2          limma_3.46.0            viridisLite_0.4.0      
+[151] fansi_0.4.2             pillar_1.7.0            lattice_0.20-41        
+[154] fastmap_1.1.0           httr_1.4.2              survival_3.2-10        
+[157] glue_1.4.2              png_0.1-7               iterators_1.0.13       
+[160] class_7.3-18            stringi_1.5.3           sass_0.3.1             
+[163] dplyr_1.0.8             irlba_2.3.3             e1071_1.7-6            
+[166] future.apply_1.7.0     </code></pre>
 </div>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
@@ -1850,6 +1852,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 </div>
@@ -1861,7 +1865,7 @@ footer is added to webpages before the MathJax javascript. -->
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1879,7 +1883,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -1900,7 +1904,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
