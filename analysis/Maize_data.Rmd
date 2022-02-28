@@ -1,0 +1,358 @@
+---
+title: "Maize seed analysis and z-stack"
+author: "Ludvig Larsson"
+date: "5/24/2021"
+output: 
+  html_document:
+    theme: flatly
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+<style type="text/css">
+div.main-container {
+  background-color: #FFFFFF !important;
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r load_libs, warning=FALSE, message=FALSE}
+library(Seurat)
+library(magrittr)
+library(imager)
+library(EBImage)
+library(STutility)
+library(magrittr)
+library(dplyr)
+library(harmony)
+```
+
+```{r load_se, include=FALSE}
+
+se <- readRDS("~/chi_chih/R_objects/se")
+
+```
+
+
+```{r load_data, eval=FALSE}
+
+samples <- "data/filtered_feature_bc_matrix.h5"
+imgs <- "data/tissue_hires_image.png"
+spotfiles <- "data/tissue_positions_list.csv"
+json <- "data/scalefactors_json.json"
+
+infoTable <- data.frame(samples, imgs, spotfiles, json)
+
+se <- InputFromTable(infoTable)
+
+```
+
+## Manual selection
+***
+
+Here we manually annotated the four section as "group1" - "group4".
+
+```{r manual_annotation, eval=FALSE}
+
+se <- LoadImages(se, time.resolve = FALSE)
+se <- ManualAnnotation(se)
+
+```
+
+First, let's have a look at the histological image and then overlay our selections on top of it. 
+
+```{r fig.width=6, fig.height=6}
+
+ImagePlot(se, method = "raster", annotate = FALSE)
+
+```
+
+
+```{r fig.width=7, fig.height=6.5}
+
+FeatureOverlay(se, features = "labels")
+
+```
+
+
+## Find "crop windows"
+***
+
+We can use the `GetCropWindows` function to extract "crop geometries" which we will be using to crop the data. Since we have four tissue sections in diofferent orientation, it is more convenient to work with the data if we can split each section into a separate dataset.
+
+```{r find_crops}
+
+crop.geoms <- GetCropWindows(se, groups.to.keep = paste0("group", 1:4))
+crop.geoms
+
+```
+
+The ´crop.geoms´ is a list where each element is named by section id (for example "1" above since all crop windows come from section 1) and contain a vector with: (1) a string which defines the width, height and offset along the x and y axes, (2) the group column name and (3) the group variable name. The latter two are required to make sure that spots are only selected from the correct group regardless if the cropped images overlap with another group.
+
+To illustrate this, we can plot the "crop windows" on our histological image:
+
+```{r fig.width=9, fig.height=9}
+
+im <- magick::image_read(GetStaffli(se)@imgs[1]) %>% imager::magick2cimg()
+corners <- apply(do.call(rbind, sapply(crop.geoms, function(x) {
+  strsplit(x[1], "x|\\+")
+})), 2, as.numeric)
+plot(im)
+
+rect(xleft = corners[, 3], ybottom = corners[, 4], xright = corners[, 3] + corners[, 1], ytop = corners[, 4] + corners[, 2])
+
+```
+
+```{r crop, eval=FALSE}
+
+se.cropped <- CropImages(se, crop.geometry.list = crop.geoms, xdim = 500, time.resolve = FALSE, verbose = TRUE)
+
+```
+
+### Mask images
+***
+
+Next, we'll mask the images. The `MaskImages` default masking function usually works well for HE staining, but in this case we need to resort to a different strategy. Below is an example of a custom masking function that we can use on our tissue images.
+
+```{r read_se_masked}
+se.masked <- readRDS("~/chi_chih/R_objects/se.masked")
+```
+```{r custom_masking, eval=FALSE}
+
+msk.fkn <- function(im) {
+  suppressWarnings({
+    im <- imager::grayscale(im)
+    im <- imager::isoblur(im, 3)
+    out <- imager::threshold(im)
+    out <- !out
+    out <- imager::fill(out, 5)
+    out <- EBImage::as.Image(out)
+    out <- EBImage::fillHull(out)
+    out <- imager::as.pixset(out)
+  })
+  return(out)
+}
+
+se.masked <- MaskImages(se.cropped, custom.msk.fkn = msk.fkn, verbose = TRUE)
+
+```
+
+### Align images
+***
+
+Next we can align the four tissue sections using the `ManualAlignImages` function. There are some distortions in the sections which makes it virtually impossible to achieve a good alignment using only rigid transformations. To achieve a decent alignment, we also need to strecth/compress the tissue.
+
+```{r manual align, eval=FALSE}
+
+se.masked <- ManualAlignImages(se.masked, fix.axes = TRUE)
+
+```
+
+Here are approximate settings that were used fo the manual alignment. 
+
+```{r alignment_settings}
+
+settings <- data.frame(sample = c(2, 3, 4), 
+                       rotation_angle = c(-27.7, 88.8, 4.2),
+                       shift_x = c(-9, 26, 40),
+                       shift_y = c(69, -7, -26),
+                       angle_blue = c(27, 0, 37.4),
+                       stretch_blue = c(0.92, 1, 0.93),
+                       angle_red = c(33.3, 0, 37.4),
+                       stretch_red = c(0.87, 1, 0.87),
+                       mirror_x = c(FALSE, FALSE, TRUE),
+                       mirror_y = c(FALSE, FALSE, TRUE))
+
+DT::datatable(settings)
+
+```
+
+
+Below is the result after tissue alignment
+
+```{r fig.width=8, fig.height=2}
+
+ImagePlot(se.masked, ncols = 4, method = "raster")
+
+```
+
+
+## QC
+***
+
+There are slightly higher counts in group1 and group2 which might represent a batch effect, but overall the quality metrics are high.
+
+```{r qc, fig.height=6, fig.width=12}
+VlnPlot(se.masked, features = c("nFeature_RNA", "nCount_RNA"), group.by = "labels")
+```
+
+
+## Analysis workflow
+***
+
+Below is a simple analysis workflow based on Seurat functions. For dimensionality reduction we run PCA.
+
+1. Normalization with SCTransform
+2. Dimensionality reduction (PCA)
+3. UMAP embedding
+4. Clustering
+
+```{r analysis, eval=FALSE}
+se.masked <- se.masked %>% 
+  SCTransform() %>%
+  RunPCA() %>%
+  RunUMAP(reduction = "pca", dims = 1:30)
+```
+```{r pca_clustering, eval=FALSE}
+se.masked <- se.masked %>% 
+  FindNeighbors(reduction = "pca", dims = 1:30) %>%
+  FindClusters() %>%
+  RunUMAP(reduction = "pca", dims = 1:30)
+se.masked$seurat_clusters_pca <- se.masked$seurat_clusters
+```
+
+## Clustering
+***
+
+From the UMAP we can see that the sections are not well mixed, indicating that there is a batch effect present in the data. This could of course be biological, but we could try to use an integration technique to find shared structures across the sections.
+
+```{r clusters_on_UMAP, fig.width=12, fig.height=6}
+
+p1 <- DimPlot(se.masked, group.by = "labels", reduction = "umap")
+p2 <- DimPlot(se.masked, group.by = "seurat_clusters_pca", label = TRUE, label.size = 8, reduction = "umap")
+p1 - p2
+
+```
+
+There are also some discrepancies in the spatial distribution of clusters in the different sections. 
+
+```{r clusters_spatial, fig.width=10.5, fig.height=18}
+
+p1 <- ST.FeaturePlot(se.masked, features = "seurat_clusters_pca", indices = 1, split.labels = T, pt.size = 2) & theme(plot.title = element_blank(), strip.text = element_blank())
+p2 <- ST.FeaturePlot(se.masked, features = "seurat_clusters_pca", indices = 2, split.labels = T, pt.size = 2) & theme(plot.title = element_blank(), strip.text = element_blank())
+p3 <- ST.FeaturePlot(se.masked, features = "seurat_clusters_pca", indices = 3, split.labels = T, pt.size = 2) & theme(plot.title = element_blank(), strip.text = element_blank())
+p4 <- ST.FeaturePlot(se.masked, features = "seurat_clusters_pca", indices = 4, split.labels = T, pt.size = 2) & theme(plot.title = element_blank(), strip.text = element_blank())
+cowplot::plot_grid(p1, p2, p3, p4, ncol = 4)
+
+```
+
+## Integrate with harmony
+***
+
+Next, we'll use harmony to integrate the data from the four sections:
+
+```{r harmony, eval=FALSE}
+
+se.masked <- RunHarmony(se.masked, group.by.vars = "labels", reduction = "pca", dims.use = 1:30, assay.use = "SCT", verbose = FALSE) %>%
+  RunUMAP(reduction = "harmony", dims = 1:30, reduction.name = "umap.harmony") %>%
+  FindNeighbors(reduction = "harmony", dims = 1:30) %>%
+  FindClusters()
+se.masked$seurat_clusters_harmony <- se.masked$seurat_clusters
+
+```
+
+After integration, we can see that the four sections are more evenly mixed.
+
+```{r clusters_on_UMAP_harmony, fig.width=12, fig.height=6}
+p1 <- DimPlot(se.masked, group.by = "labels", reduction = "umap.harmony")
+p2 <- DimPlot(se.masked, group.by = "seurat_clusters_harmony", label = TRUE, label.size = 8, reduction = "umap.harmony")
+p1 - p2
+```
+
+By plotting the clusters on tissue coordinates we can also see that each cluster appearin every tissue section.
+
+```{r clusters_spatial_harmony, fig.width=10.5, fig.height=18}
+p1 <- ST.FeaturePlot(se.masked, features = "seurat_clusters_harmony", indices = 1, split.labels = T, pt.size = 2) & theme(plot.title = element_blank(), strip.text = element_blank())
+p2 <- ST.FeaturePlot(se.masked, features = "seurat_clusters_harmony", indices = 2, split.labels = T, pt.size = 2) & theme(plot.title = element_blank(), strip.text = element_blank())
+p3 <- ST.FeaturePlot(se.masked, features = "seurat_clusters_harmony", indices = 3, split.labels = T, pt.size = 2) & theme(plot.title = element_blank(), strip.text = element_blank())
+p4 <- ST.FeaturePlot(se.masked, features = "seurat_clusters_harmony", indices = 4, split.labels = T, pt.size = 2) & theme(plot.title = element_blank(), strip.text = element_blank())
+cowplot::plot_grid(p1, p2, p3, p4, ncol = 4)
+```
+
+## DE analysis
+***
+
+From these clsuetrs, we can extract marker genes by differential expression analysis (DEA).
+
+```{r read_DE, include=FALSE}
+de.markers <- readRDS("~/chi_chih/R_objects/de.markers")
+```
+
+```{r de, eval=FALSE}
+de.markers <- FindAllMarkers(se.masked, only.pos = TRUE)
+```
+```{r deheatmap, fig.width=14, fig.height=8}
+
+top10 <- de.markers %>%
+  dplyr::filter(p_val_adj < 0.01) %>%
+  dplyr::group_by(cluster) %>%
+  dplyr::top_n(wt = -p_val_adj, n = 10)
+
+DoHeatmap(se.masked, features = top10$gene)
+```
+
+
+## 3D stack
+***
+
+By runnig `Create3DStack`, we can create a z-stack of "2D point patterns" which we'll use to interpolate expression values over and visualzie expression in 2D space.
+
+```{r 3d_stack, eval=FALSE}
+
+se.masked <- Create3DStack(object = se.masked, limit = 0.5, maxnum = 5e3, nx = 200)
+
+```
+
+## 3D visualization
+***
+
+Now that we have some marker genes we can try to visualize them in 3D
+
+```{r 3d_viz}
+FeaturePlot3D(se.masked, features = "Zm00001d053156")
+```
+
+If you don't want to use the "cell scatter cloud", you can also just visualize expression at the spot level.
+
+```{r 3d_viz_spots}
+FeaturePlot3D(se.masked, features = "Zm00001d053156", mode = "spots", pt.size = 4, pt.alpha = 0.7)
+```
+
+Or do some other fancy tricks to color the sections according to similarities in gene expression for example
+
+```{r 3d_rgb}
+se.masked <- RunUMAP(se.masked, dims = 1:30, reduction = "harmony", n.components = 3, reduction.name = "umap.3d")
+DimPlot3D(se.masked, dims = 1:3, blend = TRUE, reduction = "umap.3d", mode = "spots", pt.size = 5, pt.alpha = 1)
+```
+
+This can of course also be done in 2D
+
+```{r rgb_2d, fig.width=12, fig.height=3}
+ImagePlot(se.masked, ncols = 4, method = "raster")
+ST.DimPlot(se.masked, dims = 1:3, reduction = "umap.3d", blend = TRUE, ncol = 4, pt.size = 3)
+```
+
+## Date
+***
+
+```{r date}
+date()
+```
+
+
+## Session Info
+***
+
+```{r session}
+devtools::session_info()
+```
+

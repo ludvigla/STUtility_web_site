@@ -33,6 +33,10 @@ navbar:
       href: 3D_visualization.html
     - text: Split Data
       href: Split_Data.html
+  - text: Walkthroughs
+    menu:
+    - text: Maize data analysis
+      href: Maize_data.html
   - text: License
     href: License.html
   right:
