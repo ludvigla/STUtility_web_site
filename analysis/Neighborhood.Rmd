@@ -124,8 +124,7 @@ se <- SetIdent(se, value = "nbs_2")
 nbs_2.markers <- FindMarkers(se, ident.1 = "2", ident.2 = "nbs_2")
 nbs_2.markers$gene <- rownames(nbs_2.markers)
 se.subset <- SubsetSTData(se, expression = nbs_2 %in% c("2", "nbs_2"))
-sorted.marks <- nbs_2.markers %>% top_n(n = 40, wt = abs(avg_logFC))
-sorted.marks <- sorted.marks[order(sorted.marks$avg_logFC, decreasing = T), ]
+sorted.marks <- nbs_2.markers %>% arrange(-avg_log2FC) %>% top_n(n = 40, wt = abs(avg_log2FC))
 DoHeatmap(se.subset, features = sorted.marks$gene, group.colors = c("red", "lightgray"), disp.min = -2, disp.max = 2)
 
 ```
